@@ -18,43 +18,51 @@ class Distance:
         if isinstance(other, (float, int)):
             self.km += other
             return self
-        self.km += other.km
-        return self
+        elif isinstance(other, Distance):
+            self.km += other.km
+            return self
 
     def __mul__(self, other):
         if isinstance(other, (float, int)):
             return Distance(self.km * other)
-        return Distance(self.km * other.km)
+        elif isinstance(other, Distance):
+            return Distance(self.km * other.km)
 
     def __truediv__(self, other):
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
-        return None
+        elif isinstance(other, Distance):
+            return Distance(round(self.km / other.km, 2))
 
     def __lt__(self, other):
         if isinstance(other, (float, int)):
             return self.km < other
-        return self.km < other.km
+        elif isinstance(other, Distance):
+            return self.km < other.km
 
     def __gt__(self, other):
         if isinstance(other, (float, int)):
             return self.km > other
-        return self.km > other.km
+        elif isinstance(other, Distance):
+            return self.km > other.km
 
     def __eq__(self, other):
         if isinstance(other, (float, int)):
             return self.km == other
-        return self.km == other.km
+        elif isinstance(other, Distance):
+            return self.km == other.km
 
     def __le__(self, other):
         if isinstance(other, (float, int)):
             return not self > other
-        return not self > other.km
+        elif isinstance(other, Distance):
+            return not self > other.km
 
     def __ge__(self, other):
         if isinstance(other, (float, int)):
             return not self < other
-        return not self < other
+        elif isinstance(other, Distance):
+            return not self < other
 
     def __len__(self):
         return self.km
