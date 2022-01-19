@@ -62,7 +62,3 @@ class Distance:
 
     def __len__(self):
         return self.km
-
-
-distance = Distance(50)
-print(Distance(100) > 30)
