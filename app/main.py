@@ -14,7 +14,7 @@ class Distance:
     def __add__(self, other):
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        elif isinstance(other, int):
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
         else:
             raise TypeError(self.type_error_message)
@@ -22,20 +22,20 @@ class Distance:
     def __iadd__(self, other):
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, int):
+        elif isinstance(other, (int, float)):
             self.km += other
         else:
             raise TypeError(self.type_error_message)
         return self
 
     def __mul__(self, other):
-        if isinstance(other, int):
+        if isinstance(other, (int, float)):
             return Distance(self.km * other)
         else:
             raise TypeError(self.type_error_message)
 
     def __truediv__(self, other):
-        if isinstance(other, int):
+        if isinstance(other, (int, float)):
             return Distance(round(self.km / other, self.round_digit))
         else:
             raise TypeError(self.type_error_message)
@@ -43,7 +43,7 @@ class Distance:
     def __eq__(self, other):
         if isinstance(other, Distance):
             return self.km == other.km
-        elif isinstance(other, int):
+        elif isinstance(other, (int, float)):
             return self.km == other
         else:
             raise TypeError(self.type_error_message)
@@ -54,7 +54,7 @@ class Distance:
     def __lt__(self, other):
         if isinstance(other, Distance):
             return self.km < other.km
-        elif isinstance(other, int):
+        elif isinstance(other, (int, float)):
             return self.km < other
         else:
             raise TypeError(self.type_error_message)
