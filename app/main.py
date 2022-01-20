@@ -59,9 +59,3 @@ class Distance:
 
     def __len__(self):
         return self.km
-
-
-person = Distance(20)
-pre = Distance(30)
-r = person * pre
-print(r)
