@@ -23,10 +23,10 @@ class Distance:
         return self
 
     def __mul__(self, other):
-        if isinstance(other, Distance):
-            return Distance(self.km * other.km)
-
-        return Distance(self.km * other)
+        if isinstance(other, (int, float)):
+            return Distance(round(self.km * other, 2))
+        else:
+            raise TypeError(f"{type(other)} can`t be multiply on {type(self.km)}")
 
     def __truediv__(self, other):
         result = self.km / other
@@ -41,8 +41,6 @@ class Distance:
         if isinstance(other, Distance):
             return self.km > other.km
         return self.km > other
-        # Why it doesn't work?
-        # return not self.km < other
 
     def __eq__(self, other):
         if isinstance(other, Distance):
@@ -61,3 +59,9 @@ class Distance:
 
     def __len__(self):
         return self.km
+
+
+person = Distance(20)
+pre = Distance(30)
+r = person * pre
+print(r)
