@@ -22,16 +22,10 @@ class Distance:
         return self
 
     def __mul__(self, other):
-        if isinstance(other, Distance):
-            return Distance(self.km * other.km)
-        else:
-            return Distance(self.km * other)
+        return Distance(self.km * other)
 
     def __truediv__(self, other):
-        if isinstance(other, Distance):
-            return Distance(round(self.km / other.km, 2))
-        else:
-            return Distance(round(self.km / other, 2))
+        return Distance(round(self.km / other, 2))
 
     def __eq__(self, other):
         if not isinstance(other, Distance):
