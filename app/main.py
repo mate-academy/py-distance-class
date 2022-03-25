@@ -1,4 +1,5 @@
-from  typing import  Union
+from typing import Union
+
 
 class Distance:
     # Write your code here
@@ -23,15 +24,45 @@ class Distance:
         except TypeError:
             return self.km
 
+    def __mul__(self, other):
+        try:
+            return Distance(self.km * other.km)
+        except AttributeError:
+            return Distance(self.km * other)
 
+    def __truediv__(self, other):
+        try:
+            return Distance(self.km / other.km)
+        except AttributeError:
+            return Distance(self.km / other)
 
-distance1 = Distance(20)
-distance2 = Distance(30)
-distance3 = distance1 + distance2
+    def __eq__(self, other):
+        try:
+            return self.km == other.km
+        except AttributeError:
+            return self.km == other
 
-print(distance3)
-distance3 = distance1 + 30
-print(distance3)
-distance3 += 20
-print(distance3)
-print(len(distance3))
+    def __gt__(self, other):
+        try:
+            return self.km > other.km
+        except AttributeError:
+            return self.km > other
+
+    def __lt__(self, other):
+        try:
+            return self.km < other.km
+        except AttributeError:
+            return self.km < other
+
+    def __ge__(self, other):
+        try:
+            return self.km >= other.km
+        except AttributeError:
+            return self.km >= other
+
+    def __le__(self, other):
+        try:
+            return self.km <= other.km
+        except AttributeError:
+            return self.km <= other
+
