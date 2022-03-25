@@ -18,6 +18,13 @@ class Distance:
         except AttributeError:
             return Distance(self.km + other)
 
+    def __iadd__(self, other):
+        try:
+            self.km += other.km
+        except AttributeError:
+            self.km += other
+        return self
+
     def __len__(self):
         try:
             return len(self.km)
@@ -32,9 +39,9 @@ class Distance:
 
     def __truediv__(self, other):
         try:
-            return Distance(self.km / other.km)
+            return Distance(round(self.km / other.km, 2))
         except AttributeError:
-            return Distance(self.km / other)
+            return Distance(round(self.km / other, 2))
 
     def __eq__(self, other):
         try:
@@ -65,4 +72,3 @@ class Distance:
             return self.km <= other.km
         except AttributeError:
             return self.km <= other
-
