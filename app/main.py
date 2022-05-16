@@ -1,9 +1,6 @@
-from typing import Union
+class Distance():
 
-
-class Distance:
-    # Write your code here
-    def __init__(self, km: Union[int, float]) -> None:
+    def __init__(self, km):
         self.km = km
 
     def __str__(self):
@@ -13,62 +10,53 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other):
-        try:
+        if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        except AttributeError:
-            return Distance(self.km + other)
+        return Distance(self.km + other)
 
     def __iadd__(self, other):
-        try:
+        if isinstance(other, Distance):
             self.km += other.km
-        except AttributeError:
-            self.km += other
+        else:
+            self.km = self.km + other
         return self
 
-    def __len__(self):
-        try:
-            return len(self.km)
-        except TypeError:
-            return self.km
-
     def __mul__(self, other):
-        try:
+        if isinstance(other, (Distance)):
             return Distance(self.km * other.km)
-        except AttributeError:
-            return Distance(self.km * other)
+        return Distance(self.km * other)
+
+        pass
 
     def __truediv__(self, other):
-        try:
+        if isinstance(other, Distance):
             return Distance(round(self.km / other.km, 2))
-        except AttributeError:
-            return Distance(round(self.km / other, 2))
-
-    def __eq__(self, other):
-        try:
-            return self.km == other.km
-        except AttributeError:
-            return self.km == other
-
-    def __gt__(self, other):
-        try:
-            return self.km > other.km
-        except AttributeError:
-            return self.km > other
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other):
-        try:
+        if isinstance(other, Distance):
             return self.km < other.km
-        except AttributeError:
-            return self.km < other
+        return self.km < other
 
-    def __ge__(self, other):
-        try:
-            return self.km >= other.km
-        except AttributeError:
-            return self.km >= other
+    def __gt__(self, other):
+        if isinstance(other, Distance):
+            return self.km > other.km
+        return self.km > other
+
+    def __eq__(self, other):
+        if isinstance(other, Distance):
+            return self.km == other.km
+        return self.km == other
 
     def __le__(self, other):
-        try:
+        if isinstance(other, Distance):
             return self.km <= other.km
-        except AttributeError:
-            return self.km <= other
+        return self.km <= other
+
+    def __ge__(self, other):
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        return self.km >= other
+
+    def __len__(self):
+        return self.km
