@@ -1,6 +1,3 @@
-from __future__ import division
-
-
 class Distance:
     def __init__(self, km):
         self.km = km
