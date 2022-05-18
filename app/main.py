@@ -1,4 +1,4 @@
-class Distance():
+class Distance:
 
     def __init__(self, km):
         self.km = km
@@ -18,15 +18,13 @@ class Distance():
         if isinstance(other, Distance):
             self.km += other.km
         else:
-            self.km = self.km + other
+            self.km += other
         return self
 
     def __mul__(self, other):
         if isinstance(other, (Distance)):
             return Distance(self.km * other.km)
         return Distance(self.km * other)
-
-        pass
 
     def __truediv__(self, other):
         if isinstance(other, Distance):
