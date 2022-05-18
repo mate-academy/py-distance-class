@@ -1,5 +1,5 @@
 class Distance:
-    # Write your code here
+
     def __init__(self, km):
         self.km = km
 
@@ -7,11 +7,10 @@ class Distance:
         print(f"Distance: {self.km} kilometers)")
 
     def __repr__(self):
-
         return f'Distance(km={self.km})'
 
     def __add__(self, kilometers):
-        if isinstance(kilometers, int):
+        if isinstance(kilometers, int) or isinstance(kilometers, float):
             return Distance(
                 km=self.km + kilometers)
         else:
@@ -20,21 +19,20 @@ class Distance:
             )
 
     def __iadd__(self, other):
-        if isinstance(other, int):
+        if isinstance(other, int) or isinstance(other, float):
             self.km += other
-            return self
         else:
             self.km += other.km
-            return self
+        return self
 
     def __mul__(self, multiplicator):
         return Distance(
             km=self.km * multiplicator)
 
     def __truediv__(self, divider):
-        kmm = round(self.km / divider, 2)
+        result_km = round(self.km / divider, 2)
         return Distance(
-            km=kmm
+            km=result_km
         )
 
     def __lt__(self, other):
@@ -53,5 +51,4 @@ class Distance:
         return self.km >= other
 
     def __len__(self):
-
         return self.km
