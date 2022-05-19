@@ -12,7 +12,7 @@ class Distance:
     def __iadd__(self, other):
         if type(other) is Distance:
             self.km += other.km
-        elif elif type(other) is int:
+        elif type(other) is int:
             self.km += other
         return self
 
