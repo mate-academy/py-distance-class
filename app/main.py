@@ -25,23 +25,35 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other):
-        res = self.km / other
-        return Distance(round(res, 2))
+        result = self.km / other
+        return Distance(round(result, 2))
 
     def __lt__(self, other):
-        return self.km < other
+        if isinstance(other, Distance):
+            result = self.km < other.km
+        else:
+            result = self.km < other
+        return result
 
     def __gt__(self, other):
-        return self.km > other
+        if isinstance(other, Distance):
+            result = self.km > other.km
+        else:
+            result = self.km > other
+        return result
 
     def __eq__(self, other):
-        return self.km == other
+        if isinstance(other, Distance):
+            result = self.km == other.km
+        else:
+            result = self.km == other
+        return result
 
     def __le__(self, other):
-        return self.km <= other
+        return not self > other
 
     def __ge__(self, other):
-        return self.km >= other
+        return not self < other
 
     def __len__(self):
         return self.km
