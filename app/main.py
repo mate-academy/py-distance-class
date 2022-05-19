@@ -19,21 +19,22 @@ class Distance:
         if isinstance(second, Distance):
             self.km += second.km
             return self
-        elif isinstance(second, int):
+        if isinstance(second, int):
             self.km += second
             return self
 
     def __mul__(self, other):
-        if isinstance(other, Distance):
-            return Distance(self.km * other.km)
-        elif isinstance(other, int):
+
+        if isinstance(other, int):
             return Distance(self.km * other)
+        else:
+            return Distance(self.km * other.km)
 
     def __truediv__(self, other):
-        if isinstance(other, Distance):
-            return Distance(round(self.km / other.km, 2))
-        elif isinstance(other, int):
+        if isinstance(other, int):
             return Distance(round(self.km / other, 2))
+        else:
+            return Distance(round(self.km / other.km, 2))
 
     def __eq__(self, other):
         return self.km == other
