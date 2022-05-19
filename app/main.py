@@ -3,10 +3,10 @@ class Distance:
         self.km = km
 
     def __str__(self):
-        return f"Distance: {str(self.km)} kilometers."
+        return f"Distance: {self.km} kilometers."
 
     def __repr__(self):
-        return f"Distance(km={str(self.km)})"
+        return f"Distance(km={self.km})"
 
     def __add__(self, other):
         if isinstance(other, Distance):
@@ -16,9 +16,9 @@ class Distance:
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
-            self.km = self.km + other.km
+            self.km += other.km
         elif isinstance(other, int):
-            self.km = self.km + other
+            self.km += other
         return self
 
     def __mul__(self, other):
@@ -55,6 +55,3 @@ class Distance:
 
     def __len__(self):
         return self.km
-
-
-print(Distance(50) > Distance(50))
