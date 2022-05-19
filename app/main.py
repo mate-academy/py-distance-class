@@ -12,10 +12,9 @@ class Distance:
     def __iadd__(self, other):
         if type(other) is Distance:
             self.km += other.km
-            return self
         else:
             self.km += other
-            return self
+        return self
 
     def __mul__(self, other):
         return Distance(self.km * other)
