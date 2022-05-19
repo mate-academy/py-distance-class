@@ -9,19 +9,18 @@ class Distance:
     def __repr__(self):
         return f"Distance(km={self.km})"
 
-    def __add__(self, second):
-        if isinstance(second, Distance):
-            return Distance(self.km + second.km)
-        elif isinstance(second, int):
-            return Distance(self.km + second)
+    def __add__(self, other):
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        elif isinstance(other, int):
+            return Distance(self.km + other)
 
-    def __iadd__(self, second):
-        if isinstance(second, Distance):
-            self.km += second.km
-            return self
-        if isinstance(second, int):
-            self.km += second
-            return self
+    def __iadd__(self, other):
+        if isinstance(other, int):
+            self.km += other
+        else:
+            self.km += other.km
+        return self
 
     def __mul__(self, other):
 
