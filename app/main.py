@@ -45,7 +45,7 @@ class Distance:
         return not self > other
 
     def __ge__(self, other):
-        return not self > other
+        return not self < other
 
     def __eq__(self, other):
         if isinstance(other, Distance):
