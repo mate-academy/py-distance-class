@@ -10,13 +10,9 @@ class Distance:
 
     def __add__(self, other):
         if isinstance(other, Distance):
-            return Distance(
-                km=self.km + other.km
-            )
+            return Distance(km=self.km + other.km)
         else:
-            return Distance(
-                km=self.km + other
-            )
+            return Distance(km=self.km + other)
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
@@ -27,14 +23,10 @@ class Distance:
         return self
 
     def __mul__(self, other):
-        return Distance(
-            km=self.km * other
-        )
+        return Distance(km=self.km * other)
 
     def __truediv__(self, other):
-        return Distance(
-            km=round(self.km / other, 2)
-        )
+        return Distance(km=round(self.km / other, 2))
 
     def __lt__(self, other):
         if isinstance(other, Distance):
