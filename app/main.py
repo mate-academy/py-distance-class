@@ -9,12 +9,12 @@ class Distance:
         return f"Distance: {self.km} kilometers"
 
     def __add__(self, other):
-        if not isinstance(other, Distance):
+        if isinstance(other, (float, int)):
             return Distance(self.km + other)
         return Distance(self.km + other.km)
 
     def __iadd__(self, other):
-        if not isinstance(other, Distance):
+        if isinstance(other, (float, int)):
             self.km += other
         else:
             self.km += other.km
@@ -27,29 +27,24 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other):
-        if not isinstance(other, Distance):
+        if isinstance(other, (float, int, Distance)):
             return True if self.km < other else False
-        return True if self.km < other.km else False
 
     def __gt__(self, other):
-        if not isinstance(other, Distance):
+        if isinstance(other, (float, int, Distance)):
             return True if self.km > other else False
-        return True if self.km > other.km else False
 
     def __eq__(self, other):
-        if not isinstance(other, Distance):
+        if isinstance(other, (float, int, Distance)):
             return True if self.km == other else False
-        return True if self.km == other.km else False
 
     def __le__(self, other):
-        if not isinstance(other, Distance):
+        if isinstance(other, (float, int, Distance)):
             return True if self.km <= other else False
-        return True if self.km <= other.km else False
 
     def __ge__(self, other):
-        if not isinstance(other, Distance):
+        if isinstance(other, (float, int, Distance)):
             return True if self.km >= other else False
-        return True if self.km >= other.km else False
 
     def __len__(self):
         return self.km
