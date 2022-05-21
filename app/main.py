@@ -16,13 +16,13 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other):
-        if type(other) is int:
+        if type(other) is not Distance:
             return Distance(self.km + other)
         else:
             return Distance(self.km + other.km)
 
     def __iadd__(self, other):
-        if type(other) is int:
+        if type(other) is not Distance:
             self.km += other
         else:
             self.km += other.km
