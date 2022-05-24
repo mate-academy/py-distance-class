@@ -28,24 +28,25 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other):
-        return self.km < other.km \
-            if isinstance(other, Distance) else self.km < other
+        if isinstance(other, Distance):
+            return self.km < other.km
+        return self.km < other
 
     def __gt__(self, other):
-        return self.km > other.km \
-            if isinstance(other, Distance) else self.km > other
+        if isinstance(other, Distance):
+            return self.km > other.km
+        return self.km > other
 
     def __eq__(self, other):
-        return self.km == other.km \
-            if isinstance(other, Distance) else self.km == other
+        if isinstance(other, Distance):
+            return self.km == other.km
+        return self.km == other
 
     def __le__(self, other):
-        return self.km <= other.km \
-            if isinstance(other, Distance) else self.km <= other
+        return not self.__gt__(other)
 
     def __ge__(self, other):
-        return self.km >= other.km \
-            if isinstance(other, Distance) else self.km >= other
+        return not self.__lt__(other)
 
     def __len__(self):
         return self.km
