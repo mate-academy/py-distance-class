@@ -4,7 +4,7 @@ class Distance:
         self.km = km
 
     def __str__(self):
-        print(f"Distance: {self.km} kilometers")
+        return f"Distance: {self.km} kilometers"
 
     def __repr__(self):
         return f"Distance(km={self.km})"
@@ -47,16 +47,10 @@ class Distance:
             return self.km == other.km
 
     def __le__(self, other):
-        if type(other) in [int, float]:
-            return self.km <= other
-        else:
-            return self.km <= other.km
+        return not self > other
 
     def __ge__(self, other):
-        if type(other) in [int, float]:
-            return self.km >= other
-        else:
-            return self.km >= other.km
+        return not self < other
 
     def __len__(self):
         return self.km
