@@ -18,16 +18,10 @@ class Distance:
         return self.km
 
     def __truediv__(self, other):
-        if isinstance(other, Distance):
-            return Distance(km=round(self.km / other.km, 2))
-        elif isinstance(other, (int, float)):
-            return Distance(km=round(self.km / other, 2))
+        return Distance(round(self.km / other, 2))
 
     def __mul__(self, other):
-        if isinstance(other, Distance):
-            return Distance(km=self.km * other.km)
-        elif isinstance(other, (int, float)):
-            return Distance(km=self.km * other)
+        return Distance(self.km * other)
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
