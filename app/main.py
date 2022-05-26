@@ -4,22 +4,23 @@ class Distance:
         self.km = km
 
     def __str__(self):
-        print(f"Distance: {self.km} kilometers)")
+        return f"Distance: {self.km} kilometers"
 
     def __repr__(self):
-        return f'Distance(km={self.km})'
+        return f"Distance(km={self.km})"
 
-    def __add__(self, kilometers):
-        if isinstance(kilometers, int) or isinstance(kilometers, float):
+    def __add__(self, other):
+        if isinstance(other, (int, float)):
             return Distance(
-                km=self.km + kilometers)
+                km=self.km + other
+            )
         else:
             return Distance(
-                km=self.km + kilometers.km
+                km=self.km + other.km
             )
 
     def __iadd__(self, other):
-        if isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, (int, float)):
             self.km += other
         else:
             self.km += other.km
@@ -27,7 +28,8 @@ class Distance:
 
     def __mul__(self, multiplicator):
         return Distance(
-            km=self.km * multiplicator)
+            km=self.km * multiplicator
+        )
 
     def __truediv__(self, divider):
         result_km = round(self.km / divider, 2)
@@ -36,19 +38,25 @@ class Distance:
         )
 
     def __lt__(self, other):
+        if isinstance(other, Distance):
+            return self.km < other.km
         return self.km < other
 
     def __gt__(self, other):
+        if isinstance(other, Distance):
+            return self.km > other.km
         return self.km > other
 
     def __eq__(self, other):
+        if isinstance(other, Distance):
+            return self.km == other.km
         return self.km == other
 
     def __le__(self, other):
-        return self.km <= other
+        return not self > other
 
     def __ge__(self, other):
-        return self.km >= other
+        return not self < other
 
     def __len__(self):
         return self.km
