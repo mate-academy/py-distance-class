@@ -23,11 +23,7 @@ class Distance:
         return self
 
     def __mul__(self, other):
-        if isinstance(other, (int, float)):
-            total = self.km * other
-        else:
-            total = self.km * other.km
-        return Distance(total)
+        return Distance(self.km * other)
 
     def __truediv__(self, other):
         total = round(self.km / other, 2)
