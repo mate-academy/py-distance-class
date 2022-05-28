@@ -15,16 +15,17 @@ class Distance:
             return Distance(self.km + other)
 
     def __iadd__(self, other):
-        if isinstance(other, Distance):
-            return self.km += other.km
+        if isinstance(other, (int, float)):
+            self.km += other
         else:
-            return self.km += other
+            self.km += other.km
+        return self
 
     def __mul__(self, other):
         return Distance(self.km * other)
 
     def __truediv__(self, other):
-        return Distance(round(self.km / other,2))
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other):
         if isinstance(other, Distance):
@@ -52,12 +53,9 @@ class Distance:
 
     def __ge__(self, other):
         if isinstance(other, Distance):
-            return self.km > other.km
+            return self.km >= other.km
         else:
-            return self.km > other
+            return self.km >= other
 
     def __len__(self):
         return self.km
-
-
-
