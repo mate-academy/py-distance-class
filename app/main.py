@@ -9,8 +9,11 @@ class Distance:
     def type_checking(other):
         if type(other) is Distance:
             return other.km
-        else:
+        elif isinstance(other, (int, float)):
             return other
+        else:
+            raise TypeError(f"Uncorrected type '{other}'."
+                            f" Must be int, float, {Distance}")
 
     def __str__(self):
         return f"Distance: {self.km} kilometers."
