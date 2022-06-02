@@ -2,7 +2,7 @@ class Distance:
     def __init__(self, km):
         self.km = km
         if not isinstance(self.km, (int, float, Distance)):
-            raise TypeError(f"Uncorrected type '{self.km}'."
+            raise TypeError(f"Uncorrected type '{self.km}': {type(self.km)}."
                             f" Must be int, float, {Distance}")
 
     @staticmethod
@@ -11,9 +11,8 @@ class Distance:
             return other.km
         elif isinstance(other, (int, float)):
             return other
-        else:
-            raise TypeError(f"Uncorrected type '{other}'."
-                            f" Must be int, float, {Distance}")
+        raise TypeError(f"Uncorrected type '{other}': {type(other)}."
+                        f" Must be int, float, {Distance}")
 
     def __str__(self):
         return f"Distance: {self.km} kilometers."
