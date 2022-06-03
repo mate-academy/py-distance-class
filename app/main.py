@@ -3,10 +3,16 @@ class Distance:
         self.km = km
 
     def __add__(self, other):
-        return Distance(other + self.km)
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        if isinstance(other, (int, float)):
+            return Distance(self.km + other)
 
     def __iadd__(self, other):
-        self.km = other + self.km
+        if isinstance(other, Distance):
+            self.km += other.km
+        elif isinstance(other, (int, float)):
+            self.km += other
         return self
 
     def __len__(self):
