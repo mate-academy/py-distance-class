@@ -30,33 +30,28 @@ class Distance:
 
     def __lt__(self, other):
         if isinstance(other, Distance):
-            return True if self.km < other.km else False
-        else:
-            return True if self.km < other else False
+            return self.km < other.km
+        return self.km < other
 
     def __gt__(self, other):
         if isinstance(other, Distance):
-            return True if self.km > other.km else False
-        else:
-            return True if self.km > other else False
+            return self.km > other.km
+        return self.km > other
 
     def __eq__(self, other):
         if isinstance(other, Distance):
-            return True if self.km == other.km else False
-        else:
-            return True if self.km == other else False
+            return self.km == other.km
+        return self.km == other
 
     def __le__(self, other):
         if isinstance(other, Distance):
-            return True if self.km <= other.km else False
-        else:
-            return True if self.km <= other else False
+            return self.km <= other.km
+        return self.km <= other
 
     def __ge__(self, other):
         if isinstance(other, Distance):
-            return True if self.km >= other.km else False
-        else:
-            return True if self.km >= other else False
+            return self.km >= other.km
+        return self.km >= other
 
     def __len__(self):
         return len(range(self.km))
