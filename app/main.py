@@ -11,13 +11,13 @@ class Distance:
     def __add__(self, other):
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        if isinstance(other, int):
+        if isinstance(other, (int, float)):
             return Distance(self.km + other)
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
             val2 = other.km
-        else:
+        if isinstance(other, (int, float)):
             val2 = other
         self.km += val2
         return self
@@ -32,56 +32,41 @@ class Distance:
         val1 = self.km
         if isinstance(other, Distance):
             val2 = other.km
-        else:
+        if isinstance(other, (int, float)):
             val2 = other
-        if val1 < val2:
-            return True
-        else:
-            return False
+        return val1 < val2
 
     def __gt__(self, other):
         val1 = self.km
         if isinstance(other, Distance):
             val2 = other.km
-        else:
+        if isinstance(other, (int, float)):
             val2 = other
-        if val1 > val2:
-            return True
-        else:
-            return False
+        return val1 > val2
 
     def __eq__(self, other):
         val1 = self.km
         if isinstance(other, Distance):
             val2 = other.km
-        else:
+        if isinstance(other, (int, float)):
             val2 = other
-        if val1 == val2:
-            return True
-        else:
-            return False
+        return val1 == val2
 
     def __le__(self, other):
         val1 = self.km
         if isinstance(other, Distance):
             val2 = other.km
-        else:
+        if isinstance(other, (int, float)):
             val2 = other
-        if val1 <= val2:
-            return True
-        else:
-            return False
+        return val1 <= val2
 
     def __ge__(self, other):
         val1 = self.km
         if isinstance(other, Distance):
             val2 = other.km
-        else:
+        if isinstance(other, (int, float)):
             val2 = other
-        if val1 >= val2:
-            return True
-        else:
-            return False
+        return val1 >= val2
 
     def __len__(self):
         return self.km
