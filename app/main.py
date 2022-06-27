@@ -14,7 +14,6 @@ class Distance:
             return Distance(self.km + other.km)
         else:
             return Distance(self.km + other)
-            raise TypeError("both variants ^ are possible")
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
