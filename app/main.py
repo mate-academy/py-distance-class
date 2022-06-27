@@ -27,19 +27,29 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other):
-        return self.km < other
+        if not isinstance(other, Distance):
+            return self.km < other
+        return self.km < other.km
 
     def __gt__(self, other):
-        return self.km > other
+        if not isinstance(other, Distance):
+            return self.km > other
+        return self.km > other.km
 
     def __eq__(self, other):
-        return self.km == other
+        if not isinstance(other, Distance):
+            return self.km == other
+        return self.km == other.km
 
     def __le__(self, other):
-        return self.km <= other
+        if not isinstance(other, Distance):
+            return self.km <= other
+        return self.km <= other.km
 
     def __ge__(self, other):
-        return self.km >= other
+        if not isinstance(other, Distance):
+            return self.km >= other
+        return self.km >= other.km
 
     def __len__(self):
-        return len(range(self.km))
+        return self.km
