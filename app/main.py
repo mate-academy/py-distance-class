@@ -12,8 +12,7 @@ class Distance:
     def __add__(self, other):
         if type(other) == Distance:
             return Distance(self.km + other.km)
-        else:
-            return Distance(self.km + other)
+        return Distance(self.km + other)
 
     def __iadd__(self, other):
         if type(other) == Distance:
@@ -44,4 +43,5 @@ class Distance:
         return self.km >= other
 
     def __len__(self):
-        return len(range(self.km))
+        len(range(self.km))
+        return self.km
