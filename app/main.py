@@ -18,18 +18,15 @@ class Distance:
     def __iadd__(self, other):
         if isinstance(other, Distance):
             self.km += other.km
-            return self
         else:
             self.km += other
-            return self
+        return self
 
     def __mul__(self, other):
         return Distance(self.km * other)
 
     def __len__(self):
-        counter = 0
-        for i in range(self.km + 1):
-            counter += i
+        len(range(self.km + 1))
         return self.km
 
     def __truediv__(self, other):
