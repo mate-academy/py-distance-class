@@ -1,3 +1,58 @@
 class Distance:
-    # Write your code here
-    pass
+    def __init__(self, km):
+        self.km = km
+
+    def __str__(self):
+        return f"Distance: {self.km} kilometers."
+
+    def __repr__(self):
+        return f'Distance(km={self.km})'
+
+    def __add__(self, other):
+        new_distance = other
+        if isinstance(other, Distance):
+            new_distance = other.km
+
+        return Distance(self.km + new_distance)
+
+    def __iadd__(self, other):
+        new_distance = other
+        if isinstance(other, Distance):
+            new_distance = other.km
+
+        self.km += new_distance
+        return self
+
+    def __mul__(self, other):
+        new_distance = other
+        if isinstance(other, Distance):
+            new_distance = other.km
+
+        return Distance(self.km * new_distance)
+
+    def __truediv__(self, other):
+        new_distance = other
+        if isinstance(other, Distance):
+            new_distance = other.km
+
+        result = self.km / new_distance
+
+        return Distance(round(result, 2))
+
+    def __lt__(self, other):
+        return self.km < other.km
+
+    def __gt__(self, other):
+        return self.km > other.km
+
+    def __eq__(self, other):
+        return self.km == other.km
+
+    def __le__(self, other):
+        return self.km <= other.km
+
+    def __ge__(self, other):
+        return self.km >= other.km
+
+    def __len__(self):
+        return len(self.km)
