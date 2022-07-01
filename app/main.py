@@ -1,7 +1,7 @@
 class Distance:
     def __init__(self, km):
         self.km = km
-        
+
     def __str__(self):
         return f"Distance: {self.km} kilometers."
 
@@ -42,4 +42,3 @@ class Distance:
 
     def __len__(self):
         return len("0" * self.km)
-        
