@@ -6,21 +6,13 @@ class Distance:
         return f"Distance: {self.km} kilometers."
 
     def __repr__(self):
-        return f'Distance(km={self.km})'
+        return f"Distance(km={self.km})"
 
     def __add__(self, other):
-        new_distance = other
-        if isinstance(other, Distance):
-            new_distance = other.km
-
-        return Distance(self.km + new_distance)
+        return Distance(other + self.km)
 
     def __iadd__(self, other):
-        new_distance = other
-        if isinstance(other, Distance):
-            new_distance = other.km
-
-        self.km += new_distance
+        self.km = self + other
         return self
         
     def __mul__(self, other):
