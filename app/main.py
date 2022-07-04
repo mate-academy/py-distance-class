@@ -11,8 +11,7 @@ class Distance:
     def __add__(self, other):
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
-            return Distance(self.km + other)
+        return Distance(self.km + other)
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
@@ -29,53 +28,28 @@ class Distance:
 
     def __lt__(self, other):
         if isinstance(other, Distance):
-            if self.km < other.km:
-                return True
-            return False
-        else:
-            if self.km < other:
-                return True
-            return False
+            return self.km < other.km
+        return self.km < other
 
     def __le__(self, other):
         if isinstance(other, Distance):
-            if self.km <= other.km:
-                return True
-            return False
-        else:
-            if self.km <= other:
-                return True
-            return False
+            return self.km <= other.km
+        return self.km <= other
 
     def __gt__(self, other):
         if isinstance(other, Distance):
-            if self.km > other.km:
-                return True
-            return False
-        else:
-            if self.km > other:
-                return True
-            return False
+            return self.km > other.km
+        return self.km > other
 
     def __ge__(self, other):
         if isinstance(other, Distance):
-            if self.km >= other.km:
-                return True
-            return False
-        else:
-            if self.km >= other:
-                return True
-            return False
+            return self.km >= other.km
+        return self.km >= other
 
     def __eq__(self, other):
         if isinstance(other, Distance):
-            if self.km == other.km:
-                return True
-            return False
-        else:
-            if self.km == other:
-                return True
-            return False
+            return self.km == other.km
+        return self.km == other
 
     def __len__(self):
         return self.km
