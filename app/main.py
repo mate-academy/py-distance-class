@@ -9,17 +9,26 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other):
-        return Distance(self.km + other.km)
+        if type(other) == int:
+            return Distance(self.km + other)
+        else:
+            return Distance(self.km + other.km)
 
     def __iadd__(self, other):
-        self.km += other.km
+        if type(other) == int or type(other) == float:
+            self.km += other
+        else:
+            self.km += other.km
         return self
 
     def __mul__(self, other):
         return Distance(self.km * other)
 
     def __truediv__(self, other):
-        return round(self.km / other), 2
+        if type(other) == int:
+            return Distance(round(self.km / other, 2))
+        else:
+            return Distance(round(self.km / other.km, 2))
 
     def __lt__(self, other):
         return self.km < other
