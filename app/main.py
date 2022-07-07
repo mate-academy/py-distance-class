@@ -25,12 +25,14 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other):
-        if type(other) == int:
+        if isinstance(other, int):
             return Distance(round(self.km / other, 2))
         else:
             return Distance(round(self.km / other.km, 2))
 
     def __lt__(self, other):
+        if isinstance(other, Distance):
+            return self.km < other.km
         return self.km < other
 
     def __gt__(self, other):
