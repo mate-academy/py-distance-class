@@ -57,7 +57,3 @@ class Distance:
         if type(other) is int:
             return self.km >= other
         return self.km >= other.km
-
-
-distance = Distance(50)
-print(distance < Distance(60))
