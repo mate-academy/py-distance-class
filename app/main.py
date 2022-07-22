@@ -45,5 +45,5 @@ class Distance:
         return self.km >= other
 
     def __len__(self):
-        if isinstance(self.km, int):
+        if isinstance(self.km, (int, float)):
             return self.km
