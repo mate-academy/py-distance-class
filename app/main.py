@@ -9,9 +9,10 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other):
-        km = self.km + other.km \
-            if isinstance(other, Distance) \
-            else self.km + other
+        if isinstance(other, Distance):
+            km = self.km + other.km
+        else:
+            km = self.km + other
         return Distance(km)
 
     def __iadd__(self, other):
