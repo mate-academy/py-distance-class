@@ -17,6 +17,7 @@ class Distance:
 
     def __iadd__(self, other):
         self.km = self.__add__(other).km
+
         return self
 
     def __mul__(self, other):
