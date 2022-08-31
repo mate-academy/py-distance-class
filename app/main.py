@@ -15,11 +15,11 @@ class Distance:
 
     def __iadd__(self, other):
         if isinstance(other, int) or isinstance(other, float):
-            x = other
-            self.km += x
+            result = other
+            self.km += result
         else:
-            x = other.km
-            self.km += x
+            result = other.km
+            self.km += result
         return self
 
     def __mul__(self, other):
@@ -32,7 +32,9 @@ class Distance:
         return self.km < other
 
     def __gt__(self, other):
-        return self.km > other
+        if isinstance(other, int) or isinstance(other, float):
+            return self.km > other
+        return self.km > other.km
 
     def __eq__(self, other):
         return self.km == other
