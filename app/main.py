@@ -1,5 +1,4 @@
 class Distance:
-    # Write your code here
     def __init__(self, km):
         self.km = km
 
