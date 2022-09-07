@@ -35,14 +35,10 @@ class Distance:
         )
 
     def __lt__(self, other):
-        if isinstance(other, (int, float)):
-            return self.km < other
-        return self.km < other.km
+        return not self.__ge__(other)
 
     def __gt__(self, other):
-        if isinstance(other, (int, float)):
-            return self.km > other
-        return self.km > other.km
+        return not self.__le__(other)
 
     def __eq__(self, other):
         if isinstance(other, (int, float)):
