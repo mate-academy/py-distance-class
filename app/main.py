@@ -13,7 +13,7 @@ class Distance:
             return Distance(
                 km=self.km + other.km,
             )
-        return Distance(self.km + other)
+        return Distance(self.km + other,)
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
