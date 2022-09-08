@@ -13,7 +13,7 @@ class Distance:
         if isinstance(distance, Distance):
             distance.km = self.km + distance.km
             return Distance(distance.km)
-        elif isinstance(distance, (int, float)):
+        else:
             distance = self.km + distance
             return Distance(distance)
 
@@ -21,7 +21,7 @@ class Distance:
         if isinstance(distance, Distance):
             self.km += distance.km
             return self
-        elif isinstance(distance, (int, float)):
+        else:
             self.km += distance
             return self
 
@@ -42,29 +42,29 @@ class Distance:
     def __eq__(self, distance):
         if isinstance(distance, Distance):
             return self.km == distance.km
-        if isinstance(distance, (int, float)):
+        else:
             return self.km == distance
 
     def __gt__(self, distance):
         if isinstance(distance, Distance):
             return self.km > distance.km
-        if isinstance(distance, (int, float)):
+        else:
             return self.km > distance
 
     def __ge__(self, distance):
         if isinstance(distance, Distance):
             return self.km >= distance.km
-        if isinstance(distance, (int, float)):
+        else:
             return self.km >= distance
 
     def __lt__(self, distance):
         if isinstance(distance, Distance):
             return self.km < distance.km
-        if isinstance(distance, (int, float)):
+        else:
             return self.km < distance
 
     def __le__(self, distance):
         if isinstance(distance, Distance):
             return self.km <= distance.km
-        if isinstance(distance, (int, float)):
+        else:
             return self.km <= distance
