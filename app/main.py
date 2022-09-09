@@ -1,5 +1,4 @@
 class Distance:
-
     def __init__(self, km):
         self.km = km
 
@@ -25,7 +24,7 @@ class Distance:
 
     def __mul__(self, other):
         return Distance(
-          self.km * other
+            self.km * other
         )
 
     def __truediv__(self, other):
