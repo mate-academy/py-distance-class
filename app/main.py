@@ -11,8 +11,7 @@ class Distance:
     def __add__(self, other):
         if type(other) == Distance:
             return Distance(self.km + other.km)
-        else:
-            return Distance(self.km + other)
+        return Distance(self.km + other)
 
     def __iadd__(self, other):
         if type(other) == int or type(other) == float:
@@ -35,26 +34,27 @@ class Distance:
     def __eq__(self, other):
         if type(other) == int or float:
             return self.km == other
-        else:
-            return self.km == other.km
+        return self.km == other.km
 
     def __gt__(self, other):
         if type(other) == int or float:
             return self.km > other
-        else:
-            return self.km > other.km
+        return self.km > other.km
 
     def __lt__(self, other):
         if type(other) == int or float:
             return self.km < other
-        else:
-            return self.km < other.km
+        return self.km < other.km
 
     def __ge__(self, other):
-        return self.km >= other
+        if type(other) == int or float:
+            return self.km >= other
+        return self.km >= other.km
 
     def __le__(self, other):
-        return self.km <= other
+        if type(other) == int or float:
+            return self.km <= other
+        return self.km <= other.km
 
     def __len__(self):
         return self.km
