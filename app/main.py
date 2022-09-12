@@ -37,63 +37,38 @@ class Distance:
 
     def __lt__(self, other):
         if isinstance(other, Distance):
-            if self.km < other.km:
-                return True
-            else:
-                return False
+            return True if self.km < other.km else False
+
         if isinstance(other, (int, float)):
-            if self.km < other:
-                return True
-            else:
-                return False
+            return True if self.km < other else False
 
     def __gt__(self, other):
         if isinstance(other, Distance):
-            if self.km > other.km:
-                return True
-            else:
-                return False
+            return True if self.km > other.km else False
+
         if isinstance(other, (int, float)):
-            if self.km > other:
-                return True
-            else:
-                return False
+            return True if self.km > other else False
 
     def __eq__(self, other):
         if isinstance(other, Distance):
-            if self.km == other.km:
-                return True
-            else:
-                return False
+            return True if self.km == other.km else False
+
         if isinstance(other, (int, float)):
-            if self.km == other:
-                return True
-            else:
-                return False
+            return True if self.km == other else False
 
     def __le__(self, other):
         if isinstance(other, Distance):
-            if self.km <= other.km:
-                return True
-            else:
-                return False
+            return True if self.km <= other.km else False
+
         if isinstance(other, (int, float)):
-            if self.km <= other:
-                return True
-            else:
-                return False
+            return True if self.km <= other else False
 
     def __ge__(self, other):
         if isinstance(other, Distance):
-            if self.km >= other.km:
-                return True
-            else:
-                return False
+            return True if self.km >= other.km else False
+
         if isinstance(other, (int, float)):
-            if self.km >= other:
-                return True
-            else:
-                return False
+            return True if self.km >= other else False
 
     def __len__(self):
         return self.km
