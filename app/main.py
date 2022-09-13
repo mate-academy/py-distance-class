@@ -4,7 +4,7 @@ class Distance:
 
     @staticmethod
     def instancecheck(other, instance):
-        return True if isinstance(other, instance) else False
+        return isinstance(other, instance)
 
     def __str__(self):
         return f"Distance: {self.km} kilometers."
