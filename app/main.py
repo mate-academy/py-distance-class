@@ -13,17 +13,15 @@ class Distance:
         if isinstance(distance, Distance):
             distance.km = self.km + distance.km
             return Distance(distance.km)
-        else:
-            distance = self.km + distance
-            return Distance(distance)
+        distance = self.km + distance
+        return Distance(distance)
 
     def __iadd__(self, distance):
         if isinstance(distance, Distance):
             self.km += distance.km
             return self
-        else:
-            self.km += distance
-            return self
+        self.km += distance
+        return self
 
     def __mul__(self, distance):
         if isinstance(distance, (int, float)):
@@ -36,35 +34,29 @@ class Distance:
             distance = round((self.km / distance), 2)
         if self.km == distance:
             return True
-        else:
-            return Distance(distance)
+        return Distance(distance)
 
     def __eq__(self, distance):
         if isinstance(distance, Distance):
             return self.km == distance.km
-        else:
-            return self.km == distance
+        return self.km == distance
 
     def __gt__(self, distance):
         if isinstance(distance, Distance):
             return self.km > distance.km
-        else:
-            return self.km > distance
+        return self.km > distance
 
     def __ge__(self, distance):
         if isinstance(distance, Distance):
             return self.km >= distance.km
-        else:
-            return self.km >= distance
+        return self.km >= distance
 
     def __lt__(self, distance):
         if isinstance(distance, Distance):
             return self.km < distance.km
-        else:
-            return self.km < distance
+        return self.km < distance
 
     def __le__(self, distance):
         if isinstance(distance, Distance):
             return self.km <= distance.km
-        else:
-            return self.km <= distance
+        return self.km <= distance
