@@ -9,10 +9,10 @@ class Distance:
         return f'Distance(km={self.km})'
 
     def __add__(self, other):
-        return Distance(self.km + self.other_km(other))
+        return Distance(self.km + self.get_other_km(other))
 
     def __iadd__(self, other):
-        self.km += self.other_km(other)
+        self.km += self.get_other_km(other)
         return self
 
     def __mul__(self, other):
@@ -22,23 +22,23 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other):
-        return self.km < self.other_km(other)
+        return self.km < self.get_other_km(other)
 
     def __gt__(self, other):
-        return self.km > self.other_km(other)
+        return self.km > self.get_other_km(other)
 
     def __eq__(self, other):
-        return self.km == self.other_km(other)
+        return self.km == self.get_other_km(other)
 
     def __le__(self, other):
-        return self.km <= self.other_km(other)
+        return self.km <= self.get_other_km(other)
 
     def __ge__(self, other):
-        return self.km >= self.other_km(other)
+        return self.km >= self.get_other_km(other)
 
     def __len__(self):
         return self.km
 
     @staticmethod
-    def other_km(other) -> int | float:
+    def get_other_km(other) -> int | float:
         return other.km if isinstance(other, Distance) else other
