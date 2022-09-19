@@ -34,12 +34,12 @@ class Distance:
 
     def __lt__(self, other):
         if isinstance(other, Distance):
-            self.km < other.km
+            return self.km < other.km
         return self.km < other
 
     def __gt__(self, other):
         if isinstance(other, Distance):
-            self.km > other.km
+            return self.km > other.km
         return self.km > other
 
     def __eq__(self, other):
