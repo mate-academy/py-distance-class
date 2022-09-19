@@ -15,7 +15,7 @@ class Distance:
             return Distance(self.km + other)
 
     def __iadd__(self, other):
-        if type(other) == type(self):
+        if isinstance(other, type(self)):
             self.km += other.km
         else:
             self.km += other
