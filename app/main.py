@@ -21,7 +21,7 @@ class Distance:
     def __truediv__(self, other):
         return Distance(round(self.km / other, 2))
 
-    def __iadd__(self, other) -> object:
+    def __iadd__(self, other):
         if isinstance(other, Distance):
             self.km += other.km
         else:
