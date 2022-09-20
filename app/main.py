@@ -11,57 +11,49 @@ class Distance:
     def __add__(self, number):
         if isinstance(number, Distance):
             return Distance(self.km + number.km)
-        elif isinstance(number, (int, float)):
-            return self + Distance(number)
+        return Distance(self.km + number)
 
     def __iadd__(self, number):
         if isinstance(number, Distance):
             self.km += number.km
-        elif isinstance(number, (int, float)):
+        else:
             self.km += number
         return self
 
     def __mul__(self, number):
         if isinstance(number, Distance):
             return Distance(self.km * number.km)
-        elif isinstance(number, (int, float)):
-            return self * Distance(number)
+        return Distance(self.km * number)
 
     def __truediv__(self, number):
         if isinstance(number, Distance):
             return Distance(round(self.km / number.km, 2))
-        elif isinstance(number, (int, float)):
-            return Distance(round(self.km / number, 2))
+        return Distance(round(self.km / number, 2))
 
     def __lt__(self, number):
         if isinstance(number, Distance):
             return self.km < number.km
-        elif isinstance(number, (int, float)):
-            return self.km < number
+        return self.km < number
 
     def __gt__(self, number):
         if isinstance(number, Distance):
             return self.km > number.km
-        elif isinstance(number, (int, float)):
-            return self.km > number
+        return self.km > number
 
     def __eq__(self, number):
         if isinstance(number, Distance):
             return self.km == number.km
-        elif isinstance(number, (int, float)):
-            return self.km == number
+        return self.km == number
 
     def __le__(self, number):
         if isinstance(number, Distance):
             return self.km <= number.km
-        elif isinstance(number, (int, float)):
-            return self.km <= number
+        return self.km <= number
 
     def __ge__(self, number):
         if isinstance(number, Distance):
             return self.km >= number.km
-        elif isinstance(number, (int, float)):
-            return self.km >= number
+        return self.km >= number
 
     def __len__(self):
         return self.km
