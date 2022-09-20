@@ -39,11 +39,3 @@ class Distance:
 
     def __len__(self):
         return self.km
-
-
-
-
-
-
-
-
