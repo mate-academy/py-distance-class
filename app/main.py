@@ -21,7 +21,6 @@ class Distance:
             self.km += other.km
         else:
             self.km += other
-
         return self
 
     def __mul__(self, other):
