@@ -10,7 +10,10 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other):
-        return Distance(self.km + other)
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        else:
+            return Distance(self.km + other)
 
     def __mul__(self, other):
         return Distance(self.km * other)
@@ -18,8 +21,11 @@ class Distance:
     def __truediv__(self, other):
         return Distance(round(self.km / other, 2))
 
-    def __iadd__(self, other):
-        self.km += other.km
+    def __iadd__(self, other) -> object:
+        if isinstance(other, Distance):
+            self.km += other.km
+        else:
+            self.km += other
         return self
 
     def __lt__(self, other):
