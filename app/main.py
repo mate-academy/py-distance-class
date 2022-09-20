@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: int):
+    def __init__(self, km):
         self.km = km
 
     def __str__(self):
@@ -11,14 +11,14 @@ class Distance:
     def __add__(self, other):
         if isinstance(other, Distance):
             km = other.km
-        else:
+        elif isinstance(other, (int, float)):
             km = other
         return Distance(self.km + km)
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
             self.km += other.km
-        else:
+        elif isinstance(other, (int, float)):
             self.km += other
         return self
 
