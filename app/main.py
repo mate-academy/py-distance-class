@@ -21,10 +21,10 @@ class Distance:
         return self
 
     def __mul__(self, other):
-        return __class__(self.km * other)
+        return Distance(self.km * other)
 
     def __truediv__(self, other):
-        return __class__(round(self.km / other, 2))
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other):
         if isinstance(other, (int, float)):
@@ -42,10 +42,10 @@ class Distance:
         return self.km == other.km
 
     def __le__(self, other):
-        return not self.km > other
+        return not self > other
 
     def __ge__(self, other):
-        return not self.km < other
+        return not self < other
 
     def __len__(self):
         return self.km
