@@ -21,22 +21,31 @@ class Distance:
         return self
 
     def __mul__(self, other):
-        return Distance(self.km * other)
+        return __class__(self.km * other)
 
     def __truediv__(self, other):
-        return Distance(round(self.km / other, 2))
+        return __class__(round(self.km / other, 2))
 
     def __lt__(self, other):
-        return self.km < other
+        if isinstance(other, (int, float)):
+            return self.km < other
+        return self.km < other.km
 
     def __gt__(self, other):
-        return self.km > other
+        if isinstance(other, (int, float)):
+            return self.km > other
+        return self.km > other.km
 
     def __eq__(self, other):
-        return self.km == other
+        if isinstance(other, (int, float)):
+            return self.km == other
+        return self.km == other.km
 
     def __le__(self, other):
-        return self.km <= other
+        return not self.km > other
 
     def __ge__(self, other):
-        return self.km >= other
+        return not self.km < other
+
+    def __len__(self):
+        return self.km
