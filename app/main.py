@@ -55,13 +55,13 @@ class Distance:
 
     def __le__(self, other: float | int | Distance) -> bool:
         if self < other:
-            return self.__lt__(other)
+            return not self > other
         return self.__eq__(other)
 
     def __ge__(self, other: float | int | Distance) -> bool:
         if self > other:
-            return self.__gt__(other)
+            return not self < other
         return self.__eq__(other)
 
-    def __len__(self):
+    def __len__(self) -> int | float:
         return self.km
