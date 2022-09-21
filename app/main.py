@@ -10,9 +10,7 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other):
-        return(Distance(km=self.km + other.km)
-               if isinstance(other, Distance)
-               else Distance(km=self.km + other))
+        return Distance(km=self.km + self.obj_or_int(other))
 
     def __iadd__(self, other):
         self.km = self.km + self.obj_or_int(other)
@@ -43,4 +41,4 @@ class Distance:
         return self.km >= self.obj_or_int(other)
 
     def __len__(self):
-        return range(self.km)
+        return self.km
