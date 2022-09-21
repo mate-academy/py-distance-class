@@ -51,12 +51,10 @@ class Distance:
             else self.km == other.km
 
     def __le__(self, other) -> bool:
-        return self.km <= other.real if isinstance(other, (int, float)) \
-            else self.km <= other.km
+        return not self > other
 
     def __ge__(self, other) -> bool:
-        return self.km >= other.real if isinstance(other, (int, float)) \
-            else self.km >= other.km
+        return not self < other
 
     def __len__(self) -> float:
         return self.km
