@@ -45,4 +45,4 @@ class Distance:
         return not self.__lt__(other)
 
     def __len__(self) -> int:
-        return len(self.km)
+        return self.km
