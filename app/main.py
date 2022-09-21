@@ -55,5 +55,5 @@ class Distance:
     def __ge__(self, other) -> bool:
         return not self.__lt__(other)
 
-    def __len(self) -> int:
-        return self
+    def __len__(self) -> int:
+        return self.km
