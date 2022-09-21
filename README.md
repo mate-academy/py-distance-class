@@ -56,7 +56,7 @@ distance2 = distance1 * 5
 # isinstance(distance2, Distance) == True
 # distance2.km == 100
 
-__truediv__
+__truediv__ 
 distance1 = Distance(20)
 distance2 = distance1 / 7  
 
