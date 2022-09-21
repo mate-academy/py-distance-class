@@ -27,15 +27,12 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, other: Union[int, float, Distance]) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
-        return Distance(self.km * other.km)
+    def __mul__(self, other: Union[int, float]) -> Distance:
+        return Distance(self.km * other)
 
     def __truediv__(self, other: Union[int, float]) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(round((self.km / other), 2))
-        return Distance(round((self.km / other.km), 2))
+        return Distance(round((self.km / other), 2))
+
 
     def __lt__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
@@ -53,10 +50,10 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: Union[int, float, Distance]) -> bool:
-        return not self.__gt__(other)
+        return not self > other
 
     def __ge__(self, other: Union[int, float, Distance]) -> bool:
-        return not self.__lt__(other)
+        return not self < other
 
     def __len__(self) -> int:
         return len(self)
