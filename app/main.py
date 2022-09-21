@@ -11,13 +11,10 @@ class Distance:
     def __add__(self, other):
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        return self + Distance(other)
+        return Distance(self.km + other)
 
     def __iadd__(self, other):
-        if isinstance(other, Distance):
-            self.km += other.km
-            return self
-        self.km += other
+        self.km += other.km if isinstance(other, Distance) else other
         return self
 
     def __mul__(self, other):
@@ -27,28 +24,18 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __eq__(self, other):
-        if isinstance(other, Distance):
-            return self.km == other.km
         return self.km == other
 
     def __gt__(self, other):
-        if isinstance(other, Distance):
-            return self.km > other.km
         return self.km > other
 
     def __lt__(self, other):
-        if isinstance(other, Distance):
-            return self.km < other.km
         return self.km < other
 
     def __ge__(self, other):
-        if isinstance(other, Distance):
-            return self.km >= other.km
         return self.km >= other
 
     def __le__(self, other):
-        if isinstance(other, Distance):
-            return self.km <= other.km
         return self.km <= other
 
     def __len__(self):
