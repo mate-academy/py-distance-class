@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     @staticmethod
@@ -21,10 +21,10 @@ class Distance:
         self.km += self.check_type(other)
         return self
 
-    def __mul__(self, other):
+    def __mul__(self, other: int | float):
         return Distance(self.km * other)
 
-    def __truediv__(self, other):
+    def __truediv__(self, other: int | float):
         return Distance(
             round(self.km / other, 2)
         )
@@ -39,10 +39,10 @@ class Distance:
         return self.km == self.check_type(other)
 
     def __le__(self, other) -> bool:
-        return not self.__gt__(other)
+        return self.km <= self.check_type(other)
 
     def __ge__(self, other) -> bool:
-        return not self.__lt__(other)
+        return self.km >= self.check_type(other)
 
     def __len__(self) -> int:
         return self.km
