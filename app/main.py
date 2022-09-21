@@ -43,13 +43,9 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: int):
-        if isinstance(other, Distance):
-            return not self.__gt__(other.km)
         return not self.__gt__(other)
 
     def __ge__(self, other: int):
-        if isinstance(other, Distance):
-            return not self.__lt__(other.km)
         return not self.__lt__(other)
 
     def __len__(self):
