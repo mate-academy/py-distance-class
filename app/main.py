@@ -63,12 +63,3 @@ class Distance:
 
     def __len__(self) -> int:
         return self.km
-
-
-distance = Distance(50)
-# distance < Distance(60)  # True  # distance.km < 60 == True
-# distance > Distance(120)  # False
-# distance == Distance(100)  # False
-# distance <= Distance(49)  # False
-# distance >= Distance(50)
-print(distance < Distance(60))
