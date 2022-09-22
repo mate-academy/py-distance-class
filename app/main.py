@@ -13,7 +13,8 @@ class Distance:
         if not isinstance(other, Distance):
             if type(other) is int or type(other) is float:
                 return Distance(km=self.km + other)
-            raise TypeError(f"unsupported operand type(s) for + :'Distance' and {type(other)}")
+            raise TypeError(f"unsupported operand type(s) for + :"
+                            f"'Distance' and {type(other)}")
         return Distance(km=self.km + other.km)
 
     def __iadd__(self, other):
@@ -24,19 +25,22 @@ class Distance:
             self.km += other
             return self
         else:
-            raise TypeError(f"{type(other)} is error type. Need type Distance, int  of float.")
+            raise TypeError(f"{type(other)} is error type."
+                            f" Need type Distance, int or float.")
 
     def __mul__(self, other):
         if type(other) is int or type(other) is float:
             return Distance(self.km * other)
         else:
-            raise TypeError(f"{type(other)} is error type. Need type int of float.")
+            raise TypeError(f"{type(other)} is error type."
+                            f" Need type int or float.")
 
     def __truediv__(self, other):
         if type(other) is int or type(other) is float:
             return Distance(km=round(self.km / other, 2))
         else:
-            raise TypeError(f"{type(other)} is error type. Need type int of float.")
+            raise TypeError(f"{type(other)} is error type."
+                            f" Need type int or float.")
 
     def __lt__(self, other):
         return self.km < other
