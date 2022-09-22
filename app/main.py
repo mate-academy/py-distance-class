@@ -19,7 +19,6 @@ class Distance:
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if type(other) == Distance:
             self.km += other.km
-            return self
         self.km += other
         return self
 
