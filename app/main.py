@@ -18,14 +18,18 @@ class Distance:
         return Distance(self.km + self.check_type(other))
 
     def __iadd__(self, other):
-        self.km = self.__add__(other)
+        # we use static check_type() in __add__:
+        # it should process 'other' attr correctly whether if it's a
+        # Distance instance or number
+        # (other way we would need to to a separate check here)
+        self.km = self + other
         return self
 
     def __mul__(self, other):
-        return Distance(self.km * self.check_type(other))
+        return Distance(self.km * other)
 
     def __truediv__(self, other):
-        return Distance(round(self.km / self.check_type(other), 2))
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other):
         return self.km < self.check_type(other)
@@ -37,10 +41,10 @@ class Distance:
         return self.km == self.check_type(other)
 
     def __le__(self, other):
-        return self.__lt__(other) or self.__eq__(other)
+        return not self > other
 
     def __ge__(self, other):
-        return self.__gt__(other) or self.__eq__(other)
+        return not self < other
 
     def __len__(self):
         return self.km
