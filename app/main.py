@@ -18,11 +18,7 @@ class Distance:
         return Distance(self.km + self.check_type(other))
 
     def __iadd__(self, other):
-        # we use static check_type() in __add__:
-        # it should process 'other' attr correctly whether if it's a
-        # Distance instance or number
-        # (other way we would need to to a separate check here)
-        self.km = self + other
+        self.km = (self + other).km
         return self
 
     def __mul__(self, other):
