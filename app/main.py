@@ -33,7 +33,7 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Union[int, float]) -> bool:
-        if isinstance(other, (int, float, Distance)):
+        if isinstance(other, (int, float)):
             return self.km < other
         else:
             return self.km < other.km
