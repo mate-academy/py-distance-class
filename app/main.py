@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: (int, float)) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -20,7 +20,7 @@ class Distance:
         self.km += other
         return self
 
-    def __mul__(self, other: (int, float)):
+    def __mul__(self, other: int | float):
         return Distance(self.km * other)
 
     def __truediv__(self, other):
