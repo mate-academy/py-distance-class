@@ -26,10 +26,7 @@ class Distance:
         return self
 
     def __mul__(self, other) -> Distance:
-        if type(other) == Distance:
-            return Distance(self.km * other.km)
-        else:
-            return Distance(self.km * other)
+        return Distance(self.km * other)
 
     def __truediv__(self, other) -> Distance:
         return Distance(round(self.km / other, 2))
@@ -41,10 +38,16 @@ class Distance:
             return self.km < other
 
     def __gt__(self, other) -> bool:
-        return not self.__le__(other)
+        if type(other) == Distance:
+            return self.km > other.km
+        else:
+            return self.km > other
 
     def __eq__(self, other) -> bool:
-        return self.km == other
+        if type(other) == Distance:
+            return self.km == other.km
+        else:
+            return self.km == other
 
     def __le__(self, other) -> bool:
         if type(other) == Distance:
@@ -53,7 +56,10 @@ class Distance:
             return self.km <= other
 
     def __ge__(self, other) -> bool:
-        return not self.__lt__(other)
+        if type(other) == Distance:
+            return self.km >= other.km
+        else:
+            return self.km >= other
 
     def __len__(self) -> int:
         return self.km
