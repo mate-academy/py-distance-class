@@ -26,7 +26,7 @@ class Distance:
     def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: int | float | Distance) -> bool:
@@ -50,5 +50,5 @@ class Distance:
     def __le__(self, other: int | float | Distance) -> bool:
         return not self > other
 
-    def __len__(self) -> int:
+    def __len__(self) -> int | float:
         return self.km
