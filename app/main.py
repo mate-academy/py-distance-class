@@ -53,4 +53,3 @@ class Distance:
 
     def __len__(self) -> int | float:
         return self.km
-        
