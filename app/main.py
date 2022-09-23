@@ -21,9 +21,9 @@ class Distance:
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
-            self.km = self.km + other.km
+            self.km += other.km
         elif isinstance(other, (int, float)):
-            self.km = self.km + other
+            self.km += other
         return self
 
     def __mul__(self, other):
@@ -54,5 +54,7 @@ class Distance:
         distance = self.verify_data(other)
         return self.km >= distance
 
-    def __len__(self, other):
-        pass
+    def __len__(self):
+        if isinstance(self, int):
+            raise TypeError("int is not callable")
+        return self.km
