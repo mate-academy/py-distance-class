@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: (int, float)):
+    def __init__(self, km: int | float):
         self.km = km
 
     def __str__(self) -> str:
@@ -50,3 +50,6 @@ class Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
         return self.km >= other
+
+    def __len__(self):
+        return self.km
