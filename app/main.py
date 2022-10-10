@@ -1,62 +1,53 @@
 class Distance:
-    def __init__(self, km: int):
+    def __init__(self, km: (int, float)) -> None:
         self.km = km
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
+    def __add__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        return Distance(self.km + second)
 
-        return Distance(self.km + other.km)
-
-    def __iadd__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
-
-        sc = other if isinstance(other, int) else other.km
-        self.km += sc
+    def __iadd__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        self.km += second
 
         return self
 
-    def __mul__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
+    def __mul__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        return Distance(self.km * second)
 
-        return Distance(self.km * other.km)
+    def __truediv__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        return Distance(round(self.km / second, 2))
 
-    def __truediv__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
+    def __lt__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        return self.km < second
 
-        return Distance(self.km / other.km)
+    def __gt__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        return self.km > second
 
-    def __lt__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
+    def __eq__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        return self.km == second
 
-    def __gt__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
+    def __le__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        return self.km <= second
 
-    def __eq__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
+    def __ge__(self, other: (int, float)) -> object:
+        second = other if isinstance(other, (int, float)) else other.km
+        return self.km >= second
 
-    def __le__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
-
-    def __ge__(self, other):
-        if not isinstance(other, (int, Distance)):
-            raise ArithmeticError("The operand must be an object of type 'int' or 'Distance'")
-
-    def __len__(self):
-        ...
+    def __len__(self) -> object:
+        return len(self.km)
 
 
 # __init__
@@ -93,4 +84,4 @@ distance1 += distance2  # distance1.km == 50
 print(distance1)
 distance = Distance(20)
 distance += 30
-print(distance) # distance.km == 50
+print(distance)  # distance.km == 50
