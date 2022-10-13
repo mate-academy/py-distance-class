@@ -1,5 +1,5 @@
 class Distance:
-    text_of_error_massage = "The operand must be of type int or float " \
+    text_of_error_massage = "The operand must be of type int o float " \
                             "or an object of class Distance"
     error_massage = ArithmeticError(text_of_error_massage)
 
