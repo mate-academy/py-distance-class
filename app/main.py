@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Distance:
-    def __init__(self: int, km: int) -> None:
+    def __init__(self: int, km: int):
         self.km = km
 
     def __repr__(self) -> str:
@@ -21,7 +21,7 @@ class Distance:
             return Distance(self.km * other)
         return Distance(self.km * other.km)
 
-    def __truediv__(self, other: (int, float)) -> Distance:
+    def __truediv__(self, other: (int, float)) -> float:
         if isinstance(other, (float, int)):
             return Distance(round((self.km / other), 2))
         return Distance(round((self.km / other.km), 2))
