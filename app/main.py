@@ -1,5 +1,5 @@
-def decor_funk(func: any) -> any:
-    def wraper(self: any, other: any) -> any:
+def decor_funk(func: any) -> object:
+    def wraper(self: any, other: any) -> object:
         if isinstance(other, Distance):
             return func(self.km, other.km)
         if isinstance(other, (int, float)):
