@@ -1,5 +1,5 @@
 def decor_funk(func: any) -> callable:
-    def wraper(self: any, other: any) -> callable:
+    def wraper(self: any, other: float) -> callable:
         if isinstance(other, Distance):
             return func(self.km, other.km)
         if isinstance(other, (int, float)):
@@ -19,40 +19,42 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @decor_funk
-    def __add__(self, other: any) -> callable:
+    def __add__(self, other: float) -> callable:
+        print(type(other))
         return Distance(self + other)
 
-    def __iadd__(self, other: any) -> callable:
+    def __iadd__(self, other: float) -> callable:
         if isinstance(other, Distance):
             self.km = self.km + other.km
         if isinstance(other, (int, float)):
             self.km = self.km + other
         return self
 
-    def __mul__(self, other: any) -> callable:
+    def __mul__(self, other: float) -> callable:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: any) -> callable:
+    def __truediv__(self, other: float) -> callable:
         return Distance(round((self.km / other), 2))
 
     @decor_funk
-    def __lt__(self, other: any) -> bool:
+    def __lt__(self, other: float) -> bool:
         return self < other
 
     @decor_funk
-    def __gt__(self, other: any) -> bool:
+    def __gt__(self, other: float) -> bool:
         return self > other
 
     @decor_funk
-    def __eq__(self, other: any) -> bool:
+    def __eq__(self, other: float) -> bool:
         return self == other
 
     @decor_funk
-    def __le__(self, other: any) -> bool:
+    def __le__(self, other: float) -> bool:
         return self <= other
 
     @decor_funk
-    def __ge__(self, other: any) -> bool:
+    def __ge__(self, other: float) -> bool:
+        print(type(other))
         return self >= other
 
     def __len__(self) -> float:
