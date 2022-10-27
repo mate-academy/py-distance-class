@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Union
 
 
@@ -12,22 +13,22 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union[int, float, "Distance"]) -> "Distance":
+    def __add__(self, other: Union[int, float, Distance]) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km + other)
         return Distance(self.km + other.km)
 
-    def __iadd__(self, other: Union[int, float, "Distance"]) -> "Distance":
+    def __iadd__(self, other: Union[int, float, Distance]) -> Distance:
         if isinstance(other, (int, float)):
             self.km = self + other
         else:
             self.km += other.km
         return self
 
-    def __mul__(self, number: Union[int, float]) -> "Distance":
+    def __mul__(self, number: Union[int, float]) -> Distance:
         return Distance(self.km * number)
 
-    def __truediv__(self, number: Union[int, float]) -> "Distance":
+    def __truediv__(self, number: Union[int, float]) -> Distance:
         return Distance(round(self.km / number, 2))
 
     def __lt__(self, number: Union[int, float]) -> bool:
