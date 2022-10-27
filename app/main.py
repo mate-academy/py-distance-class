@@ -36,7 +36,7 @@ class Distance:
         if not isinstance(other, Distance):
             return self.km < other
         else:
-            return self.km < other
+            return self.km < other.km
 
     def __gt__(self, other: Union[Distance, float, int]) -> bool:
         if not isinstance(other, Distance):
