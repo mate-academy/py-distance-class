@@ -1,5 +1,5 @@
-def decor_funk(func: any) -> callable:
-    def wraper(self: any, other: float) -> callable:
+def decor_funk(func: any) -> Callable:
+    def wraper(self: any, other: float) -> Callable:
         if isinstance(other, Distance):
             return func(self.km, other.km)
         if isinstance(other, (int, float)):
@@ -23,7 +23,7 @@ class Distance:
         print(type(other))
         return Distance(self + other)
 
-    def __iadd__(self, other: float) -> callable:
+    def __iadd__(self, other: float) -> Distance:
         if isinstance(other, Distance):
             self.km = self.km + other.km
         if isinstance(other, (int, float)):
