@@ -19,7 +19,7 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @decor_funk
-    def __add__(self, other: float) -> callable:
+    def __add__(self, other: float) -> Сallable:
         print(type(other))
         return Distance(self + other)
 
@@ -30,10 +30,10 @@ class Distance:
             self.km = self.km + other
         return self
 
-    def __mul__(self, other: float) -> callable:
+    def __mul__(self, other: float) -> Callable:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: float) -> callable:
+    def __truediv__(self, other: float) -> Callable:
         return Distance(round((self.km / other), 2))
 
     @decor_funk
