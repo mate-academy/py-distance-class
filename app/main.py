@@ -15,16 +15,14 @@ class Distance:
     def __add__(self, other: Union[int, float, Distance]) -> Distance:
         if type(other) == int or type(other) == float:
             return Distance(self.km + other)
-        else:
-            return Distance(self.km + other.km)
+        return Distance(self.km + other.km)
 
     def __iadd__(self, other: Union[int, float, Distance]) -> Distance:
         if type(other) == int or type(other) == float:
             self.km += other
-            return self
         else:
             self.km += other.km
-            return self
+        return self
 
     def __mul__(self, other: Union[int, float]) -> Distance:
         return Distance(self.km * other)
