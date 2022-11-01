@@ -13,12 +13,12 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: Union[int, float, Distance]) -> Distance:
-        if type(other) == int or type(other) == float:
+        if isinstance(other, (int, float)):
             return Distance(self.km + other)
         return Distance(self.km + other.km)
 
     def __iadd__(self, other: Union[int, float, Distance]) -> Distance:
-        if type(other) == int or type(other) == float:
+        if isinstance(other, (int, float)):
             self.km += other
         else:
             self.km += other.km
