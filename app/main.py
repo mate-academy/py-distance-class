@@ -1,3 +1,7 @@
+from __future__ import annotations
+from typing import Callable
+
+
 def decor_funk(func: any) -> Callable:
     def wraper(self: any, other: float) -> Callable:
         if isinstance(other, Distance):
@@ -19,7 +23,7 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @decor_funk
-    def __add__(self, other: float) -> Сallable:
+    def __add__(self, other: int) -> Distance:
         print(type(other))
         return Distance(self + other)
 
@@ -30,10 +34,10 @@ class Distance:
             self.km = self.km + other
         return self
 
-    def __mul__(self, other: float) -> Callable:
+    def __mul__(self, other: float) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: float) -> Callable:
+    def __truediv__(self, other: float) -> Distance:
         return Distance(round((self.km / other), 2))
 
     @decor_funk
@@ -59,3 +63,8 @@ class Distance:
 
     def __len__(self) -> float:
         return self.km
+
+
+distance1 = Distance(20)
+distance2 = Distance(30)
+distance3 = distance1 + distance2
