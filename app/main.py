@@ -1,9 +1,9 @@
 from __future__ import annotations
-from typing import Callable
+from typing import Callable, Union
 
 
-def decor_funk(func: any) -> Callable:
-    def wraper(self: any, other: float) -> Callable:
+def actions_based_on_incoming_data(func: any) -> Callable:
+    def wraper(self: Distance, other: Union[Distance, int, float]) -> Callable:
         if isinstance(other, Distance):
             return func(self.km, other.km)
         if isinstance(other, (int, float)):
@@ -22,9 +22,8 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    @decor_funk
-    def __add__(self, other: int) -> Distance:
-        print(type(other))
+    @actions_based_on_incoming_data
+    def __add__(self, other: Union[Distance, int, float]) -> Distance:
         return Distance(self + other)
 
     def __iadd__(self, other: float) -> Distance:
@@ -40,31 +39,26 @@ class Distance:
     def __truediv__(self, other: float) -> Distance:
         return Distance(round((self.km / other), 2))
 
-    @decor_funk
+    @actions_based_on_incoming_data
     def __lt__(self, other: float) -> bool:
         return self < other
 
-    @decor_funk
+    @actions_based_on_incoming_data
     def __gt__(self, other: float) -> bool:
         return self > other
 
-    @decor_funk
+    @actions_based_on_incoming_data
     def __eq__(self, other: float) -> bool:
         return self == other
 
-    @decor_funk
+    @actions_based_on_incoming_data
     def __le__(self, other: float) -> bool:
         return self <= other
 
-    @decor_funk
+    @actions_based_on_incoming_data
     def __ge__(self, other: float) -> bool:
         print(type(other))
         return self >= other
 
     def __len__(self) -> float:
         return self.km
-
-
-distance1 = Distance(20)
-distance2 = Distance(30)
-distance3 = distance1 + distance2
