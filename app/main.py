@@ -22,10 +22,9 @@ class Distance:
     def __iadd__(self, other: Union[int, float]) -> Union.Distance[int, float]:
         if isinstance(other, Distance):
             self.km += other.km
-            return self
         if isinstance(other, (int, float)):
             self.km += other
-            return self
+        return self
 
     def __mul__(self, other: Union[int, float]) -> Union.Distance[int, float]:
         if isinstance(other, (int, float)):
