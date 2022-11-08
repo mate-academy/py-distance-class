@@ -28,30 +28,40 @@ class Distance:
             self.km += other.km
         return self
 
-    def __mul__(self, other: Union[int, float, Distance]) -> Distance:
+    def __mul__(self, other: Union[int, float]) -> Distance:
         return Distance(
             km=self.km * other
         )
 
-    def __truediv__(self, other: Union[int, float, Distance]) -> Distance:
+    def __truediv__(self, other: Union[int, float]) -> Distance:
         return Distance(
             km=round(self.km / other, 2)
         )
 
     def __lt__(self, other: Union[int, float, Distance]) -> bool:
-        return self.km < other
+        if type(other) == int or type(other) == float:
+            return self.km < other
+        return self.km < other.km
 
     def __gt__(self, other: Union[int, float, Distance]) -> bool:
-        return self.km > other
+        if type(other) == int or type(other) == float:
+            return self.km > other
+        return self.km > other.km
 
     def __eq__(self, other: Union[int, float, Distance]) -> bool:
-        return self.km == other
+        if type(other) == int or type(other) == float:
+            return self.km == other
+        return self.km == other.km
 
     def __le__(self, other: Union[int, float, Distance]) -> bool:
-        return self.km <= other
+        if type(other) == int or type(other) == float:
+            return self.km <= other
+        return self.km <= other.km
 
     def __ge__(self, other: Union[int, float, Distance]) -> bool:
-        return self.km >= other
+        if type(other) == int or type(other) == float:
+            return self.km >= other
+        return self.km >= other.km
 
     def __len__(self) -> Union[int, float, Distance]:
         return len(self.km)
