@@ -36,6 +36,8 @@ class Distance:
         )
 
     def __lt__(self, other: int or float) -> callable:
+        if type(other) == Distance:
+            return self.km < other.km
         return self.km < other
 
     def __gt__(self, other: int or float) -> callable:
