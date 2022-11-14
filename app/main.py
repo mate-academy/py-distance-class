@@ -14,14 +14,14 @@ class Distance:
     def __add__(self, other: Distance | int) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        elif isinstance(other, int) or isinstance(other, float):
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
 
     def __iadd__(self, other: Distance | int) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
-        elif isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, (int, float)):
             self.km += other
             return self
 
@@ -34,31 +34,31 @@ class Distance:
     def __lt__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
             return True if self.km < other.km else False
-        if isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, (int, float)):
             return True if self.km < other else False
 
     def __gt__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
             return True if self.km > other.km else False
-        if isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, (int, float)):
             return True if self.km > other else False
 
     def __eq__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return True if self.km == other.km else False
-        if isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, (int, float)):
             return True if self.km == other else False
 
     def __le__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return True if self.km <= other.km else False
-        if isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, (int, float)):
             return True if self.km <= other else False
 
     def __ge__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return True if self.km >= other.km else False
-        if isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, (int, float)):
             return True if self.km >= other else False
 
     def __len__(self) -> int:
