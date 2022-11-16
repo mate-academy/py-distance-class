@@ -1,8 +1,8 @@
-from typing import Union
+from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: Union[int, float]) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -11,13 +11,13 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union[int, float, callable]) -> callable:
+    def __add__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         if isinstance(other, (int, float)):
             return Distance(self.km + other)
 
-    def __iadd__(self, other: Union[int, float, callable]) -> callable:
+    def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
             self.km = self.km + other.km
             return self
@@ -25,43 +25,43 @@ class Distance:
             self.km = self.km + other
             return self
 
-    def __mul__(self, other: Union[int, float]) -> callable:
+    def __mul__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
 
-    def __truediv__(self, other: Union[int, float, callable]) -> callable:
+    def __truediv__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: Union[int, float, callable]) -> callable:
+    def __lt__(self, other: int | float | Distance) -> int | float | Distance:
         if isinstance(other, Distance):
             return self.km < other.km
         if isinstance(other, (int, float)):
             return self.km < other
 
-    def __gt__(self, other: Union[int, float, callable]) -> callable:
+    def __gt__(self, other: int | float | Distance) -> int | float | Distance:
         if isinstance(other, Distance):
             return self.km > other.km
         if isinstance(other, (int, float)):
             return self.km > other
 
-    def __eq__(self, other: Union[int, float, callable]) -> callable:
+    def __eq__(self, other: int | float | Distance) -> int | float | Distance:
         if isinstance(other, Distance):
             return self.km == other.km
         if isinstance(other, (int, float)):
             return self.km == other
 
-    def __le__(self, other: Union[int, float, callable]) -> callable:
+    def __le__(self, other: int | float | Distance) -> int | float | Distance:
         if isinstance(other, Distance):
             return self.km <= other.km
         if isinstance(other, (int, float)):
             return self.km <= other
 
-    def __ge__(self, other: Union[int, float, callable]) -> callable:
+    def __ge__(self, other: int | float | Distance) -> int | float | Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
         if isinstance(other, (int, float)):
             return self.km >= other
 
-    def __len__(self) -> callable:
+    def __len__(self) -> int | float:
         return self.km
