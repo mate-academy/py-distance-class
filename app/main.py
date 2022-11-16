@@ -16,8 +16,7 @@ class Distance:
     def __add__(self, other: Union[int, float, Distance]) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
-            return Distance(self.km + other)
+        return Distance(self.km + other)
 
     def __gt__(self, other: Union[int, float]) -> bool:
         return self.km > other
@@ -38,9 +37,8 @@ class Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
-        else:
-            self.km += other
-            return self
+        self.km += other
+        return self
 
     def __mul__(self, other: Union[int, float]) -> Distance:
         return Distance(self.km * other)
