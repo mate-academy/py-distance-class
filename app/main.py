@@ -65,6 +65,3 @@ class Distance:
     def __len__(self) -> Distance:
         self.km = len(self)
         return Distance(self.km)
-
-
-
