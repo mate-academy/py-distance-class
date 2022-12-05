@@ -21,8 +21,6 @@ class Distance:
             self.km += other.km
         elif isinstance(other, type(self.km)):
             self.km += other
-        else:
-            self.km += list(other)
         return self
 
     def __mul__(self, other: float) -> Distance:
