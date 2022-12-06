@@ -56,8 +56,3 @@ class Distance:
 
     def __len__(self) -> float:
         return self.km
-
-
-distance1 = Distance(20)
-distance2 = distance1 / 7
-print(distance1.__repr__())
