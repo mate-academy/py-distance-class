@@ -57,3 +57,6 @@ class Distance:
             return self.km >= other
 
         return self.km >= other.km
+
+    def __len__(self) -> int:
+        return len(self.km)
