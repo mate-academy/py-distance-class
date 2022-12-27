@@ -11,20 +11,26 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int | float) -> Distance:
-        if not isinstance(other, Distance | int | float):
+    @staticmethod
+    def type_check(elem: Distance | int | float) -> None:
+        if not isinstance(elem, Distance | int | float):
             raise TypeError("Other object should be Distance, "
                             "int or float type!")
-        if type(other) == Distance:
-            other = other.km
+
+    @staticmethod
+    def if_distance(elem: Distance | int | float) -> int | float:
+        if isinstance(elem, Distance):
+            elem = elem.km
+        return elem
+
+    def __add__(self, other: Distance | int | float) -> Distance:
+        Distance.type_check(other)
+        other = Distance.if_distance(other)
         return Distance(self.km + other)
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
-        if not isinstance(other, Distance | int | float):
-            raise TypeError("Other object should be Distance, "
-                            "int or float type!")
-        if type(other) == Distance:
-            other = other.km
+        Distance.type_check(other)
+        other = Distance.if_distance(other)
         self.km += other
         return self
 
@@ -41,41 +47,26 @@ class Distance:
         return self
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance | int | float):
-            raise TypeError("Other object should be Distance, "
-                            "int or float type!")
-        if type(other) == Distance:
-            other = other.km
+        Distance.type_check(other)
+        other = Distance.if_distance(other)
         return self.km < other
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance | int | float):
-            raise TypeError("Other object should be Distance, "
-                            "int or float type!")
-        if type(other) == Distance:
-            other = other.km
+        Distance.type_check(other)
+        other = Distance.if_distance(other)
         return self.km > other
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance | int | float):
-            raise TypeError("Other object should be Distance, "
-                            "int or float type!")
-        if type(other) == Distance:
-            other = other.km
+        Distance.type_check(other)
+        other = Distance.if_distance(other)
         return self.km == other
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance | int | float):
-            raise TypeError("Other object should be Distance, "
-                            "int or float type!")
-        if type(other) == Distance:
-            other = other.km
+        Distance.type_check(other)
+        other = Distance.if_distance(other)
         return self.km <= other
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance | int | float):
-            raise TypeError("Other object should be Distance, "
-                            "int or float type!")
-        if type(other) == Distance:
-            other = other.km
+        Distance.type_check(other)
+        other = Distance.if_distance(other)
         return self.km >= other
