@@ -12,25 +12,20 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @staticmethod
-    def type_check(elem: Distance | int | float) -> None:
+    def type_check(elem: Distance | int | float) -> int | float | None:
         if not isinstance(elem, Distance | int | float):
             raise TypeError("Other object should be Distance, "
                             "int or float type!")
-
-    @staticmethod
-    def if_distance(elem: Distance | int | float) -> int | float:
         if isinstance(elem, Distance):
             elem = elem.km
         return elem
 
     def __add__(self, other: Distance | int | float) -> Distance:
-        Distance.type_check(other)
-        other = Distance.if_distance(other)
+        other = Distance.type_check(other)
         return Distance(self.km + other)
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
-        Distance.type_check(other)
-        other = Distance.if_distance(other)
+        other = Distance.type_check(other)
         self.km += other
         return self
 
@@ -47,26 +42,21 @@ class Distance:
         return self
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        Distance.type_check(other)
-        other = Distance.if_distance(other)
+        other = Distance.type_check(other)
         return self.km < other
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        Distance.type_check(other)
-        other = Distance.if_distance(other)
+        other = Distance.type_check(other)
         return self.km > other
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        Distance.type_check(other)
-        other = Distance.if_distance(other)
+        other = Distance.type_check(other)
         return self.km == other
 
     def __le__(self, other: Distance | int | float) -> bool:
-        Distance.type_check(other)
-        other = Distance.if_distance(other)
+        other = Distance.type_check(other)
         return self.km <= other
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        Distance.type_check(other)
-        other = Distance.if_distance(other)
+        other = Distance.type_check(other)
         return self.km >= other
