@@ -30,7 +30,7 @@ class Distance:
     def __round__(self) -> int:
         return round(self.km)
 
-    def __truediv__(self, other: int | Distance) -> Distance:
+    def __truediv__(self, other: float | Distance) -> Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: int) -> bool:
