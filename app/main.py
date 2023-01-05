@@ -37,28 +37,28 @@ class Distance:
         if isinstance(self, Distance) and isinstance(other, Distance):
             return True if self.km < other.km else False
         elif isinstance(other, int) or isinstance(other, float):
-            return True if self.km < other else False
+            return self.km < other
 
     def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(self, Distance) and isinstance(other, Distance):
             return True if self.km > other.km else False
         elif isinstance(other, int) or isinstance(other, float):
-            return True if self.km > other else False
+            return self.km > other
 
     def __eq__(self, other: Distance | int | float) -> bool:
         if isinstance(self, Distance) and isinstance(other, Distance):
             return True if self.km == other.km else False
         elif isinstance(other, int) or isinstance(other, float):
-            return True if self.km == other else False
+            return self.km == other
 
     def __le__(self, other: Distance | int | float) -> bool:
         if isinstance(self, Distance) and isinstance(other, Distance):
             return True if self.km <= other.km else False
         elif isinstance(other, int) or isinstance(other, float):
-            return True if self.km <= other else False
+            return self.km <= other
 
     def __ge__(self, other: Distance | int | float) -> bool:
         if isinstance(self, Distance) and isinstance(other, Distance):
             return True if self.km >= other.km else False
         elif isinstance(other, int) or isinstance(other, float):
-            return True if self.km >= other else False
+            return self.km >= other
