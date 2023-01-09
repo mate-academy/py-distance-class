@@ -48,15 +48,3 @@ class Distance:
 
     def __truediv__(self, other: int) -> Distance:
         return Distance(km=round(self.km / other, 2))
-
-
-distance1 = Distance(15.5)
-
-print(distance1 / 7)
-
-# distance1 += 15
-distance2 = Distance(14.5)
-
-distance1 += distance2
-
-print(distance1)
