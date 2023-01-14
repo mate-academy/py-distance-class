@@ -12,8 +12,9 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: int | float | Distance) -> Distance:
-        return Distance(self.km + other.km) \
-            if isinstance(other, Distance) else Distance(self.km + other)
+        return (Distance(self.km + other.km)
+                if isinstance(other, Distance)
+                else Distance(self.km + other))
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
@@ -30,21 +31,26 @@ class Distance:
         return Distance(self.km * other)
 
     def __lt__(self, other: int | float | Distance) -> bool:
-        return self.km < other.km \
-            if isinstance(other, Distance) else self.km < other
+        return (self.km < other.km
+                if isinstance(other, Distance)
+                else self.km < other)
 
     def __gt__(self, other: int | float | Distance) -> bool:
-        return self.km > other.km \
-            if isinstance(other, Distance) else self.km > other
+        return (self.km > other.km
+                if isinstance(other, Distance)
+                else self.km > other)
 
     def __eq__(self, other: int | float | Distance) -> bool:
-        return self.km == other.km \
-            if isinstance(other, Distance) else self.km == other
+        return (self.km == other.km
+                if isinstance(other, Distance)
+                else self.km == other)
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        return self.km >= other.km \
-            if isinstance(other, Distance) else self.km >= other
+        return (self.km >= other.km
+                if isinstance(other, Distance)
+                else self.km >= other)
 
     def __le__(self, other: int | float | Distance) -> bool:
-        return self.km <= other.km \
-            if isinstance(other, Distance) else self.km <= other
+        return (self.km <= other.km
+                if isinstance(other, Distance)
+                else self.km <= other)
