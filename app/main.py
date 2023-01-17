@@ -28,22 +28,22 @@ class Distance:
         return Distance(self.km * other)
 
     def __round__(self) -> int:
-        return self.km
+        return round(self.km, 2)
 
-    def __truediv__(self, other: int | float | Distance) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: int | float | Distance) -> bool:
+    def __lt__(self, other: int | float) -> bool:
         return self.km < other
 
-    def __gt__(self, other: int | float | Distance) -> bool:
+    def __gt__(self, other: int | float) -> bool:
         return self.km > other
 
-    def __eq__(self, other: int | float | Distance) -> bool:
+    def __eq__(self, other: int | float) -> bool:
         return self.km == other
 
-    def __le__(self, other: int | float | Distance) -> bool:
+    def __le__(self, other: int | float) -> bool:
         return self.km <= other
 
-    def __ge__(self, other: int | float | Distance) -> bool:
+    def __ge__(self, other: int | float) -> bool:
         return self.km >= other
