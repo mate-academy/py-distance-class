@@ -12,11 +12,17 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, distance: int) -> Distance:
-        distance3 = Distance(distance + self.km)
+        if isinstance(distance, Distance):
+            distance3 = Distance(distance.km + self.km)
+        else:
+            distance3 = Distance(distance + self.km)
         return distance3
 
     def __iadd__(self, distance: int) -> Distance:
-        self.km = Distance(distance + self.km)
+        if isinstance(distance, Distance):
+            self.km = distance.km + self.km
+        else:
+            self.km = distance + self.km
         return self
 
     def __mul__(self, number: float) -> Distance:
@@ -28,34 +34,49 @@ class Distance:
         return self
 
     def __lt__(self, distance: int) -> bool:
+        if isinstance(distance, Distance):
+            if self.km < distance.km:
+                return True
+            return False
         if self.km < distance:
             return True
-        else:
-            return False
+        return False
 
     def __gt__(self, distance: int) -> bool:
+        if isinstance(distance, Distance):
+            if self.km > distance.km:
+                return True
+            return False
         if self.km > distance:
             return True
-        else:
-            return False
+        return False
 
     def __eq__(self, distance: int) -> bool:
+        if isinstance(distance, Distance):
+            if self.km == distance.km:
+                return True
+            return False
         if self.km == distance:
             return True
-        elif self.km != distance:
-            return False
+        return False
 
     def __le__(self, distance: int) -> bool:
+        if isinstance(distance, Distance):
+            if self.km <= distance.km:
+                return True
+            return False
         if self.km <= distance:
             return True
-        else:
-            return False
+        return False
 
     def __ge__(self, distance: int) -> bool:
+        if isinstance(distance, Distance):
+            if self.km >= distance.km:
+                return True
+            return False
         if self.km >= distance:
             return True
-        else:
-            return False
+        return False
 
     def __round__(self, end: int) -> float:
         return round(self.km, end)
