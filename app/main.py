@@ -1,11 +1,9 @@
 from __future__ import annotations
 
-from typing import Any
-
 
 class Distance:
 
-    def __init__(self, km: Any) -> None:
+    def __init__(self, km: (int, float)) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -14,14 +12,14 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, distance1: Any) -> Distance:
+    def __add__(self, distance1: (int, float)) -> Distance:
         if isinstance(distance1, Distance):
             total_dictance = self.km + distance1.km
         else:
             total_dictance = self.km + distance1
         return Distance(total_dictance)
 
-    def __iadd__(self, other: Distance) -> Distance:
+    def __iadd__(self, other: (int, float, Distance)) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
