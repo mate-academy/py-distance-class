@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Any
 
 
 class Distance:
@@ -11,12 +12,12 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: float) -> Distance:
+    def __add__(self, other: Any) -> Distance:
         if isinstance(other, Distance):
             return Distance(other.km + self.km)
         return Distance(other + self.km)
 
-    def __iadd__(self, other: float) -> Distance:
+    def __iadd__(self, other: Any) -> Distance:
         if isinstance(other, Distance):
             self.km = other.km + self.km
         else:
@@ -31,40 +32,30 @@ class Distance:
         self.km = round(self.km / number, 2)
         return self
 
-    def __lt__(self, distance: float) -> bool:
+    def __lt__(self, distance: Any) -> bool:
         if isinstance(distance, Distance):
             return self.km < distance.km
-        if self.km < distance:
-            return True
-        return False
+        return self.km < distance
 
-    def __gt__(self, distance: float) -> bool:
+    def __gt__(self, distance: Any) -> bool:
         if isinstance(distance, Distance):
             return self.km > distance.km
-        if self.km > distance:
-            return True
-        return False
+        return self.km > distance
 
-    def __eq__(self, distance: float) -> bool:
+    def __eq__(self, distance: Any) -> bool:
         if isinstance(distance, Distance):
             return self.km == distance.km
-        if self.km == distance:
-            return True
-        return False
+        return self.km == distance
 
-    def __le__(self, distance: float) -> bool:
+    def __le__(self, distance: Any) -> bool:
         if isinstance(distance, Distance):
             return self.km <= distance.km
-        if self.km <= distance:
-            return True
-        return False
+        return self.km <= distance
 
-    def __ge__(self, distance: float) -> bool:
+    def __ge__(self, distance: Any) -> bool:
         if isinstance(distance, Distance):
             return self.km >= distance.km
-        if self.km >= distance:
-            return True
-        return False
+        return self.km >= distance
 
     def __round__(self, end: int) -> float:
         return round(self.km, end)
