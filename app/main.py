@@ -13,19 +13,15 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, distance1: (int, float)) -> Distance:
-        if isinstance(distance1, Distance):
-            total_dictance = self.km + distance1.km
-        else:
-            total_dictance = self.km + distance1
-        return Distance(total_dictance)
+        return Distance(self.km + (
+            distance1.km if isinstance(distance1, Distance) else distance1))
 
     def __iadd__(self, other: (int, float, Distance)) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-            return self
         else:
             self.km += other
-            return self
+        return self
 
     def __mul__(self, other: int or float) -> Distance:
         return Distance(self.km * other)
