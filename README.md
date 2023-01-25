@@ -62,7 +62,11 @@ distance2 = distance1 / 7
 # distance2.km == 2.85
 # Note: rounded to 2 decimals
 
-__lt__, __gt__, __eq__, __le__, __ge__
+__lt__,
+__gt__,
+__eq__,
+__le__,
+__ge__
 distance = Distance(50)
 distance < Distance(60)  # True  # distance.km < 60 == True
 distance > Distance(120)  # False
