@@ -429,3 +429,23 @@ def test_distance_class_le_number(kilometers, kilometers2, result):
     assert (distance <= kilometers2) is result, (
         f"'Distance({kilometers}) <= {kilometers2}' should equal to {result}"
     )
+
+
+def test_distance_class_mul_distance():
+    distance1 = Distance(5)
+    distance2 = Distance(3)
+    with pytest.raises(TypeError) as error_info:
+        distance1 * distance2
+    assert "unsupported operand" in str(error_info.value), (
+        "'__mul__' method should not accept Distance instance"
+    )
+
+
+def test_distance_class_truediv_distance():
+    distance1 = Distance(30)
+    distance2 = Distance(3)
+    with pytest.raises(TypeError) as error_info:
+        distance1 / distance2
+    assert "unsupported operand" in str(error_info.value), (
+        "'__truediv__' method should not accept Distance instance"
+    )
