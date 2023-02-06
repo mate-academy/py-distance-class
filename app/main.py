@@ -16,12 +16,9 @@ class Distance:
         return f"Distance: {self.km} kilometers."
 
     def __add__(self, other: int | float | Distance) -> Distance:
-        new_km = self.km
         if self.is_int(other):
-            new_km += other
-        else:
-            new_km += other.km
-        return Distance(new_km)
+            return Distance(self.km * other)
+        return Distance(self.km * other.km)
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if self.is_int(other):
