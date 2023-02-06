@@ -24,10 +24,14 @@ class Distance:
 
         return self
 
-    def __mul__(self, other: int) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
+        if isinstance(other, Distance):
+            raise TypeError(f"cannot multiply {type(self)} by {type(other)}")
         return Distance(self.km * other)
 
-    def __truediv__(self, other: float) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
+        if isinstance(other, Distance):
+            raise TypeError(f"cannot multiply {type(self)} by {type(other)}")
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
