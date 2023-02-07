@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
@@ -21,7 +23,7 @@ class Distance:
         self.km += other.km
         return self
 
-    def __mul__(self, number: int | float| Distance) -> Distance:
+    def __mul__(self, number: int | float | Distance) -> Distance:
         return Distance(self.km * number)
 
     def __truediv__(self, number: int | float | Distance) -> Distance:
