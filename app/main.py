@@ -10,8 +10,9 @@ class Distance:
             return Distance(
                 self.km + other.km
             )
-        self.km += other
-        return self
+        return Distance(
+            self.km + other
+        )
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
