@@ -24,18 +24,17 @@ class Distance:
             raise TypeError(f"You can't add {type(other)} to class Distance")
         if isinstance(other, Distance):
             self.km += other.km
-            return self
         else:
             self.km += other
         return self
 
-    def __mul__(self, other: int) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         if not isinstance(other, int | float):
             raise TypeError(f"You can't multiply {type(other)} "
                             f"on class Distance")
         return Distance(km=self.km * other)
 
-    def __truediv__(self, other: int) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if not isinstance(other, int | float):
             raise TypeError(f"You can't divide class Distance "
                             f"by {type(other)}")
