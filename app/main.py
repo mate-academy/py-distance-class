@@ -13,23 +13,17 @@ class Distance:
 
     def __add__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
-            return Distance(self.km + other.km)
-        elif isinstance(other, (int, float)):
-            return Distance(self.km + other)
-        else:
-            raise ArithmeticError("right operand must be int,"
-                                  " float or instance of the class")
+            self.km += other.km
+            return self
+        self.km += other
+        return self
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
-        elif isinstance(other, (int, float)):
-            self.km += other
-            return self
-        else:
-            raise ArithmeticError("right operand must be int,"
-                                  " float or instance of the class")
+        self.km += other
+        return self
 
     def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
