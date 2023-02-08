@@ -10,7 +10,7 @@ class Distance:
         return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
-        return "Distance(km=" + str(self.km) + ")"
+        return f"Distance(km={self.km})"
 
     def __add__(self, other: [int, float] | Distance) -> Distance:
         if isinstance(other, Distance):
@@ -52,15 +52,7 @@ class Distance:
         )
 
     def __le__(self, other: [int, float] | Distance) -> bool:
-        return (
-            self.km <= other.km
-            if isinstance(other, Distance)
-            else self.km <= other
-        )
+        return self.__lt__(other) or self.__eq__(other)
 
     def __ge__(self, other: [int, float] | Distance) -> bool:
-        return (
-            self.km >= other.km
-            if isinstance(other, Distance)
-            else self.km >= other
-        )
+        return self.__gt__(other) or self.__eq__(other)
