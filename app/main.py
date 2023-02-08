@@ -31,19 +31,25 @@ class Distance:
         return Distance(self.km * other)
 
     def __eq__(self, other: int | float | Distance) -> bool:
-        return self.km == other if self.is_not_distance(other) else self.km == other.km
+        if self.is_not_distance(other):
+            return self.km == other
+        return self.km == other.km
 
     def __gt__(self, other: int | float | Distance) -> bool:
-        return self.km > other if self.is_not_distance(other) else self.km > other.km
+        if self.is_not_distance(other):
+            return self.km > other
+        return self.km > other.km
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        return self.km >= other if self.is_not_distance(other) else self.km >= other.km
+        if self.is_not_distance(other):
+            return self.km >= other
+        return self.km >= other.km
 
     def __le__(self, other: Distance | int | float) -> bool:
-        return not self.__gt__(other)
+        return not self > other
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        return not self.__ge__(other)
+        return not self >= other
 
     def __truediv__(self, other: int | float) -> Distance:
         self.km = round(self.km / other, 2)
