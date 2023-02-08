@@ -24,8 +24,9 @@ class Distance:
         return self
 
     def __mul__(self, other: Distance | int | float) -> Distance:
+        error = f"You cannot multiply {type(self)} by {type(other)}"
         if isinstance(other, Distance):
-            raise TypeError(f"You cannot multiply {type(self)} by {type(other)}")
+            raise TypeError(error)
         return Distance(self.km * other)
 
     def __truediv__(self, other: Distance | int | float) -> Distance:
