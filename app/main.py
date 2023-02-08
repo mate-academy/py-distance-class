@@ -25,12 +25,16 @@ class Distance:
 
     def __mul__(self, other: int | float):
         if isinstance(other, Distance):
-            raise TypeError(f"{type(other)} & {type(other)} not multiplicable")
+            raise TypeError(
+                f"{type(other)} & {type(other)} not multiplicable"
+            )
         return Distance(self.km * other)
 
     def __truediv__(self, other: int | float):
         if isinstance(other, Distance):
-            raise TypeError(f"{type(other)} & {type(other)} not devidable")
+            raise TypeError(
+                f"{type(other)} & {type(other)} not devidable"
+            )
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float):
