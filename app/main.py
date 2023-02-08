@@ -6,7 +6,7 @@ class Distance:
         self.km = distance
 
     @staticmethod
-    def is_int(other: int | float | Distance) -> bool:
+    def is_not_distance(other: int | float | Distance) -> bool:
         return isinstance(other, (int, float))
 
     def __repr__(self) -> str:
@@ -16,12 +16,12 @@ class Distance:
         return f"Distance: {self.km} kilometers."
 
     def __add__(self, other: int | float | Distance) -> Distance:
-        if self.is_int(other):
+        if self.is_not_distance(other):
             return Distance(self.km + other)
         return Distance(self.km + other.km)
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
-        if self.is_int(other):
+        if self.is_not_distance(other):
             self.km += other
         else:
             self.km += other.km
@@ -31,13 +31,13 @@ class Distance:
         return Distance(self.km * other)
 
     def __eq__(self, other: int | float | Distance) -> bool:
-        return self.km == other if self.is_int(other) else self.km == other.km
+        return self.km == other if self.is_not_distance(other) else self.km == other.km
 
     def __gt__(self, other: int | float | Distance) -> bool:
-        return self.km > other if self.is_int(other) else self.km > other.km
+        return self.km > other if self.is_not_distance(other) else self.km > other.km
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        return self.km >= other if self.is_int(other) else self.km >= other.km
+        return self.km >= other if self.is_not_distance(other) else self.km >= other.km
 
     def __le__(self, other: Distance | int | float) -> bool:
         return not self.__gt__(other)
