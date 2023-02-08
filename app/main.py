@@ -24,12 +24,12 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        self.km = self.km * other
-        return self
+        if not (isinstance(other, Distance)):
+            return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        self.km = round((self.km / other), 2)
-        return self
+        if not (isinstance(other, Distance)):
+            return Distance(round((self.km / other), 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if (isinstance(other, Distance)):
