@@ -62,8 +62,3 @@ class Distance:
             return self.km >= other
         else:
             return self.km >= other.km
-
-
-distance1 = Distance(20)
-distance3 = Distance(30)
-distance2 = distance1 * distance3
