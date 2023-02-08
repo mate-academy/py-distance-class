@@ -29,13 +29,13 @@ class Distance:
 
     def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
-            print(f"Error: object other can not be of type Distance in this method")
+            print("Error: object other can not be of type Distance")
         self.km = self.km * other
         return self
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
-            print(f"Error: object other can not be of type Distance in this method")
+            print("Error: object other can not be of type Distance")
         result = round((self.km / other), 2)
         return Distance(
             result
