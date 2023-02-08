@@ -19,12 +19,13 @@ class Distance:
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-            return self
-
-        self.km += other
+        else:
+            self.km += other
         return self
 
     def __mul__(self, other: Distance | int | float) -> Distance:
+        if isinstance(other, Distance):
+            raise TypeError(f"You cannot multiply {type(self)} by {type(other)}")
         return Distance(self.km * other)
 
     def __truediv__(self, other: Distance | int | float) -> Distance:
