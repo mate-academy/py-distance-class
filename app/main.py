@@ -27,10 +27,10 @@ class Distance:
             self.km += other.km
         return self
 
-    def __mul__(self, multiplier: int | float) -> Distance:
+    def __mul__(self, multiplier: int) -> Distance:
         return Distance(self.km * multiplier)
 
-    def __truediv__(self, divider: int | float) -> Distance:
+    def __truediv__(self, divider: int) -> Distance:
         divided_distance = Distance(self.km)
         if divider != 0:
             divided_distance.km = round(divided_distance.km / divider, 2)
