@@ -11,7 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int) -> Distance:
+    def __add__(self, other: Distance | int | float) -> Distance:
         if not isinstance(other, Distance | int | float):
             raise TypeError(f"You can't add {type(other)} to class Distance")
         if isinstance(other, Distance):
@@ -19,7 +19,7 @@ class Distance:
 
         return Distance(km=self.km + other)
 
-    def __iadd__(self, other: Distance | int) -> Distance:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if not isinstance(other, Distance | int | float):
             raise TypeError(f"You can't add {type(other)} to class Distance")
         if isinstance(other, Distance):
@@ -68,19 +68,7 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance | int | float):
-            raise TypeError(f"You can't compare {type(other)} "
-                            f"and class Distance")
-        if isinstance(other, Distance):
-            return self.km <= other.km
-
-        return self.km <= other
+        return self.__lt__(other) or self.__eq__(other)
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance | int | float):
-            raise TypeError(f"You can't compare {type(other)} "
-                            f"and class Distance")
-        if isinstance(other, Distance):
-            return self.km >= other.km
-
-        return self.km >= other
+        return self.__gt__(other) or self.__eq__(other)
