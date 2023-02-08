@@ -23,23 +23,28 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, other: (int, float)) -> Distance:
+    def __mul__(self, other: int) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: (int, float)) -> Distance:
+    def __truediv__(self, other: int) -> Distance:
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: (int, float)) -> bool:
-        return self.km < other
+    def __lt__(self, other: int) -> bool:
+        return self.km < other.km \
+            if isinstance(other, Distance) else self.km < other
 
-    def __gt__(self, other: (int, float)) -> bool:
-        return self.km > other
+    def __gt__(self, other: int) -> bool:
+        return self.km > other.km \
+            if isinstance(other, Distance) else self.km > other
 
-    def __eq__(self, other: (int, float)) -> bool:
-        return self.km == other
+    def __eq__(self, other: int) -> bool:
+        return self.km == other.km \
+            if isinstance(other, Distance) else self.km == other
 
-    def __le__(self, other: (int, float)) -> bool:
-        return self.km <= other
+    def __le__(self, other: int) -> bool:
+        return not self.__gt__(other.km) \
+            if isinstance(other, Distance) else not self.__gt__(other)
 
-    def __ge__(self, other: (int, float)) -> bool:
-        return self.km >= other
+    def __ge__(self, other: int) -> bool:
+        return not self.__lt__(other.km) \
+            if isinstance(other, Distance) else not self.__lt__(other)
