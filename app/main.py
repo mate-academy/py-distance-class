@@ -38,13 +38,13 @@ class Distance:
         return self.km == other.km if is_distance(other) else self.km == other
 
     def __le__(self, other: (int, float, Distance)) -> bool:
-        return not self.__gt__(other.km) if is_distance(other) \
-            else not self.__gt__(other)
+        return self.km <= other.km if is_distance(other) \
+            else self.km <= other
 
     def __ge__(self, other: (int, float, Distance)) -> bool:
-        return not self.__lt__(other.km) if is_distance(other) \
-            else not self.__lt__(other)
+        return self.km >= other.km if is_distance(other) \
+            else self.km >= other
 
 
-def is_distance(num):
+def is_distance(num: (int, float, Distance)) -> bool:
     return isinstance(num, Distance)
