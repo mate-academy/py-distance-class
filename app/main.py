@@ -5,6 +5,7 @@ class Distance:
     def __init__(self, km: float | int) -> None:
         self.km = km
 
+    @staticmethod
     def __typecheck__(other: any) -> None:
         return isinstance(other, Distance)
 
