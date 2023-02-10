@@ -18,15 +18,15 @@ class Distance:
     def __add__(self, other: any) -> float:
         if Distance.__typecheck__(other):
             return Distance(self.km + other.km)
-        distance = Distance(other)
-        return Distance(self.km + distance.km)
+        other = Distance(other)
+        return Distance(self.km + other.km)
 
     def __iadd__(self, other: any) -> float:
         if Distance.__typecheck__(other):
             self.km += other.km
-            return self
-        distance = Distance(other)
-        self.km += distance.km
+        else:
+            distance = Distance(other)
+            self.km += distance.km
         return self
 
     def __mul__(self, other: int) -> float:
