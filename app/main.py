@@ -33,16 +33,34 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> Distance:
+        if not isinstance(other, Distance | int | float):
+            raise TypeError(f"You can't compare {type(other)} "
+                            f"and class Distance")
+        if isinstance(other, Distance):
+            return self.km < other.km
+
         return self.km < other
 
     def __gt__(self, other: Distance | int | float) -> Distance:
+        if not isinstance(other, Distance | int | float):
+            raise TypeError(f"You can't compare {type(other)} "
+                            f"and class Distance")
+        if isinstance(other, Distance):
+            return self.km > other.km
+
         return self.km > other
 
     def __eq__(self, other: Distance | int | float) -> Distance:
+        if not isinstance(other, Distance | int | float):
+            raise TypeError(f"You can't compare {type(other)} "
+                            f"and class Distance")
+        if isinstance(other, Distance):
+            return self.km == other.km
+
         return self.km == other
 
     def __le__(self, other: Distance | int | float) -> Distance:
-        return self.km <= other
+        return self.__lt__(other) or self.__eq__(other)
 
     def __ge__(self, other: Distance | int | float) -> Distance:
-        return self.km >= other
+        return self.__gt__(other) or self.__eq__(other)
