@@ -43,9 +43,7 @@ class Distance:
                 return True
             return False
         elif isinstance(other, Distance):
-            if self.km < other.km:
-                return True
-        return False
+            return self.km < other.km
 
     def __gt__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, (int, float)):
@@ -53,9 +51,7 @@ class Distance:
                 return True
             return False
         elif isinstance(other, Distance):
-            if self.km > other.km:
-                return True
-        return False
+            return self.km > other.km
 
     def __eq__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, (int, float)):
@@ -63,9 +59,7 @@ class Distance:
                 return True
             return False
         elif isinstance(other, Distance):
-            if self.km == other.km:
-                return True
-        return False
+            return self.km == other.km
 
     def __le__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, (int, float)):
@@ -73,9 +67,7 @@ class Distance:
                 return True
             return False
         elif isinstance(other, Distance):
-            if self.km <= other.km:
-                return True
-        return False
+            return self.km <= other.km
 
     def __ge__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, (int, float)):
@@ -83,6 +75,4 @@ class Distance:
                 return True
             return False
         elif isinstance(other, Distance):
-            if self.km >= other.km:
-                return True
-        return False
+            return self.km >= other.km
