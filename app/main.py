@@ -27,7 +27,7 @@ class Distance:
         if not isinstance(other, Distance):
             return Distance(self.km * other)
 
-    def __truediv__(self, other: int | float) -> Distance:
+    def __truediv__(self, other: int | float | Distance) -> Distance:
         if not isinstance(other, Distance):
             return Distance(round(self.km / other, 2))
 
