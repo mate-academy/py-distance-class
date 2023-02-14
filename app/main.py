@@ -6,7 +6,7 @@ class Distance:
         self.km = km
 
     @staticmethod
-    def __typecheck__(other: any) -> None:
+    def __typecheck__(other: int | float | Distance) -> None:
         return isinstance(other, Distance)
 
     def __str__(self) -> str:
@@ -15,18 +15,16 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: any) -> float:
+    def __add__(self, other: int | float | Distance) -> float:
         if Distance.__typecheck__(other):
             return Distance(self.km + other.km)
-        other = Distance(other)
-        return Distance(self.km + other.km)
+        return Distance(self.km + other)
 
-    def __iadd__(self, other: any) -> float:
+    def __iadd__(self, other: int | float | Distance) -> float:
         if Distance.__typecheck__(other):
             self.km += other.km
         else:
-            distance = Distance(other)
-            self.km += distance.km
+            self.km += other
         return self
 
     def __mul__(self, other: int) -> float:
@@ -40,22 +38,22 @@ class Distance:
             return self.km < other.km
         return self.km < other
 
-    def __gt__(self, other: any) -> bool:
-        if Distance.__typecheck__(other):
-            return self.km > other.km
-        return self.km > other
+    def __gt__(self, other: int | float | Distance) -> bool:
+        if self.__eq__(other):
+            return False
+        return not self.__lt__(other)
 
-    def __eq__(self, other: any) -> bool:
+    def __eq__(self, other: int | float | Distance) -> bool:
         if Distance.__typecheck__(other):
             return self.km == other.km
         return self.km == other
 
-    def __le__(self, other: any) -> bool:
+    def __le__(self, other: int | float | Distance) -> bool:
         if Distance.__typecheck__(other):
             return self.km <= other.km
         return self.km <= other
 
-    def __ge__(self, other: any) -> bool:
-        if Distance.__typecheck__(other):
-            return self.km >= other.km
-        return self.km >= other
+    def __ge__(self, other: int | float | Distance) -> bool:
+        if self.__eq__(other):
+            return True
+        return not self.__le__(other)
