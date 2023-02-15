@@ -39,9 +39,7 @@ class Distance:
         return self.km < other
 
     def __gt__(self, other: int | float | Distance) -> bool:
-        if self.__eq__(other):
-            return False
-        return not self.__lt__(other)
+        return not self.__le__(other)
 
     def __eq__(self, other: int | float | Distance) -> bool:
         if Distance.__typecheck__(other):
@@ -54,6 +52,4 @@ class Distance:
         return self.km <= other
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        if self.__eq__(other):
-            return True
-        return not self.__le__(other)
+        return not self.__lt__(other)
