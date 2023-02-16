@@ -17,7 +17,6 @@ class Distance:
     def __iadd__(self, other: bool) -> bool:
         if isinstance(other, Distance):
             self.km += other.km
-
         else:
             self.km += other
         return self
@@ -43,14 +42,7 @@ class Distance:
             return self.km == other.km
         return self.km == other
 
-    def __le__(self, other: bool) -> bool:
-        if isinstance(other, Distance):
-
-            return self.km <= other.km
-        return self.km <= other
-
-    def __ge__(self, other: bool) -> bool:
-        if isinstance(other, Distance):
-
-            return self.km >= other.km
-        return self.km >= other
+    __le__ = lambda self, other: self.km <= other.km \
+        if isinstance(other, Distance) else self.km <= other
+    __ge__ = lambda self, other: self.km >= other.km \
+        if isinstance(other, Distance) else self.km >= other
