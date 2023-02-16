@@ -5,10 +5,6 @@ class Distance:
     def __init__(self, km: float | int) -> None:
         self.km = km
 
-    @staticmethod
-    def __typecheck__(other: int | float | Distance) -> None:
-        return isinstance(other, Distance)
-
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
@@ -16,12 +12,12 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: int | float | Distance) -> float:
-        if Distance.__typecheck__(other):
+        if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
     def __iadd__(self, other: int | float | Distance) -> float:
-        if Distance.__typecheck__(other):
+        if isinstance(other, Distance):
             self.km += other.km
         else:
             self.km += other
@@ -34,7 +30,7 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: int | float | Distance) -> bool:
-        if Distance.__typecheck__(other):
+        if isinstance(other, Distance):
             return self.km < other.km
         return self.km < other
 
@@ -42,14 +38,12 @@ class Distance:
         return not self.__le__(other)
 
     def __eq__(self, other: int | float | Distance) -> bool:
-        if Distance.__typecheck__(other):
+        if isinstance(other, Distance):
             return self.km == other.km
         return self.km == other
 
     def __le__(self, other: int | float | Distance) -> bool:
-        if Distance.__typecheck__(other):
-            return self.km <= other.km
-        return self.km <= other
+        return self.__lt__(other) or self.__eq__(other)
 
     def __ge__(self, other: int | float | Distance) -> bool:
         return not self.__lt__(other)
