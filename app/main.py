@@ -46,4 +46,4 @@ class Distance:
         return self.__lt__(other) or self.__eq__(other)
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        return not self.__lt__(other)
+        return not self < other
