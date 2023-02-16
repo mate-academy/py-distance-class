@@ -17,6 +17,7 @@ class Distance:
     def __iadd__(self, other: bool) -> bool:
         if isinstance(other, Distance):
             self.km += other.km
+
         else:
             self.km += other
         return self
