@@ -16,10 +16,10 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: Distance | int | float) -> Distance:
-        return Distance(self.km + Distance.get_km(other))
+        return Distance(self.km + self.get_km(other))
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
-        self.km += Distance.get_km(other)
+        self.km += self.get_km(other)
         return self
 
     def __mul__(self, other: int | float) -> Distance:
@@ -29,16 +29,16 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        return Distance.get_km(self) < Distance.get_km(other)
+        return self.km < self.get_km(other)
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        return Distance.get_km(self) > Distance.get_km(other)
+        return self.km > self.get_km(other)
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        return Distance.get_km(self) == Distance.get_km(other)
+        return self.km == self.get_km(other)
 
     def __le__(self, other: Distance | int | float) -> bool:
-        return Distance.get_km(self) <= Distance.get_km(other)
+        return self.km <= self.get_km(other)
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        return Distance.get_km(self) >= Distance.get_km(other)
+        return self.km >= self.get_km(other)
