@@ -43,8 +43,7 @@ class Distance:
         return self.km >= other
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
+        return Distance(self.km * other)
 
     def __iadd__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
