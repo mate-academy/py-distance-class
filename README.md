@@ -7,7 +7,7 @@ Every day you have morning running. You want to store your result.
 For easier calculating, comparison and printing your result write class
 `Distance`.
 
-`Distance`'s constructor takes only
+`Distance`'s `__init__` method takes only
 one argument `km` and saves it to `self.km`.
 
 For `Distance` class you should implement such magic
