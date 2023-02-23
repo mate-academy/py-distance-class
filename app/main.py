@@ -25,7 +25,7 @@ class Distance:
     def __iadd__(self, other: Union[int, float, Distance]) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-        if type(other) is float or type(other) is int:
+        else:
             self.km += other
         return self
 
@@ -42,29 +42,29 @@ class Distance:
     def __lt__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        if type(other) is float or type(other) is int:
+        else:
             return self.km < other
 
     def __gt__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
-        if type(other) is float or type(other) is int:
+        else:
             return self.km > other
 
     def __eq__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        if type(other) is float or type(other) is int:
+        else:
             return self.km == other
 
     def __le__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
-        if type(other) is float or type(other) is int:
+        else:
             return self.km <= other
 
     def __ge__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
-        if type(other) is float or type(other) is int:
+        else:
             return self.km >= other
