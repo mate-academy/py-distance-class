@@ -35,13 +35,13 @@ class Distance:
     def __truediv__(self, other: int) -> Distance:
         return Distance(round((self.km / other), 2))
 
-    def __lt__(self, other) -> bool:
+    def __lt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         else:
             return self.km < other
 
-    def __qt__(self, other) -> bool:
+    def __qt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         else:
