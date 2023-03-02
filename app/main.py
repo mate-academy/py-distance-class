@@ -8,10 +8,10 @@ class Distance:
     def __init__(self, km: Any) -> None:
         self.km = km
 
-    def __str__(self):
+    def __str__(self)  -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __repr__(self):
+    def __repr__(self)  -> str:
         return f"Distance(km={self.km})"
 
     def __add__(self, distance1: Any) -> Distance:
@@ -30,7 +30,7 @@ class Distance:
             return self
 
     def __mul__(self, other: (int, float)) -> Distance:
-            return Distance(self.km * other)
+        return Distance(self.km * other)
 
     def __truediv__(self, other: int) -> Distance:
         return Distance(round((self.km / other), 2))
