@@ -36,9 +36,9 @@ class Distance:
         return Distance(round((self.km / other), 2))
 
     def __lt__(self, other: Distance) -> Distance:
-        return self.km < other.km
+        return self.km < other
 
-    def __qt__(self, other: Distance) -> bool:
+    def __qt__(self, other: (int, float)) -> bool:
         return self.km > other
 
     def __eq__(self, other: Distance) -> bool:
