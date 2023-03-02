@@ -39,13 +39,13 @@ class Distance:
         return self.km < other.km
 
     def __qt__(self, other: Distance) -> bool:
-        return self.km > other.km
+        return self.km > other
 
     def __eq__(self, other: Distance) -> bool:
-        return self.km == other.km
+        return self.km == other
 
     def __le__(self, other: Distance) -> bool:
-        return self.km <= other.km
+        return self.km <= other
 
     def __ge__(self, other: Distance) -> bool:
-        return self.km >= other.km
+        return self.km >= other
