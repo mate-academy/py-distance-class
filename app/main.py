@@ -39,7 +39,14 @@ class Distance:
         return self.km < other
 
     def __gt__(self, other: int | float | Distance) -> bool:
-        return self.km > other
+        final = None
+
+        if isinstance(other, Distance):
+            final = self.km > other.km
+        else:
+            final = self.km > other
+
+        return final
 
     def __eq__(self, other: int | float | Distance) -> bool:
         return self.km == other
