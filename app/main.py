@@ -17,17 +17,17 @@ class Distance:
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
 
-    def __iadd__(self, other: Union["Distance", int, float]) -> "Distance":
+    def __iadd__(self, other: int) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
             self.km += other
         return self
 
-    def __mul__(self, other: int) -> "Distance":
+    def __mul__(self, other: float) -> "Distance":
         return Distance(self.km * other)
 
-    def __truediv__(self, other: int) -> "Distance":
+    def __truediv__(self, other: float) -> "Distance":
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Union["Distance", int, float]) -> bool:
