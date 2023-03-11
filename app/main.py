@@ -15,8 +15,7 @@ class Distance:
     def __add__(self, other: Union[int, float, Distance]) -> Distance:
         if type(other) == float or type(other) == int:
             return Distance(self.km + other)
-        else:
-            return Distance(self.km + other.km)
+        return Distance(self.km + other.km)
 
     def __iadd__(self, other: Union[int, float, Distance]) -> Distance:
         if type(other) == float or type(other) == int:
