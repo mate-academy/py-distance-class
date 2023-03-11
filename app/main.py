@@ -1,7 +1,9 @@
 from __future__ import annotations
+from typing import Union
 
 
 class Distance:
+
     def __init__(self, km: int) -> None:
         self.km = km
 
@@ -12,54 +14,48 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: Union[int, float, Distance]) -> Distance:
-        if type(other) == int or type(other) == float:
-            return Distance(self.km + other)
-        else:
+        if isinstance(other, Distance):
             return Distance(self.km + other.km)
+        return Distance(self.km + other)
 
-    def __iadd__(self, other: int or float or Distance) -> Distance:
-        if type(other) == int or type(other) == float:
-            self.km += other
-        else:
+    def __iadd__(self, other: Union[int, float, Distance]) -> Distance:
+        if isinstance(other, Distance):
             self.km += other.km
+        else:
+            self.km += other
         return self
 
-    def __mul__(self, other: int or float) -> Distance:
+    def __mul__(self, other: Union[int, float]) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: int) -> Distance:
+    def __truediv__(self, other: Union[int, float]) -> Distance:
         if other != 0:
             self.km = round(self.km / other, 2)
             return self
         else:
             return ZeroDivisionError
 
-    def __lt__(self, other: int or float or Distance) -> bool:
-        if type(other) == int or type(other) == float:
-            return self.km < other
-        else:
+    def __lt__(self, other: Union[int, float, Distance]) -> bool:
+        if isinstance(other, Distance):
             return self.km < other.km
+        return self.km < other
 
-    def __gt__(self, other: int or float or Distance) -> bool:
-        if type(other) == int or type(other) == float:
-            return self.km > other
-        else:
+    def __gt__(self, other: Union[int, float, Distance]) -> bool:
+        if isinstance(other, Distance):
             return self.km > other.km
+        return self.km > other
 
-    def __eq__(self, other: int or float or Distance) -> bool:
-        if type(other) == int or type(other) == float:
-            return self.km == other
-        else:
+    def __eq__(self, other: Union[int, float, Distance]) -> bool:
+        if isinstance(other, Distance):
             return self.km == other.km
+        return self.km == other
 
-    def __le__(self, other: int or float or Distance) -> bool:
-        if type(other) == int or type(other) == float:
-            return self.km <= other
-        else:
+    def __le__(self, other: Union[int, float, Distance]) -> bool:
+        if isinstance(other, Distance):
             return self.km <= other.km
+        return self.km <= other
 
-    def __ge__(self, other: int or float or Distance) -> bool:
-        if type(other) == int or type(other) == float:
-            return self.km >= other
-        else:
+    def __ge__(self, other: Union[int, float, Distance]) -> bool:
+        if isinstance(other, Distance):
             return self.km >= other.km
+        return self.km >= other
