@@ -11,7 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int or float or Distance) -> Distance:
+    def __add__(self, other: Union[int, float, Distance]) -> Distance:
         if type(other) == int or type(other) == float:
             return Distance(self.km + other)
         else:
