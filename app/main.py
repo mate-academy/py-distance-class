@@ -4,7 +4,7 @@ from typing import Union
 
 class Distance:
 
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: Union[int, float]) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -30,8 +30,8 @@ class Distance:
 
     def __truediv__(self, other: Union[int, float]) -> Distance:
         if other != 0:
-            self.km = round(self.km / other, 2)
-            return self
+            result = round(self.km / other, 2)
+            return Distance(km=result)
         else:
             return ZeroDivisionError
 
