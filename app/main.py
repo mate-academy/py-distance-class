@@ -16,10 +16,9 @@ class Distance:
             return Distance(
                 km=self.km + other.km
             )
-        else:
-            return Distance(
-                km=self.km + other
-            )
+        return Distance(
+            km=self.km + other
+        )
 
     def __mul__(self, num: float) -> Distance:
         return Distance(
