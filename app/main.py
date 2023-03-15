@@ -25,24 +25,40 @@ class Distance:
             self.km += other.km
         return self
 
-    def __mul__(self, other: int | float) -> Distance:
+    def __mul__(self, other: int | float | Distance) -> Distance:
         if not isinstance(other, Distance):
             return Distance(other * self.km)
 
-    def __truediv__(self, other: int | float) -> Distance:
-        return Distance(round(self.km / other, 2))
+    def __truediv__(self, other: int | float | Distance) -> Distance:
+        if not isinstance(other, Distance):
+            return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: int | float) -> bool:
-        return self.km < other
+    def __lt__(self, other: int | float | Distance) -> bool:
+        if not isinstance(other, Distance):
+            return self.km < other
+        elif isinstance(other, Distance):
+            return self.km < other.km
 
-    def __gt__(self, other: int | float) -> bool:
-        return self.km > other
+    def __gt__(self, other: int | float | Distance) -> bool:
+        if not isinstance(other, Distance):
+            return self.km > other
+        elif isinstance(other, Distance):
+            return self.km > other.km
 
-    def __eq__(self, other: int | float) -> bool:
-        return self.km == other
+    def __eq__(self, other: int | float | Distance) -> bool:
+        if not isinstance(other, Distance):
+            return self.km == other
+        elif isinstance(other, Distance):
+            return self.km == other.km
 
-    def __le__(self, other: int | float) -> bool:
-        return self.km <= other
+    def __le__(self, other: int | float | Distance) -> bool:
+        if not isinstance(other, Distance):
+            return self.km <= other
+        elif isinstance(other, Distance):
+            return self.km <= other.km
 
-    def __ge__(self, other: int | float) -> bool:
-        return self.km >= other
+    def __ge__(self, other: int | float | Distance) -> bool:
+        if not isinstance(other, Distance):
+            return self.km >= other
+        elif isinstance(other, Distance):
+            return self.km >= other.km
