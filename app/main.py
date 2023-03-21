@@ -1,61 +1,64 @@
+from __future__ import annotations
+
+
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
-    def __add__(self, other: callable) -> callable:
+    def __add__(self, other: Distance | int | float) -> Distance:
 
         if not isinstance(other, Distance):
-            return Distance(self.km + other.real)
+            return Distance(self.km + other)
 
         return Distance(self.km + other.km)
 
-    def __iadd__(self, other: callable) -> callable:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
 
         if not isinstance(other, Distance):
-            self.km += other.real
+            self.km += other
             return self
 
         self.km += other.km
         return self
 
-    def __mul__(self, other: callable) -> callable:
+    def __mul__(self, other: int) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: callable) -> callable:
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: callable) -> callable:
+    def __lt__(self, other: Distance | int | float) -> bool:
 
         if not isinstance(other, Distance):
-            return self.km < other.real
+            return self.km < other
 
         return self.km < other.km
 
-    def __gt__(self, other: callable) -> callable:
+    def __gt__(self, other: Distance | int | float) -> bool:
 
         if not isinstance(other, Distance):
-            return self.km > other.real
+            return self.km > other
 
         return self.km > other.km
 
-    def __eq__(self, other: callable) -> callable:
+    def __eq__(self, other: Distance | int | float) -> bool:
 
         if not isinstance(other, Distance):
-            return self.km == other.real
+            return self.km == other
 
         return self.km == other.km
 
-    def __ge__(self, other: callable) -> callable:
+    def __ge__(self, other: Distance | int | float) -> bool:
 
         if not isinstance(other, Distance):
-            return self.km >= other.real
+            return self.km >= other
 
         return self.km >= other.km
 
-    def __le__(self, other: callable) -> callable:
+    def __le__(self, other: Distance | int | float) -> bool:
 
         if not isinstance(other, Distance):
-            return self.km <= other.real
+            return self.km <= other
 
         return self.km <= other.km
 
