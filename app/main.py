@@ -19,7 +19,7 @@ class Distance:
             km = self.km + other.km
         return Distance(km)
 
-    def __iadd__(self, other: int | float) -> Distance:
+    def __iadd__(self, other: int | float | Distance) -> Distance:
         if not isinstance(other, Distance):
             self.km += other
         else:
@@ -29,22 +29,22 @@ class Distance:
     def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: int | float | Distance) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: int | float | Distance) -> bool:
+    def __lt__(self, other: int | float) -> bool:
         return self.km < other
 
-    def __gt__(self, other: int | float | Distance) -> bool:
+    def __gt__(self, other: int | float) -> bool:
         return self.km > other
 
-    def __eq__(self, other: int | float | Distance) -> bool:
+    def __eq__(self, other: int | float) -> bool:
         return self.km == other
 
-    def __le__(self, other: int | float | Distance) -> bool:
+    def __le__(self, other: int | float) -> bool:
         return self.km <= other
 
-    def __ge__(self, other: int | float | Distance) -> bool:
+    def __ge__(self, other: int | float) -> bool:
         return self.km >= other
 
     def __len__(self) -> float:
