@@ -11,66 +11,66 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, distance2: Distance | int | float) -> Distance:
-        if isinstance(distance2, (int, float)):
-            return Distance(self.km + distance2)
-        elif isinstance(distance2, Distance):
-            return Distance(self.km + distance2.km)
+    def __add__(self, other: Distance | int | float) -> Distance:
+        if isinstance(other, (int, float)):
+            return Distance(self.km + other)
+        elif isinstance(other, Distance):
+            return Distance(self.km + other.km)
         else:
             raise TypeError
 
-    def __iadd__(self, distance2: Distance | int | float) -> Distance:
-        if isinstance(distance2, (int, float)):
-            self.km += distance2
-        elif isinstance(distance2, Distance):
-            self.km += distance2.km
+    def __iadd__(self, other: Distance | int | float) -> Distance:
+        if isinstance(other, (int, float)):
+            self.km += other
+        elif isinstance(other, Distance):
+            self.km += other.km
         else:
             raise TypeError
 
         return self
 
-    def __mul__(self, distance2: int | float) -> Distance:
-        return Distance(self.km * distance2)
+    def __mul__(self, other: int | float) -> Distance:
+        return Distance(self.km * other)
 
-    def __truediv__(self, distance2: int | float) -> Distance:
-        return Distance(round(self.km / distance2, 2))
+    def __truediv__(self, other: int | float) -> Distance:
+        return Distance(round(self.km / other, 2))
 
-    def __eq__(self, distance2: Distance | int | float) -> bool:
-        if isinstance(distance2, (int, float)):
-            return self.km == distance2
-        elif isinstance(distance2, Distance):
-            return self.km == distance2.km
+    def __eq__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km == other
+        elif isinstance(other, Distance):
+            return self.km == other.km
         else:
             raise TypeError
 
-    def __lt__(self, distance2: Distance | int | float) -> bool:
-        if isinstance(distance2, (int, float)):
-            return self.km < distance2
-        elif isinstance(distance2, Distance):
-            return self.km < distance2.km
+    def __lt__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km < other
+        elif isinstance(other, Distance):
+            return self.km < other.km
         else:
             raise TypeError
 
-    def __gt__(self, distance2: Distance | int | float) -> bool:
-        if isinstance(distance2, (int, float)):
-            return self.km > distance2
-        elif isinstance(distance2, Distance):
-            return self.km > distance2.km
+    def __gt__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km > other
+        elif isinstance(other, Distance):
+            return self.km > other.km
         else:
             raise TypeError
 
-    def __le__(self, distance2: Distance | int | float) -> bool:
-        if isinstance(distance2, (int, float)):
-            return self.km <= distance2
-        elif isinstance(distance2, Distance):
-            return self.km <= distance2.km
+    def __le__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km <= other
+        elif isinstance(other, Distance):
+            return self.km <= other.km
         else:
             raise TypeError
 
-    def __ge__(self, distance2: Distance | int | float) -> bool:
-        if isinstance(distance2, (int, float)):
-            return self.km >= distance2
-        elif isinstance(distance2, Distance):
-            return self.km >= distance2.km
+    def __ge__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km >= other
+        elif isinstance(other, Distance):
+            return self.km >= other.km
         else:
             raise TypeError
