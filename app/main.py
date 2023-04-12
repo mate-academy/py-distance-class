@@ -26,7 +26,9 @@ class Distance:
 
     def __truediv__(self, other: Union[Distance, int, float]) -> Distance:
         if isinstance(other, (int, float)):
-            return self._math_operation(other, lambda a, b: a / b, rounded=True)
+            return self._math_operation(
+                other, lambda a, b: a / b, rounded=True
+            )
 
     def __lt__(self, other: Union[Distance, int, float]) -> bool:
         return self._bool_operations(other, lambda a, b: a < b)
