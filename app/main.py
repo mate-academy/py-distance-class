@@ -29,11 +29,7 @@ class Distance:
 
     def __mul__(self, other: Union[int, float]) -> Distance:
         if isinstance(other, (int, float)):
-            return self._math_operation(
-                other,
-                lambda a, b: a * b,
-                new=True
-            )
+            return Distance(other * self.km)
 
     def __truediv__(self, other: Union[Distance, int, float]) -> Distance:
         if isinstance(other, (int, float)):
