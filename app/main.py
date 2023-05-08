@@ -1,10 +1,8 @@
-from __future__ import annotations
-from __future__ import division
-from typing import Union, Any
+from typing import Any
 
 
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -13,35 +11,30 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Any) -> Distance:
+    def __add__(self, other: Any) -> "Distance":
         if isinstance(other, Distance) is True:
             return Distance(self.km + other.km)
         if isinstance(other, (int, float)) is True:
             return Distance(self.km + other)
 
-    def __iadd__(self, other: Any) -> Distance:
+    def __iadd__(self, other: Any) -> "Distance":
         if isinstance(other, Distance) is True:
             self.km = self.km + other.km
-            return self
         if isinstance(other, (int, float)) is True:
             self.km = self.km + other
-            return self
+        return self
 
-    def __mul__(self, other: Any) -> Union[Distance, NotImplemented]:
+    def __mul__(self, other: Any) -> "Distance":
         if isinstance(other, (int, float)) is True:
             self.km = self.km * other
             return self
-        elif isinstance(other, Distance):
-            return NotImplemented
         else:
             raise TypeError
 
-    def __truediv__(self, other: Any) -> Union[Distance, NotImplemented]:
+    def __truediv__(self, other: Any) -> "Distance":
         if isinstance(other, (int, float)) is True:
             self.km = round((self.km / other), 2)
             return self
-        elif isinstance(other, Distance):
-            return NotImplemented
         else:
             raise TypeError
 
