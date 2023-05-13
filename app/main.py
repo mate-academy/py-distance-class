@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any
+from typing import Any, Union
 
 
 class Distance:
@@ -13,12 +13,12 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int | float) -> Distance:
+    def __add__(self, other: OtherInputType) -> Distance:
         return Distance(
             self.km + self.number_return(other)
         )
 
-    def __iadd__(self, other: Distance | int | float) -> Distance:
+    def __iadd__(self, other: OtherInputType) -> Distance:
         self.km += self.number_return(other)
         return self
 
@@ -29,29 +29,31 @@ class Distance:
             )
 
     def __truediv__(self, other: float | int) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(
-                round((self.km / other), 2)
-            )
+        return Distance(
+            round((self.km / other), 2)
+        )
 
-    def __lt__(self, other: Distance | int | float) -> bool:
+    def __lt__(self, other: OtherInputType) -> bool:
         return self.km < self.number_return(other)
 
-    def __gt__(self, other: Distance | int | float) -> bool:
+    def __gt__(self, other: OtherInputType) -> bool:
         return self.km > self.number_return(other)
 
-    def __eq__(self, other: Distance | int | float) -> bool:
+    def __eq__(self, other: OtherInputType) -> bool:
         return self.km == self.number_return(other)
 
-    def __le__(self, other: Distance | int | float) -> bool:
+    def __le__(self, other: OtherInputType) -> bool:
         return self.km <= self.number_return(other)
 
-    def __ge__(self, other: Distance | int | float) -> bool:
+    def __ge__(self, other: OtherInputType) -> bool:
         return self.km >= self.number_return(other)
 
     @staticmethod
-    def number_return(number: Any) -> int | float:
+    def number_return(number: Any) -> int | float | None:
         if isinstance(number, Distance):
             return number.km
         elif isinstance(number, (int, float)):
             return number
+
+
+OtherInputType = Union[float, int, Distance]
