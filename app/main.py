@@ -30,7 +30,7 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: int) -> Distance:
-        return Distance(round(self.km/other, 2))
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
