@@ -15,14 +15,12 @@ class Distance:
         if isinstance(other, Distance):
             new_km = self.km + other.km
             return Distance(new_km)
-        elif isinstance(other, (int, float)):
-            new_km = self.km + other
-            return Distance(new_km)
+        return Distance(self.km + other)
 
     def __iadd__(self, other: Union[int, float, "Distance"]) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, (int, float)):
+        else:
             self.km += other
         return self
 
