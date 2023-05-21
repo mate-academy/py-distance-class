@@ -32,7 +32,6 @@ class Distance:
     def __truediv__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
             raise TypeError
-
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
