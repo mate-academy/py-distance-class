@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import Any
 
 
 class Distance:
@@ -15,13 +14,13 @@ class Distance:
     def __float__(self) -> float:
         return float(self.km)
 
-    def __radd__(self, rho: Any) -> Distance:
+    def __radd__(self, rho: float | Distance) -> Distance:
         return self.__add__(rho)
 
-    def __add__(self, rho: Any) -> Distance:
+    def __add__(self, rho: float | Distance) -> Distance:
         return Distance(self.km + float(rho))
 
-    def __iadd__(self, rho: Any) -> Distance:
+    def __iadd__(self, rho: float | Distance) -> Distance:
         self.km += float(rho)
         return self
 
@@ -31,17 +30,17 @@ class Distance:
     def __truediv__(self, rho: float) -> Distance:
         return Distance(round(self.km / rho, 2))
 
-    def __lt__(self, rho: Any) -> bool:
+    def __lt__(self, rho: float | Distance) -> bool:
         return self.km < float(rho)
 
-    def __gt__(self, rho: Any) -> bool:
+    def __gt__(self, rho: float | Distance) -> bool:
         return self.km > float(rho)
 
-    def __eq__(self, rho: Any) -> bool:
+    def __eq__(self, rho: float | Distance) -> bool:
         return self.km == float(rho)
 
-    def __le__(self, rho: Any) -> bool:
+    def __le__(self, rho: float | Distance) -> bool:
         return self.km <= float(rho)
 
-    def __ge__(self, rho: Any) -> bool:
+    def __ge__(self, rho: float | Distance) -> bool:
         return self.km >= float(rho)
