@@ -44,12 +44,13 @@ class Distance:
             return self.km == dist.km
         return self.km == dist
 
+    def __ge__(self, dist: Union["Distance", float, int]) -> bool:
+        if isinstance(dist, Distance):
+            return self.km >= dist.km
+        return self.km >= dist
+
     def __le__(self, dist: Union["Distance", float, int]) -> bool:
         if isinstance(dist, Distance):
             return self.km <= dist.km
         return self.km <= dist
 
-    def __ge__(self, dist: Union["Distance", float, int]) -> bool:
-        if isinstance(dist, Distance):
-            return self.km >= dist.km
-        return self.km >= dist
