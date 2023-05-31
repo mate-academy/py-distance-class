@@ -12,12 +12,12 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: Distance | int) -> Distance:
-        if type(other) == int or type(other) == float:
+        if isinstance(other, float) or isinstance(other, int):
             return Distance(self.km + other)
         return Distance(self.km + other.km)
 
     def __iadd__(self, other: Distance | int) -> Distance:
-        if type(other) == int or type(other) == float:
+        if isinstance(other, float) or isinstance(other, int):
             self.km += other
         else:
             self.km += other.km
