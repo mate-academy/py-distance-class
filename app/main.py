@@ -1,11 +1,12 @@
 from __future__ import annotations
+from typing import Any
 
 
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
 
-    def __str__(self) -> str:
+    def __str__(self) -> Any:
         return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
