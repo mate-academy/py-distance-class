@@ -44,7 +44,7 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: Distance | int) -> bool:
-        return self.__lt__(other) or self.__eq__(other)
+        return not self > other
 
     def __ge__(self, other: Distance | int) -> bool:
-        return self.__gt__(other) or self.__eq__(other)
+        return not self < other
