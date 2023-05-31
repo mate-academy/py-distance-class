@@ -19,7 +19,7 @@ class Distance:
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-        if isinstance(other, (int, float)):
+        else:
             self.km += other
         return self
 
@@ -40,16 +40,11 @@ class Distance:
         return self.km < other
 
     def __gt__(self, other: int | float | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        return self.km > other
+        return not Distance.__eq__(self, other)\
+            and not Distance.__lt__(self, other)
 
     def __le__(self, other: int | float | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        return self.km <= other
+        return not Distance.__gt__(self, other)
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        return self.km >= other
+        return not Distance.__lt__(self, other)
