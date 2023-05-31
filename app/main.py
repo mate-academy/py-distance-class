@@ -45,5 +45,5 @@ class Distance:
     def __lt__(self, other: Distance | int | float) -> bool:
         return not self > other and not self == other
 
-    def __le__(self, other: Distance | int | float) -> Distance:
+    def __le__(self, other: Distance | int | float) -> bool:
         return not self > other
