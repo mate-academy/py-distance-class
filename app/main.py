@@ -19,8 +19,8 @@ class Distance:
     def __iadd__(self, dist: Union["Distance", float, int]) -> "Distance":
         if isinstance(dist, Distance):
             self.km += dist.km
-            return self
-        self.km += dist
+        else:
+            self.km += dist
         return self
 
     def __mul__(self, dist: Union[float, int]) -> "Distance":
@@ -45,7 +45,7 @@ class Distance:
         return self.km == dist
 
     def __ge__(self, dist: Union["Distance", float, int]) -> bool:
-        return not self.__lt__(dist)
+        return not self < dist
 
     def __le__(self, dist: Union["Distance", float, int]) -> bool:
-        return not self.__gt__(dist)
+        return not self > dist
