@@ -46,4 +46,4 @@ class Distance:
         return not self > other and not self == other
 
     def __le__(self, other: Distance | int | float) -> Distance:
-        return not self.km > other
+        return not self > other
