@@ -25,12 +25,10 @@ class Distance:
         return self
 
     def __mul__(self, other: float | int) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
+        return Distance(self.km * other)
 
     def __truediv__(self, other: float | int) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(round(self.km / other, 2))
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | float | int) -> bool:
         if isinstance(other, Distance):
@@ -51,13 +49,7 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: Distance | float | int) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-
-        return self.km <= other
+        return not self > other
 
     def __ge__(self, other: Distance | float | int) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-
-        return self.km >= other
+        return not self < other
