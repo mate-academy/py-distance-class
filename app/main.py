@@ -33,34 +33,24 @@ class Distance:
     def __lt__(self, other: Union[float, int, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        elif self.km < other:
-            return True
-        return False
+        return self.km < other
 
     def __gt__(self, other: Union[float, int, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
-        elif self.km > other:
-            return True
-        return False
+        return self.km > other
 
     def __eq__(self, other: Union[float, int, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        elif self.km == other:
-            return True
-        return False
+        return self.km == other
 
     def __le__(self, other: Union[float, int, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
-        elif self.km <= other:
-            return True
-        return False
+        return self.km <= other
 
     def __ge__(self, other: Union[float, int, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
-        elif self.km >= other:
-            return True
-        return False
+        return self.km >= other
