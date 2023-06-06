@@ -47,7 +47,7 @@ class Distance:
         return self.km >= self.return_number(other)
 
     @staticmethod
-    def return_number(number: int) -> int | float:
+    def return_number(number: Distance | int | float) -> int | float:
         if not isinstance(number, Distance):
             return number
         return number.km
