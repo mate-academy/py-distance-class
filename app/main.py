@@ -14,11 +14,11 @@ class Distance:
 
     def __add__(self, other: Distance | int | float) -> Distance:
         return Distance(
-            self.km + self.return_number(other)
+            self.km + self.get_value(other)
         )
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
-        self.km += self.return_number(other)
+        self.km += self.get_value(other)
         return self
 
     def __mul__(self, other: Distance | int | float) -> Distance:
@@ -30,22 +30,22 @@ class Distance:
         )
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        return self.km < self.return_number(other)
+        return self.km < self.get_value(other)
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        return self.km > self.return_number(other)
+        return self.km > self.get_value(other)
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        return self.km == self.return_number(other)
+        return self.km == self.get_value(other)
 
     def __le__(self, other: Distance | int | float) -> bool:
-        return self.km <= self.return_number(other)
+        return self.km <= self.get_value(other)
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        return self.km >= self.return_number(other)
+        return self.km >= self.get_value(other)
 
     @staticmethod
-    def return_number(number: Distance | int | float) -> int | float:
+    def get_value(number: Distance | int | float) -> int | float:
         if not isinstance(number, Distance):
             return number
         return number.km
