@@ -49,9 +49,3 @@ class Distance:
 
     def __ge__(self, other: Distance | float) -> bool:
         return self.km >= other
-
-
-distance1 = Distance(20)
-distance2 = distance1 * 5
-
-ttt = 0
