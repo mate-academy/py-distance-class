@@ -24,16 +24,14 @@ class Distance:
     def __mul__(self, other: float) -> Distance | None:
         if isinstance(other, Distance):
             other.km = self.km * other.km
-            return None
-
-        return Distance(other * self.km)
+        else:
+            return Distance(other * self.km)
 
     def __truediv__(self, other: float) -> Distance | None:
         if isinstance(other, Distance):
             other.km = round(self.km / other.km, 2)
-            return None
-
-        return Distance(round(self.km / other, 2))
+        else:
+            return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | float) -> bool:
         return self.km < other
