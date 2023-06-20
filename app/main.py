@@ -1,5 +1,6 @@
+
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: float | int) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -8,13 +9,11 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: "Distance") -> "Distance":
+    def __add__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
-        else:
-            raise TypeError("Unsupported operand type for +")
 
     def __iadd__(self, other: "Distance") -> "Distance":
         if isinstance(other, Distance):
