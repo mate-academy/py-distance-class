@@ -69,7 +69,8 @@ class Distance:
         )
 
         km = self.km / other
-        round_km = int(km) if int(km) == km else float("{:.2f}".format(km))
+
+        round_km = round(km, 2)
         return Distance(km=round_km)
 
     def __lt__(self, other: Distance | int | float) -> bool:
