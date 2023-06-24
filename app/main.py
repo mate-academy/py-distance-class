@@ -21,8 +21,7 @@ class Distance:
             return Distance(km=other + self.km)
         elif type(other) is float:
             return Distance(km=other + self.km)
-        else:
-            return Distance(km=self.km + other.km)
+        return Distance(km=self.km + other.km)
 
     def __radd__(self, other: Distance | int | float) -> Distance:
         self.is_valid_type(other)
@@ -30,62 +29,53 @@ class Distance:
             return Distance(km=other + self.km)
         elif type(other) is float:
             return Distance(km=other + self.km)
-        else:
-            return Distance(km=self.km + other.km)
+        return Distance(km=self.km + other.km)
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         self.is_valid_type(other)
         if type(other) is int or float:
             self.km = self + other
             return self
-        else:
-            return self + other.km
+        return self + other.km
 
     def __mul__(self, other: Distance | int | float) -> Distance:
         self.is_valid_type(other)
         if type(other) is int or float:
             return Distance(km=self.km * other)
-        else:
-            return Distance(km=self.km * other.km)
+        return Distance(km=self.km * other.km)
 
     def __truediv__(self, other: Distance | int | float) -> Distance:
         self.is_valid_type(other)
         if type(other) is int or float:
             return Distance(km=round(self.km / other, 2))
-        else:
-            return Distance(km=round(self.km / other.km, 2))
+        return Distance(km=round(self.km / other.km, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
         self.is_valid_type(other)
         if type(other) is int or float:
             return self.km < other
-        else:
-            return self.km < other.km
+        return self.km < other.km
 
     def __gt__(self, other: Distance | int | float) -> bool:
         self.is_valid_type(other)
         if type(other) is int or float:
             return self.km > other
-        else:
-            return self.km > other.km
+        return self.km > other.km
 
     def __eq__(self, other: Distance | int | float) -> bool:
         self.is_valid_type(other)
         if type(other) is int or float:
             return self.km == other
-        else:
-            return self.km == other.km
+        return self.km == other.km
 
     def __le__(self, other: Distance | int | float) -> bool:
         self.is_valid_type(other)
         if type(other) is int or float:
             return self.km <= other
-        else:
-            return self.km <= other.km
+        return self.km <= other.km
 
     def __ge__(self, other: Distance | int | float) -> bool:
         self.is_valid_type(other)
         if type(other) is int or float:
             return self.km >= other
-        else:
-            return self.km >= other.km
+        return self.km >= other.km
