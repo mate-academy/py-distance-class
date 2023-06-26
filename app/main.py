@@ -6,7 +6,7 @@ class Distance:
         self.km = km
 
     def __add_eval_value__(self, simbl: str,
-                           value: Distance | int | float):
+                           value: Distance | int | float) -> int | float | bool:
         if isinstance(value, Distance):
             return eval(f"{self.km} {simbl} {value.km}")
         return eval(f"{self.km} {simbl} {value}")
