@@ -19,19 +19,19 @@ class Distance:
         for key, value in item:
             return f"{Distance.__name__}({key}={value})"
 
-    def __add__(self, other: Distance) -> Distance:
+    def __add__(self, other: Distance | int | float) -> Distance:
         return Distance(self.__add_eval_value__(simbl="+",
                                                 value=other))
 
-    def __iadd__(self, other: Distance) -> Distance:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         self.km = self.__add_eval_value__(simbl="+",
                                           value=other)
         return self
 
-    def __mul__(self, value: int) -> Distance:
+    def __mul__(self, value: int | float) -> Distance:
         return Distance(round(self.km * value, 3))
 
-    def __truediv__(self, value: int) -> Distance:
+    def __truediv__(self, value: int | float) -> Distance:
         return Distance(round(self.km / value, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
