@@ -47,3 +47,8 @@ class Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
         return self.km >= other
+
+    def __eq__(self, other: Distance | int) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
+        return self.km == other
