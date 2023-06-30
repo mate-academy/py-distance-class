@@ -18,14 +18,9 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: types_of_other) -> "Distance":
-        if self.check_arg(other):
-            return Distance(
-                km=self.km + other.km
-            )
-
-        return Distance(
-            km=self.km + other
-        )
+        return Distance(self.km + (other.km
+                                   if self.check_arg(other)
+                                   else other))
 
     def __iadd__(self, other: types_of_other) -> "Distance":
         if self.check_arg(other):
@@ -36,44 +31,25 @@ class Distance:
         return self
 
     def __mul__(self, number: int or float) -> "Distance":
-        return Distance(
-            km=self.km * number
-        )
+        return Distance(self.km * number)
 
     def __truediv__(self, number: int) -> "Distance":
-        return Distance(
-            km=round(self.km / number, 2)
-        )
+        return Distance(round(self.km / number, 2))
 
     def __lt__(self, other: types_of_other) -> bool:
-        if self.check_arg(other):
-            return self.km < other.km
-
-        return self.km < other
+        return self.km < (other.km if self.check_arg(other) else other)
 
     def __gt__(self, other: types_of_other) -> bool:
-        if self.check_arg(other):
-            return self.km > other.km
-
-        return self.km > other
+        return self.km > (other.km if self.check_arg(other) else other)
 
     def __eq__(self, other: types_of_other) -> bool:
-        if self.check_arg(other):
-            return self.km == other.km
-
-        return self.km == other
+        return self.km == (other.km if self.check_arg(other) else other)
 
     def __le__(self, other: types_of_other) -> bool:
-        if self.check_arg(other):
-            return self.km <= other.km
-
-        return self.km <= other
+        return self.km <= (other.km if self.check_arg(other) else other)
 
     def __ge__(self, other: types_of_other) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-
-        return self.km >= other
+        return self.km >= (other.km if self.check_arg(other) else other)
 
 
 # distance = Distance(20)
