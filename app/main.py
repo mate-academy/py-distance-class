@@ -60,6 +60,3 @@ class Distance:
         check_type_of_other = other.km if self.check_arg(other) else other
 
         return self.km >= check_type_of_other
-
-
-# distance = Distance(20)
