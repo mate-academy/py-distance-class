@@ -16,12 +16,12 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: OtherInputType) -> Distance:
+    def __add__(self, other: OtherInputType | Distance) -> Distance:
         return Distance(
             self.km + self.number_return(other)
         )
 
-    def __iadd__(self, other: OtherInputType) -> Distance:
+    def __iadd__(self, other: OtherInputType | Distance) -> Distance:
         self.km += self.number_return(other)
         return self
 
@@ -36,19 +36,19 @@ class Distance:
             round((self.km / other), 2)
         )
 
-    def __lt__(self, other: OtherInputType) -> bool:
+    def __lt__(self, other: OtherInputType | Distance) -> bool:
         return self.km < self.number_return(other)
 
-    def __gt__(self, other: OtherInputType) -> bool:
+    def __gt__(self, other: OtherInputType | Distance) -> bool:
         return self.km > self.number_return(other)
 
-    def __eq__(self, other: OtherInputType) -> bool:
+    def __eq__(self, other: OtherInputType | Distance) -> bool:
         return self.km == self.number_return(other)
 
-    def __le__(self, other: OtherInputType) -> bool:
+    def __le__(self, other: OtherInputType | Distance) -> bool:
         return self.km <= self.number_return(other)
 
-    def __ge__(self, other: OtherInputType) -> bool:
+    def __ge__(self, other: OtherInputType | Distance) -> bool:
         return self.km >= self.number_return(other)
 
     @staticmethod
