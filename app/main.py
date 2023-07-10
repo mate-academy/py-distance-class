@@ -12,12 +12,16 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Type["Distance"] | int | float) \
-            -> Type["Distance"]:
+    def __add__(
+            self,
+            other: Type["Distance"] | int | float
+    ) -> Type["Distance"]:
         return Distance(self.real + other.real)
 
-    def __iadd__(self, other: Type["Distance"] | int | float) \
-            -> Type["Distance"]:
+    def __iadd__(
+            self,
+            other: Type["Distance"] | int | float
+    ) -> Type["Distance"]:
         self.real += other.real
         self.km += other.real
         return self
