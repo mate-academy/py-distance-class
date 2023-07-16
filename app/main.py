@@ -55,5 +55,4 @@ class Distance:
     def number_return(number: Any) -> int | float | None:
         if isinstance(number, Distance):
             return number.km
-        elif isinstance(number, (int, float)):
-            return number
+        return number
