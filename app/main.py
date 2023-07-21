@@ -12,16 +12,14 @@ class Distance:
     def __add__(self, another_distance: object | int) -> object:
         if isinstance(another_distance, Distance):
             return Distance(self.km + another_distance.km)
-        else:
-            return Distance(self.km + another_distance)
+        return Distance(self.km + another_distance)
 
     def __iadd__(self, another_distance: object | int) -> object:
         if isinstance(another_distance, Distance):
             self.km += another_distance.km
-            return self
         else:
             self.km += another_distance
-            return self
+        return self
 
     def __mul__(self, another_distance: int) -> object:
         return Distance(self.km * another_distance)
@@ -32,29 +30,24 @@ class Distance:
     def __lt__(self, another_distance: object | int) -> bool:
         if isinstance(another_distance, Distance):
             return self.km < another_distance.km
-        else:
-            return self.km < another_distance
+        return self.km < another_distance
 
     def __gt__(self, another_distance: object | int) -> bool:
         if isinstance(another_distance, Distance):
             return self.km > another_distance.km
-        else:
-            return self.km > another_distance
+        return self.km > another_distance
 
     def __eq__(self, another_distance: object | int) -> bool:
         if isinstance(another_distance, Distance):
             return self.km == another_distance.km
-        else:
-            return self.km == another_distance
+        return self.km == another_distance
 
     def __le__(self, another_distance: object | int) -> bool:
         if isinstance(another_distance, Distance):
             return self.km <= another_distance.km
-        else:
-            return self.km <= another_distance
+        return self.km <= another_distance
 
     def __ge__(self, another_distance: object | int) -> bool:
         if isinstance(another_distance, Distance):
             return self.km >= another_distance.km
-        else:
-            return self.km >= another_distance
+        return self.km >= another_distance
