@@ -16,6 +16,8 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
+        else:
+            raise ValueError("Unsupported operand type")
 
     def __iadd__(self, other: Distance) -> Distance:
         if isinstance(other, Distance):
@@ -29,7 +31,7 @@ class Distance:
 
     def __truediv__(self, other: Distance) -> Distance:
         if isinstance(other, Distance):
-            return None
+            return NotImplemented
         elif isinstance(other, (int, float)):
             distance = self.km / other
         return Distance(round(distance, 2))
