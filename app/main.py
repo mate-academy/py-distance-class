@@ -1,11 +1,11 @@
 from __future__ import annotations
 from typing import Union
 
-distTypes = Union[int, float]
+dist_types = Union[int, float]
 
 
 class Distance:
-    def __init__(self, km: distTypes) -> None:
+    def __init__(self, km: dist_types) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -14,38 +14,38 @@ class Distance:
     def __repr__(self) -> str:
         return "Distance(km={})".format(self.km)
 
-    def __add__(self, other: Distance | distTypes) -> Distance:
-        value = other if isinstance(other, distTypes) else other.km
+    def __add__(self, other: Distance | dist_types) -> Distance:
+        value = other if isinstance(other, dist_types) else other.km
         self.km += value
         return self
 
-    def __iadd__(self, other: Distance | distTypes) -> Distance:
+    def __iadd__(self, other: Distance | dist_types) -> Distance:
         return self + other
 
-    def __mul__(self, other: distTypes) -> Distance:
+    def __mul__(self, other: dist_types) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: distTypes) -> Distance:
+    def __truediv__(self, other: dist_types) -> Distance:
         if other == 0:
             raise Exception("Division by zero")
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: Distance | distTypes) -> bool:
-        value = other if isinstance(other, distTypes) else other.km
+    def __lt__(self, other: Distance | dist_types) -> bool:
+        value = other if isinstance(other, dist_types) else other.km
         return self.km < value
 
-    def __gt__(self, other: Distance | distTypes) -> bool:
-        value = other if isinstance(other, distTypes) else other.km
+    def __gt__(self, other: Distance | dist_types) -> bool:
+        value = other if isinstance(other, dist_types) else other.km
         return self.km > value
 
-    def __eq__(self, other: Distance | distTypes) -> bool:
-        value = other if isinstance(other, distTypes) else other.km
+    def __eq__(self, other: Distance | dist_types) -> bool:
+        value = other if isinstance(other, dist_types) else other.km
         return self.km == value
 
-    def __le__(self, other: Distance | distTypes) -> bool:
-        value = other if isinstance(other, distTypes) else other.km
+    def __le__(self, other: Distance | dist_types) -> bool:
+        value = other if isinstance(other, dist_types) else other.km
         return self.km <= value
 
-    def __ge__(self, other: Distance | distTypes) -> bool:
-        value = other if isinstance(other, distTypes) else other.km
+    def __ge__(self, other: Distance | dist_types) -> bool:
+        value = other if isinstance(other, dist_types) else other.km
         return self.km >= value
