@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Union
 
 
 class Distance:
@@ -11,7 +12,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | float) -> Distance:
+    def __add__(self, other: Union[Distance, float]) -> Distance:
         if not isinstance(other, Distance):
             return Distance(
                 km=self.km + other
@@ -21,11 +22,9 @@ class Distance:
                 km=self.km + other.km
             )
 
-    def __iadd__(self, other: Distance | float) -> Distance:
-        if not isinstance(other, Distance):
-            self.km += other
-            return self
-        self.km += other.km
+    def __iadd__(self, other: Union[Distance, float]) -> Distance:
+        self.km = (self + other).km
+
         return self
 
     def __mul__(self, other: float) -> Distance:
@@ -41,27 +40,27 @@ class Distance:
             km=round(self.km / num, 2)
         )
 
-    def __lt__(self, other: Distance | float) -> bool:
+    def __lt__(self, other: Union[Distance, float]) -> bool:
         if not isinstance(other, Distance):
             return self.km < other
         return self.km < other.km
 
-    def __gt__(self, other: Distance | float) -> bool:
+    def __gt__(self, other: Union[Distance, float]) -> bool:
         if not isinstance(other, Distance):
             return self.km > other
         return self.km > other.km
 
-    def __eq__(self, other: Distance | float) -> bool:
+    def __eq__(self, other: Union[Distance, float]) -> bool:
         if not isinstance(other, Distance):
             return self.km == other
         return self.km == other.km
 
-    def __le__(self, other: Distance | float) -> bool:
+    def __le__(self, other: Union[Distance, float]) -> bool:
         if not isinstance(other, Distance):
             return self.km <= other
         return self.km <= other.km
 
-    def __ge__(self, other: Distance | float) -> bool:
+    def __ge__(self, other: Union[Distance, float]) -> bool:
         if not isinstance(other, Distance):
             return self.km >= other
         return self.km >= other.km
