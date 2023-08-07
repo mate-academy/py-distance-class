@@ -24,9 +24,7 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, other: Union[int, Distance]) -> Distance:
-        if isinstance(other, Distance):
-            return Distance(self.km * other.km)
+    def __mul__(self, other: int) -> Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: int) -> Distance:
