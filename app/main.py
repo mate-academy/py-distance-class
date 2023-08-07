@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Any
 
 
 class Distance:
@@ -24,9 +25,9 @@ class Distance:
 
     def __iadd__(self, other: Distance | int) -> Distance:
         if isinstance(other, Distance):
-            self.km += other.km
+            self.km = self.km.__add__(other.km)
         elif isinstance(other, (int, float)):
-            self.km += other
+            self.km = self.km.__add__(other)
         return self
 
     def __mul__(self, other: int | float) -> Distance:
@@ -37,7 +38,7 @@ class Distance:
             round(self.km / other, 2)
         )
 
-    def __eq__(self, other: Distance | (int, float)) -> bool:
+    def __eq__(self, other: Any) -> bool:
         if not isinstance(other, Distance):
             return self.km == other
         return self.km == other.km
@@ -63,6 +64,4 @@ class Distance:
         return self.km >= other.km
 
     def __ne__(self, other: Distance) -> bool:
-        if self.km != other.km:
-            return True
-        return False
+        return self.km != other.km
