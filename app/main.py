@@ -6,11 +6,11 @@ class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
 
-    def __str__(self) -> None:
-        print(f"Distance: {self.km} kilometers.")
+    def __str__(self) -> str:
+        return f"Distance: {self.km} kilometers."
 
-    def __repr__(self) -> None:
-        print(f"Distance(km={self.km})")
+    def __repr__(self) -> str:
+        return f"Distance(km={self.km})"
 
     def __add__(self, other: Union[int, Distance]) -> Distance:
         if isinstance(other, Distance):
