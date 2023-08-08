@@ -1,4 +1,6 @@
-from typing import Self, Union
+from typing import TypeVar, Union
+
+Self = TypeVar("Self", bound="Distance")
 
 
 class Distance:
@@ -11,19 +13,19 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, distance: Union[Self, int, float]) -> Self:
+    def __add__(self: Self, distance: Union[Self, int, float]) -> Self:
         if isinstance(distance, (int, float)):
             return self.__class__(self.km + distance)
         return self.__class__(self.km + distance.km)
 
-    def __iadd__(self, distance: Union[Self, int, float]) -> Self:
+    def __iadd__(self: Self, distance: Union[Self, int, float]) -> Self:
         self.km = self.__add__(distance).km
         return self
 
-    def __mul__(self, num: Union[int, float]) -> Self:
+    def __mul__(self: Self, num: Union[int, float]) -> Self:
         return self.__class__(self.km * num)
 
-    def __truediv__(self, num: Union[int, float]) -> Self:
+    def __truediv__(self: Self, num: Union[int, float]) -> Self:
         return self.__class__(round(self.km / num, 2))
 
     def __eq__(self, distance: Union[Self, int, float]) -> bool:
