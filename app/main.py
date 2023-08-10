@@ -17,7 +17,7 @@ class Distance:
         return Distance(self.km + other)
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
-        self.km = self.__add__(other).km
+        self.km = self + other
         return self
 
     def __mul__(self, other: int | float) -> Distance:
@@ -44,11 +44,7 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        return self.km <= other
+        return not self > other
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        return self.km >= other
+        return not self < other
