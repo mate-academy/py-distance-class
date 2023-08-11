@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Union
+
 
 class Distance:
     def __init__(self, km: int | float) -> None:
@@ -32,7 +32,7 @@ class Distance:
     def __truediv__(self, number: int | float) -> Distance:
         if isinstance(number, (int, float)):
             return Distance(round(self.km / number, 2))
-        
+
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
@@ -62,4 +62,3 @@ class Distance:
             return self.km >= other.km
 
         return self.km >= other
-
