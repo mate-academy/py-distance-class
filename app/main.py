@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+
 class Distance:
 
     def __init__(self, km: int) -> None:
