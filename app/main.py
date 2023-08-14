@@ -1,5 +1,4 @@
-from typing import Any
-
+from decimal import Decimal
 
 class Distance:
 
@@ -30,36 +29,29 @@ class Distance:
         if not isinstance(other, Distance):
             return Distance(self.km * other)
 
-    def __truediv__(self, other: Any) -> "Distance":
+    def __truediv__(self, other: Decimal) -> "Distance":
         if not isinstance(other, Distance):
             return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: int) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        else:
-            return self.km < other
+        return self.km < other
 
     def __gt__(self, other: int) -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        else:
-            return self.km > other
+        return not (self.km < other) and self.km != other
 
     def __eq__(self, other: int) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        else:
-            return self.km == other
+        return self.km == other
 
     def __le__(self, other: int) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
-        else:
-            return self.km <= other
+        return self.km <= other
 
     def __ge__(self, other: int) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
-        else:
-            return self.km >= other
+        return self.km >= other
