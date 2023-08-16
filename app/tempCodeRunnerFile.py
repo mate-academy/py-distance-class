@@ -1,1 +1,0 @@
-return True if self.km < other.km else False
