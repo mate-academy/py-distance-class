@@ -1,6 +1,7 @@
+
 class Distance:
 
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -31,10 +32,14 @@ class Distance:
             return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: ("Distance", int)) -> bool:
-        return not (self.km > other) and self.km != other
+        if isinstance(other, Distance):
+            return self.km < other.km
+        return self.km < other
 
     def __gt__(self, other: ("Distance", int)) -> bool:
-        return not (self.km < other) and self.km != other
+        if isinstance(other, Distance):
+            return self.km > other.km
+        return self.km > other
 
     def __eq__(self, other: ("Distance", int)) -> bool:
         if isinstance(other, Distance):
@@ -42,11 +47,7 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: ("Distance", int)) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        return self.km <= other
+        return not self > other
 
     def __ge__(self, other: ("Distance", int)) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        return self.km >= other
+        return not self < other
