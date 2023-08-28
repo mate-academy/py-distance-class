@@ -13,7 +13,7 @@ class Distance:
 
     @staticmethod
     def check_type(other: Distance | int) -> int:
-        return other.km if type(other) is Distance else other
+        return other.km if isinstance(other, Distance) else other
 
     def __add__(self, other: Distance | int) -> Distance:
         return Distance(
