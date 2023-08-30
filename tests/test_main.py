@@ -63,8 +63,8 @@ def test_distance_class_repr(kilometers, output):
     distance = Distance(kilometers)
 
     assert repr(distance) == output, (
-        f"'repr(distance)' should equal to {output} "
-        f"when distance is created with 'Distance({kilometers})'"
+        f"'repr(km)' should equal to {output} "
+        f"when km is created with 'Distance({kilometers})'"
     )
 
 
