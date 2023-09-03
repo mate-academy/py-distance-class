@@ -28,7 +28,7 @@ class Distance:
             return Distance(self.km * other)
         raise TypeError("Multiplication with unsupported type.")
 
-    def __truediv__(self, other: int |  float) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, int | float):
             return Distance(round(self.km / other, 2))
         raise TypeError("Division with unsupported type.")
