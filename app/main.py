@@ -19,4 +19,7 @@ class Distance:
             self.km += other.km
             return self
 
+    def __mul__(self, other):
+        if isinstance(other, int):
+            return Distance(self.km * other)
     pass
