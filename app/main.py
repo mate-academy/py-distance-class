@@ -23,13 +23,13 @@ class Distance:
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __mul__(self, multiplier: int) -> None:
+    def __mul__(self, multiplier: int) -> Distance:
         return Distance(self.km * multiplier)
 
-    def __truediv__(self, divider: int) -> None:
+    def __truediv__(self, divider: int) -> Distance:
         return Distance(round(self.km / divider, 2))
 
-    def __lt__(self, kilometers: Distance | int) -> bool:
+    def __lt__(self, kilometers: Distance | (int, float)) -> bool:
         if isinstance(kilometers, Distance):
             return self.km < kilometers.km
         return self.km < kilometers
