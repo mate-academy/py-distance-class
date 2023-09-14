@@ -46,14 +46,6 @@ class Distance:
         km = other if isinstance(other, (int, float)) else other.km
         return self.km == km
 
-    # def __le__(self, other: int | float | Distance) -> bool:
-    #     km = other if isinstance(other, (int, float)) else other.km
-    #     return self.km <= km
-    #
-    # def __ge__(self, other: int | float | Distance) -> bool:
-    #     km = other if isinstance(other, (int, float)) else other.km
-    #     return self.km >= km
-
     def __le__(self, other: Distance | int) -> bool:
         return not self > other
 
