@@ -75,8 +75,3 @@ class Distance:
         if self.km >= other.km:
             return True
         return False
-
-var_1 = Distance(10.1)
-var_2 = Distance(10.1)
-
-print(var_1 == 10.2)
