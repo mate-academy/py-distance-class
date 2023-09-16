@@ -30,11 +30,10 @@ class Distance:
     def __truediv__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, int | float):
             return Distance(round(self.km / other, 2))
-        elif isinstance:
+        elif isinstance(other, Distance):
             raise TypeError(
                 "'__truediv__' method shouldn't accept Distance instance"
             )
-        return Distance(self.km / other.km)
 
     def __lt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, int | float):
@@ -53,10 +52,10 @@ class Distance:
 
     def __le__(self, other: int | float | Distance) -> bool:
         if isinstance(other, int | float):
-            return self.km <= other
-        return self.km <= other.km
+            return not self.km > other
+        return not self.km > other.km
 
     def __ge__(self, other: int | float | Distance) -> bool:
         if isinstance(other, int | float):
-            return self.km >= other
-        return self.km >= other.km
+            return not self.km < other
+        return not self.km < other.km
