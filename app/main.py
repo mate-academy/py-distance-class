@@ -33,7 +33,7 @@ class Distance:
             f" for +=: 'Distance' and {type(other).__name__}"
         )
 
-    def __mul__(self, other: int | float | Distance) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError(
@@ -41,7 +41,7 @@ class Distance:
             f" for *: 'Distance' and '{type(other)}'"
         )
 
-    def __truediv__(self, other: int | float | Distance) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: int | float | Distance) -> bool:
