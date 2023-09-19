@@ -16,11 +16,10 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
-        else:
-            raise TypeError(
-                f"can't multiply sequence by non-int of type"
-                f" 'Distance': {other}"
-            )
+        raise TypeError(
+            f"can't multiply sequence by non-int of type"
+            f" 'Distance': {other}"
+        )
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, (int, float)):
@@ -29,11 +28,10 @@ class Distance:
         elif isinstance(other, Distance):
             self.km += other.km
             return self
-        else:
-            raise TypeError(
-                f"unsupported operand type(s)"
-                f" for +=: 'Distance' and {type(other).__name__}"
-            )
+        raise TypeError(
+            f"unsupported operand type(s)"
+            f" for +=: 'Distance' and {type(other).__name__}"
+        )
 
     def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, int | float):
