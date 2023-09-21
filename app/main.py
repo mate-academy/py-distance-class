@@ -18,8 +18,6 @@ class Distance:
         elif isinstance(other, (int, float)):
             new_km = self.km + other
             return Distance(new_km)
-        else:
-            raise TypeError("Неможливо додати об'єкт.")
 
     def __iadd__(self, other: (Distance, int, float)) -> Distance:
         if isinstance(other, Distance):
@@ -28,32 +26,22 @@ class Distance:
         elif isinstance(other, (int, float)):
             self.km += other
             return self
-        else:
-            raise TypeError("Неможливо виконати операцію")
 
-    def __mul__(self, other: (Distance, int, float)) -> Distance:
+    def __mul__(self, other: (int, float)) -> Distance:
         if isinstance(other, (int, float)):
             new_km = self.km * other
             return Distance(new_km)
-        else:
-            raise TypeError("Неможливо перемножити об'єкт.")
 
     def __truediv__(self, other: (int, float)) -> Distance:
-        if isinstance(other, (int, float)):
-            if other == 0:
-                raise ZeroDivisionError("Ділення на нуль неможливе.")
+        if isinstance(other, (int, float)) and other != 0:
             new_km = self.km / other
             return Distance(round(new_km, 2))
-        else:
-            raise TypeError("Неможливо поділити об'єкт.")
 
-    def __eq__(self, other: Distance) -> bool:
+    def __eq__(self, other: (Distance, int, float)) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        elif isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km == other
-        else:
-            return False
 
     def __lt__(self, other: (Distance, int, float)) -> bool:
         if isinstance(other, Distance):
