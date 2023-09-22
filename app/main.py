@@ -53,4 +53,3 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km >= other
         return self.km >= other.km
-
