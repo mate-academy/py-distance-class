@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Distance:
 
     def __init__(self, km: int | float) -> None:
@@ -9,12 +12,18 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: "Distance") -> "Distance":
-        length = self.km + other.km
+    def __add__(self, other: Union["Distance", int, float]) -> "Distance":
+        if isinstance(other, Distance):
+            length = self.km + other.km
+        else:
+            length = self.km + other
         return Distance(length)
 
-    def __iadd__(self, other: "Distance") -> "Distance":
-        self.km += other.km
+    def __iadd__(self, other: Union["Distance", int, float]) -> "Distance":
+        if isinstance(other, Distance):
+            self.km += other.km
+        else:
+            self.km += other
         return self
 
     def __mul__(self, num: int) -> "Distance":
@@ -25,18 +34,32 @@ class Distance:
         length = round(self.km / num, 2)
         return Distance(length)
 
-    def __lt__(self, other: "Distance") -> bool:
-        return self.km < other.km
+    def __lt__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
+        else:
+            return self.km < other
 
-    def __gt__(self, other: "Distance") -> bool:
-        return self.km > other.km
+    def __gt__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km > other.km
+        else:
+            return self.km > other
 
-    def __eq__(self, other: "Distance") -> bool:
-        return self.km == other.km
+    def __eq__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
+        else:
+            return self.km == other
 
-    def __le__(self, other: "Distance") -> bool:
+    def __le__(self, other: Union["Distance", int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
+        else:
+            return self.km <= other
 
-    def __ge__(self, other: "Distance") -> bool:
-        return self.km >= other.km
+    def __ge__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        else:
+            return self.km >= other
