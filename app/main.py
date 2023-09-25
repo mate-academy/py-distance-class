@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: int | float):
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -53,4 +53,3 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km >= other
         return self.km >= other.km
-# for pushing
