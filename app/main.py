@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+OtherType = object | int | float
+
 
 class Distance:
     def __init__(self, km: int) -> None:
@@ -11,19 +13,14 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int) -> Distance:
-        if (isinstance(other, Distance)):
-            return Distance(self.km + other.km)
-        else:
-            return Distance(self.km + other)
+    def __add__(self, other: OtherType) -> Distance:
+        value = other.km if isinstance(other, Distance) else other
+        return Distance(self.km + value)
 
-    def __iadd__(self, other: Distance | int) -> Distance:
-        if (isinstance(other, Distance)):
-            self.km += other.km
-            return self
-        else:
-            self.km += other
-            return self
+    def __iadd__(self, other: OtherType) -> Distance:
+        value = other.km if isinstance(other, Distance) else other
+        self.km += value
+        return self
 
     def __mul__(self, other: int) -> Distance:
         return Distance(self.km * other)
@@ -32,26 +29,26 @@ class Distance:
         new_km = round(self.km / other, 2)
         return Distance(new_km)
 
-    def __lt__(self, other: Distance | int) -> bool:
+    def __lt__(self, other: OtherType) -> bool:
         value = other.km if isinstance(other, Distance) else other
         return self.km < value
 
-    def __gt__(self, other: Distance | int) -> bool:
+    def __gt__(self, other: OtherType) -> bool:
         value = other.km if isinstance(other, Distance) else other
 
         return self.km > value
 
-    def __eq__(self, other: Distance | int) -> bool:
+    def __eq__(self, other: OtherType) -> bool:
         value = other.km if isinstance(other, Distance) else other
 
         return self.km == value
 
-    def __le__(self, other: Distance | int) -> bool:
+    def __le__(self, other: OtherType) -> bool:
         value = other.km if isinstance(other, Distance) else other
 
         return self.km <= value
 
-    def __ge__(self, other: Distance | int) -> bool:
+    def __ge__(self, other: OtherType) -> bool:
         value = other.km if isinstance(other, Distance) else other
 
         return self.km >= value
