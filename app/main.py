@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-OtherType = object | int | float
-
 
 class Distance:
     def __init__(self, km: int) -> None:
@@ -52,3 +50,6 @@ class Distance:
         value = other.km if isinstance(other, Distance) else other
 
         return self.km >= value
+
+
+OtherType = Distance | int | float
