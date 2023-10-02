@@ -12,70 +12,44 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other_km: Distance | float) -> Distance:
-        if isinstance(other_km, Distance):
-            return Distance(self.km + other_km.km)
-        elif isinstance(other_km, (float, int)):
-            return Distance(self.km + other_km)
+    @staticmethod
+    def _check_and_get_value(other: Distance | float | int) -> float:
+        if isinstance(other, Distance):
+            return other.km
+        elif isinstance(other, (float, int)):
+            return other
         else:
-            raise ValueError("Unsupported type for addition")
+            raise ValueError("Unsupported type for operation")
 
-    def __iadd__(self, other_km: Distance | float) -> Distance:
-        if isinstance(other_km, Distance):
-            self.km += other_km.km
-        elif isinstance(other_km, (float, int)):
-            self.km += other_km
-        else:
-            raise ValueError("Unsupported type for iaddition")
+    def __add__(self, other: Distance | float | int) -> Distance:
+        return Distance(self.km + self._check_and_get_value(other))
+
+    def __iadd__(self, other: Distance | float | int) -> Distance:
+        self.km += self._check_and_get_value(other)
         return self
 
-    def __mul__(self, other_km: float) -> Distance:
-        if not isinstance(other_km, (float, int)):
-            raise TypeError("Unsupported type for multiplication")
+    def __mul__(self, other: Distance | float | int) -> Distance:
+        if isinstance(other, Distance):
+            raise TypeError(
+                "'__mul__' method should not accept Distance instance")
+        return Distance(self.km * other)
 
-        return Distance(self.km * other_km)
-
-    def __truediv__(self, other_km: float) -> Distance:
-        if not isinstance(other_km, (int, float)):
+    def __truediv__(self, other: Distance | float | int) -> Distance:
+        if not isinstance(other, (float, int)):
             raise TypeError("Unsupported type for division")
-        return Distance(round(self.km / other_km, 2))
+        return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other_km: Distance | float | int) -> bool:
-        if isinstance(other_km, Distance):
-            return self.km < other_km.km
-        elif isinstance(other_km, (float, int)):
-            return self.km < other_km
-        else:
-            raise ValueError("Can't compare Distance with non-Distance type")
+    def __lt__(self, other: Distance | float | int) -> bool:
+        return self.km < self._check_and_get_value(other)
 
     def __gt__(self, other: Distance | float | int) -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        elif isinstance(other, (float, int)):
-            return self.km > other
-        else:
-            raise ValueError("Can't compare Distance with non-Distance type")
+        return not self.__lt__(other) and not self.__eq__(other)
 
     def __eq__(self, other: Distance | float | int) -> bool:
-        if isinstance(other, Distance):
-            return self.km == other.km
-        elif isinstance(other, (float, int)):
-            return self.km == other
-        else:
-            raise ValueError("Can't compare Distance with non-Distance type")
+        return self.km == self._check_and_get_value(other)
 
     def __le__(self, other: Distance | float | int) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        elif isinstance(other, (float, int)):
-            return self.km <= other
-        else:
-            raise ValueError("Can't compare Distance with non-Distance type")
+        return self.km <= self._check_and_get_value(other)
 
     def __ge__(self, other: Distance | float | int) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        elif isinstance(other, (float, int)):
-            return self.km >= other
-        else:
-            raise ValueError("Can't compare Distance with non-Distance type")
+        return not self.__lt__(other)
