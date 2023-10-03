@@ -8,12 +8,12 @@ class Distance:
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __add__(self, other) -> "Distance":
+    def __add__(self, other: "Distance" | int) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
-    def __iadd__(self, other):
+    def __iadd__(self, other: "Distance" | int) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         else:
