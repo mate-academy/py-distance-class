@@ -14,8 +14,8 @@ class Distance:
     def __add__(self, other: int | float | Distance) -> Distance:
 
         if isinstance(other, Distance):
-            return Distance(other.km + self.km)
-        return Distance(other + self.km)
+            return Distance(self.km + other)
+        return Distance(self.km + other)
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
