@@ -30,12 +30,14 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: float) -> bool:
-        return self.__lt__(other.km) if isinstance(other, Distance) \
-            else self.km < other
+        if isinstance(other, Distance):
+            return self.__lt__(other.km)
+        return self.km < other
 
     def __gt__(self, other: float) -> bool:
-        return self.__gt__(other.km) if isinstance(other, Distance) \
-            else self.km > other
+        if isinstance(other, Distance):
+            return self.__gt__(other.km)
+        return self.km > other
 
     def __eq__(self, other: float) -> bool:
         if isinstance(other, Distance):
@@ -43,7 +45,7 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: float) -> bool:
-        return not self.__gt__(other)
+        return self < other or self.__eq__(other)
 
     def __ge__(self, other: float) -> bool:
-        return not self.__lt__(other)
+        return self > other or self.__eq__(other)
