@@ -24,9 +24,8 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            result_distance = self.km * other
-            return Distance(result_distance)
+        result_distance = self.km * other
+        return Distance(result_distance)
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
