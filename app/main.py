@@ -12,7 +12,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union["Distance", float, int]) -> "Distance":
+    def __add__(self, other: Union["Distance", float, int]) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         else:
@@ -53,13 +53,7 @@ class Distance:
             return self.km == other
 
     def __le__(self, other: Distance | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        else:
-            return self.km <= other
+        return not self > other
 
     def __ge__(self, other: Distance | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        else:
-            return self.km >= other
+        return not self < other
