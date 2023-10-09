@@ -47,7 +47,7 @@ class Distance:
         return self.km == other
 
     def __le__(self, other: Union["Distance", float, int]) -> "Distance":
-        return self.__lt__(other) or self.__eq__(other)
+        return self.km <= other
 
     def __ge__(self, other: Union["Distance", float, int]) -> "Distance":
-        return self.__gt__(other) or self.__eq__(other)
+        return self.km >= other
