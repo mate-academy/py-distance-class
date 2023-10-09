@@ -47,11 +47,7 @@ class Distance:
         return self.km == args[0]
 
     def __le__(self, *args) -> bool:
-        if isinstance(*args, Distance):
-            return self.km <= args[0].km
-        return self.km <= args[0]
+        return args[0] >= self.km
 
     def __ge__(self, *args) -> bool:
-        if isinstance(*args, Distance):
-            return self.km >= args[0].km
         return self.km >= args[0]
