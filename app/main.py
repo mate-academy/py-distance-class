@@ -13,40 +13,40 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: Distance | int) -> Distance:
-        return Distance(
-            self.km + other.km
-            if isinstance(other, Distance)
-            else self.km + other)
+        return Distance(self.km + other.km if isinstance(other, Distance)
+                        else self.km + other)
 
     def __iadd__(self, other: Distance | int) -> Distance:
-        self.km = self.km + other.km \
-            if isinstance(other, Distance) \
-            else self.km + other
+        if isinstance(other, Distance):
+            self.km = self.km + other.km
+        else:
+            self.km = self.km + other
         return self
 
     def __mul__(self, multiplier: int) -> Distance:
-        self.km *= multiplier
-        return self
+        return Distance(self.km * multiplier)
 
     def __truediv__(self, devider: int) -> Distance:
         self.km = round(self.km / devider, 2)
         return self
 
     def __lt__(self, other: Distance | int) -> bool:
-        return (self.km < other.km
-                if isinstance(other, Distance)
-                else self.km < other)
+        if isinstance(other, Distance):
+            return self.km < other.km
+        else:
+            return self.km < other
 
     def __gt__(self, other: Distance | int) -> bool:
-        return (self.km > other.km
-                if isinstance(other, Distance)
-                else self.km > other)
+        if isinstance(other, Distance):
+            return self.km > other.km
+        else:
+            return self.km > other
 
     def __eq__(self, other: Distance | int) -> bool:
-        return not self.__gt__(other) and not self.__lt__(other)
+        return not self < other and not self > other
 
     def __le__(self, other: Distance | int) -> bool:
-        return not self.__gt__(other)
+        return not self > other
 
     def __ge__(self, other: Distance | int) -> bool:
-        return not self.__lt__(other)
+        return not self < other
