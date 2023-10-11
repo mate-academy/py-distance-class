@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Union
 
 
 class Distance:
@@ -42,7 +43,7 @@ class Distance:
         result_distance = round(result_distance, 2)
         return Distance(result_distance)
 
-    def __lt__(self, other: Distance) -> bool:
+    def __lt__(self, other: Union[Distance, float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
@@ -50,7 +51,7 @@ class Distance:
         else:
             raise TypeError("Unsupported operand type(s)")
 
-    def __gt__(self, other: Distance) -> bool:
+    def __gt__(self, other: Union[Distance, float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
@@ -58,7 +59,7 @@ class Distance:
         else:
             raise TypeError("Unsupported operand type(s)")
 
-    def __eq__(self, other: Distance) -> bool:
+    def __eq__(self, other: Union[Distance, float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
@@ -66,7 +67,7 @@ class Distance:
         else:
             raise TypeError("Unsupported operand type(s)")
 
-    def __le__(self, other: Distance) -> bool:
+    def __le__(self, other: Union[Distance, float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
@@ -74,7 +75,7 @@ class Distance:
         else:
             raise TypeError("Unsupported operand type(s)")
 
-    def __ge__(self, other: Distance) -> bool:
+    def __ge__(self, other: Union[Distance, float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
