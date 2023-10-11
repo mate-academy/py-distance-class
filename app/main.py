@@ -51,4 +51,3 @@ class Distance:
 
     def __ge__(self, other: Distance) -> bool:
         return self > other or self == other
-
