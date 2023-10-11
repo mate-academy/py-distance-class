@@ -12,7 +12,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance) -> Distance:
+    def __add__(self, other: Union[Distance, float, int]) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
@@ -20,7 +20,7 @@ class Distance:
         else:
             raise TypeError("Unsupported operand type(s)")
 
-    def __iadd__(self, other: Distance) -> Distance:
+    def __iadd__(self, other: Union[Distance, float, int]) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
