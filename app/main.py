@@ -14,8 +14,7 @@ class Distance:
     def __add__(self, dis: Distance | int | float) -> Distance:
         if isinstance(dis, Distance):
             return Distance(self.km + dis.km)
-        else:
-            return Distance(self.km + dis)
+        return Distance(self.km + dis)
 
     def __iadd__(self, dis: Distance | int | float) -> None:
         if isinstance(dis, Distance):
@@ -33,29 +32,24 @@ class Distance:
     def __lt__(self, dis: Distance | float | int) -> bool:
         if isinstance(dis, Distance):
             return self.km < dis.km
-        else:
-            return self.km < dis
+        return self.km < dis
 
     def __gt__(self, dis: Distance | float | int) -> bool:
         if isinstance(dis, Distance):
             return self.km > dis.km
-        else:
-            return self.km > dis
+        return self.km > dis
 
     def __eq__(self, dis: Distance | float | int) -> bool:
         if isinstance(dis, Distance):
             return self.km == dis.km
-        else:
-            return self.km == dis
+        return self.km == dis
 
     def __le__(self, dis: Distance | float | int) -> bool:
         if isinstance(dis, Distance):
             return self.km <= dis.km
-        else:
-            return self.km <= dis
+        return self.km <= dis
 
     def __ge__(self, dis: Distance | float | int) -> bool:
         if isinstance(dis, Distance):
             return self.km >= dis.km
-        else:
-            return self.km >= dis
+        return self.km >= dis
