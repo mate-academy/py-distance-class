@@ -35,7 +35,7 @@ class Distance:
             return self.km < dis.km
         else:
             return self.km < dis
-    
+
     def __gt__(self, dis: Distance | float | int) -> bool:
         if isinstance(dis, Distance):
             return self.km > dis.km
