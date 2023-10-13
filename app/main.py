@@ -44,27 +44,20 @@ class Distance:
         return NotImplemented
 
     def __ge__(self, other: "Distance") -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        elif isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km >= other
         return NotImplemented
 
     def __gt__(self, other: "Distance") -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        elif isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km > other
         return NotImplemented
 
     def __mul__(self, other: "Distance") -> "Distance":
-        if isinstance(other, Distance):
-            raise TypeError("Multiplication with "
-                            "Distance instances is not supported")
-        elif isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        raise TypeError(f"Unsupported operand type for *: "
-                        f"'Distance' and {type(other)}")
+        raise TypeError(f"Unsupported operand "
+                        f"type for *: 'Distance' and {type(other)}")
 
     def __iadd__(self, other: "Distance") -> "Distance":
         if isinstance(other, Distance):
