@@ -13,8 +13,6 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
-        else:
-            raise TypeError("Unsupported operand type")
 
     def __iadd__(self, other: int | float) -> int | float | object:
         if isinstance(other, Distance):
@@ -33,18 +31,16 @@ class Distance:
 
     def __truediv__(self, divisor: int | float) -> int | float | object:
         if isinstance(divisor, (int, float)):
-            result = self.km / divisor
-            return Distance(round(result, 2))
-        else:
-            raise TypeError("Unsupported operand type")
+            return Distance(round(self.km / divisor, 2))
 
     def __lt__(self, other: int | float) -> int | float | object | bool:
         return self.km < other.km if isinstance(other, Distance)\
             else self.km < other
 
     def __gt__(self, other: int | float) -> int | float | object | bool:
-        return self.km > other.km if isinstance(other, Distance) else\
-            self.km > other
+        if isinstance(other, Distance):
+            return self.km > other.km
+        return self.km > other
 
     def __eq__(self, other: int | float) -> int | float | object | bool:
         return self.km == other.km if isinstance(other, Distance) else\
