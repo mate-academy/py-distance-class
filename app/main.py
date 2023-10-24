@@ -37,8 +37,10 @@ class Distance:
             return Distance(round(self.km / divisor, 2))
 
     def __lt__(self, other: int | float) -> bool:
-        return self.km < other.km if isinstance(other, Distance)\
+return (
+            self.km < other.km if isinstance(other, Distance)
             else self.km < other
+        )
 
     def __gt__(self, other: int | float) -> bool:
         if isinstance(other, Distance):
