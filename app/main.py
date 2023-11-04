@@ -24,7 +24,8 @@ class Distance:
 
         return Distance(new_km_amount)
 
-    def __iadd__(self, other: (Distance, int, float)) -> (Distance, int, float):
+    def __iadd__(self, other: (Distance, int, float))\
+            -> (Distance, int, float):
 
         if isinstance(other, Distance):
             other = other.km
