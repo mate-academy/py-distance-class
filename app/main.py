@@ -16,11 +16,13 @@ class Distance:
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
-    def __iadd__(self, other: Distance | int | float) -> Distance:
+    def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-            return self
-        self.km += other
+        elif isinstance(other, (int, float)):
+            self.km += other
+        else:
+            raise TypeError("Unsupported operand type")
         return self
 
     def __mul__(self, other: int | float) -> Distance:
