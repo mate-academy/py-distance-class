@@ -27,11 +27,11 @@ class Distance:
     def __iadd__(self, other: T | int | float) -> T:
         if isinstance(other, Distance):
             self.km += other.km
-            return self
         if isinstance(other, (int, float)):
             self.km += other
-            return self
-        raise TypeError("Unsupported operand types")
+        if not isinstance(other, (Distance, int, float)):
+            raise TypeError("Unsupported operand types")
+        return self
 
     def __mul__(self, other: int | float) -> T:
         if isinstance(other, (int, float)):
