@@ -1,10 +1,4 @@
-from typing import TypeVar
-
-#  "I'm not sure if this is the best solution"
-#  " for creating accurate type annotations, "
-#  "but the others are not working for me."
-
-T = TypeVar("T", bound="Distance")
+from __future__ import annotations
 
 
 class Distance:
@@ -17,14 +11,14 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: T | int | float) -> T:
+    def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         if isinstance(other, (int, float)):
             return Distance(self.km + other)
         raise TypeError("Unsupported operand types")
 
-    def __iadd__(self, other: T | int | float) -> T:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         if isinstance(other, (int, float)):
@@ -33,45 +27,45 @@ class Distance:
             raise TypeError("Unsupported operand types")
         return self
 
-    def __mul__(self, other: int | float) -> T:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("Unsupported operand types")
 
-    def __truediv__(self, other: int | float) -> T:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         raise TypeError("Unsupported operand types")
 
-    def __lt__(self, other: T | int | float) -> bool:
+    def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         if isinstance(other, (int, float)):
             return self.km < other
         raise TypeError("Unsupported operand types")
 
-    def __gt__(self, other: T | int | float) -> bool:
+    def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         if isinstance(other, (int, float)):
             return self.km > other
         raise TypeError("Unsupported operand types")
 
-    def __eq__(self, other: T | int | float) -> bool:
+    def __eq__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         if isinstance(other, (int, float)):
             return self.km == other
         raise TypeError("Unsupported operand types")
 
-    def __le__(self, other: T | int | float) -> bool:
+    def __le__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         if isinstance(other, (int, float)):
             return self.km <= other
         raise TypeError("Unsupported operand types")
 
-    def __ge__(self, other: T | int | float) -> bool:
+    def __ge__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         if isinstance(other, (int, float)):
