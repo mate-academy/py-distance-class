@@ -40,8 +40,7 @@ class Distance:
     ) -> Union[float, "Distance"]:
         if other == 0:
             raise ZeroDivisionError("Division by zero is not possible")
-        elif isinstance(other, (int, float)):
-            return Distance(round(self.km / other, 2))
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Union[int, float, "Distance"]) -> bool:
         if isinstance(other, Distance):
