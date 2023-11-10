@@ -39,7 +39,6 @@ class Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
 
-
     def __eq__(self, other: int | float | Distance) -> bool:
         value = self.__verify_data(other)
         return self.km == value
