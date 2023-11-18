@@ -31,22 +31,31 @@ class Distance:
         )
 
     def __truediv__(self, other: float) -> Distance:
-        km = round(self.km / other, 2)
         return Distance(
-            km=km
+            km=round(self.km / other, 2)
         )
 
-    def __lt__(self, other: int) -> bool:
-        return self.km < other
+    def __lt__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km < other
+        return self.km < other.km
 
-    def __gt__(self, other: int) -> bool:
-        return self.km > other
+    def __gt__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km > other
+        return self.km > other.km
 
-    def __eq__(self, other: int) -> bool:
-        return self.km == other
+    def __eq__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km == other
+        return self.km == other.km
 
-    def __le__(self, other: int) -> bool:
-        return self.km <= other
+    def __le__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km <= other
+        return self.km <= other.km
 
-    def __ge__(self, other: int) -> bool:
-        return self.km >= other
+    def __ge__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, (int, float)):
+            return self.km >= other
+        return self.km >= other.km
