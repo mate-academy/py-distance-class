@@ -17,10 +17,9 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
-        else:
-            raise TypeError("Unsupported operand type. "
-                            "Only objects of the Distance class "
-                            "can be divided.")
+        raise TypeError("Unsupported operand type. "
+                        "Only objects of the Distance class "
+                        "can be divided.")
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
