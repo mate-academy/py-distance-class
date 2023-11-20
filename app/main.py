@@ -17,8 +17,7 @@ class Distance:
             total_distance = self.km + other.km
         else:
             total_distance = self.km + other
-        result = Distance(total_distance)
-        return result
+        return Distance(total_distance)
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
@@ -28,14 +27,10 @@ class Distance:
         return self
 
     def __mul__(self, other_number: int | float) -> Distance:
-        total_distance = self.km * other_number
-        result = Distance(total_distance)
-        return result
+        return Distance(self.km * other_number)
 
     def __truediv__(self, other_number: int | float) -> Distance:
-        total_distance = round(self.km / other_number, 2)
-        result = Distance(total_distance)
-        return result
+        return Distance(round(self.km / other_number, 2))
 
     def __lt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, Distance):
