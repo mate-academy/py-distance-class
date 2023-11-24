@@ -1,8 +1,8 @@
-from typing import Union
+from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: Union[int, float]) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -11,88 +11,45 @@ class Distance:
     def __repr__(self) -> str:
         return f"{Distance.__name__}(km={self.km})"
 
-    def __add__(self, other: Union["Distance", int, float]
-                ) -> Union["Distance", TypeError]:
+    def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        elif isinstance(other, (int, float)):
-            return Distance(self.km + other)
-        else:
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
+        return Distance(self.km + other)
 
-    def __iadd__(self, other: Union["Distance", int, float]
-                 ) -> Union[None, TypeError]:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-            return self
-        elif isinstance(other, (int, float)):
+        else:
             self.km += other
-            return self
-        else:
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
+        return self
 
-    def __mul__(self, other: int | float) -> Union["Distance", TypeError]:
-        if isinstance(other, Distance):
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
-        else:
-            return Distance(self.km * other)
+    def __mul__(self, other: Distance | int | float) -> Distance:
+        return Distance(self.km * other)
 
-    def __truediv__(self, other: Union["Distance", int, float]
-                    ) -> Union["Distance", TypeError]:
-        if isinstance(other, Distance):
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
+    def __truediv__(self, other: Distance | int | float) -> Distance:
         return Distance(round((self.km / other), 2))
 
-    def __lt__(self, other: Union["Distance", int, float]
-               ) -> Union["Distance", TypeError]:
+    def __lt__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km < other.km
-        elif isinstance(other, (int, float)):
-            return self.km < other
-        else:
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
+        return self.km < other
 
-    def __gt__(self, other: Union["Distance", int, float]
-               ) -> Union["Distance", TypeError]:
+    def __gt__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km > other.km
-        elif isinstance(other, (int, float)):
-            return self.km > other
-        else:
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
+        return self.km > other
 
-    def __eq__(self, other: Union["Distance", int, float]
-               ) -> Union["Distance", TypeError]:
+    def __eq__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km == other.km
-        elif isinstance(other, (int, float)):
-            return self.km == other
-        else:
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
+        return self.km == other
 
-    def __le__(self, other: Union["Distance", int, float]
-               ) -> Union["Distance", TypeError]:
+    def __le__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km <= other.km
-        elif isinstance(other, (int, float)):
-            return self.km <= other
-        else:
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
+        return self.km <= other
 
-    def __ge__(self, other: Union["Distance", int, float]
-               ) -> Union["Distance", TypeError]:
+    def __ge__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
-        elif isinstance(other, (int, float)):
-            return self.km >= other
-        else:
-            raise TypeError(
-                f"{other} must be {Distance.__name__} or (int, float)")
+        return self.km >= other
