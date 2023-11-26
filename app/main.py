@@ -1,6 +1,6 @@
 class Distance:
 
-    def __init__(self, km: None) -> None:
+    def __init__(self, km: int) -> object:
         self.km = km
 
     def __str__(self) -> str:
@@ -27,8 +27,6 @@ class Distance:
 
     def __truediv__(self, other: None) -> object:
         result = self.km / other
-        if isinstance(other, Distance):
-            result = self.km / other.km
         return Distance(round(result, 2))
 
     def __lt__(self, other: None) -> bool:
