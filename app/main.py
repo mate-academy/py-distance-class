@@ -9,7 +9,7 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, second: any) -> any:
-        if type(second) == (int, float):
+        if type(second) == int:
             return Distance(self.km + second)
         elif type(second) == float:
             return Distance(self.km + second)
