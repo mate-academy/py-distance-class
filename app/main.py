@@ -43,7 +43,6 @@ class Distance:
         else:
             pass
 
-
     def __eq__(self, second: any) -> any:
         if type(second) == int:
             return self.km == second
