@@ -18,17 +18,20 @@ class Distance:
 
     def __iadd__(self, second: any) -> any:
         if type(second) == int:
-            return Distance(self.km + second)
+            self.km += second
+            return self
         elif type(second) == float:
-            return Distance(self.km + second)
+            self.km += second
+            return self
         else:
-            return Distance(self.km + second.km)
+            self.km += second.km
+            return self
 
     def __mul__(self, second: any) -> any:
         if type(second) == int:
             return Distance(self.km * second)
         elif type(second) == float:
-            return Distance(round(self.km * second, 2))
+            return Distance(round(self.km * second))
         else:
             return Distance(self.km * second.km)
 
@@ -38,7 +41,8 @@ class Distance:
         elif type(second) == float:
             return Distance(round(self.km / second, 2))
         else:
-            return Distance(round(self.km / second.km, 2))
+            pass
+
 
     def __eq__(self, second: any) -> any:
         if type(second) == int:
