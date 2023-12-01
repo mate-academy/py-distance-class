@@ -33,7 +33,7 @@ class Distance:
         elif type(second) == float:
             return Distance(round(self.km * second))
         else:
-            return Distance(self.km * second.km)
+            pass
 
     def __truediv__(self, second: any) -> any:
         if type(second) == int:
