@@ -31,7 +31,7 @@ class Distance:
         if type(second) == int:
             return Distance(self.km * second)
         elif type(second) == float:
-            return Distance(round(self.km * second))
+            return Distance(self.km * second)
         else:
             pass
 
