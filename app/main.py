@@ -1,8 +1,8 @@
-from typing import Union
+from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -11,59 +11,57 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union["Distance", float]) -> "Distance":
+    def __add__(self, other: Distance | float | int) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
-            return Distance(self.km + other)
+        return Distance(self.km + other)
 
-    def __iadd__(self, other: Union["Distance", float]) -> "Distance":
+    def __iadd__(self, other: Distance | float | int) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         else:
             self.km += other
         return self
 
-    def __mul__(self, other: Union[int, float]) -> "Distance":
+    def __mul__(self, other: Distance | float | int) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: Union[int, float]) -> "Distance":
-        result = self.km / other
-        return Distance(round(result, 2))
+    def __truediv__(self, other: Distance | float | int) -> Distance:
+        return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: Union["Distance", float]) -> bool:
+    def __lt__(self, other: Distance | float | int) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
             return self.km < other
         return NotImplemented
 
-    def __le__(self, other: Union["Distance", float]) -> bool:
+    def __le__(self, other: Distance | float | int) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
             return self.km <= other
         return NotImplemented
 
-    def __eq__(self, other: Union["Distance", float]) -> bool:
+    def __eq__(self, other: Distance | float | int) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
         return NotImplemented
 
-    def __ne__(self, other: Union["Distance", float]) -> bool:
+    def __ne__(self, other: Distance | float | int) -> bool:
         result = self.__eq__(other)
         return not result if result is not NotImplemented else NotImplemented
 
-    def __gt__(self, other: Union["Distance", float]) -> bool:
+    def __gt__(self, other: Distance | float | int) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
         return NotImplemented
 
-    def __ge__(self, other: Union["Distance", float]) -> bool:
+    def __ge__(self, other: Distance | float | int) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
