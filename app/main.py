@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: int | float) -> None|float|int:
+    def __init__(self, km: int | float) -> None | float | int:
         self.km = km
 
     def __repr__(self) -> str | float | int:
@@ -53,7 +53,11 @@ class Distance:
             return self.km == other
 
     def __le__(self, other: "Distance") -> "Distance":
-        return self.km <= other.km if isinstance(other, Distance) else self.km <= other
+        return self.km <= other.km\
+            if isinstance(other, Distance)\
+            else self.km <= other
 
     def __ge__(self, other: "Distance") -> "Distance":
-        return self.km >= other.km if isinstance(other, Distance) else self.km >= other
+        return self.km >= other.km \
+            if isinstance(other, Distance)\
+            else self.km >= other
