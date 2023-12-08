@@ -2,7 +2,7 @@ from typing import Any
 
 
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
