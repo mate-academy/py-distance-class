@@ -61,4 +61,4 @@ class Distance:
 
     def __truediv__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, (int, float)) and other != 0:
-                return Distance(round((self.km / other), 2))
+            return Distance(round((self.km / other), 2))
