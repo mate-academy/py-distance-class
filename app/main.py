@@ -50,15 +50,7 @@ class Distance:
             return self.km == other
 
     def __le__(self, other: Union[int, float, "Distance"]) -> bool:
-        return (
-            self.km <= other.km
-            if isinstance(other, Distance)
-            else self.km <= other
-        )
+        return not self > other
 
     def __ge__(self, other: Union[int, float, "Distance"]) -> bool:
-        return (
-            self >= other.km
-            if isinstance(other, Distance)
-            else self.km >= other
-        )
+        return not self < other
