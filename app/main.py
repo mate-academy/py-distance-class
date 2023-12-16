@@ -23,14 +23,10 @@ class Distance:
     def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        else:
-            raise TypeError("Multiplication only supports numbers")
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
-        else:
-            raise TypeError("Division only supports numbers")
 
     def __lt__(self, other: Distance | int | float) -> bool:
         other_km = other.km if isinstance(other, Distance) else other
@@ -45,9 +41,7 @@ class Distance:
         return self.km == other_km
 
     def __le__(self, other: Distance | int | float) -> bool:
-        other_km = other.km if isinstance(other, Distance) else other
-        return self.km <= other_km
+        return not self.km > other
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        other_km = other.km if isinstance(other, Distance) else other
-        return self.km >= other_km
+        return not self.km < other
