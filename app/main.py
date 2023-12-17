@@ -6,7 +6,7 @@ class Distance:
         self.km = km
 
     @staticmethod
-    def get_addend(other) -> int:
+    def get_addend(other: Distance | int) -> int:
         return other.km if isinstance(other, Distance) else other
 
     def __str__(self) -> str:
