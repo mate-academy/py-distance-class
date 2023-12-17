@@ -4,11 +4,11 @@ from __future__ import annotations
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
-    
+
     @staticmethod
     def get_addend(other) -> int:
         return other.km if isinstance(other, Distance) else other
-    
+
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
