@@ -42,4 +42,3 @@ class Distance:
 
     def __ge__(self, other: int) -> bool:
         return self.km >= Distance.get_addend(other)
-
