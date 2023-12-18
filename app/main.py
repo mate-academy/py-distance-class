@@ -28,17 +28,17 @@ class Distance:
     def __truediv__(self, divider: int) -> Distance:
         return Distance(round(self.km / divider, 2))
 
-    def __lt__(self, other: int) -> bool:
-        return self.km < Distance.get_addend(other)
+    def __lt__(self, other: Distance | int) -> bool:
+        return self.km < self.get_addend(other)
 
-    def __gt__(self, other: int) -> bool:
-        return self.km > Distance.get_addend(other)
+    def __gt__(self, other: Distance | int) -> bool:
+        return self.km > self.get_addend(other)
 
-    def __eq__(self, other: int) -> bool:
-        return self.km == Distance.get_addend(other)
+    def __eq__(self, other: Distance | int) -> bool:
+        return self.km == self.get_addend(other)
 
-    def __le__(self, other: int) -> bool:
-        return self.km <= Distance.get_addend(other)
+    def __le__(self, other: Distance | int) -> bool:
+        return not self.__gt__(other)
 
-    def __ge__(self, other: int) -> bool:
-        return self.km >= Distance.get_addend(other)
+    def __ge__(self, other: Distance | int) -> bool:
+        return not self.__lt__(other)
