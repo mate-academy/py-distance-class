@@ -14,8 +14,8 @@ class Distance:
         self.km = km
 
     def __str__(self) -> str:
-        return (f"Distance: {self.km} "
-                f"{"kilometers" if self.km != 1 else "kilometr"}.")
+        unit = "kilometer" if self.km == 1 else "kilometers"
+        return f"Distance: {self.km} {unit}."
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
