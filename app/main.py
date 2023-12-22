@@ -1,8 +1,10 @@
 from __future__ import annotations
 from typing import Callable, Any
+from functools import wraps
 
 
 def _int_float_types_execption(func: Callable) -> Callable:
+    @wraps(func)
     def inner(self: Any, other: Any) -> Callable:
         if type(other) in (int, float):
             return func(self, other=Distance(other))
@@ -23,9 +25,7 @@ class Distance:
 
     @_int_float_types_execption
     def __add__(self, other: Distance | int | float) -> Distance:
-        return Distance(
-            self.km + other.km
-        )
+        return Distance(self.km + other.km)
 
     @_int_float_types_execption
     def __iadd__(self, other: Distance | int | float) -> Distance:
@@ -33,14 +33,10 @@ class Distance:
         return self
 
     def __mul__(self, coefficient: int | float) -> Distance:
-        return Distance(
-            self.km * coefficient
-        )
+        return Distance(self.km * coefficient)
 
     def __truediv__(self, divider: int | float) -> Distance:
-        return Distance(
-            round(self.km / divider, 2)
-        )
+        return Distance(round(self.km / divider, 2))
 
     @_int_float_types_execption
     def __lt__(self, other: Distance | int | float) -> bool:
