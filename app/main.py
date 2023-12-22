@@ -6,10 +6,9 @@ from functools import wraps
 def _int_float_types_execption(func: Callable) -> Callable:
     @wraps(func)
     def inner(self: Any, other: Any) -> Callable:
-        if type(other) in (int, float):
+        if isinstance(other, (int, float)):
             return func(self, other=Distance(other))
-        else:
-            return func(self, other)
+        return func(self, other)
     return inner
 
 
