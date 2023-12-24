@@ -14,12 +14,12 @@ class Distance:
     def __add__(self, other: Distance | int | float) -> Distance:
 
         return (Distance(self.km + other.km)
-                if type(other) == Distance
+                if isinstance(other, Distance)
                 else Distance(self.km + other))
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         self.km = ((self.km + other.km)
-                   if type(other) == Distance
+                   if isinstance(other, Distance)
                    else (self.km + other))
         return self
 
@@ -32,7 +32,7 @@ class Distance:
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return True if self.km < other.km else False
-        return True if self.km < other else False
+        return self.km < other
 
     def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
