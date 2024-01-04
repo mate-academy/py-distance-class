@@ -7,8 +7,8 @@ class Distance:
         self.km = km
 
     @classmethod
-    def validate(cls, obj: Any) -> bool:
-        return isinstance(obj, cls)
+    def validate(cls, value: Any) -> bool:
+        return isinstance(value, cls)
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
