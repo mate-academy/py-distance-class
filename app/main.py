@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import Self
 
 
 class Distance:
@@ -17,7 +16,7 @@ class Distance:
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
-    def __iadd__(self, other: ("Distance" | float | int)) -> Self:
+    def __iadd__(self, other: ("Distance" | float | int)) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         else:
