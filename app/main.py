@@ -3,7 +3,7 @@ from typing import Any
 
 
 def get_operand_value(func: callable) -> callable:
-    def wrapper(self: Distance, distance: Distance | int) -> Any:
+    def wrapper(self: Distance, distance: Distance | int | float) -> Any:
         if isinstance(distance, Distance):
             return func(self, distance.km)
 
@@ -13,7 +13,7 @@ def get_operand_value(func: callable) -> callable:
 
 
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -23,43 +23,37 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @get_operand_value
-    def __add__(self, distance: int) -> Distance:
+    def __add__(self, distance: int | float) -> Distance:
         return Distance(self.km + distance)
 
     @get_operand_value
-    def __iadd__(self, distance: int) -> Distance:
+    def __iadd__(self, distance: int | float) -> Distance:
         self.km += distance
 
         return self
 
-    def __mul__(self, distance: int) -> Distance | None:
-        if isinstance(distance, Distance):
-            return None
-
+    def __mul__(self, distance: int | float) -> Distance:
         return Distance(self.km * distance)
 
-    def __truediv__(self, distance: Distance | int) -> Distance | None:
-        if isinstance(distance, Distance):
-            return None
-
+    def __truediv__(self, distance: int | float) -> Distance:
         return Distance(round(self.km / distance, 2))
 
     @get_operand_value
-    def __lt__(self, distance: int) -> bool:
+    def __lt__(self, distance: int | float) -> bool:
         return self.km < distance
 
     @get_operand_value
-    def __gt__(self, distance: int) -> bool:
+    def __gt__(self, distance: int | float) -> bool:
         return self.km > distance
 
     @get_operand_value
-    def __eq__(self, distance: int) -> bool:
+    def __eq__(self, distance: int | float) -> bool:
         return self.km == distance
 
     @get_operand_value
-    def __le__(self, distance: int) -> bool:
+    def __le__(self, distance: int | float) -> bool:
         return self.km <= distance
 
     @get_operand_value
-    def __ge__(self, distance: int) -> bool:
+    def __ge__(self, distance: int | float) -> bool:
         return self.km >= distance
