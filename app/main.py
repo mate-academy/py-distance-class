@@ -38,8 +38,12 @@ class Distance:
                     ) -> Distance:
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: int) -> bool:
+    def __lt__(self, other: Distance | int) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
         return self.km < other
 
-    def __eq__(self, other: int) -> bool:
+    def __eq__(self, other: Distance | int) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
         return self.km == other
