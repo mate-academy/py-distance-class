@@ -1,4 +1,4 @@
-from typing import Union
+from __future__ import annotations
 
 
 class Distance:
@@ -11,51 +11,35 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: "Distance") -> "Distance":
+    def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
-            return Distance(self.km + other.km)
-        elif isinstance(other, (int, float)):
-            return Distance(self.km + other)
-        else:
-            raise TypeError("Unsupported operand type")
+            return Distance(km=self.km + other.km)
+        return Distance(km=self.km + other)
 
-    def __iadd__(self, other: "Distance") -> "Distance":
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             self.km += other
-        else:
-            raise TypeError("Unsupported operand type")
         return self
 
-    def __mul__(self, factor: Union[int, float]) -> "Distance":
-        if isinstance(factor, (int, float)):
-            return Distance(self.km * factor)
-        else:
-            raise TypeError("Unsupported operand type")
+    def __mul__(self, other: int | float) -> Distance:
+        return Distance(km=self.km * other)
 
-    def __truediv__(self, divisor: Union[int, float]) -> "Distance":
-        if isinstance(divisor, (int, float)):
-            return Distance(round(self.km / divisor, 2))
-        else:
-            raise TypeError("Unsupported operand type")
+    def __truediv__(self, other: int | float) -> Distance:
+        return Distance(km=round((self.km / other), 2))
 
-    def __lt__(self, other: "Distance") -> bool:
-        return self.km < other.km if isinstance(other, Distance) \
-            else self.km < other
+    def __lt__(self, other: Distance | int | float) -> bool:
+        return self.km < other
 
-    def __gt__(self, other: "Distance") -> bool:
-        return self.km > other.km if isinstance(other, Distance) \
-            else self.km > other
+    def __gt__(self, other: Distance | int | float) -> bool:
+        return self.km > other
 
-    def __eq__(self, other: "Distance") -> bool:
-        return self.km == other.km if isinstance(other, Distance) \
-            else self.km == other
+    def __eq__(self, other: Distance | int | float) -> bool:
+        return self.km == other
 
-    def __le__(self, other: "Distance") -> bool:
-        return self.km <= other.km if isinstance(other, Distance) \
-            else self.km <= other
+    def __le__(self, other: Distance | int | float) -> bool:
+        return self.km <= other
 
-    def __ge__(self, other: "Distance") -> bool:
-        return self.km >= other.km if isinstance(other, Distance) \
-            else self.km >= other
+    def __ge__(self, other: Distance | int | float) -> bool:
+        return self.km >= other
