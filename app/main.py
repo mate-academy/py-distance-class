@@ -1,6 +1,15 @@
+from __future__ import annotations
+from functools import total_ordering
+
+
+@total_ordering
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
+
+    @staticmethod
+    def is_distance(other: Distance | int | float) -> bool:
+        return isinstance(other, Distance)
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
@@ -8,61 +17,33 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: "Distance") -> "Distance":
-        if isinstance(other, Distance):
-            total_distance = self.km + other.km
-            return Distance(km=total_distance)
-        elif isinstance(other, (int, float)):
-            total_distance = self.km + other
-            return Distance(km=total_distance)
+    def __eq__(self, other: Distance | int | float) -> bool:
+        if Distance.is_distance(other):
+            return self.km == other.km
+        return self.km == other
 
-    def __iadd__(self, other: "Distance") -> "Distance":
-        if isinstance(other, Distance):
+    def __lt__(self, other: Distance | int | float) -> bool:
+        if Distance.is_distance(other):
+            return self.km < other.km
+        return self.km < other
+
+    def __add__(self, other: Distance | int | float) -> Distance:
+        if Distance.is_distance(other):
+            return Distance(self.km + other.km)
+        return Distance(self.km + other)
+
+    def __iadd__(self, other: Distance | int | float) -> Distance:
+        if Distance.is_distance(other):
             self.km += other.km
-        elif isinstance(other, (int, float)):
-            self.km += other
+            return self
+        self.km += other
         return self
 
-    def __mul__(self, other: "Distance") -> "Distance":
-        if isinstance(other, (int, float)):
-            return Distance(km=self.km * other)
+    def __mul__(self, other: int | float) -> Distance:
+        return Distance(self.km * other)
 
-    def __truediv__(self, other: "Distance") -> "Distance":
-        if isinstance(other, (int, float)):
-            result_km = round(self.km / other, 2)
-            return Distance(km=result_km)
-
-    def __lt__(self, other: "Distance") -> bool:
-        if isinstance(other, Distance):
-            return self.km < other.km
-        elif isinstance(other, (int, float)):
-            return self.km < other
-        return NotImplemented
-
-    def __gt__(self, other: "Distance") -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        elif isinstance(other, (int, float)):
-            return self.km > other
-        return NotImplemented
-
-    def __eq__(self, other: "Distance") -> bool:
-        if isinstance(other, Distance):
-            return self.km == other.km
-        elif isinstance(other, (int, float)):
-            return self.km == other
-        return NotImplemented
-
-    def __le__(self, other: "Distance") -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        elif isinstance(other, (int, float)):
-            return self.km <= other
-        return NotImplemented
-
-    def __ge__(self, other: "Distance") -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        elif isinstance(other, (int, float)):
-            return self.km >= other
-        return NotImplemented
+    def __truediv__(self, other: int | float) -> Distance:
+        try:
+            return Distance(round(self.km / other, 2))
+        except TypeError:
+            "'Other' must be type int or float or belong to Distance class"
