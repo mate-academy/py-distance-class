@@ -40,7 +40,7 @@ class Distance:
         return self.km >= self.validation(other)
 
     @staticmethod
-    def validation(other):
+    def validation(other: Distance | int | float) -> int | float:
         if isinstance(other, Distance):
             other = other.km
         return other
