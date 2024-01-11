@@ -1,4 +1,5 @@
 from __future__ import annotations
+from functools import total_ordering
 
 
 class Distance:
@@ -12,16 +13,14 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @staticmethod
-    def convert_obj_number(obj: Distance | float | int) -> float | int:
-        if isinstance(obj, Distance):
-            obj = obj.km
-        return obj
+    def get_km(obj: Distance | float | int) -> float | int:
+        return obj.km if isinstance(obj, Distance) else obj
 
     def __add__(self, other: Distance | float | int) -> Distance:
-        return Distance(km=self.km + self.convert_obj_number(obj=other))
+        return Distance(km=self.km + self.get_km(obj=other))
 
     def __iadd__(self, other: Distance | float) -> Distance:
-        self.km += self.convert_obj_number(obj=other)
+        self.km += self.get_km(obj=other)
         return self
 
     def __mul__(self, other: float) -> Distance:
@@ -31,13 +30,13 @@ class Distance:
         return Distance(km=round(self.km / other, 2))
 
     def __lt__(self, other: Distance | float) -> bool:
-        return self.km < self.convert_obj_number(obj=other)
+        return self.km < self.get_km(obj=other)
 
     def __gt__(self, other: Distance | float) -> bool:
-        return self.km > self.convert_obj_number(obj=other)
+        return self.km > self.get_km(obj=other)
 
     def __eq__(self, other: Distance | float) -> bool:
-        return self.km == self.convert_obj_number(obj=other)
+        return self.km == self.get_km(obj=other)
 
     def __le__(self, other: Distance | float) -> bool:
         return not self.__gt__(other=other)
