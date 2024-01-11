@@ -50,6 +50,10 @@ class Distance:
         return self.km <= other.km
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, (int, float)):
-            return self.km >= other
-        return self.km >= other.km
+        return self.km >= self.validation(other)
+
+    @staticmethod
+    def validation(other):
+        if isinstance(other, Distance):
+            other = other.km
+        return other
