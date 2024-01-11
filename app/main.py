@@ -2,7 +2,7 @@ from __future__ import annotations
 from functools import total_ordering
 @total_ordering
 class Distance:
-    def __init__(self, km: int):
+    def __init__(self, km: int) -> None:
         self.km = km
     @staticmethod
     def is_instance_check(other: Distance) -> bool:
