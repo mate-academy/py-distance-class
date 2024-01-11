@@ -35,5 +35,3 @@ class Distance:
 
     def __gt__(self, other: int | float | Distance) -> bool:
         return self.km > self.get_km(other)
-
-
