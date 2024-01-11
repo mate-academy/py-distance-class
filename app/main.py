@@ -12,7 +12,7 @@ class Distance:
         return f"Distance: {self.km} kilometers."
     def __repr__(self):
         return f"Distance(km={self.km})"
-    def __add__(self, other: Distance):
+    def __add__(self, other: Distance) -> int :
         if Distance.is_instance_check(other):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
