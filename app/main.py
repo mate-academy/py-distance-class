@@ -5,6 +5,10 @@ from functools import total_ordering
 @total_ordering
 class Distance:
 
+    @staticmethod
+    def get_km(other: int | float | Distance) -> float:
+        return getattr(other, "km", other)
+
     def __init__(self, km: int | float) -> None:
         self.km = km
 
@@ -15,17 +19,10 @@ class Distance:
         return f"{self.__class__.__name__}(km={self.km})"
 
     def __add__(self, other: int | float | Distance) -> Distance:
-        if isinstance(other, Distance):
-            return Distance(km=self.km + other.km)
-
-        return Distance(km=self.km + other)
+        return Distance(km=self.km + self.get_km(other))
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
-        if isinstance(other, Distance):
-            self.km += other.km
-        else:
-            self.km += other
-
+        self.km += self.get_km(other)
         return self
 
     def __mul__(self, other: int | float | Distance) -> Distance:
@@ -35,17 +32,7 @@ class Distance:
         return Distance(km=round(self.km / other, 2))
 
     def __lt__(self, other: int | float | Distance) -> bool:
-        if isinstance(other, Distance):
-            lt = self.km < other.km
-        else:
-            lt = self.km < other
-
-        return lt
+        return self.km < self.get_km(other)
 
     def __eq__(self, other: int | float | Distance) -> bool:
-        if isinstance(other, Distance):
-            eq = self.km == other.km
-        else:
-            eq = self.km == other
-
-        return eq
+        return self.km == self.get_km(other)
