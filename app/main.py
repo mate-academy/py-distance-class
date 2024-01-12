@@ -14,16 +14,11 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km + other)
-        return Distance(self.km + other.km)
+    def __add__(self, other: Distance | int | float) -> Distance:
+        return Distance(self.km + Distance.to_number(other))
 
-    def __iadd__(self, other: Distance | int) -> Distance:
-        if isinstance(other, (int, float)):
-            self.km += other
-            return self
-        self.km += other.km
+    def __iadd__(self, other: Distance | int | float) -> Distance:
+        self.km += Distance.to_number(other)
         return self
 
     def __mul__(self, other: int | float) -> Distance:
@@ -33,11 +28,13 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, (int, float)):
-            return self.km == other
-        return self.km == other.km
+        return self.km == Distance.to_number(other)
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, (int, float)):
-            return self.km < other
-        return self.km < other.km
+        return self.km < Distance.to_number(other)
+
+    @staticmethod
+    def to_number(number: Distance | int | float) -> int | float:
+        if isinstance(number, Distance):
+            return number.km
+        return number
