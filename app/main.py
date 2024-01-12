@@ -36,7 +36,4 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        try:
-            return Distance(round(self.km / other, 2))
-        except TypeError:
-            "'Other' must be type int or float or belong to Distance class"
+        return Distance(round(self.km / other, 2))
