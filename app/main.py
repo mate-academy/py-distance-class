@@ -1,6 +1,7 @@
 from __future__ import annotations
 from functools import total_ordering
 
+
 @total_ordering
 class Distance:
     def __init__(self, km: float) -> None:
@@ -36,6 +37,3 @@ class Distance:
         if isinstance(other, Distance):
             other = other.km
         return other
-
-
-print(Distance('123') >= Distance("12"))
