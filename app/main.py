@@ -1,3 +1,7 @@
+from functools import total_ordering
+
+
+@total_ordering
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
@@ -32,12 +36,3 @@ class Distance:
 
     def __lt__(self, other: object) -> bool:
         return self.km < other
-
-    def __le__(self, other: object) -> bool:
-        return self.km <= other
-
-    def __gt__(self, other: object) -> bool:
-        return self.km > other
-
-    def __ge__(self, other: object) -> bool:
-        return self.km >= other
