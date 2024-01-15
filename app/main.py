@@ -8,8 +8,10 @@ def check_other_decorator(func: Callable) -> Callable:
     @wraps(func)
     def wrapper(self: Distance,
                 other: Union[Distance, int, float]) -> Callable:
-        if Distance.check_other(other):
+        if isinstance(other, (Distance, int, float)):
             if isinstance(other, Distance):
+                if func.__name__ in ["__mul__", "__truediv__"]:
+                    return func(self, other)
                 other = other.km
             return func(self, other)
         else:
@@ -20,10 +22,6 @@ def check_other_decorator(func: Callable) -> Callable:
 
 
 class Distance:
-
-    @staticmethod
-    def check_other(other: Union[Distance, int, float]) -> bool:
-        return isinstance(other, (Distance, int, float))
 
     def __init__(self, km: int) -> None:
         self.km = km
@@ -43,30 +41,30 @@ class Distance:
         self.km += other
         return self
 
+    @check_other_decorator
     def __mul__(self, other: Union[Distance, int, float]) -> Distance:
-        if Distance.check_other(other):
-            return Distance(self.km * other)
+        return Distance(self.km * other)
 
+    @check_other_decorator
     def __truediv__(self, other: Union[int, float]) -> Distance:
-        if isinstance(other, Union[int, float]):
-            return Distance(round(self.km / other, 2))
+        return Distance(round(self.km / other, 2))
 
+    @check_other_decorator
     def __lt__(self, other: Union[Distance, int, float]) -> bool:
-        if Distance.check_other(other):
-            return self.km < other
+        return self.km < other
 
+    @check_other_decorator
     def __gt__(self, other: Union[Distance, int, float]) -> bool:
-        if Distance.check_other(other):
-            return self.km > other
+        return self.km > other
 
+    @check_other_decorator
     def __eq__(self, other: Union[Distance, int, float]) -> bool:
-        if Distance.check_other(other):
-            return self.km == other
+        return self.km == other
 
+    @check_other_decorator
     def __le__(self, other: Union[Distance, int, float]) -> bool:
-        if Distance.check_other(other):
-            return self.km <= other
+        return self.km <= other
 
+    @check_other_decorator
     def __ge__(self, other: Union[Distance, int, float]) -> bool:
-        if Distance.check_other(other):
-            return self.km >= other
+        return self.km >= other
