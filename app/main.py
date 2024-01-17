@@ -9,31 +9,31 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: [int, float]) -> list:
-        sc = other
+    def __add__(self, other: int | float) -> "Distance":
+        number = other
         if isinstance(other, Distance):
-            sc = other.km
-        return Distance(self.km + sc)
+            number = other.km
+        return Distance(self.km + number)
 
-    def __iadd__(self, other: [int, float]) -> "Distance":
-        sc = other
+    def __iadd__(self, other: int | float) -> "Distance":
+        number = other
         if isinstance(other, Distance):
-            sc = other.km
-        self.km += sc
+            number = other.km
+        self.km += number
         return self
 
-    def __mul__(self, other: [int, float]) -> "Distance":
-        sc = other
+    def __mul__(self, other: int | float) -> "Distance":
+        number = other
         if isinstance(other, int) and other >= 0:
-            sc = other
-        return Distance(self.km * sc)
+            number = other
+        return Distance(self.km * number)
 
-    def __truediv__(self, other: [int, float]) -> "Distance":
-        sc = other
+    def __truediv__(self, other: int | float) -> "Distance":
+        number = other
         if isinstance(other, int) or isinstance(other, float):
-            sc = other
-        if sc != 0:
-            return Distance(round(self.km / sc, 2))
+            number = other
+        if number != 0:
+            return Distance(round(self.km / number, 2))
         else:
             raise ValueError("Division by zero is not allowed.")
 
