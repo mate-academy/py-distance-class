@@ -6,18 +6,22 @@ class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
 
+    @classmethod
+    def verify_data(cls, other: int | float | Distance) -> int | float:
+        return other if isinstance(other, (int, float)) else other.km
+
     def __str__(self) -> None:
         return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> None:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int | float | Distance) -> None:
-        value = other if isinstance(other, (int, float)) else other.km
+    def __add__(self, other: int | float | Distance) -> Distance:
+        value = self.verify_data(other)
         return Distance(self.km + value)
 
-    def __iadd__(self, other: int | float | Distance) -> None:
-        value = other if isinstance(other, (int, float)) else other.km
+    def __iadd__(self, other: int | float | Distance) -> Distance:
+        value = self.verify_data(other)
         self.km += value
         return self
 
@@ -27,17 +31,21 @@ class Distance:
     def __truediv__(self, other: int | float | Distance) -> None:
         return Distance(round((self.km / other), 2))
 
-    def __lt__(self, other: int | float | Distance) -> None:
-        return self.km < other
+    def __lt__(self, other: int | float | Distance) -> bool:
+        value = self.verify_data(other)
+        return self.km < value
 
-    def __gt__(self, other: int | float | Distance) -> None:
-        return self.km > other
+    def __gt__(self, other: int | float | Distance) -> bool:
+        value = self.verify_data(other)
+        return self.km > value
 
-    def __eq__(self, other: int | float | Distance) -> None:
-        return self.km == other
+    def __eq__(self, other: int | float | Distance) -> bool:
+        value = self.verify_data(other)
+        return self.km == value
 
-    def __le__(self, other: int | float | Distance) -> None:
-        return self.km <= other
+    def __le__(self, other: int | float | Distance) -> bool:
+        value = self.verify_data(other)
+        return self.km <= value
 
     def __ge__(self, other: int | float | Distance) -> None:
         return self.km >= other
