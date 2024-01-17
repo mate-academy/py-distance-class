@@ -3,7 +3,7 @@ from __future__ import annotations
 
 class Distance:
 
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     @staticmethod
@@ -47,5 +47,5 @@ class Distance:
         value = self.verify_data(other)
         return self.km <= value
 
-    def __ge__(self, other: int | float | Distance) -> None:
+    def __ge__(self, other: int | float | Distance) -> bool:
         return self.km >= other
