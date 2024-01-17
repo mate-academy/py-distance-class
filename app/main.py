@@ -6,8 +6,8 @@ class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
 
-    @classmethod
-    def verify_data(cls, other: int | float | Distance) -> int | float:
+    @staticmethod
+    def verify_data(other: int | float | Distance) -> int | float:
         return other if isinstance(other, (int, float)) else other.km
 
     def __str__(self) -> None:
