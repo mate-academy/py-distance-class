@@ -13,14 +13,14 @@ class Distance:
 
     def __add__(self, other: int | float | Distance) -> Distance:
         return Distance(
-            self.km + self.validator(other)
+            self.km + self.extract_km(other)
         )
 
     def __iadd__(
             self,
             other: int | float | Distance
     ) -> Distance:
-        self.km += self.validator(other)
+        self.km += self.extract_km(other)
 
         return self
 
@@ -36,26 +36,27 @@ class Distance:
 
     def __eq__(
             self,
-            other: int | float | Distance) -> bool:
-        return self.km == self.validator(other)
+            other: int | float | Distance
+    ) -> bool:
+        return self.km == self.extract_km(other)
 
     def __ne__(self, other: int | float | Distance) -> bool:
-        return self.km != self.validator(other)
+        return not self.__eq__(other)
 
     def __gt__(self, other: int | float | Distance) -> bool:
-        return self.km > self.validator(other)
+        return self.km > self.extract_km(other)
 
     def __lt__(self, other: int | float | Distance) -> bool:
-        return self.km < self.validator(other)
+        return self.km < self.extract_km(other)
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        return self.km >= self.validator(other)
+        return not self.__lt__(other)
 
     def __le__(self, other: int | float | Distance) -> bool:
-        return self.km <= self.validator(other)
+        return not self.__gt__(other)
 
     @staticmethod
-    def validator(other: int | float) -> int | float:
+    def extract_km(other: int | float) -> int | float:
         if isinstance(other, Distance):
             other = other.km
         return other
