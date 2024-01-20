@@ -18,24 +18,25 @@ class Distance:
             raise f"Gosh,- relax, drink coffee"
     
     def __iadd__(self, other):
-        
+        if isinstance(other, Distance):
+            self.km += other.km
+        elif isinstance(other, int):
+            self.km += other
+        else:
+            raise f"Gosh,- relax, drink coffee"
+        return self
+
 
         
 
 
 
-
-# %%
-
-# %%
 
 # %%
 distance1 = Distance(20)
-distance2 = distance1 + 10
+distance2 = Distance(30)
 # %%
-isinstance(distance2, Distance)
+distance1 += distance2 
 # %%
-distance2.km = 150
-# %%
-distance2.km
+distance1.km
 # %%
