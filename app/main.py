@@ -28,8 +28,8 @@ class Distance:
     
     def __mul__(self, other):
         if isinstance(other, Distance):
-            self.km *= other.km
-        elif isinstance(other, int):
+            raise TypeError("__mul__ method not use instance")
+        elif isinstance(other, (int,float)):
             self.km *= other
         else:
             raise f"Gosh,- relax, drink coffee"
