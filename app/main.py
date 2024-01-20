@@ -1,6 +1,6 @@
 #%%
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -12,7 +12,7 @@ class Distance:
     def __add__(self, other):
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        elif isinstance(other, int):
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
         else:
             raise f"Gosh,- relax, drink coffee"
@@ -20,7 +20,7 @@ class Distance:
     def __iadd__(self, other):
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, int):
+        elif isinstance(other, (int, float)):
             self.km += other
         else:
             raise f"Gosh,- relax, drink coffee"
@@ -48,10 +48,41 @@ class Distance:
             return self.km < other
         else: 
             return NotImplemented
+    
+    def __gt__(self, other):
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
+            return self.km > other
+        else: 
+            return NotImplemented
 
-
+    def __eq__(self, other):
+        if isinstance(other, Distance):
+            return self.km == other.km
+        elif isinstance(other, (int, float)):
+            return self.km == other
+        else: 
+            return NotImplemented
         
-
+    def __le__(self, other):
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+        else: 
+            return NotImplemented
+    
+    def __ge__(self, other):
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
+            return self.km >= other
+        else: 
+            return NotImplemented
+    
+    
+    
 
 
 
@@ -60,4 +91,6 @@ distance = Distance(50)
 
 # %%
 distance < Distance(60)
+# %%
+distance == Distance(100)
 # %%
