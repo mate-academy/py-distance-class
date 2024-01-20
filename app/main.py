@@ -10,21 +10,32 @@ class Distance:
         return f"Distance(km={self.km})"
     
     def __add__(self, other):
-        return Distance(self.km + other.km)
-
-
-
-
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        elif isinstance(other, int):
+            return Distance(self.km + other)
+        else:
+            raise f"Gosh,- relax, drink coffee"
     
+    def __iadd__(self, other):
+        
+
+        
+
+
+
+
+# %%
+
+# %%
 
 # %%
 distance1 = Distance(20)
-distance2 = Distance(30)
-distance3 = distance1 + distance2  
-
-
+distance2 = distance1 + 10
 # %%
-isinstance(distance3, Distance)
+isinstance(distance2, Distance)
 # %%
-distance3.km
+distance2.km = 150
+# %%
+distance2.km
 # %%
