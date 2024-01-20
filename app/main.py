@@ -34,6 +34,20 @@ class Distance:
         else:
             raise f"Gosh,- relax, drink coffee"
         return self
+    
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Distance(round(self.km / other,2))
+        else:
+            raise f"Division error - math is your pain"
+    
+    def __lt__(self, other):
+        if isinstance(other, Distance):
+            return self.km < other.km
+        elif isinstance(other, (int, float)):
+            return self.km < other
+        else: 
+            return NotImplemented
 
 
         
@@ -42,10 +56,8 @@ class Distance:
 
 
 # %%
-distance1 = Distance(20)
+distance = Distance(50)
+
 # %%
-distance2 = distance1 * 5  
+distance < Distance(60)
 # %%
-distance2.km
-# %%
-isinstance(distance2, Distance)
