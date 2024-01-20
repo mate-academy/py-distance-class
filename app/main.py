@@ -25,6 +25,15 @@ class Distance:
         else:
             raise f"Gosh,- relax, drink coffee"
         return self
+    
+    def __mul__(self, other):
+        if isinstance(other, Distance):
+            self.km *= other.km
+        elif isinstance(other, int):
+            self.km *= other
+        else:
+            raise f"Gosh,- relax, drink coffee"
+        return self
 
 
         
@@ -34,9 +43,9 @@ class Distance:
 
 # %%
 distance1 = Distance(20)
-distance2 = Distance(30)
 # %%
-distance1 += distance2 
+distance2 = distance1 * 5  
 # %%
-distance1.km
+distance2.km
 # %%
+isinstance(distance2, Distance)
