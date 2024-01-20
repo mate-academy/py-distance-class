@@ -8,13 +8,23 @@ class Distance:
     
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
+    
+    def __add__(self, other):
+        return Distance(self.km + other.km)
+
+
+
 
     
 
 # %%
-distance = Distance(20)
+distance1 = Distance(20)
+distance2 = Distance(30)
+distance3 = distance1 + distance2  
 
 
-
-repr(distance)
+# %%
+isinstance(distance3, Distance)
+# %%
+distance3.km
 # %%
