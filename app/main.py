@@ -1,6 +1,6 @@
 from __future__ import annotations
-from typing import Any
 from functools import total_ordering
+from typing import Any
 
 
 @total_ordering
@@ -10,7 +10,7 @@ class Distance:
         self.km = km
 
     @staticmethod
-    def check_distance(other: Any) -> int | float:
+    def fetch_distance_metric(other: Any) -> int | float:
         if isinstance(other, Distance):
             return other.km
         return other
@@ -22,10 +22,10 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: Any) -> Distance:
-        return Distance(self.km + self.check_distance(other))
+        return Distance(self.km + self.fetch_distance_metric(other))
 
     def __iadd__(self, other: Any) -> Distance:
-        self.km += self.check_distance(other)
+        self.km += self.fetch_distance_metric(other)
         return self
 
     def __mul__(self, times: int) -> Distance:
@@ -34,22 +34,8 @@ class Distance:
     def __truediv__(self, divisor: int) -> Distance:
         return Distance(round(self.km / divisor, 2))
 
-    def __lt__(self, other: Any) -> bool:
-        other_km = self.check_distance(other)
-        return self.km < other_km
-
-    def __gt__(self, other: Any) -> bool:
-        other_km = self.check_distance(other)
-        return self.km > other_km
-
     def __eq__(self, other: Any) -> bool:
-        other_km = self.check_distance(other)
-        return self.km == other_km
+        return self.km == self.fetch_distance_metric(other)
 
-    def __le__(self, other: Any) -> bool:
-        other_km = self.check_distance(other)
-        return self.km <= other_km
-
-    def __ge__(self, other: Any) -> bool:
-        other_km = self.check_distance(other)
-        return self.km >= other_km
+    def __lt__(self, other: Any) -> bool:
+        return self.km < self.fetch_distance_metric(other)
