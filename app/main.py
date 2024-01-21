@@ -1,4 +1,4 @@
-from __future__ import  annotations
+from __future__ import annotations
 
 
 class Distance:
@@ -26,7 +26,7 @@ class Distance:
             km=result
         )
 
-    def funct_for_mult_div(self, other, decimal) -> Distance:
+    def funct_for_mult_div(self, other: int, decimal: str) -> Distance:
         result = 0
         if decimal == "*":
             result = self.km * other
@@ -78,17 +78,17 @@ class Distance:
     def __truediv__(self, other: int) -> Distance:
         return self.funct_for_mult_div(other, "/")
 
-    def __lt__(self, other) -> bool:
+    def __lt__(self, other: Distance | int) -> bool:
         return self.func_for_leveling(other, "<")
 
-    def __le__(self, other) -> bool:
+    def __le__(self, other: Distance | int) -> bool:
         return self.func_for_leveling(other, "<=")
 
-    def __gt__(self, other) -> bool:
+    def __gt__(self, other: Distance | int) -> bool:
         return self.func_for_leveling(other, ">")
 
-    def __ge__(self, other) -> bool:
+    def __ge__(self, other: Distance | int) -> bool:
         return self.func_for_leveling(other, ">=")
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: Distance | int) -> bool:
         return self.func_for_leveling(other, "==")
