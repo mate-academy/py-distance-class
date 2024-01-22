@@ -45,4 +45,3 @@ class Distance:
         if Distance.distance(other):
             return self.km == other.km
         return self.km == other
-
