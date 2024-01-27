@@ -14,26 +14,22 @@ class Distance:
     def __add__(self, new_dist: Distance | int | float) -> Distance:
         if isinstance(new_dist, (int, float)):
             new_distance = new_dist
-        elif isinstance(new_dist, Distance):
+        else:
             new_distance = new_dist.km
         return Distance(self.km + new_distance)
 
     def __iadd__(self, new_dist: Distance | int | float) -> Distance:
         if isinstance(new_dist, Distance):
             self.km += new_dist.km
-        elif isinstance(new_dist, (int, float)):
+        else:
             self.km += new_dist
         return self
 
     def __mul__(self, multiplier: Distance | int | float) -> Distance:
-        if isinstance(multiplier, Distance):
-            raise TypeError("not for Distance data type")
-        elif isinstance(multiplier, (int, float)):
-            return Distance(self.km * multiplier)
+        return Distance(self.km * multiplier)
 
     def __truediv__(self, div: int | float) -> Distance:
-        if isinstance(div, (int, float)) and div != 0:
-            return Distance(round(self.km / div, 2))
+        return Distance(round(self.km / div, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
