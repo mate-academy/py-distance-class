@@ -12,7 +12,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance) -> Distance:
+    def __add__(self, other: (int, float)) -> Distance:
         if isinstance(other, type(self)):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
@@ -26,11 +26,11 @@ class Distance:
             self.km = self.km + other
             return self
 
-    def __mul__(self, other: Distance) -> int:
+    def __mul__(self, other: (int, float)) -> int:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
 
-    def __truediv__(self, other: Distance) -> int:
+    def __truediv__(self, other: (int, float)) -> int:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
 
