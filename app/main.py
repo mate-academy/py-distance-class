@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Distance:
     def __init__(self, km: int | float) -> None:
         self.km = km
@@ -8,7 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int | float) -> "Distance":
+    def __add__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
@@ -16,7 +19,7 @@ class Distance:
         else:
             return TypeError("Wrong type for addition")
 
-    def __iadd__(self, other: "int | float | Distance") -> "Distance":
+    def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -25,34 +28,34 @@ class Distance:
             raise TypeError("Wrong type for inplace addition")
         return self
 
-    def __mul__(self, other: "int | float | Distance") -> "Distance":
+    def __mul__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         else:
             raise TypeError("Wrong type for multiplication")
 
-    def __truediv__(self, other: "int | float | Distance") -> "Distance":
+    def __truediv__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         else:
             raise TypeError("Unsupported type for division")
 
-    def __lt__(self, other: "int | float | Distance") -> "Distance":
+    def __lt__(self, other: int | float | Distance) -> Distance:
         other_km = other.km if isinstance(other, Distance) else other
         return self.km < other_km
 
-    def __gt__(self, other: "int | float | Distance") -> "Distance":
+    def __gt__(self, other: int | float | Distance) -> Distance:
         other_km = other.km if isinstance(other, Distance) else other
         return self.km > other_km
 
-    def __eq__(self, other: "int | float | Distance") -> "Distance":
+    def __eq__(self, other: int | float | Distance) -> Distance:
         other_km = other.km if isinstance(other, Distance) else other
         return self.km == other_km
 
-    def __le__(self, other: "int | float | Distance") -> "Distance":
+    def __le__(self, other: int | float | Distance) -> Distance:
         other_km = other.km if isinstance(other, Distance) else other
         return self.km <= other_km
 
-    def __ge__(self, other: "int | float | Distance") -> "Distance":
+    def __ge__(self, other: int | float | Distance) -> Distance:
         other_km = other.km if isinstance(other, Distance) else other
         return self.km >= other_km
