@@ -1,5 +1,4 @@
-from typing import Union
-
+from __future__ import annotations
 
 class Distance:
 
