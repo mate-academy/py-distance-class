@@ -34,3 +34,12 @@ class Distance:
 
     def __lt__(self, other: int | float | Distance) -> bool:
         return self.km < float(other)
+
+    def __gt__(self, other: int | float | Distance) -> bool:
+        return self.km > float(other)
+
+    def __le__(self, other: int | float | Distance) -> bool:
+        return self.km <= float(other)
+
+    def __ge__(self, other: int | float | Distance) -> bool:
+        return self.km >= float(other)
