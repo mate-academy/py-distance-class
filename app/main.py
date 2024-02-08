@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -11,14 +11,10 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance) -> Distance:
+    def __add__(self, other: Distance | int | float) -> Distance:
 
-        # if isinstance(other, Distance):
-        #     self.km += other.km
-        #
-        # else:
-        #     self.km += other
         value = self.km
+
         if isinstance(other, Distance):
             value += other.km
 
@@ -27,7 +23,7 @@ class Distance:
 
         return Distance(value)
 
-    def __iadd__(self, other: Distance) -> Distance:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
 
         if isinstance(other, Distance):
             self.km += other.km
@@ -37,16 +33,12 @@ class Distance:
 
         return self
 
-    def __mul__(self, other: Distance) -> Distance:
-        # self.km *= other
-        # return Distance(self.km)
+    def __mul__(self, other: Distance | int | float) -> Distance:
         value = self.km
         value *= other
         return Distance(value)
 
-    def __truediv__(self, other: Distance) -> Distance:
-        # self.km /= other
-        # return Distance(round(self.km, 2))
+    def __truediv__(self, other: Distance | int | float) -> Distance:
         value = self.km
         value /= other
         return Distance(round(value, 2))
@@ -54,14 +46,14 @@ class Distance:
     def __eq__(self, other: float) -> bool:
         return self.km == other
 
-    def __lt__(self, other: float) -> bool:
+    def __lt__(self, other: int | float) -> bool:
         return self.km < other
 
-    def __gt__(self, other: float) -> bool:
+    def __gt__(self, other: int | float) -> bool:
         return self.km > other
 
-    def __le__(self, other: float) -> bool:
+    def __le__(self, other: int | float) -> bool:
         return self.km <= other
 
-    def __ge__(self, other: float) -> bool:
+    def __ge__(self, other: int | float) -> bool:
         return self.km >= other
