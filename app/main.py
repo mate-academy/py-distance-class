@@ -6,8 +6,8 @@ from functools import total_ordering
 def to_float(other: float | int | Distance) -> float | int | Distance:
     if isinstance(other, Distance):
         return other.km
-    else:
-        return other
+
+    return other
 
 
 @total_ordering
