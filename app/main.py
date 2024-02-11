@@ -32,17 +32,17 @@ class Distance:
     def __itruediv__(self, other: int | float) -> Distance:
         return Distance(self.km / other)
 
-    def __lt__(self, other: int | float) -> bool:
+    def __lt__(self, other: int | float | Distance) -> bool:
         return self.km < other
 
-    def __gt__(self, other: int | float) -> bool:
+    def __gt__(self, other: int | float | Distance) -> bool:
         return self.km > other
 
-    def __eq__(self, other: int | float) -> bool:
+    def __eq__(self, other: int | float | Distance) -> bool:
         return self.km == other
 
-    def __le__(self, other: int | float) -> bool:
+    def __le__(self, other: int | float | Distance) -> bool:
         return self.km <= other
 
-    def __ge__(self, other: int | float) -> bool:
+    def __ge__(self, other: int | float | Distance) -> bool:
         return self.km >= other
