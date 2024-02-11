@@ -11,6 +11,9 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
+    def _compare_distances(self, other: Distance, operation: callable) -> bool:
+        return operation(self.km, other.km)
+
     def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return Distance(km=self.km + other.km)
@@ -31,25 +34,28 @@ class Distance:
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            return self.km < other.km
+            return self._compare_distances(other, lambda x, y: x < y)
         return self.km < other
 
     def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            return self.km > other.km
+            return self._compare_distances(other, lambda x, y: x > y)
         return self.km > other
 
     def __eq__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            return self.km == other.km
+            return self._compare_distances(other, lambda x, y: x == y)
         return self.km == other
+
+    def __ne__(self, other: Distance | int | float) -> bool:
+        return not self.__eq__(other)
 
     def __le__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            return self.km <= other.km
+            return self._compare_distances(other, lambda x, y: x <= y)
         return self.km <= other
 
     def __ge__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            return self.km >= other.km
+            return self._compare_distances(other, lambda x, y: x >= y)
         return self.km >= other
