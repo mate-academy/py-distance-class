@@ -5,11 +5,11 @@ class Distance:
     def __init__(self, km: int | float) -> None:
         self.km = km
 
-    @staticmethod
+    @classmethod
     def class_or_number(
-            other: int | float | Distance
+            cls, other: int | float | Distance
     ) -> int | float | Distance:
-        return other.km if isinstance(other, Distance) else other
+        return other.km if isinstance(other, cls) else other
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
