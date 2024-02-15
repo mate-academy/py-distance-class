@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     @staticmethod
@@ -28,8 +28,6 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: Distance | float | int) -> Distance:
-        self.km / Distance.return_number(other)
-        print(Distance(self.km / other))
         return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: Distance | float | int) -> bool:
