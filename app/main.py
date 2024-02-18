@@ -30,7 +30,7 @@ class Distance:
         return Distance(self.km * other)
 
     def __itruediv__(self, other: int | float) -> Distance:
-        return Distance(self.km / other)
+        return Distance(self.km / other.km)
 
     def __lt__(self, other: int | float | Distance) -> bool:
         return self.km < other
