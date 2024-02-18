@@ -63,16 +63,3 @@ class Distance:
             return self.km >= other.km
         elif isinstance(other, int | float):
             return self.km >= other
-# __lt__, __gt__, __eq__, __le__, __ge__
-    # distance = Distance(50)
-    # distance < Distance(60)  # True  # distance.km < 60 == True
-    # distance > Distance(120)  # False
-    # distance == Distance(100)  # False
-    # distance <= Distance(49)  # False
-    # distance >= Distance(50)  # True
-    #
-    # distance < 60  # True  # distance.km < 60 == True
-    # distance > 120  # False
-    # distance == 100  # False
-    # distance <= 49  # False
-    # distance >= 50  # True
