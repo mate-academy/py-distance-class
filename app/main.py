@@ -30,9 +30,13 @@ class Distance:
         return Distance(self.km * other)
 
     def __itruediv__(self, other: int | float) -> Distance:
-        return Distance(self.km / other.km)
+        return Distance(self.km / other)
 
     def __lt__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
+        if not isinstance(other,(int, float)):
+            raise TypeError("Error")
         return self.km < other
 
     def __gt__(self, other: int | float | Distance) -> bool:
