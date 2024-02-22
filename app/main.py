@@ -35,18 +35,38 @@ class Distance:
     def __lt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        if not isinstance(other,(int, float)):
+        if not isinstance(other, (int, float)):
             raise TypeError("Error")
         return self.km < other
 
     def __gt__(self, other: int | float | Distance) -> bool:
-        return self.km > other
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
+            return self.km > other
+        else:
+            raise TypeError("Error")
 
     def __eq__(self, other: int | float | Distance) -> bool:
-        return self.km == other
+        if isinstance(other, Distance):
+            return self.km == other.km
+        elif isinstance(other, (int, float)):
+            return self.km == other
+        else:
+            raise TypeError("Error")
 
     def __le__(self, other: int | float | Distance) -> bool:
-        return self.km <= other
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+        else:
+            raise TypeError("Error")
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        return self.km >= other
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
+            return self.km >= other
+        else:
+            raise TypeError("Error")
