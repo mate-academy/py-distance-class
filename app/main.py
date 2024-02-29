@@ -20,7 +20,7 @@ class Distance:
             raise TypeError("Unsupported operand type(s) "
                             "for +: 'Distance' and '{}'".format(type(other)))
 
-    def __iadd__(self, other: int | float) -> callable:
+    def __iadd__(self, other: int | float | Distance) -> callable:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -36,7 +36,7 @@ class Distance:
     def __truediv__(self, scalar: int | float) -> callable:
         return Distance(round(self.km / scalar, 2))
 
-    def __lt__(self, other: int | float) -> callable:
+    def __lt__(self, other: int | float | Distance) -> callable:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
@@ -45,7 +45,7 @@ class Distance:
             raise TypeError("Unsupported operand type(s) "
                             "for <: 'Distance' and '{}'".format(type(other)))
 
-    def __gt__(self, other: int | float) -> callable:
+    def __gt__(self, other: int | float | Distance) -> callable:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
@@ -54,7 +54,7 @@ class Distance:
             raise TypeError("Unsupported operand type(s) "
                             "for >: 'Distance' and '{}'".format(type(other)))
 
-    def __eq__(self, other: int | float) -> int | str:
+    def __eq__(self, other: int | float | Distance) -> int | str:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
@@ -63,7 +63,7 @@ class Distance:
             raise TypeError("Unsupported operand type(s) "
                             "for ==: 'Distance' and '{}'".format(type(other)))
 
-    def __le__(self, other: int | float) -> int | float | str:
+    def __le__(self, other: int | float | Distance) -> int | float | str:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
@@ -72,7 +72,7 @@ class Distance:
             raise TypeError("Unsupported operand type(s) "
                             "for <=: 'Distance' and '{}'".format(type(other)))
 
-    def __ge__(self, other: int | float) -> callable:
+    def __ge__(self, other: int | float | Distance) -> callable:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
