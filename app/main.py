@@ -42,4 +42,3 @@ class Distance:
 
     def __ge__(self, comparer: Distance | int) -> bool:
         return not self.km < getattr(comparer, "km", comparer)
-
