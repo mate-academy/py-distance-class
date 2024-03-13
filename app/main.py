@@ -8,7 +8,7 @@ class Distance:
         self.km = km
 
     @staticmethod
-    def united_standard(default: Distance | int | float) -> int:
+    def united_standard(default: Distance | int | float) -> Any:
         return default.km if isinstance(default, Distance) else default
 
     def __str__(self) -> str:
