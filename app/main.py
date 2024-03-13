@@ -16,7 +16,7 @@ class Distance:
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
-    def __iadd__(self, other: Union[int, float]) -> "object":
+    def __iadd__(self, other: Union[int, float]) -> object:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
