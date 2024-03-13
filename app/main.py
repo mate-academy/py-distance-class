@@ -2,10 +2,10 @@ class Distance:
     def __init__(self: "Distance", km: int) -> None:
         self.km = km
 
-    def __str__(self: 'Distance') -> str:
+    def __str__(self: "Distance") -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __repr__(self: 'Distance') -> str:
+    def __repr__(self: "Distance") -> str:
         return f"Distance(km={self.km})"
 
     def __add__(self: "Distance", other: "Distance") -> "Distance":
