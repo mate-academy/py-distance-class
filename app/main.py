@@ -8,7 +8,8 @@ class Distance:
     def __repr__(self: "Distance") -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self: "Distance", other: "Distance" | int | float) -> "Distance":
+    def __add__(self: "Distance",
+                other: "Distance" | int | float) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
@@ -16,7 +17,8 @@ class Distance:
         else:
             raise TypeError("Unsupported operand type for +")
 
-    def __iadd__(self: "Distance", other: "Distance" | int | float) -> "Distance":
+    def __iadd__(self: "Distance",
+                 other: "Distance" | int | float) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -25,13 +27,15 @@ class Distance:
             raise TypeError("Unsupported operand type for +=")
         return self
 
-    def __mul__(self: "Distance", other: "Distance" | int | float) -> "Distance":
+    def __mul__(self: "Distance",
+                other: "Distance" | int | float) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         else:
             raise TypeError("Unsupported operand type for *")
 
-    def __truediv__(self: "Distance", other: "Distance" | int | float) -> "Distance":
+    def __truediv__(self: "Distance",
+                    other: "Distance" | int | float) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         else:
