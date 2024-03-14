@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Distance:
     def __init__(self: "Distance", km: int) -> None:
         self.km = km
