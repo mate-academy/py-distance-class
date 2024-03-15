@@ -19,11 +19,13 @@ class Distance:
 
         return Distance(self.km + value)
 
-    def __iadd__(self, value: Union[int, Distance]) -> Distance:
+    def __iadd__(self, value: Union[float, Distance]) -> Distance:
         if isinstance(value, Distance):
-            return Distance(self.km + value.km)
+            self.km = self.km + value.km
+            return self
 
-        return Distance(self.km + value)
+        self.km = self.km + value
+        return self
 
     def __mul__(self, value: int) -> Distance:
         return Distance(self.km * value)
