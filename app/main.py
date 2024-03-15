@@ -1,9 +1,7 @@
 from __future__ import annotations
-from functools import total_ordering
 from typing import Union
 
 
-@total_ordering
 class Distance:
     def __init__(self, km: int | float) -> None:
         self.km = km
@@ -14,17 +12,18 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union[int, float, Distance]) -> Distance:
+    @staticmethod
+    def type_checking(other: Union[int, float, Distance]) -> int | float:
         if isinstance(other, Distance):
-            return Distance(self.km + other.km)
+            return other.km
         if isinstance(other, (int, float)):
-            return Distance(self.km + other)
+            return other
+
+    def __add__(self, other: Union[int, float, Distance]) -> Distance:
+        return Distance(self.km + self.type_checking(other))
 
     def __iadd__(self, other: Union[int, float, Distance]) -> Distance:
-        if isinstance(other, Distance):
-            self.km += other.km
-        if isinstance(other, (int, float)):
-            self.km += other
+        self.km += self.type_checking(other)
         return self
 
     def __mul__(self, other: Union[int, float, Distance]) -> Distance:
@@ -35,14 +34,17 @@ class Distance:
         if isinstance(other, (float, int)):
             return Distance(round(self.km / other, 2))
 
-    def __eq__(self, other: Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km == other.km
-        if isinstance(other, (int, float)):
-            return self.km == other
+    def __eq__(self, other: Union[int, float, Distance]) -> bool:
+        return self.km == self.type_checking(other)
 
-    def __gt__(self, other: Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        if isinstance(other, (int, float)):
-            return self.km > other
+    def __gt__(self, other: Union[int, float, Distance]) -> bool:
+        return self.km > self.type_checking(other)
+
+    def __lt__(self, other: Union[int, float, Distance]) -> bool:
+        return self.km < self.type_checking(other)
+
+    def __ge__(self, other: Union[int, float, Distance]) -> bool:
+        return self.__gt__(other) or self.__eq__(other)
+
+    def __le__(self, other: Union[int, float, Distance]) -> bool:
+        return self.__lt__(other) or self.__eq__(other)
