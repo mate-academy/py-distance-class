@@ -1,9 +1,10 @@
 from __future__ import division
+from typing import Union
 
 
 class Distance:
 
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: int) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -12,13 +13,13 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, value: any) -> any:
+    def __add__(self, value: Union[int, object]) -> object:
         if isinstance(value, Distance):
             return Distance(self.km + value.km)
 
         return Distance(self.km + value)
 
-    def __iadd__(self, value: any) -> any:
+    def __iadd__(self, value: Union[int, object]) -> object:
         if isinstance(value, Distance):
             self.km = self.km + value.km
             return self
@@ -26,39 +27,39 @@ class Distance:
         self.km = self.km + value
         return self
 
-    def __mul__(self, value: any) -> any:
+    def __mul__(self, value: int) -> object:
         self.km = self.km * value
         return self
 
-    def __truediv__(self, value: any) -> any:
+    def __truediv__(self, value: int) -> object:
         self.km = round(self.km / value, 2)
         return self
 
-    def __lt__(self, value: any) -> any:
+    def __lt__(self, value: Union[int, object]) -> bool:
         if isinstance(value, Distance):
             return self.km < value.km
 
         return self.km < value
 
-    def __gt__(self, value: any) -> any:
+    def __gt__(self, value: Union[int, object]) -> bool:
         if isinstance(value, Distance):
             return self.km > value.km
 
         return self.km > value
 
-    def __eq__(self, value: any) -> any:
+    def __eq__(self, value: Union[int, object]) -> bool:
         if isinstance(value, Distance):
             return self.km == value.km
 
         return self.km == value
 
-    def __le__(self, value: any) -> any:
+    def __le__(self, value: Union[int, object]) -> bool:
         if isinstance(value, Distance):
             return self.km <= value.km
 
         return self.km <= value
 
-    def __ge__(self, value: any) -> any:
+    def __ge__(self, value: Union[int, object]) -> bool:
         if isinstance(value, Distance):
             return self.km >= value.km
 
