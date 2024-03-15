@@ -4,7 +4,7 @@ from typing import Union
 
 class Distance:
 
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -21,19 +21,15 @@ class Distance:
 
     def __iadd__(self, value: Union[int, Distance]) -> Distance:
         if isinstance(value, Distance):
-            self.km = self.km + value.km
-            return self
+            return Distance(self.km + value.km)
 
-        self.km = self.km + value
-        return self
+        return Distance(self.km + value)
 
     def __mul__(self, value: int) -> Distance:
-        self.km = self.km * value
-        return self
+        return Distance(self.km * value)
 
     def __truediv__(self, value: int) -> Distance:
-        self.km = round(self.km / value, 2)
-        return self
+        return Distance(round(self.km / value, 2))
 
     def __lt__(self, value: Union[int, Distance]) -> bool:
         if isinstance(value, Distance):
