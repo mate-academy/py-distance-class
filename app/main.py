@@ -1,4 +1,4 @@
-from typing import Union
+from __future__ import annotations
 
 
 class Distance:
@@ -11,9 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(
-        self, other: Union["Distance", int, float]
-    ) -> Union["Distance", TypeError]:
+    def __add__(self, other: Distance | int | float) -> Distance | TypeError:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         if isinstance(other, (int, float)):
@@ -25,8 +23,7 @@ class Distance:
             f"But received {type(other)}"
         )
 
-    def __iadd__(self, other: Union["Distance", int, float]) -> (
-            Union["Distance", TypeError]):
+    def __iadd__(self, other: Distance | int | float) -> Distance | TypeError:
         if isinstance(other, Distance):
             self.km += other.km
             return self
@@ -40,7 +37,7 @@ class Distance:
             f"But received {type(other)}"
         )
 
-    def __mul__(self, other: int | float) -> Union["Distance", TypeError]:
+    def __mul__(self, other: int | float) -> Distance | TypeError:
         if isinstance(other, (int, float)):
             other = Distance(other)
             return Distance(self.km * other.km)
@@ -51,7 +48,7 @@ class Distance:
             f"But received {type(other)}"
         )
 
-    def __truediv__(self, other: int | float) -> Union["Distance", TypeError]:
+    def __truediv__(self, other: int | float) -> Distance | TypeError:
         if isinstance(other, (int, float)):
             other = Distance(other)
             return Distance(round(self.km / other.km, 2))
