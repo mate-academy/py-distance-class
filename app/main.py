@@ -58,44 +58,41 @@ class Distance:
             f"But received {type(other)}"
         )
 
-    def __lt__(self, other: int | float) -> bool | TypeError:
+    def __lt__(self, other: int | float | Distance) -> bool | TypeError:
         if isinstance(other, Distance):
             return self.km < other.km
         if isinstance(other, (int, float)):
             other = Distance(other)
             return self.km < other.km
         raise TypeError(
-            f"unsupported type for __lt__ method. <class 'float'> "
-            f"or <class 'int'> were expected. "
-            f"But received {type(other)}"
+            f"unsupported type. 'Distance', <class 'float'> "
+            f"or <class 'int'> were expected. But received {type(other)}"
         )
 
-    def __gt__(self, other: int | float) -> bool | TypeError:
+    def __gt__(self, other: int | float | Distance) -> bool | TypeError:
         if isinstance(other, Distance):
             return self.km > other.km
         if isinstance(other, (int, float)):
             other = Distance(other)
             return self.km > other.km
         raise TypeError(
-            f"unsupported type for __gt__ method. <class 'float'> "
-            f"or <class 'int'> were expected. "
-            f"But received {type(other)}"
+            f"unsupported type. 'Distance', <class 'float'> "
+            f"or <class 'int'> were expected. But received {type(other)}"
         )
 
-    def __eq__(self, other: int | float) -> bool | TypeError:
+    def __eq__(self, other: int | float | Distance) -> bool | TypeError:
         if isinstance(other, Distance):
             return self.km == other.km
         if isinstance(other, (int, float)):
             other = Distance(other)
             return self.km == other.km
         raise TypeError(
-            f"unsupported type for __eq__ method. <class 'float'> "
-            f"or <class 'int'> were expected. "
-            f"But received {type(other)}"
+            f"unsupported type. 'Distance', <class 'float'> "
+            f"or <class 'int'> were expected. But received {type(other)}"
         )
 
-    def __le__(self, other: int | float | Distance) -> bool | TypeError:
+    def __le__(self, other: int | float) -> bool | TypeError:
         return self.__eq__(other) or self.__lt__(other)
 
-    def __ge__(self, other: int | float | Distance) -> bool | TypeError:
+    def __ge__(self, other: int | float) -> bool | TypeError:
         return self.__eq__(other) or self.__gt__(other)
