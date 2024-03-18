@@ -92,7 +92,7 @@ class Distance:
         )
 
     def __le__(self, other: int | float) -> bool | TypeError:
-        return self.__eq__(other) or self.__lt__(other)
+        return not self > other
 
     def __ge__(self, other: int | float) -> bool | TypeError:
-        return self.__eq__(other) or self.__gt__(other)
+        return not self < other
