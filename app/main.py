@@ -1,5 +1,5 @@
 from __future__ import annotations
-import math
+import math as m
 
 
 class Distance:
@@ -42,8 +42,8 @@ class Distance:
 
     def __eq__(self, other: float | int | Distance) -> bool:
         if isinstance(other, Distance):
-            return math.isclose(self.km, other.km, rel_tol=1e-9)
-        return math.isclose(self.km, other, rel_tol=1e-9)
+            return m.isclose(self.km, other.km, rel_tol=1e-9)
+        return m.isclose(self.km, other, rel_tol=1e-9)
 
     def __le__(self, other: float | int | Distance) -> bool:
         if isinstance(other, Distance):
