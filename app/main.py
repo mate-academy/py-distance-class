@@ -94,26 +94,8 @@ class Distance:
             f"But received {type(other)}"
         )
 
-    def __le__(self, other: int | float) -> bool | TypeError:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        if isinstance(other, (int, float)):
-            other = Distance(other)
-            return self.km <= other.km
-        raise TypeError(
-            f"unsupported type for __le__ method. <class 'float'> "
-            f"or <class 'int'> were expected. "
-            f"But received {type(other)}"
-        )
+    def __le__(self, other: int | float | Distance) -> bool | TypeError:
+        return self.__eq__(other) or self.__lt__(other)
 
-    def __ge__(self, other: int | float) -> bool | TypeError:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        if isinstance(other, (int, float)):
-            other = Distance(other)
-            return self.km >= other.km
-        raise TypeError(
-            f"unsupported type for __ge__ method. <class 'float'> "
-            f"or <class 'int'> were expected. "
-            f"But received {type(other)}"
-        )
+    def __ge__(self, other: int | float | Distance) -> bool | TypeError:
+        return self.__eq__(other) or self.__gt__(other)
