@@ -1,4 +1,5 @@
 from typing import Union
+import math
 
 
 class Distance:
@@ -11,33 +12,29 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union[int, float, "Distance"]) -> "Distance":
+    def __add__(self, other: Union[int, "Distance"]) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
-            return Distance(self.km + other)
+        return Distance(self.km + other)
 
     def __iadd__(self, other: Union[int, float, "Distance"]) -> "Distance":
         if isinstance(other, Distance):
-            self.km += other.km
-        else:
-            self.km += other
+            other = other.km
+        self.km += other
         return self
 
-    def __mul__(self, other: Union[int, float, "Distance"]) -> "Distance":
+    def __mul__(self, other: int) -> "Distance":
         return Distance(self.km * other)
 
-    def __truediv__(self, other: Union[int, float, "Distance"]) -> "Distance":
-        if other == 0:
-            raise ZeroDivisionError
+    def __truediv__(self, other: int) -> "Distance":
         return Distance(round(self.km / other, 2))
 
-    def __eq__(self, other: Union[int, float, "Distance"]) -> bool:
+    def __eq__(self, other: Union[int, "Distance"]) -> bool:
         if isinstance(other, Distance):
-            return self.km == other.km
-        return self.km == other
+            return math.isclose(self.km, other.km)
+        return math.isclose(self.km, other)
 
-    def __gt__(self, other: Union[int, float, "Distance"]) -> bool:
+    def __gt__(self, other: Union[int, "Distance"]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         return self.km > other
