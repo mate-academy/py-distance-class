@@ -1,4 +1,5 @@
 from __future__ import annotations
+from math import isclose
 
 
 class Distance:
@@ -33,7 +34,7 @@ class Distance:
         return self.km > getattr(other, "km", other)
 
     def __eq__(self, other: float | int) -> bool:
-        return self.km == getattr(other, "km", other)
+        return isclose(self.km, getattr(other, "km", other))
 
     def __le__(self, other: float | int) -> bool:
         return self.km <= getattr(other, "km", other)
