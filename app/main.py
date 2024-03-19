@@ -4,7 +4,14 @@ from __future__ import annotations
 class Distance:
     def __init__(self, km: int | float) -> None:
         self.km = km
-        self.real = self.km
+
+    @property
+    def real(self) -> int | float:
+        return self.km
+
+    @real.setter
+    def real(self, value: int | float) -> None:
+        self.km = value
 
     def __str__(self) -> str:
         return f"Distance: {self.real} kilometers."
