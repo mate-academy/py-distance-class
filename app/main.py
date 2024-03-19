@@ -1,9 +1,13 @@
 from __future__ import annotations
-import math as m
+import math
 
 
 class Distance:
     def __init__(self, km: int | float) -> None:
+        if not isinstance(km, (int, float)):
+            raise TypeError("km must be an integer or float")
+        if km < 0:
+            raise ValueError("Distance cannot be negative")
         self.km = km
 
     def __str__(self) -> str:
@@ -13,15 +17,11 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: float | int | Distance) -> Distance:
-        if isinstance(other, Distance):
-            return Distance(self.km + other.km)
-        return Distance(self.km + other)
+        return Distance(self.km + (other.km
+                                   if isinstance(other, Distance) else other))
 
     def __iadd__(self, other: float | int | Distance) -> Distance:
-        if isinstance(other, Distance):
-            self.km += other.km
-        else:
-            self.km += other
+        self.km += other.km if isinstance(other, Distance) else other
         return self
 
     def __mul__(self, other: int | float) -> Distance:
@@ -31,26 +31,19 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: float | int | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km < other.km
-        return self.km < other
+        return self.km < (other.km if isinstance(other, Distance) else other)
 
     def __gt__(self, other: float | int | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        return self.km > other
+        return self.km > (other.km if isinstance(other, Distance) else other)
 
     def __eq__(self, other: float | int | Distance) -> bool:
-        if isinstance(other, Distance):
-            return m.isclose(self.km, other.km, rel_tol=1e-9)
-        return m.isclose(self.km, other, rel_tol=1e-9)
+        return math.isclose(self.km,
+                            (other.km if isinstance(other, Distance)
+                             else other),
+                            rel_tol=1e-9)
 
     def __le__(self, other: float | int | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        return self.km <= other
+        return self.km <= (other.km if isinstance(other, Distance) else other)
 
     def __ge__(self, other: float | int | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        return self.km >= other
+        return self.km >= (other.km if isinstance(other, Distance) else other)
