@@ -14,7 +14,7 @@ class Distance:
 
     @km.setter
     def km(self, value: int | float) -> None:
-        if not isinstance(value, (int | float)):
+        if not isinstance(value, (int, float)):
             raise ValueError(
                 f"""Unsupported type. Expected float or int.
                 Got {type(value)} instead."""
