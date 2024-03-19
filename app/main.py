@@ -30,10 +30,10 @@ class Distance:
             )
         if isinstance(other, (int, float)):
             self.km += other
-            return self
         else:
             self.km += other.km
-            return self
+
+        return self
 
     def __mul__(self, other: int | float) -> Distance:
         if not isinstance(other, (int, float)):
