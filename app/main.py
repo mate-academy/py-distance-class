@@ -1,7 +1,9 @@
+import functools
 from typing import Callable, Any
 
 
 def validate_operand(func: Callable) -> Callable:
+    @functools.wraps(func)
     def wrapper(self: "Distance", other: ("Distance", int, float)) -> Any:
         if isinstance(other, Distance):
             return func(self, other.km)
