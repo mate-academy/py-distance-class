@@ -41,7 +41,7 @@ class Distance:
             return Distance(self.km * other)
 
     def __truediv__(self, other: Union[float, int]) -> Distance | None:
-        if isinstance(other, (Distance, int, float)):
+        if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Union[Distance, int, float]) -> bool | None:
@@ -61,5 +61,4 @@ class Distance:
             return self.km <= getattr(other, "km", other)
 
     def __ge__(self, other: Union[Distance, int, float]) -> bool | None:
-        if isinstance(other, (Distance, int, float)):
-            return self.km >= getattr(other, "km", other)
+        return not self.km < other
