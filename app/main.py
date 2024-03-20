@@ -56,7 +56,6 @@ class Distance:
     ) -> bool | TypeError:
         if isinstance(other, Distance):
             return comparison_operator(self.km, other.km)
-        elif isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return comparison_operator(self.km, other)
-        else:
-            raise TypeError("Unsupported type for comparison.")
+        raise TypeError("Unsupported type for comparison.")
