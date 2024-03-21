@@ -11,13 +11,12 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int | Distance | float) -> Distance | float | int:
+    def __add__(self, other: int | Distance) -> Distance | float | int:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
-    def __iadd__(self, other: int | Distance | float) -> (
-            Distance | float | int):
+    def __iadd__(self, other: int | Distance) -> Distance | float | int:
         if isinstance(other, Distance):
             self.km += other.km
             return self
@@ -25,22 +24,34 @@ class Distance:
         return self
 
     def __mul__(self, scalar: int | float) -> Distance | int | float:
-        return Distance(self.km * scalar)
+        if isinstance(scalar, (int, float)):
+            return Distance(self.km * scalar)
 
     def __truediv__(self, scalar: int | float) -> Distance | float:
-        return Distance(round(self.km / scalar, 2))
+        if isinstance(scalar, (int, float)):
+            return Distance(round(self.km / scalar, 2))
 
     def __lt__(self, other: int | Distance | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
         return self.km < other
 
     def __gt__(self, other: int | Distance | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km > other.km
         return self.km > other
 
     def __eq__(self, other: int | Distance | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
         return self.km == other
 
     def __le__(self, other: int | Distance | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
         return self.km <= other
 
     def __ge__(self, other: int | Distance | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
         return self.km >= other
