@@ -1,75 +1,75 @@
 class Distance:
-    def init(self, km: float) -> None:
-        self.km: float = km
+    def __init__(self, km: float) -> None:
+        self.km = km
 
-    def str(self) -> str:
+    def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def repr(self) -> str:
+    def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def add(self, other: int | float) -> 'Distance':
+    def __add__(self, other: int or float) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, int) or isinstance(other, float):
             return Distance(self.km + other)
         else:
             raise TypeError("Unsupported operand type(s) for +: "
-                            "'Distance' and '{}'".format(type(other).name))
+                            "'Distance' and '{}'".format(type(other).__name__))
 
-    def iadd(self, other: int | float) -> 'Distance':
+    def __iadd__(self, other: int or float) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, int) or isinstance(other, float):
             self.km += other
         else:
             raise TypeError("Unsupported operand type(s) for +=:"
-                            "'Distance' and '{}'".format(type(other).name))
+                            "'Distance' and '{}'".format(type(other).__name__))
         return self
 
-    def mul(self, other: int | float) -> 'Distance':
+    def __mul__(self, other: int or float) -> "Distance":
         if isinstance(other, int) or isinstance(other, float):
             return Distance(self.km * other)
         else:
             raise TypeError("Unsupported operand type(s) for *: "
-                            "'Distance' and '{}'".format(type(other).name))
+                            "'Distance' and '{}'".format(type(other).__name__))
 
-    def truediv(self, other: int | float) -> 'Distance':
+    def __truediv__(self, other: int or float) -> "Distance":
         if isinstance(other, int) or isinstance(other, float):
             return Distance(round(self.km / other, 2))
         else:
             raise TypeError("Unsupported operand type(s) for /: "
-                            "'Distance' and '{}'".format(type(other).name))
+                            "'Distance' and '{}'".format(type(other).__name__))
 
-    def lt(self, other: int | float) -> bool:
+    def __lt__(self, other: int or float) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, int) or isinstance(other, float):
             return self.km < other
         else:
             raise TypeError("Unsupported operand type(s) for <: "
-                            "'Distance' and '{}'".format(type(other).name))
+                            "'Distance' and '{}'".format(type(other).__name__))
 
-    def gt(self, other: int | float) -> bool:
+    def __gt__(self, other: int or float) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, int) or isinstance(other, float):
             return self.km > other
         else:
             raise TypeError("Unsupported operand type(s) for >: "
-                            "'Distance' and '{}'".format(type(other).name))
+                            "'Distance' and '{}'".format(type(other).__name__))
 
-    def eq(self, other: int | float) -> bool:
+    def __eq__(self, other: int or float) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, int) or isinstance(other, float):
             return self.km == other
         else:
             raise TypeError("Unsupported operand type(s) for ==: "
-                            "'Distance' and '{}'".format(type(other).name))
+                            "'Distance' and '{}'".format(type(other).__name__))
 
-    def le(self, other: int | float) -> bool:
+    def __le__(self, other: int or float) -> bool:
         return self.__lt__(other) or self.__eq__(other)
 
-    def ge(self, other: int | float) -> bool:
+    def __ge__(self, other: int or float) -> bool:
         return not self.__lt__(other)
