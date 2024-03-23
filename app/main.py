@@ -11,7 +11,7 @@ class Distance:
             other: Union[Distance, int, float],
             *numeric_types,
             distance: Type["Distance"] = None
-    ) -> Union[Distance, int, float]:
+    ) -> Union[Distance, int, float, None]:
         if numeric_types and not isinstance(other, (numeric_types, distance)):
             raise TypeError(
                 "Operator must be of a Distance instance or number"
