@@ -53,9 +53,3 @@ class Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
         return self.km >= other
-
-
-test1 = Distance(1)
-test2 = Distance(2)
-
-print(test1.__add__(5))
