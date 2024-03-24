@@ -41,17 +41,17 @@ class Distance:
         return Distance(self.km * self.validator(other, int, float))
 
     def __truediv__(self, other: Union[Distance, int, float]) -> "Distance":
-        result_km = round(self.km / other, 2)
-        return Distance(result_km)
+        result_km = self.km / self.validator(other, int, float)
+        return Distance(round(result_km, 2))
 
     def __lt__(self, other: Union[Distance, int, float]) -> bool:
-        return self.km < other
+        return self.km < self.validator(other, int, float, distance=Distance)
 
     def __gt__(self, other: Union[Distance, int, float]) -> bool:
-        return self.km > other
+        return self.km > self.validator(other, int, float, distance=Distance)
 
     def __eq__(self, other: Union[Distance, int, float]) -> bool:
-        return self.km == other
+        return self.km == self.validator(other, int, float, distance=Distance)
 
     def __le__(self, other: Union[Distance, int, float]) -> bool:
         return self.km <= self.validator(other, int, float, distance=Distance)
