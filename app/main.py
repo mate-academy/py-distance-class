@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: float):
+    def __init__(self, km: float) -> None:
         self.km: float = km
 
     def __str__(self) -> str:
