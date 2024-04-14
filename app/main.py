@@ -11,10 +11,9 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    @classmethod
-    def get_other(cls, other: Distance | int | float) \
-            -> Distance | int | float:
-        if isinstance(other, cls):
+    @staticmethod
+    def get_other(other: Distance | int | float) -> Distance | int | float:
+        if isinstance(other, Distance):
             return other.km
         return other
 
