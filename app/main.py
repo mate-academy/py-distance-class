@@ -12,13 +12,17 @@ class Distance:
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def operate(self, other: Union[int, "Distance"], operation: Callable) -> "Distance":
+    def operate(
+            self,
+            other: Union[int, "Distance"],
+            operation: Callable
+    ) -> "Distance":
         if isinstance(other, Distance):
             return Distance(km=operation(self.km, other.km))
         else:
             return Distance(km=operation(self.km, other))
 
-    def compare(self, other: Union[int, "Distance"], comparison) -> bool:
+    def compare(self, other: Union[int, "Distance"], comparison: Callable) -> bool:
         if isinstance(other, Distance):
             return comparison(self.km, other.km)
         else:
@@ -55,4 +59,3 @@ class Distance:
 
     def __ge__(self, other: Union[int, "Distance"]) -> bool:
         return self.compare(other, lambda x, y: x >= y)
-
