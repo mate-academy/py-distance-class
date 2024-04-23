@@ -22,7 +22,11 @@ class Distance:
         else:
             return Distance(km=operation(self.km, other))
 
-    def compare(self, other: Union[int, "Distance"], comparison: Callable) -> bool:
+    def compare(
+            self,
+            other: Union[int, "Distance"],
+            comparison: Callable
+    ) -> bool:
         if isinstance(other, Distance):
             return comparison(self.km, other.km)
         else:
