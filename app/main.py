@@ -6,10 +6,10 @@ class Distance:
         self.km = km
 
     def __str__(self) -> str:
-        return "Distance: {} kilometers.".format(self.km)
+        return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
-        return "Distance(km={})".format(self.km)
+        return f"Distance(km={self.km})"
 
     def __add__(self, other: Union[float, "Distance"]) -> "Distance":
         if isinstance(other, Distance):
@@ -24,14 +24,14 @@ class Distance:
         return self
 
     def __mul__(self, other: Union[float, int]) -> "Distance":
-        if isinstance(other, Distance):
-            return NotImplemented
-        return Distance(self.km * other)
+        if isinstance(other, (float, int)):
+            return Distance(self.km * other)
+        raise TypeError
 
     def __truediv__(self, other: Union[float, int]) -> "Distance":
-        if isinstance(other, Distance):
-            return NotImplemented
-        return Distance(round(self.km / other, 2))
+        if isinstance(other, (float, int)):
+            return Distance(round(self.km / other, 2))
+        raise TypeError
 
     def __lt__(self, other: Union[float, "Distance"]) -> bool:
         if isinstance(other, Distance):
