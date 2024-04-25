@@ -19,8 +19,7 @@ class Distance:
     ) -> "Distance":
         if isinstance(other, Distance):
             return Distance(km=operation(self.km, other.km))
-        else:
-            return Distance(km=operation(self.km, other))
+        return Distance(km=operation(self.km, other))
 
     def compare(
             self,
@@ -49,17 +48,20 @@ class Distance:
     def __truediv__(self, other: int) -> "Distance":
         return Distance(km=round(self.km / other, 2))
 
-    def __lt__(self, other: Union[int, "Distance"]) -> bool:
-        return self.compare(other, lambda x, y: x < y)
+    def __lt__(self, other: Union[int, float, "Distance"]) -> bool:
+        other_km = other.km if isinstance(other, Distance) else other
+        return self.km < other_km
 
-    def __gt__(self, other: Union[int, "Distance"]) -> bool:
-        return self.compare(other, lambda x, y: x > y)
+    def __gt__(self, other: Union[int, float, "Distance"]) -> bool:
+        other_km = other.km if isinstance(other, Distance) else other
+        return self.km > other_km
 
-    def __eq__(self, other: Union[int, "Distance"]) -> bool:
-        return self.compare(other, lambda x, y: x == y)
+    def __eq__(self, other: Union[int, float, "Distance"]) -> bool:
+        other_km = other.km if isinstance(other, Distance) else other
+        return self.km == other_km
 
     def __le__(self, other: Union[int, "Distance"]) -> bool:
-        return self.compare(other, lambda x, y: x <= y)
+        return not self.__gt__(other)
 
     def __ge__(self, other: Union[int, "Distance"]) -> bool:
-        return self.compare(other, lambda x, y: x >= y)
+        return not self.__lt__(other)
