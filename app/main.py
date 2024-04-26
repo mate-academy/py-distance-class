@@ -1,6 +1,5 @@
 from __future__ import annotations
 from typing import Callable
-from typing import Union
 
 
 class Distance:
