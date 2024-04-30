@@ -1,5 +1,8 @@
+from __future__ import division, annotations
+
+
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -38,10 +41,7 @@ class Distance:
             return False
 
     def __eq__(self, other: int) -> bool:
-        if self.km == other:
-            return True
-        else:
-            return False
+        return self.km == other
 
     def __le__(self, other: int) -> bool:
         if self.km <= other:
@@ -49,7 +49,7 @@ class Distance:
         else:
             return False
 
-    def __ge__(self, other: int) -> bool:
+    def __ge__(self, other: int | float | Distance) -> bool:
         if self.km >= other:
             return True
         else:
