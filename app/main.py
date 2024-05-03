@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import Callable
 
 
 class Distance:
@@ -12,17 +11,10 @@ class Distance:
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def operate(
-            self,
-            other: int | Distance,
-            operation: Callable
-    ) -> "Distance":
+    def __add__(self, other: int | "Distance") -> "Distance":
         if isinstance(other, Distance):
-            return Distance(km=operation(self.km, other.km))
-        return Distance(km=operation(self.km, other))
-
-    def __add__(self, other: int | Distance) -> "Distance":
-        return self.operate(other, lambda x, y: x + y)
+            return Distance(km=self.km + other.km)
+        return Distance(km=self.km + other)
 
     def __iadd__(self, other: int | Distance) -> "Distance":
         if isinstance(other, Distance):
