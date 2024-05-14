@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from typing import Union
 
 
@@ -30,13 +31,11 @@ class Distance:
         return self
 
     def __mul__(self, other: Union[int, float]) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
+        return Distance(self.km * other)
 
     def __truediv__(self, other: Union[int, float]) -> Distance:
-        if isinstance(other, (int, float)):
-            result = self.km / other
-            return Distance(round(result, 2))
+        result = self.km / other
+        return Distance(round(result, 2))
 
     def __lt__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, (Distance)):
