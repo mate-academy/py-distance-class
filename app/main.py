@@ -9,12 +9,10 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: ["Distance", float]) -> "Distance":
-        if isinstance(other, Distance):
-            distance3: float = self.km + other.km
-            return Distance(distance3)
-        elif isinstance(other, (int, float)):
-            distance3: float = self.km + other
-            return Distance(distance3)
+        new_distance: float = (self.km + (other.km
+                                          if isinstance(other, Distance)
+                                          else other))
+        return Distance(new_distance)
 
     def __iadd__(self, other: "Distance") -> "Distance":
         if isinstance(other, Distance):
@@ -34,10 +32,7 @@ class Distance:
             return Distance(distance2)
 
     def __lt__(self, other: ["Distance", float]) -> bool:
-        if isinstance(other, Distance):
-            return self.km < other.km
-        elif isinstance(other, (int, float)):
-            return self.km < other
+        return self.km < (other.km if isinstance(other, Distance) else other)
 
     def __gt__(self, other: ["Distance", float]) -> bool:
         if isinstance(other, Distance):
@@ -46,9 +41,7 @@ class Distance:
             return self.km > other
 
     def __eq__(self, other: ["Distance", float]) -> bool:
-        if isinstance(other, Distance):
-            return self.km == other.km
-        return self.km == other
+        return self.km == (other.km if isinstance(other, Distance) else other)
 
     def __le__(self, other: ["Distance", float]) -> bool:
         if isinstance(other, Distance):
