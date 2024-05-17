@@ -14,11 +14,9 @@ class Distance:
 
     def __add__(self, other: Distance | (int, float)) -> Distance:
         if isinstance(other, Distance):
-            self.km += other.km
-            return self
+            return Distance(km=self.km + other.km)
         if isinstance(other, (int, float)):
-            self.km += other
-            return self
+            return Distance(km=self.km + other)
 
     def __iadd__(self, other: Distance | (int, float)) -> Distance:
         if isinstance(other, Distance):
@@ -29,16 +27,10 @@ class Distance:
             return self
 
     def __mul__(self, other: (int, float)) -> Distance:
-        if isinstance(other, int):
-            self.km *= other
-            return self
-        if isinstance(other, float):
-            self.km *= other
-            return self
+        return Distance(km=self.km * other)
 
     def __truediv__(self, other: (int, float)) -> Distance:
-        self.km = round(self.km / other, 2)
-        return self
+        return Distance(km=round(self.km / other, 2))
 
     def __eq__(self, other: Distance | (int, float)) -> bool:
         if isinstance(other, Distance):
