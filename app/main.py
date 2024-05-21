@@ -31,12 +31,16 @@ class Distance:
 
     def __mul__(self, other: Number) -> Distance:
         if isinstance(other, Distance):
-            raise TypeError("'__mul__' method should not accept Distance instances")
+            raise TypeError(
+                "'__mul__' method should not accept Distance instances"
+            )
         return Distance(self.km * other)
 
     def __truediv__(self, other: Number) -> Distance:
         if isinstance(other, Distance):
-            raise TypeError("'__truediv__' method should not accept Distance instances")
+            raise TypeError(
+                "'__truediv__' method should not accept Distance instances"
+            )
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Number) -> bool:
