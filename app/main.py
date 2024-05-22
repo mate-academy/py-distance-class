@@ -30,7 +30,7 @@ class Distance:
         if isinstance(other, Distance):
             result = self.km / other.km
         result = self.km / other
-        return Distance(round(result,2))
+        return Distance(round(result, 2))
 
     def __lt__(self, other: object | float) -> bool:
         if isinstance(other, Distance):
