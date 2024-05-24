@@ -23,11 +23,11 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, other: int | float | Distance) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
 
-    def __truediv__(self, other: int | float | Distance) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
 
@@ -41,7 +41,7 @@ class Distance:
             return self.km > other.km
         return self.km > other
 
-    def __eq__(self, other: int | float | Distance) -> bool:
+    def __eq__(self, other: int | float) -> bool:
         return self.km == other
 
     def __le__(self, other: int | float | Distance) -> bool:
@@ -53,31 +53,3 @@ class Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
         return self.km >= other
-
-# distance = Distance(20)
-# print(str(distance))
-#
-# distance1 = Distance(20)
-# distance2 = Distance(30)
-# distance3 = distance1 + distance2
-# print(distance3)
-
-# distance1 = Distance(20)
-# distance2 = Distance(30)
-# distance1 += distance2
-# print(distance1)
-
-# distance1 = Distance(20)
-# distance2 = distance1 * 5
-# print(distance2)
-
-# distance1 = Distance(20)
-# distance2 = distance1 / 7
-# print(distance2)
-
-# distance = Distance(50)
-# print(distance < Distance(60))
-# print(distance > Distance(120))
-# print(distance == Distance(100))
-# print(distance <= Distance(49))
-# print(distance >= Distance(50))
