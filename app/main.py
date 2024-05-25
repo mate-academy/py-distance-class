@@ -38,24 +38,21 @@ class Distance:
     def __lt__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        else:
-            return self.km < other
+        return self.km < other
 
     def __gt__(self, other: Distance | int) -> bool:
-        if isinstance(other, Distance):
+        if isinstance(other, Distance):  # Якщо other належить класу Distanse
             return self.km > other.km
-        else:
-            return self.km > other
+
+            # повертаємо self.km, якщо воно > other.km
+
+        # порівнюємо self з числом і повертаємо, якщо воно > other
+
+        return self.km > other
 
     def __eq__(self, other: Distance | int) -> bool:
-        if isinstance(other, Distance):  # якщо other належить Distance
-
-            # параметр методу self порівнюється з іншим параметром методу other
-
+        if isinstance(other, Distance):
             return self.km == other.km
-
-        # якщо other не належить Distance, то self порівнюється з числом
-
         return self.km == other
 
     def __le__(self, other: Distance | int) -> bool:
