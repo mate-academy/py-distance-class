@@ -29,7 +29,7 @@ class Distance:
                 "'__mul__' method should not accept Distance instance")
         return Distance(self.km * other)
 
-    def __truediv__(self, other: Distance | int) -> Distance:
+    def __truediv__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             raise TypeError(
                 "'__truediv__' method should not accept Distance instance")
@@ -48,19 +48,22 @@ class Distance:
             return self.km > other
 
     def __eq__(self, other: Distance | int) -> bool:
-        if isinstance(other, Distance):
+        if isinstance(other, Distance):  # якщо other належить Distance
+
+            # параметр методу self порівнюється з іншим параметром методу other
+
             return self.km == other.km
-        else:
-            return self.km == other
+
+        # якщо other не належить Distance, то self порівнюється з числом
+
+        return self.km == other
 
     def __le__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
-        else:
-            return self.km <= other
+        return self.km <= other
 
     def __ge__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
-        else:
-            return self.km >= other
+        return self.km >= other
