@@ -11,7 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int) -> Distance:
+    def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
@@ -41,13 +41,8 @@ class Distance:
         return self.km < other
 
     def __gt__(self, other: Distance | int) -> bool:
-        if isinstance(other, Distance):  # Якщо other належить класу Distanse
+        if isinstance(other, Distance):
             return self.km > other.km
-
-            # повертаємо self.km, якщо воно > other.km
-
-        # порівнюємо self з числом і повертаємо, якщо воно > other
-
         return self.km > other
 
     def __eq__(self, other: Distance | int) -> bool:
