@@ -53,7 +53,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km == other
         else:
-            return NotImplemented
+            raise TypeError(
+                "Operand must be an instance of Distance or a number"
+            )
 
     def __lt__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
@@ -61,7 +63,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km < other
         else:
-            return NotImplemented
+            raise TypeError(
+                "Operand must be an instance of Distance or a number"
+            )
 
     def __gt__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
@@ -69,7 +73,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km > other
         else:
-            return NotImplemented
+            raise TypeError(
+                "Operand must be an instance of Distance or a number"
+            )
 
     def __le__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
@@ -77,7 +83,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km <= other
         else:
-            return NotImplemented
+            raise TypeError(
+                "Operand must be an instance of Distance or a number"
+            )
 
     def __ge__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
@@ -85,4 +93,6 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km >= other
         else:
-            return NotImplemented
+            raise TypeError(
+                "Operand must be an instance of Distance or a number"
+            )
