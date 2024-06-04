@@ -11,14 +11,14 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, distance: int | float) -> object:
+    def __add__(self, distance: "Distance") -> object:
         if isinstance(distance, int | float):
             distance2 = self.km + distance
             return Distance(distance2)
         distance3 = self.km + distance.km
         return Distance(distance3)
 
-    def __iadd__(self, distance: int | float) -> object:
+    def __iadd__(self, distance: "Distance") -> object:
         if isinstance(distance, int | float):
             self.km += distance
         else:
@@ -33,17 +33,32 @@ class Distance:
         distance2 = self.km / distance
         return Distance(round(distance2, 2))
 
-    def __lt__(self, distance: Any) -> bool:
-        return self.km < distance
+    def __lt__(self, distance: "Distance") -> bool:
+        if isinstance(distance, int | float):
+            return self.km < distance
+        else:
+            return self.km < distance.km
 
-    def __gt__(self, distance: Any) -> bool:
-        return self.km > distance
+    def __gt__(self, distance: "Distance") -> bool:
+        if isinstance(distance, int | float):
+            return self.km > distance
+        else:
+            return self.km > distance.km
 
-    def __eq__(self, distance: object) -> bool:
-        return self.km == distance
+    def __eq__(self, distance: "Distance") -> bool:
+        if isinstance(distance, int | float):
+            return self.km == distance
+        else:
+            return self.km == distance.km
 
-    def __le__(self, distance: Any) -> bool:
-        return self.km <= distance
+    def __le__(self, distance: "Distance") -> bool:
+        if isinstance(distance, int | float):
+            return self.km <= distance
+        else:
+            return self.km <= distance.km
 
-    def __ge__(self, distance: Any) -> bool:
-        return self.km >= distance
+    def __ge__(self, distance: "Distance") -> bool:
+        if isinstance(distance, int | float):
+            return self.km >= distance
+        else:
+            return self.km >= distance.km
