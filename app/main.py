@@ -1,6 +1,3 @@
-from typing import Any
-
-
 class Distance:
     def __init__(self, km: int | float) -> None:
         self.km = km
