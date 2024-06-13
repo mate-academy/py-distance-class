@@ -1,6 +1,3 @@
-import math
-
-
 class Distance:
 
     def __init__(self, km: float = 0.0) -> None:
@@ -42,9 +39,9 @@ class Distance:
 
     def __eq__(self, other) -> bool:
         if isinstance(other, Distance):
-            return math.isclose(self.km, other.km, rel_tol=1e-9)
+            return round(self.km, 2) == round(other.km, 2)
         elif isinstance(other, (int, float)):
-            return math.isclose(self.km, other, rel_tol=1e-9)
+            return round(self.km, 2) == round(other, 2)
         else:
             return NotImplemented
 
