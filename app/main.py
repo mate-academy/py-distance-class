@@ -20,10 +20,8 @@ class Distance:
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, int | float):
-            self.km += other
         else:
-            raise TypeError("Operand must be of type Distance or int, float")
+            self.km += other
         return self
 
     def __mul__(self, other: int | float) -> Distance:
