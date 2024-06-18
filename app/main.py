@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Union
 
 
@@ -14,13 +15,13 @@ class Distance:
     def __add__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        if isinstance(other, (int, float)):
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
 
     def __iadd__(self, other: float) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        if isinstance(other, (int, float)):
+        elif isinstance(other, (int, float)):
             self.km += other
         return self
 
@@ -35,29 +36,29 @@ class Distance:
     def __lt__(self, other: Union["Distance", int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        if isinstance(other, (int, float)):
+        elif isinstance(other, (int, float)):
             return self.km < other
 
     def __gt__(self, other: Union["Distance", int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
-        if isinstance(other, (int, float)):
+        elif isinstance(other, (int, float)):
             return self.km > other
 
     def __eq__(self, other: Union["Distance", int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        if isinstance(other, (int, float)):
+        elif isinstance(other, (int, float)):
             return self.km == other
 
     def __le__(self, other: Union["Distance", int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
-        if isinstance(other, (int, float)):
+        elif isinstance(other, (int, float)):
             return self.km <= other
 
     def __ge__(self, other: Union["Distance", int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
-        if isinstance(other, (int, float)):
+        elif isinstance(other, (int, float)):
             return self.km >= other
