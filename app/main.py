@@ -1,5 +1,4 @@
 from __future__ import annotations
-#
 
 
 class Distance:
@@ -32,41 +31,32 @@ class Distance:
     def __truediv__(self, divisor: int | float) -> Distance:
         return Distance(round(self.km / divisor, 2))
 
-    @staticmethod
-    def compare_objs(
-            inst: Distance,
-            comp_obj: Distance | int | float,
-            operation_type: str
-    ) -> bool:
-        curr_inst_value = inst.km
-        comp_value = None
+    def __lt__(self, other_el: Distance | int | float) -> bool:
+        if isinstance(other_el, Distance):
+            return self.km < other_el.km
 
-        if isinstance(comp_obj, int | float):
-            comp_value = comp_obj
-        else:
-            comp_value = comp_obj.km
+        return self.km < other_el
 
-        operations = {
-            "lt": curr_inst_value < comp_value,
-            "gt": curr_inst_value > comp_value,
-            "eq": curr_inst_value == comp_value,
-            "le": curr_inst_value <= comp_value,
-            "ge": curr_inst_value >= comp_value,
-        }
+    def __gt__(self, other_el: Distance | int | float) -> bool:
+        if isinstance(other_el, Distance):
+            return self.km > other_el.km
 
-        return operations.get(operation_type)
+        return self.km > other_el
 
-    def __lt__(self, obj: Distance | int | float) -> bool:
-        return Distance.compare_objs(self, obj, "lt")
+    def __eq__(self, other_el: Distance | int | float) -> bool:
+        if isinstance(other_el, Distance):
+            return self.km == other_el.km
 
-    def __gt__(self, obj: Distance | int | float) -> bool:
-        return Distance.compare_objs(self, obj, "gt")
+        return self.km == other_el
 
-    def __eq__(self, obj: Distance | int | float) -> bool:
-        return Distance.compare_objs(self, obj, "eq")
+    def __le__(self, other_el: Distance | int | float) -> bool:
+        if isinstance(other_el, Distance):
+            return self.km <= other_el.km
 
-    def __le__(self, obj: Distance | int | float) -> bool:
-        return Distance.compare_objs(self, obj, "le")
+        return self.km <= other_el
 
-    def __ge__(self, obj: Distance | int | float) -> bool:
-        return Distance.compare_objs(self, obj, "ge")
+    def __ge__(self, other_el: Distance | int | float) -> bool:
+        if isinstance(other_el, Distance):
+            return self.km >= other_el.km
+
+        return self.km >= other_el
