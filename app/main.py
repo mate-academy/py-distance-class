@@ -6,10 +6,7 @@ class Distance:
         self.km = float(km)
 
     def __str__(self) -> str:
-        return (
-            f"Distance: {int(self.km) if self.km.is_integer() else self.km} "
-            "kilometers."
-        )
+        return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
         return (
