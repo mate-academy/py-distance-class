@@ -21,7 +21,7 @@ class Distance:
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, (int, float)):
             self.km += other
-        if isinstance(other, Distance):
+        else:
             self.km += other.km
         return self
 
@@ -29,7 +29,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
 
-        if not isinstance(other, (int, float)):
+        else:
             raise TypeError(f"Can't multiply {type(other)} with Distance")
 
     def __truediv__(self, other: int | float) -> Distance:
@@ -39,29 +39,29 @@ class Distance:
     def __lt__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km < other.km
-        if isinstance(other, (int, float)):
+        else:
             return self.km < other
 
     def __gt__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km > other.km
-        if isinstance(other, (int, float)):
+        else:
             return self.km > other
 
     def __eq__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km == other.km
-        if isinstance(other, (int, float)):
+        else:
             return self.km == other
 
     def __le__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km <= other.km
-        if isinstance(other, (int, float)):
+        else:
             return self.km <= other
 
     def __ge__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
-        if isinstance(other, (int, float)):
+        else:
             return self.km >= other
