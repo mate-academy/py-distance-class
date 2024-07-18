@@ -18,11 +18,8 @@ class Distance:
         return Distance(self.km + addends.km)
 
     def __iadd__(self, addends: Distance | int | float) -> Distance:
-        if isinstance(addends, int | float):
-            self.km = self.km + addends
-            return self
+        self.km = self + addends
 
-        self.km = self.km + addends.km
         return self
 
     def __mul__(self, multiplier: int | float) -> Distance:
@@ -56,7 +53,4 @@ class Distance:
         return self.km <= other_el
 
     def __ge__(self, other_el: Distance | int | float) -> bool:
-        if isinstance(other_el, Distance):
-            return self.km >= other_el.km
-
-        return self.km >= other_el
+        return self > other_el or self == other_el
