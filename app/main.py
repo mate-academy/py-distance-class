@@ -55,8 +55,3 @@ class Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
         return self.km >= other
-
-
-distance = Distance(20)
-distance2 = Distance(10)
-print(distance >= distance2)
