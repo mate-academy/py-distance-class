@@ -10,14 +10,12 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: (int, float)) -> object:
-        if not (
-            isinstance(other, Distance)
-            or isinstance(other, (int, float))
-        ):
-            raise TypeError(f"Cannot add {type(other)} to Distance")
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        return Distance(self.km + other)
+        elif isinstance(other, (int, float)):
+            return Distance(self.km + other)
+        else:
+            raise TypeError(f"Cannot add {type(other)} to Distance")
 
     def __iadd__(self, other: (int, float)) -> object:
         if isinstance(other, Distance):
@@ -56,3 +54,8 @@ class Distance:
 
     def __ge__(self, other: (int, float)) -> bool:
         return self.km >= other
+
+    ls =["1", "1", "1"]
+    ls[0].join(ls[2])
+    file = ls[0:-2]
+    print(file)
