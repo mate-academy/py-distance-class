@@ -10,12 +10,14 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: (int, float)) -> object:
+        if not (
+            isinstance(other, Distance)
+            or isinstance(other, (int, float))
+        ):
+            raise TypeError(f"Cannot add {type(other)} to Distance")
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        elif isinstance(other, (int, float)):
-            return Distance(self.km + other)
-        else:
-            raise TypeError(f"Cannot add {type(other)} to Distance")
+        return Distance(self.km + other)
 
     def __iadd__(self, other: (int, float)) -> object:
         if isinstance(other, Distance):
