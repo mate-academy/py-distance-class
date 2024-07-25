@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
@@ -8,7 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int) -> int:
+    def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
@@ -16,7 +19,7 @@ class Distance:
         else:
             return None
 
-    def __iadd__(self, other: int) -> int:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -25,20 +28,20 @@ class Distance:
             return None
         return self
 
-    def __mul__(self, other: int) -> int:
+    def __mul__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         else:
             return None
 
-    def __truediv__(self, other: int) -> int:
+    def __truediv__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, (int, float)):
             result = self.km / other
             return Distance(round(result, 2))
         else:
             return None
 
-    def comparison(self, other: int) -> bool:
+    def comparison(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return self.km - other.km
         elif isinstance(other, (int, float)):
