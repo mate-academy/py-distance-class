@@ -28,6 +28,8 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
+        if other == 0:
+            raise ZeroDivisionError
         return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: Distance | int | float) -> bool:
