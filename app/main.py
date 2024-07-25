@@ -54,8 +54,3 @@ class Distance:
 
     def __ge__(self, other: (int, float)) -> bool:
         return self.km >= other
-
-    ls =["1", "1", "1"]
-    ls[0].join(ls[2])
-    file = ls[0:-2]
-    print(file)
