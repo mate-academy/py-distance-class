@@ -52,10 +52,22 @@ class Distance:
         return NotImplemented
 
     def __le__(self, other: Distance | int | float) -> bool:
-        return self < other or self == other
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+        return NotImplemented
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        return not (self <= other)
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
+            return self.km > other
+        return NotImplemented
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        return not (self < other)
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
+            return self.km >= other
+        return NotImplemented
