@@ -23,3 +23,6 @@ class Distance:
         else:
             self.km += other
         return self
+
+    def __mul__(self, number: int | float) -> Distance:
+        return Distance(self.km * number)
