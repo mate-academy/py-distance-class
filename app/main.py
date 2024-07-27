@@ -8,3 +8,6 @@ class Distance:
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
+
+    def __str__(self) -> str:
+        return f"Distance: {self.km} kilometers."
