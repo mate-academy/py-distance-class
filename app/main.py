@@ -47,3 +47,6 @@ class Distance:
 
     def __le__(self, other: Distance | int | float) -> bool:
         return self == other or self < other
+
+    def __ge__(self, other: Distance | int | float) -> bool:
+        return self == other or self > other
