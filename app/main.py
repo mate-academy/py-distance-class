@@ -24,32 +24,32 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
-        raise TypeError
+        return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            result = self.km / other
-            return Distance(round(result, 2))
-        raise TypeError
+        return Distance(round(self.km / other, 2))
 
-    def comparison(self, other: Distance | int | float) -> Distance:
+    def __lt__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
-            return self.km - other.km
-        return self.km - other
-
-    def __lt__(self, other: int | float) -> bool:
-        return self.comparison(other) < 0
+            return self.km < other.km
+        return self.km < other
 
     def __gt__(self, other: int | float) -> bool:
-        return self.comparison(other) > 0
+        if isinstance(other, Distance):
+            return self.km > other.km
+        return self.km > other
 
-    def __eq__(self, other: int | float) -> bool:
-        return self.comparison(other) == 0
+    def __eq__(self, other: Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
+        return self.km == other
 
-    def __le__(self, other: int | float) -> bool:
-        return not self > other
+    def __le__(self, other: Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        return self.km <= other
 
     def __ge__(self, other: int | float) -> bool:
-        return not self < other
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        return self.km >= other
