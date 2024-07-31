@@ -2,7 +2,7 @@ from typing import Any
 
 
 class Distance:
-    def __init__(self, km) -> None:
+    def __init__(self, km: int) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -11,22 +11,22 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Any):
+    def __add__(self, other: Any) -> Any:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
-    def __iadd__(self, other: Any):
+    def __iadd__(self, other: Any) -> Any:
         if isinstance(other, Distance):
             self.km += other.km
             return self
         self.km += other
         return self
 
-    def __mul__(self, other: Any):
+    def __mul__(self, other: Any) -> Any:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: Any):
+    def __truediv__(self, other: Any) -> Any:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Any) -> bool:
