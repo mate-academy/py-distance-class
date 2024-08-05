@@ -8,7 +8,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int | float) -> 'Distance':
+    def __add__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             total = self.km + other.km
         elif isinstance(other, (int, float)):
@@ -17,7 +17,7 @@ class Distance:
             return NotImplemented
         return Distance(total)
 
-    def __iadd__(self, other: int | float) -> 'Distance':
+    def __iadd__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -26,12 +26,12 @@ class Distance:
             return NotImplemented
         return self
 
-    def __mul__(self, multiply: int | float) -> 'Distance':
+    def __mul__(self, multiply: int | float) -> "Distance":
         if isinstance(multiply, (int, float)):
             return Distance(self.km * multiply)
         return NotImplemented
 
-    def __truediv__(self, division: int | float) -> 'Distance':
+    def __truediv__(self, division: int | float) -> "Distance":
         if isinstance(division, (int, float)):
             if division == 0:
                 raise ValueError("Cannot divide by zero")
