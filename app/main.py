@@ -14,13 +14,9 @@ class Distance:
 
     def __add__(self, other: Union[Distance, int, float]) -> Distance:
         if isinstance(other, Distance):
-            return Distance(
-                self.km + other.km
-            )
+            return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
-            return Distance(
-                self.km + other
-            )
+            return Distance(self.km + other)
         else:
             raise TypeError(
                 f"Wrong type of '{other}'."
@@ -42,9 +38,7 @@ class Distance:
 
     def __mul__(self, other: Union[int, float]) -> Distance:
         if isinstance(other, (int, float)):
-            return Distance(
-                self.km * other
-            )
+            return Distance(self.km * other)
         else:
             raise TypeError(
                 f"Wrong type of '{other}'."
@@ -53,9 +47,7 @@ class Distance:
 
     def __truediv__(self, other: Union[int, float]) -> Distance:
         if isinstance(other, (int, float)):
-            return Distance(
-                round(self.km / other, 2)
-            )
+            return Distance(round(self.km / other, 2))
         else:
             raise TypeError(
                 f"Wrong type of '{other}'."
