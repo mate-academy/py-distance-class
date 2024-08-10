@@ -17,8 +17,7 @@ class Distance:
             return value.km
         elif isinstance(value, (int, float)):
             return float(value)
-        else:
-            raise TypeError("Unsupported type for arithmetic with Distance")
+        raise TypeError("Unsupported type for arithmetic with Distance")
 
     def __add__(self, other: Union["Distance", int, float]) -> "Distance":
         return Distance(self.km + self.to_distance(other))
