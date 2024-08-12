@@ -14,11 +14,11 @@ class Distance:
 
     def __add__(self, other: Distance | int | float) -> Distance:
         return Distance(
-            self.km + (other.km if isinstance(other, Distance) else other)
+            self.km + getattr(other, "km", other)
         )
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
-        self.km += (other.km if isinstance(other, Distance) else other)
+        self.km += getattr(other, "km", other)
         return self
 
     def __mul__(self, other: int | float) -> Distance:
@@ -30,16 +30,16 @@ class Distance:
         return self
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        return self.km < (other.km if isinstance(other, Distance) else other)
+        return self.km < getattr(other, "km", other)
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        return self.km > (other.km if isinstance(other, Distance) else other)
+        return self.km > getattr(other, "km", other)
 
     def __le__(self, other: Distance | int | float) -> bool:
-        return not (Distance.__gt__(self, other))
+        return not (self > other)
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        return not (Distance.__lt__(self, other))
+        return not (self < other)
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        return self.km == (other.km if isinstance(other, Distance) else other)
+        return self.km == getattr(other, "km", other)
