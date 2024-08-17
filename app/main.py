@@ -20,7 +20,7 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, other: object) -> Distance:
-            return Distance(self.km + Distance.other_isinstance(other))
+        return Distance(self.km + Distance.other_isinstance(other))
 
     def __iadd__(self, other: object) -> Distance:
         self.km += Distance.other_isinstance(other)
@@ -40,11 +40,11 @@ class Distance:
     def __gt__(self, other: object) -> bool:
         return self.km > Distance.other_isinstance(other)
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: object) -> bool:
         return self.km == Distance.other_isinstance(other)
 
-    def __le__(self, other) -> bool:
+    def __le__(self, other: object) -> bool:
         return self.km <= Distance.other_isinstance(other)
 
-    def __ge__(self, other) -> bool:
+    def __ge__(self, other: object) -> bool:
         return self.km >= Distance.other_isinstance(other)
