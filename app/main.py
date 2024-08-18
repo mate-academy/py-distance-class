@@ -4,7 +4,7 @@ from __future__ import annotations
 class Distance:
 
     @staticmethod
-    def other_isinstance(other: object) -> object:
+    def other_isinstance(other: (int, float, Distance)) -> object:
         if isinstance(other, (int, float)):
             return other
         else:
@@ -26,7 +26,7 @@ class Distance:
         self.km += Distance.other_isinstance(other)
         return self
 
-    def __mul__(self, other: (int, float, )) -> Distance:
+    def __mul__(self, other: (int, float)) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
 
