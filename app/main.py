@@ -4,7 +4,8 @@ from __future__ import annotations
 class Distance:
 
     @staticmethod
-    def other_isinstance(other: (int, float, Distance)) -> object:
+    def other_isinstance(other: (int, float, Distance))\
+            -> (int, float, Distance):
         if isinstance(other, (int, float)):
             return other
         else:
