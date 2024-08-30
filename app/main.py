@@ -27,12 +27,12 @@ class Distance:
             raise TypeError("Unsupported operand type for +=")
         return self
 
-    def __mul__(self, other: int) -> Distance:
+    def __mul__(self, other: float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("Unsupported operand type for *")
 
-    def __truediv__(self, other: int) -> Distance:
+    def __truediv__(self, other: float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         raise TypeError("Unsupported operand type for /")
