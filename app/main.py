@@ -8,7 +8,7 @@ class Distance:
         self.km = km
 
     @staticmethod
-    def _instancecheck(other: distance) -> (int | float):
+    def _instancecheck(other: Union[Distance, int, float]) -> (int | float):
         if isinstance(other, Distance):
             return other.km
         elif isinstance(other, (int, float)):
@@ -21,10 +21,10 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: distance) -> Distance:
+    def __add__(self, other: Union[Distance, int, float]) -> Distance:
         return Distance(self.km + self._instancecheck(other))
 
-    def __iadd__(self, other: distance) -> Distance:
+    def __iadd__(self, other: Union[Distance, int, float]) -> Distance:
         self.km += self._instancecheck(other)
         return self
 
@@ -34,20 +34,17 @@ class Distance:
     def __truediv__(self, other: (int | float)) -> Distance:
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: distance) -> bool:
+    def __lt__(self, other: Union[Distance, int, float]) -> bool:
         return self.km < self._instancecheck(other)
 
-    def __gt__(self, other: distance) -> bool:
+    def __gt__(self, other: Union[Distance, int, float]) -> bool:
         return self.km > self._instancecheck(other)
 
-    def __eq__(self, other: distance) -> bool:
+    def __eq__(self, other: Union[Distance, int, float]) -> bool:
         return self.km == self._instancecheck(other)
 
-    def __le__(self, other: distance) -> bool:
+    def __le__(self, other: Union[Distance, int, float]) -> bool:
         return self.km <= self._instancecheck(other)
 
-    def __ge__(self, other: distance) -> bool:
+    def __ge__(self, other: Union[Distance, int, float]) -> bool:
         return self.km >= self._instancecheck(other)
-
-
-distance = Union[Distance, int, float]  # It won't work in the start of the app
