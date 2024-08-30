@@ -13,6 +13,7 @@ class Distance:
             return other.km
         elif isinstance(other, (int, float)):
             return other
+        raise TypeError()
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
