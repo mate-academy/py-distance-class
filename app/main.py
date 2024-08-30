@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: float | int) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -27,12 +27,12 @@ class Distance:
             raise TypeError("Unsupported operand type for +=")
         return self
 
-    def __mul__(self, other: float) -> Distance:
+    def __mul__(self, other: float | int) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("Unsupported operand type for *")
 
-    def __truediv__(self, other: float) -> Distance:
+    def __truediv__(self, other: float | int) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         raise TypeError("Unsupported operand type for /")
