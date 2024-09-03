@@ -35,3 +35,9 @@ class Distance:
         total = round(self.km / km, 2)
 
         return Distance(total)
+
+    def __lt__(self, distance: Distance | int | float) -> bool:
+        if isinstance(distance, Distance):
+            return self.km < distance.km
+
+        return self.km < distance
