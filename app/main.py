@@ -1,6 +1,8 @@
 from __future__ import annotations
+from functools import total_ordering
 
 
+@total_ordering
 class Distance:
 
     def __init__(self, km: int | float) -> None:
@@ -37,31 +39,9 @@ class Distance:
         return Distance(total)
 
     def __lt__(self, distance: Distance | int | float) -> bool:
-        if isinstance(distance, Distance):
-            return self.km < distance.km
-
-        return self.km < distance
-
-    def __gt__(self, distance: Distance | int | float) -> bool:
-        if isinstance(distance, Distance):
-            return self.km > distance.km
-
-        return self.km > distance
+        km = distance.km if isinstance(distance, Distance) else distance
+        return self.km < km
 
     def __eq__(self, distance: Distance | int | float) -> bool:
-        if isinstance(distance, Distance):
-            return self.km == distance.km
-
-        return self.km == distance
-
-    def __le__(self, distance: Distance | int | float) -> bool:
-        if isinstance(distance, Distance):
-            return self.km <= distance.km
-
-        return self.km <= distance
-
-    def __ge__(self, distance: Distance | int | float) -> bool:
-        if isinstance(distance, Distance):
-            return self.km >= distance.km
-
-        return self.km >= distance
+        km = distance.km if isinstance(distance, Distance) else distance
+        return self.km == km
