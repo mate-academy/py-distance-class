@@ -41,7 +41,7 @@ class Distance:
     def __eq__(self, other: int | float) -> bool:
         return self.km == other
 
-    def __gt__(self, other: Distance| int | float) -> bool:
+    def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
