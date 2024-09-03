@@ -15,33 +15,24 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, distance: Distance | int | float) -> Distance:
-        if isinstance(distance, Distance):
-            total = self.km + distance.km
-        else:
-            total = self.km + distance
-
-        return Distance(total)
+        return Distance(self.km + self.get_km(distance))
 
     def __iadd__(self, distance: Distance | int | float) -> Distance:
-        if isinstance(distance, Distance):
-            self.km += distance.km
-        else:
-            self.km += distance
-
+        self.km += self.get_km(distance)
         return self
 
     def __mul__(self, km: int | float) -> Distance:
         return Distance(self.km * km)
 
     def __truediv__(self, km: int | float) -> Distance:
-        total = round(self.km / km, 2)
-
-        return Distance(total)
+        return Distance(round(self.km / km, 2))
 
     def __lt__(self, distance: Distance | int | float) -> bool:
-        km = distance.km if isinstance(distance, Distance) else distance
-        return self.km < km
+        return self.km < self.get_km(distance)
 
     def __eq__(self, distance: Distance | int | float) -> bool:
-        km = distance.km if isinstance(distance, Distance) else distance
-        return self.km == km
+        return self.km == self.get_km(distance)
+
+    @staticmethod
+    def get_km(distance: Distance | int | float) -> float:
+        return distance.km if isinstance(distance, Distance) else distance
