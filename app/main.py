@@ -17,3 +17,12 @@ class Distance:
             return Distance(self.km + distance.km)
 
         return Distance(self.km + distance)
+
+    def __iadd__(self, distance: Distance | int) -> Distance:
+        if isinstance(distance, Distance):
+            self.km += distance.km
+
+        if isinstance(distance, int):
+            self.km += distance
+
+        return self
