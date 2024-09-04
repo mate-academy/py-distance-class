@@ -48,7 +48,8 @@ class Distance:
         Add another Distance instance or a numeric value to this Distance.
 
         Args:
-            distance (Distance | int | float): The other Distance or numeric value.
+            distance (Distance | int | float):
+                The other Distance or numeric value.
 
         Returns:
             Distance: A new Distance instance representing the sum.
@@ -60,7 +61,8 @@ class Distance:
         In-place addition of another Distance instance or a numeric value.
 
         Args:
-            distance (Distance | int | float): The other Distance or numeric value.
+            distance (Distance | int | float):
+                The other Distance or numeric value.
 
         Returns:
             Distance: The updated Distance instance.
@@ -95,10 +97,12 @@ class Distance:
 
     def __lt__(self, distance: Distance | int | float) -> bool:
         """
-        Compare if this Distance is less than another Distance or numeric value.
+        Compare if this Distance is less
+            than another Distance or numeric value.
 
         Args:
-            distance (Distance | int | float): The other Distance or numeric value.
+            distance (Distance | int | float):
+                The other Distance or numeric value.
 
         Returns:
             bool: True if this Distance is less, False otherwise.
@@ -110,7 +114,8 @@ class Distance:
         Compare if this Distance is equal to another Distance or numeric value.
 
         Args:
-            distance (Distance | int | float): The other Distance or numeric value.
+            distance (Distance | int | float):
+                The other Distance or numeric value.
 
         Returns:
             bool: True if both are equal, False otherwise.
@@ -120,10 +125,12 @@ class Distance:
     @staticmethod
     def get_km(distance: Distance | int | float) -> float:
         """
-        Retrieve the distance in kilometers from a Distance instance or numeric value.
+        Retrieve the distance in kilometers
+            from a Distance instance or numeric value.
 
         Args:
-            distance (Distance | int | float): The Distance instance or numeric value.
+            distance (Distance | int | float):
+                The Distance instance or numeric value.
 
         Returns:
             float: The distance in kilometers.
