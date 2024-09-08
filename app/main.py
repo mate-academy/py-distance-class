@@ -63,9 +63,3 @@ class Distance:
             if isinstance(other, Distance)
             else self.km >= other
         )
-
-
-if __name__ == "__main__":
-    distance1 = Distance(20.6)
-    distance1 += 40.8
-    print(distance1)
