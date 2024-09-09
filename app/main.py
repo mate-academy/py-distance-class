@@ -1,3 +1,7 @@
+from __future__ import annotations
+from typing import Union
+
+
 class Distance:
 
     def __init__(self, km: float) -> None:
@@ -9,7 +13,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: object) -> "Distance":
+    def __add__(self, other: Union[Distance, int, float]) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
