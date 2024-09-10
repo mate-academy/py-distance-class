@@ -18,10 +18,9 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
-        else:
-            raise TypeError("Unsupported operand type for +")
+        raise TypeError("Unsupported operand type for +")
 
-    def __iadd__(self, other: object) -> "Distance":
+    def __iadd__(self, other: Union[Distance, int, float]) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -33,51 +32,44 @@ class Distance:
     def __mul__(self, other: object) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        else:
-            raise TypeError("Unsupported operand type for *")
+        raise TypeError("Unsupported operand type for *")
 
     def __truediv__(self, other: object) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
-        else:
-            raise TypeError("Unsupported operand type for /")
+        raise TypeError("Unsupported operand type for /")
 
     def __lt__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
             return self.km < other
-        else:
-            raise TypeError("Unsupported operand type for <")
+        raise TypeError("Unsupported operand type for <")
 
     def __gt__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
-        else:
-            raise TypeError("Unsupported operand type for >")
+        raise TypeError("Unsupported operand type for >")
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
-        else:
-            raise TypeError("Unsupported operand type for ==")
+        raise TypeError("Unsupported operand type for ==")
 
     def __le__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
             return self.km <= other
-        else:
-            raise TypeError("Unsupported operand type for <=")
+        raise TypeError("Unsupported operand type for <=")
 
     def __ge__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
             return self.km >= other
-        else:
-            raise TypeError("Unsupported operand type for >=")
+        raise TypeError("Unsupported operand type for >=")
