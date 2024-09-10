@@ -13,7 +13,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union[Distance, int, float]) -> "Distance":
+    def __add__(self, other: Union[Distance, int, float]) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
@@ -29,12 +29,12 @@ class Distance:
             raise TypeError("Unsupported operand type for +=")
         return self
 
-    def __mul__(self, other: object) -> "Distance":
+    def __mul__(self, other: object) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("Unsupported operand type for *")
 
-    def __truediv__(self, other: object) -> "Distance":
+    def __truediv__(self, other: object) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         raise TypeError("Unsupported operand type for /")
