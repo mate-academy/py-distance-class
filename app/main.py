@@ -3,7 +3,6 @@ from typing import Union
 
 
 class Distance:
-
     def __init__(self, km: float) -> None:
         self.km = km
 
@@ -29,45 +28,45 @@ class Distance:
             raise TypeError("Unsupported operand type for +=")
         return self
 
-    def __mul__(self, other: object) -> Distance:
+    def __mul__(self, other: Union[int, float]) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("Unsupported operand type for *")
 
-    def __truediv__(self, other: object) -> Distance:
+    def __truediv__(self, other: Union[int, float]) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         raise TypeError("Unsupported operand type for /")
 
-    def __lt__(self, other: object) -> bool:
+    def __lt__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
             return self.km < other
         raise TypeError("Unsupported operand type for <")
 
-    def __gt__(self, other: object) -> bool:
+    def __gt__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
         raise TypeError("Unsupported operand type for >")
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
         raise TypeError("Unsupported operand type for ==")
 
-    def __le__(self, other: object) -> bool:
+    def __le__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
             return self.km <= other
         raise TypeError("Unsupported operand type for <=")
 
-    def __ge__(self, other: object) -> bool:
+    def __ge__(self, other: Union[Distance, int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
