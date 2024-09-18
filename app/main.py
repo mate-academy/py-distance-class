@@ -19,16 +19,16 @@ class Distance:
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if not isinstance(other, Distance):
             self.km += other
-            return self
-        self.km += other.km
+        else:
+            self.km += other.km
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, int) or isinstance(other, float):
+        if isinstance(other, (int, float)):
             return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        if (isinstance(other, int) or isinstance(other, float)) and other != 0:
+        if isinstance(other, (int, float)) and other != 0:
             return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
