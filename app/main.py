@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Distance:
     def __init__(self, distance):
         self.km = distance
@@ -10,21 +13,19 @@ class Distance:
 
     def __add__(self, other):
         if isinstance(other, Distance):
-            result = self.km + other.km
+            self.km = self.km + other.km
         else:
-            result = self.km + other.real
-        return Distance(
-            distance=result
-        )
+            self.km = self.km + other.real
+        return Distance(distance=self.km)
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
             self.km += other.km
         else:
+            # return Distance(distance=self.km + other.real)
             self.km += other.real
-        return Distance(
-            distance=self.km
-        )
+        # return Distance(distance=self.km)
+        return self
 
     def __mul__(self, other):
         if isinstance(other, Distance):
@@ -72,6 +73,7 @@ class Distance:
 # distance1 = Distance(30)
 # distance2 = Distance(3)
 # distance3 = distance1 / distance2
-# print(distance2)
-# print(repr(distance2))
-# print(distance2)
+# print(distance1)
+# print(repr(distance3))
+# distance1 += distance2
+# print(distance1)
