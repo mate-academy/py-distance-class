@@ -24,7 +24,7 @@ class Distance:
             self.km = self.km + other.km
         return self
 
-    def __mul__(self, other: Distance | int | float) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         return Distance(km=self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
