@@ -13,10 +13,8 @@ class Distance:
 
     def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
-            sum_of_distances = self.km + other.km
-        else:
-            sum_of_distances = self.km + other
-        return Distance(sum_of_distances)
+            return Distance(self.km + other.km)
+        return Distance(self.km + other)
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
@@ -32,31 +30,21 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km < other.km
-        else:
-            return self.km < other
+        return self.km < other if isinstance(other, (int, float))\
+            else self.km < other.km
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        else:
-            return self.km > other
+        return self.km > other if isinstance(other, (int, float))\
+            else self.km > other.km
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km == other.km
-        else:
-            return self.km == other
+        return self.km == other if isinstance(other, (int, float))\
+            else self.km == other.km
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        else:
-            return self.km <= other
+        return self.km <= other if isinstance(other, (int, float))\
+            else self.km <= other.km
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        else:
-            return self.km >= other
+        return self.km >= other if isinstance(other, (int, float))\
+            else self.km >= other.km
