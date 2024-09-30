@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: "int | float") -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -10,12 +10,9 @@ class Distance:
 
     def __add__(self, other: "Distance | int | float") -> "Distance":
         if isinstance(other, Distance):
-            new_distance = self.km + other.km
-        elif isinstance(other, (int, float)):
-            new_distance = self.km + other
+            return Distance(self.km + other.km)
         else:
-            raise TypeError
-        return Distance(new_distance)
+            return Distance(self.km + other)
 
     def __iadd__(self, other: "Distance | int | float") -> "Distance":
         if isinstance(other, Distance):
@@ -26,53 +23,47 @@ class Distance:
             raise TypeError
         return self
 
-    def __mul__(self, other: int) -> "Distance":
+    def __mul__(self, other: "int | float") -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError
 
     def __truediv__(self, other: int) -> "Distance":
-        if isinstance(other, Distance):
-            raise TypeError
-        elif isinstance(other, (int, float)) and other != 0:
+        if other != 0:
             return Distance(round(self.km / other, 2))
-        raise ValueError("Invalid type for division.")
+        raise ValueError("Cannot divide by zero.")
 
     def __eq__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
-            return self.km == other.km
-        elif isinstance(other, (int, float)):
-            return self.km == other
-        return False
+            other_value = other.km
+        else:
+            other_value = other
+        return self.km == other_value
 
     def __lt__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
-            return self.km < other.km
-        elif isinstance(other, (int, float)):
-            return self.km < other
+            other_value = other.km
         else:
-            raise TypeError
+            other_value = other
+        return self.km < other_value
 
     def __gt__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
-            return self.km > other.km
-        elif isinstance(other, (int, float)):
-            return self.km > other
+            other_value = other.km
         else:
-            raise TypeError
+            other_value = other
+        return self.km > other_value
 
     def __le__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
-            return self.km <= other.km
-        elif isinstance(other, (int, float)):
-            return self.km <= other
+            other_value = other.km
         else:
-            raise TypeError
+            other_value = other
+        return self.km <= other_value
 
     def __ge__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
-            return self.km >= other.km
-        elif isinstance(other, (int, float)):
-            return self.km >= other
+            other_value = other.km
         else:
-            raise TypeError
+            other_value = other
+        return self.km >= other_value
