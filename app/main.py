@@ -1,9 +1,6 @@
 from typing import Union
 
 
-import warnings
-
-
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
@@ -22,7 +19,7 @@ class Distance:
         else:
             raise TypeError("Unsupported operand type for +")
 
-    def __iadd__(self, other: Union["Distance", float]) -> "Distance":
+    def __iadd__(self, other: Union["Distance", float, int]) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -74,9 +71,4 @@ class Distance:
             return self.km >= other.km
         elif isinstance(other, (int, float)):
             return self.km >= other
-        else:
-            raise TypeError("Unsupported operand type for >=")
-
-    warnings.filterwarnings(
-        "ignore", category=DeprecationWarning, module="ast"
-    )
+        raise TypeError("Unsupported operand type for >=")
