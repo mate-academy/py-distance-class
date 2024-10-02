@@ -5,7 +5,6 @@ from typing import Union
 
 @total_ordering
 class Distance:
-    # Write your code here
     def __init__(self, km: Union[int, float]) -> None:
         self.km = km
 
