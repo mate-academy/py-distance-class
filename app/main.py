@@ -34,12 +34,12 @@ class Distance:
             raise TypeError("Distance instance is not supported")
         return Distance(self.km * self.validate(other))
 
-    def __truediv__(self, other: int | float | Distance) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             raise TypeError("Distance instance is not supported")
         return Distance(round(self.km / self.validate(other), 2))
 
-    def __lt__(self, other: int | float | Distance) -> bool:
+    def __lt__(self, other: int | float) -> bool:
         return self.km < self.validate(other)
 
     def __eq__(self, other: int | float | Distance) -> bool:
