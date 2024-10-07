@@ -14,10 +14,6 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, (float, int)):
             return Distance(self.km + other)
-        raise TypeError(
-            f"Unsupported operand type(s) for +: 'Distance' and '"
-            f"{type(other).__name__}'"
-        )
 
     def __iadd__(self, other: Distance | float | int) -> Distance:
         self.km += (other.km if isinstance(other, Distance) else other)
