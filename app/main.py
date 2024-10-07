@@ -35,37 +35,11 @@ class Distance:
         raise ValueError("Cannot divide by zero.")
 
     def __eq__(self, other: Distance | float | int) -> bool:
-
         if isinstance(other, Distance):
             return self.km == other.km
-        elif isinstance(other, (int, float)):
-            return self.km == other
-        return NotImplemented
+        return self.km == other
 
     def __lt__(self, other: Distance | float | int) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        elif isinstance(other, (int, float)):
-            return self.km < other
-        return NotImplemented
-
-    # def __gt__(self, other: Distance | float | int) -> bool:
-    #     if isinstance(other, Distance):
-    #         return self.km > other.km
-    #     elif isinstance(other, (int, float)):
-    #         return self.km > other
-    #     return NotImplemented
-
-    # def __le__(self, other: Distance | float | int) -> bool:
-    #     if isinstance(other, Distance):
-    #         return self.km <= other.km
-    #     elif isinstance(other, (int, float)):
-    #         return self.km <= other
-    #     return NotImplemented
-
-    # def __ge__(self, other: Distance | float | int) -> bool:
-    #     if isinstance(other, Distance):
-    #         return self.km >= other.km
-    #     elif isinstance(other, (int, float)):
-    #         return self.km >= other
-    #     return NotImplemented
+        return self.km < other
