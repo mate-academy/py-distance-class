@@ -1,8 +1,5 @@
-type KM = int | float
-
-
 class Distance:
-    def __init__(self, km: KM) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -11,22 +8,22 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: KM) -> "Distance":
+    def __add__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
-    def __iadd__(self, other: KM) -> "Distance":
+    def __iadd__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         else:
             self.km += other
         return self
 
-    def __mul__(self, multiplier: KM) -> "Distance":
+    def __mul__(self, multiplier: int | float) -> "Distance":
         return Distance(self.km * multiplier)
 
-    def __truediv__(self, other: KM) -> "Distance":
+    def __truediv__(self, other: int | float) -> "Distance":
         if isinstance(other, (int, float)) and other > 0:
             return Distance(round(self.km / other, 2))
         return NotImplemented
