@@ -13,15 +13,15 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Any) -> Distance:
-        if isinstance((other), Distance):
+    def __add__(self, other: Distance) -> Distance:
+        if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, float) or isinstance(other, int):
             return Distance(self.km + other)
         else:
             return self
 
-    def __iadd__(self, other: Any) -> Distance:
+    def __iadd__(self, other: Distance) -> Distance:
         if isinstance(other, Distance):
             self.km = self.km + other.km
         elif (isinstance(other, float) or isinstance(other, int)):
@@ -37,7 +37,7 @@ class Distance:
         else:
             raise ZeroDivisionError(f"num = {num} zero division error")
 
-    def __lt__(self, other: Any) -> bool:
+    def __lt__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, float) or isinstance(other, int):
@@ -45,7 +45,7 @@ class Distance:
         else:
             return False
 
-    def __le__(self, other: Any) -> bool:
+    def __le__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, float) or isinstance(other, int):
@@ -53,13 +53,13 @@ class Distance:
         else:
             return False
 
-    def __gt__(self, other: Any) -> bool:
+    def __gt__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, float) or isinstance(other, int):
             return self.km > other
 
-    def __ge__(self, other: Any) -> bool:
+    def __ge__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, float) or isinstance(other, int):
@@ -67,7 +67,7 @@ class Distance:
         else:
             return False
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, float) or isinstance(other, int):
