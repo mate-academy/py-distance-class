@@ -18,6 +18,8 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, float) or isinstance(other, int):
             return Distance(self.km + other)
+        else:
+            return self
 
     def __iadd__(self, other: Any) -> Distance:
         if isinstance(other, Distance):
@@ -29,27 +31,35 @@ class Distance:
     def __mul__(self, num: float) -> Distance:
         return Distance(self.km * num)
 
-    def __truediv__(self, num: float) -> Distance:
+    def __truediv__(self, num: float) -> Any:
         if num != 0:
             return Distance(round(self.km / num, 2))
+        else:
+            return "zero division error"
 
     def __lt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, float) or isinstance(other, int):
             return self.km < other
+        else:
+            return False
 
     def __le__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, float) or isinstance(other, int):
             return self.km <= other
+        else:
+            return False
 
     def __gt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, float) or isinstance(other, int):
             return self.km > other
+        else:
+            return False
 
     def __ge__(self, other: Any) -> bool:
         if isinstance(other, Distance):
@@ -64,3 +74,5 @@ class Distance:
             return self.km == other.km
         elif isinstance(other, float) or isinstance(other, int):
             return self.km == other
+        else:
+            return False
