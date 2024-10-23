@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from typing import Any
 
 
@@ -36,7 +35,7 @@ class Distance:
         if num != 0:
             return Distance(round(self.km / num, 2))
         else:
-            return self
+            raise ZeroDivisionError(f"num = {num} zero division error")
 
     def __lt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
