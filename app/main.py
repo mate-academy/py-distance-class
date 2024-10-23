@@ -11,7 +11,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return Distance(km=self.km + other)
         else:
-            raise TypeError(f"Unsupported operand type(s) for +: 'Distance' and '{type(other).__name__}'")
+            raise TypeError(
+                f"Unsupported operand type(s) for +: "
+                f"'Distance' and '{type(other).__name__}'")
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
@@ -25,7 +27,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             self.km += other
         else:
-            raise TypeError(f"Unsupported operand type(s) for +=: 'Distance' and '{type(other).__name__}'")
+            raise TypeError(
+                f"Unsupported operand type(s) for +=: "
+                f"'Distance' and '{type(other).__name__}'")
         return self
 
     def __mul__(self, number: float) -> Distance:
