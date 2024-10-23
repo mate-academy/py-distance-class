@@ -49,4 +49,3 @@ class Distance:
 
     def __ge__(self, number: float) -> bool:
         return self.km >= number
-
