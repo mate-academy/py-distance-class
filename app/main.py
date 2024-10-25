@@ -11,7 +11,6 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def _get_km(self, other: Distance | int | float) -> float:
-        """Допоміжний метод для отримання значення km з іншого об'єкта або числа."""
         if isinstance(other, Distance):
             return other.km
         if isinstance(other, (int, float)):
