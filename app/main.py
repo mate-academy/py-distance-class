@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
@@ -33,6 +34,8 @@ class Distance:
     def __truediv__(self, other: int | float) -> Distance:
         if not isinstance(other, (int, float)):
             return NotImplemented
+        if other == 0:
+            raise ZeroDivisionError("Cannot divide by zero")
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
