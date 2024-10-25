@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
@@ -15,7 +14,7 @@ class Distance:
         """Допоміжний метод для отримання значення km з іншого об'єкта або числа."""
         if isinstance(other, Distance):
             return other.km
-        elif isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return other
         raise TypeError(f"Unsupported type: {type(other)}")
 
