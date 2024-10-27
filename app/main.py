@@ -15,7 +15,6 @@ class Distance:
             return Distance(self.km + distance2.km)
         elif isinstance(distance2, (int, float)):
             return Distance(self.km + distance2)
-        return NotImplemented
 
     def __iadd__(self, distance2: Union[int, float, "Distance"]) -> "Distance":
         if isinstance(distance2, Distance):
