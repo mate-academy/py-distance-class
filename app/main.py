@@ -28,7 +28,7 @@ class Distance:
         if isinstance(factor, (int, float)):
             return Distance(self.km * factor)
 
-    def __truediv__(self, factor: Union[int, float]) ->  "Distance":
+    def __truediv__(self, factor: Union[int, float]) -> "Distance":
         if isinstance(factor, (float, int)) and factor != 0:
             result_km = round(self.km / factor, 2)
             return Distance(result_km)
