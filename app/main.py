@@ -1,7 +1,5 @@
-from typing import Union
-
 class Distance:
-    def __init__(self, km: Union[int, float]) -> None:
+    def __init__(self, km: float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -10,46 +8,64 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, distance2: Union[int, float, "Distance"]) -> "Distance":
-        if isinstance(distance2, Distance):
-            return Distance(self.km + distance2.km)
-        elif isinstance(distance2, (int, float)):
-            return Distance(self.km + distance2)
+    def __add__(self, other) -> "Distance":
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        elif isinstance(other, (int, float)):
+            return Distance(self.km + other)
+        return NotImplemented
 
-    def __iadd__(self, distance2: Union[int, float, "Distance"]) -> "Distance":
-        if isinstance(distance2, Distance):
-            self.km += distance2.km
-        elif isinstance(distance2, (int, float)):
-            self.km += distance2
+    def __iadd__(self, other) -> "Distance":
+        if isinstance(other, Distance):
+            self.km += other.km
+        elif isinstance(other, (int, float)):
+            self.km += other
         return self
 
-    def __mul__(self, factor: Union[int, float]) -> "Distance":
+    def __mul__(self, factor: float) -> "Distance":
         if isinstance(factor, (int, float)):
             return Distance(self.km * factor)
         return NotImplemented
 
-    def __truediv__(self, factor: Union[int, float]) -> "Distance":
-        if isinstance(factor, (float, int)) and factor != 0:
-            result_km = round(self.km / factor, 2)
-            return Distance(result_km)
+    def __truediv__(self, divisor: float) -> "Distance":
+        if isinstance(divisor, (int, float)) and divisor != 0:
+            return Distance(round(self.km / divisor, 2))
         return NotImplemented
 
-    def __lt__(self, distance2: Union[int, float, "Distance"]) -> bool:
-        other_km = distance2.km if isinstance(distance2, Distance) else distance2
-        return self.km < other_km
+    def __lt__(self, other) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
+        elif isinstance(other, (int, float)):
+            return self.km < other
+        return NotImplemented
 
-    def __gt__(self, distance2: Union[int, float, "Distance"]) -> bool:
-        other_km = distance2.km if isinstance(distance2, Distance) else distance2
-        return self.km > other_km
+    def __le__(self, other) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+        return NotImplemented
 
-    def __eq__(self, distance2: Union[int, float, "Distance"]) -> bool:
-        other_km = distance2.km if isinstance(distance2, Distance) else distance2
-        return self.km == other_km
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
+        elif isinstance(other, (int, float)):
+            return self.km == other
+        return NotImplemented
 
-    def __le__(self, distance2: Union[int, float, "Distance"]) -> bool:
-        other_km = distance2.km if isinstance(distance2, Distance) else distance2
-        return self.km <= other_km
+    def __ne__(self, other) -> bool:
+        return not self == other
 
-    def __ge__(self, distance2: Union[int, float, "Distance"]) -> bool:
-        other_km = distance2.km if isinstance(distance2, Distance) else distance2
-        return self.km >= other_km
+    def __gt__(self, other) -> bool:
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
+            return self.km > other
+        return NotImplemented
+
+    def __ge__(self, other) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
+            return self.km >= other
+        return NotImplemented
