@@ -30,12 +30,12 @@ class Distance:
 
     def __mul__(self, other: Any) -> Any:
         if isinstance(other, Distance):
-            raise TypeError
+            raise TypeError("Cannot multiply two Distance objects")
         return Distance(km=self.km * other)
 
     def __truediv__(self, other: Any) -> Any:
         if isinstance(other, Distance):
-            raise TypeError
+            raise TypeError("Cannot divide two Distance objects")
         km = self.km / other
         rounded = round(km, 2)
         return Distance(rounded)
