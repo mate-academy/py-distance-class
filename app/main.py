@@ -13,6 +13,8 @@ class Distance:
             return Distance(km = self.km + other)
         elif isinstance(other, Distance):
             return Distance(km = self.km + other.km)
+        else:
+            return self
 
     def __iadd__(self, other):
         if isinstance(other, (int, float)):
@@ -24,10 +26,12 @@ class Distance:
     def __mul__(self, other):
         if isinstance(other, (int, float)):
             return Distance(km = self.km * other)
+        return
 
     def __truediv__(self, other):
-        if isinstance(other, (int, float)):
+        if isinstance(other, (int, float)) and other != 0:  # Працюємо тільки з числами, виключаємо об'єкти Distance
             return Distance(km=round(self.km / other, 2))
+
 
     def __lt__(self, other):
         if isinstance(other, (int, float)):
