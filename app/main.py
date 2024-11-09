@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Distance:
 
     def __init__(self, km: (int, float)) -> None:
@@ -27,12 +30,12 @@ class Distance:
             raise TypeError("Operand must be a Distance instance or a number.")
         return self
 
-    def __mul__(self, other: "Distance") -> "Distance":
+    def __mul__(self, other: Union[int, float]) -> "Distance":
         return Distance(km=self.km * other)
 
-    def __truediv__(self, other: "Distance") -> "Distance":
+    def __truediv__(self, other: Union[int, float]) -> "Distance":
         if other == 0:
-            raise TypeError("zero division error")
+            raise ZeroDivisionError("Cannot divide by zero")
         else:
             return Distance(km=round(self.km / other, 2))
 
