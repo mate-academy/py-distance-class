@@ -36,7 +36,7 @@ class Distance:
         else:
             return Distance(km=round(self.km / other, 2))
 
-    def __lt__(self, other: "Distance") -> "Distance":
+    def __lt__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (float, int)):
@@ -44,7 +44,7 @@ class Distance:
         else:
             raise TypeError("Operand must be a Distance instance or a number.")
 
-    def __gt__(self, other: "Distance") -> "Distance":
+    def __gt__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (float, int)):
@@ -52,7 +52,7 @@ class Distance:
         else:
             raise TypeError("Operand must be a Distance instance or a number.")
 
-    def __eq__(self, other: "Distance") -> "Distance":
+    def __eq__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (float, int)):
@@ -60,7 +60,7 @@ class Distance:
         else:
             raise TypeError("Operand must be a Distance instance or a number.")
 
-    def __le__(self, other: "Distance") -> "Distance":
+    def __le__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (float, int)):
@@ -68,7 +68,7 @@ class Distance:
         else:
             raise TypeError("Operand must be a Distance instance or a number.")
 
-    def __ge__(self, other: "Distance") -> "Distance":
+    def __ge__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (float, int)):
