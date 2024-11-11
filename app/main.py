@@ -19,7 +19,8 @@ class Distance:
     def __iadd__(self, other: (object, float, int)) -> object:
         if isinstance(other, (float, int)):
             create_object_from_int = Distance(other)
-            self.km = self.__add__(create_object_from_int)
+            self.km = self.__add__(create_object_from_int).km
+
             return self
 
         self.km = self.__add__(other)
@@ -32,7 +33,7 @@ class Distance:
 
         return Distance(self.km * other)
 
-    def __truediv__(self, other: (object, float, int)) -> object:
+    def __truediv__(self, other: object) -> object:
 
         return Distance(round(self.km / other, 2))
 
