@@ -1,0 +1,78 @@
+from typing import Union
+
+class Distance:
+    def __init__(self, km: float) -> None:
+        """Initialize the Distance object with kilometers."""
+        self.km = km
+
+    def __str__(self) -> str:
+        """Return a user-friendly string representation of the Distance object."""
+        return f"Distance: {self.km} kilometers."
+
+    def __repr__(self) -> str:
+        """Return a developer-friendly string representation of the Distance object."""
+        return f"Distance(km={self.km})"
+
+    def __add__(self, other: Union["Distance", float]) -> "Distance":
+        """Add two Distance objects or a Distance object and a number."""
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        elif isinstance(other, (int, float)):
+            return Distance(self.km + other)
+        raise TypeError(f"Unsupported type for addition: {type(other)}")
+
+    def __iadd__(self, other: Union["Distance", float]) -> "Distance":
+        """In-place addition for Distance objects or with a number."""
+        if isinstance(other, Distance):
+            self.km += other.km
+        elif isinstance(other, (int, float)):
+            self.km += other
+        else:
+            raise TypeError(f"Unsupported type for in-place addition: {type(other)}")
+        return self
+
+    def __mul__(self, factor: float) -> "Distance":
+        """Multiply Distance by a factor."""
+        if isinstance(factor, (int, float)):
+            return Distance(self.km * factor)
+        raise TypeError(f"Unsupported type for multiplication: {type(factor)}")
+
+    def __truediv__(self, divisor: float) -> "Distance":
+        """Divide Distance by a divisor, rounded to 2 decimals."""
+        if isinstance(divisor, (int, float)) and divisor != 0:
+            return Distance(round(self.km / divisor, 2))
+        elif divisor == 0:
+            raise ZeroDivisionError("Division by zero is not allowed.")
+        raise TypeError(f"Unsupported type for division: {type(divisor)}")
+
+    def __lt__(self, other: Union["Distance", float]) -> bool:
+        """Compare if one Distance is less than another."""
+        if isinstance(other, Distance):
+            return self.km < other.km
+        elif isinstance(other, (int, float)):
+            return self.km < other
+        raise TypeError(f"Unsupported type for comparison: {type(other)}")
+
+    def __gt__(self, other: Union["Distance", float]) -> bool:
+        """Compare if one Distance is greater than another."""
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
+            return self.km > other
+        raise TypeError(f"Unsupported type for comparison: {type(other)}")
+
+    def __eq__(self, other: Union["Distance", float]) -> bool:
+        """Check if two Distances are equal."""
+        if isinstance(other, Distance):
+            return self.km == other.km
+        elif isinstance(other, (int, float)):
+            return self.km == other
+        return False
+
+    def __le__(self, other: Union["Distance", float]) -> bool:
+        """Compare if one Distance is less than or equal to another."""
+        return self < other or self == other
+
+    def __ge__(self, other: Union["Distance", float]) -> bool:
+        """Compare if one Distance is greater than or equal to another."""
+        return self > other or self == other
