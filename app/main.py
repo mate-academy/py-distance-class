@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Any
 
 
 class Distance:
@@ -11,64 +12,54 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: float) -> Distance:
-        if not isinstance(other, Distance):
-            return Distance(
-                km=self.km + other
-            )
+    def __add__(self, other: float | Distance) -> Any:
+        if isinstance(other, Distance):
+            return Distance(km=self.km + other.km)
+        elif isinstance(other, (int, float)):
+            return Distance(km=self.km + other)
 
-        return Distance(
-            km=self.km + other.km
-        )
-
-    def __iadd__(self, other: float) -> Distance:
-        if not isinstance(other, Distance):
-            self.km += other
-
+    def __iadd__(self, other: float | Distance) -> Any:
+        if isinstance(other, Distance):
+            self.km += other.km
             return self
-        self.km += other.km
+        elif isinstance(other, (int, float)):
+            self.km += other
+            return self
 
-        return self
+    def __mul__(self, other: float) -> Any:
+        if isinstance(other, (int, float)):
+            return Distance(km=self.km * other)
 
-    def __mul__(self, other: float) -> Distance:
-        if not isinstance(other, Distance):
-            return Distance(
-                km=self.km * other
-            )
+    def __truediv__(self, other: float) -> Any:
+        if isinstance(other, (int, float)):
+            return Distance(km=round(self.km / other, 2))
 
-    def __truediv__(self, other: float) -> Distance:
-        if not isinstance(other, Distance):
-            print(self.km / other)
-            return Distance(
-                km=round(self.km / other, 2)
-            )
-
-    def __lt__(self, other: float) -> bool:
-        if not isinstance(other, Distance):
+    def __lt__(self, other: float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
+        elif isinstance(other, (int, float)):
             return self.km < other
 
-        return self.km < other.km
-
-    def __gt__(self, other: float) -> bool:
-        if not isinstance(other, Distance):
+    def __gt__(self, other: float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
             return self.km > other
 
-        return self.km > other.km
-
-    def __eq__(self, other: float) -> bool:
-        if not isinstance(other, Distance):
+    def __eq__(self, other: float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
+        elif isinstance(other, (int, float)):
             return self.km == other
 
-        return self.km == other.km
-
-    def __le__(self, other: float) -> bool:
-        if not isinstance(other, Distance):
+    def __le__(self, other: float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
             return self.km <= other
 
-        return self.km <= other.km
-
-    def __ge__(self, other: float) -> bool:
-        if not isinstance(other, Distance):
+    def __ge__(self, other: float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
             return self.km >= other
-
-        return self.km >= other.km
