@@ -28,7 +28,7 @@ class Distance:
         if isinstance(other, int | float):
             return Distance(km=self.km * other)
         else:
-            raise TypeError("Unsupported type for addition")
+            raise TypeError("Unsupported type foor addition")
 
     def __truediv__(self, other: int) -> Distance:
         if isinstance(other, (int, float)) and other != 0:
