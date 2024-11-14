@@ -17,7 +17,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return Distance(km=self.km + other)
 
-    def __iadd__(self, other: Distance | int) -> int:
+    def __iadd__(self, other: Distance | int) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -25,11 +25,13 @@ class Distance:
         return self
 
     def __mul__(self, other: int) -> Distance:
-        if isinstance(other, (int, float)):
+        if isinstance(other, int | float):
             return Distance(km=self.km * other)
+        else:
+            raise TypeError("Unsupported type for addition")
 
     def __truediv__(self, other: int) -> Distance:
-        if isinstance(other, (int, float)):
+        if isinstance(other, (int, float)) and other != 0:
             return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int) -> bool:
