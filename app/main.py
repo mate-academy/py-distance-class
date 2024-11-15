@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
@@ -25,41 +28,39 @@ class Distance:
         if isinstance(num, Distance):
             raise TypeError
         else:
-            self.km = self.km * num
-        return self
+            return Distance(self.km * num)
 
     def __truediv__(self, num: int) -> "Distance":
         if isinstance(num, Distance):
             raise TypeError
         else:
-            self.km = round(self.km / num, 2)
-        return self
+            return Distance(round(self.km / num, 2))
 
-    def __lt__(self, other: [int, "Distance"]) -> "Distance":
+    def __lt__(self, other: Union[int, "Distance"]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         else:
             return self.km < other
 
-    def __gt__(self, other: [int, "Distance"]) -> "Distance":
+    def __gt__(self, other: Union[int, "Distance"]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         else:
             return self.km > other
 
-    def __eq__(self, other: [int, "Distance"]) -> "Distance":
+    def __eq__(self, other: Union[int, "Distance"]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         else:
             return self.km == other
 
-    def __le__(self, other: [int, "Distance"]) -> "Distance":
+    def __le__(self, other: Union[int, "Distance"]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         else:
             return self.km <= other
 
-    def __ge__(self, other: [int, "Distance"]) -> "Distance":
+    def __ge__(self, other: Union[int, "Distance"]) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         else:
