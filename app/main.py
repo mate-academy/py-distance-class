@@ -11,7 +11,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
         else:
-            raise TypeError("Unsupported type for addition")
+            raise TypeError("Unsupported type for addition of distance")
 
     def __iadd__(self, other: int) -> Distance:
         if isinstance(other, Distance):
