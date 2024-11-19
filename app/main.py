@@ -24,47 +24,47 @@ class Distance:
             raise TypeError("Operand must be of type Distance, int, or float")
         return self
 
-    def __mul__(self, other: "Distance") -> "Distance":
+    def __mul__(self, other: [int, float]) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("Operand must be of type int or float")
 
-    def __truediv__(self, other: "Distance") -> "Distance":
+    def __truediv__(self, other: [int, float]) -> "Distance":
         if isinstance(other, (int, float)):
             if other == 0:
                 raise ValueError("Cannot divide by zero")
             return Distance(round(self.km / other, 2))
         raise TypeError("Operand must be of type int or float")
 
-    def __lt__(self, other: "Distance") -> "Distance":
+    def __lt__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         if isinstance(other, (int, float)):
             return self.km < other
         raise TypeError("Operand must be of type Distance, int, or float")
 
-    def __gt__(self, other: "Distance") -> "Distance":
+    def __gt__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         if isinstance(other, (int, float)):
             return self.km > other
         raise TypeError("Operand must be of type Distance, int, or float")
 
-    def __eq__(self, other: "Distance") -> "Distance":
+    def __eq__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         if isinstance(other, (int, float)):
             return self.km == other
         raise TypeError("Operand must be of type Distance, int, or float")
 
-    def __le__(self, other: float) -> float:
+    def __le__(self, other: float) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         if isinstance(other, (int, float)):
             return self.km <= other
         raise TypeError("Operand must be of type Distance, int, or float")
 
-    def __ge__(self, other: float) -> float:
+    def __ge__(self, other: float) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         if isinstance(other, (int, float)):
