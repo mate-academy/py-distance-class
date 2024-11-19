@@ -1,8 +1,11 @@
+from __future__ import annotations
+
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
 
-    def __add__(self, other: int) -> int:
+    def __add__(self, other: int) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
@@ -10,7 +13,7 @@ class Distance:
         else:
             raise TypeError("Unsupported type for addition")
 
-    def __iadd__(self, other: int) -> int:
+    def __iadd__(self, other: int) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -19,13 +22,13 @@ class Distance:
             raise TypeError("Unsupported type for addition")
         return self
 
-    def __mul__(self, other: int) -> int:
+    def __mul__(self, other: int) -> Distance:
         if isinstance(other, (int, float)):
-            return Distance(round(self.km * other, 6))
+            return Distance(self.km * other)
         else:
             raise TypeError("Unsupported type for multiplication")
 
-    def __truediv__(self, divisor: int) -> int:
+    def __truediv__(self, divisor: int) -> Distance:
         if isinstance(divisor, (int, float)):
             return Distance(round(self.km / divisor, 2))
         else:
