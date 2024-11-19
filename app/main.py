@@ -33,6 +33,8 @@ class Distance:
     def __truediv__(self, divisor: Union[Distance, int, float]) -> Distance:
         if isinstance(divisor, (int, float)):
             return Distance(round(self.km / divisor, 2))
+        if divisor == 0:
+            raise ZeroDivisionError("Division by zero is not allowed")
         else:
             raise TypeError("Unsupported type for division")
 
