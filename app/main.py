@@ -1,5 +1,8 @@
+from typing import Any
+
+
 class Distance:
-    def __init__(self, km) -> None:
+    def __init__(self, km: Any) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -8,13 +11,13 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other):
+    def __add__(self, other: Any) -> Any:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
 
-    def __iadd__(self, other):
+    def __iadd__(self, other: Any) -> Any:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -23,10 +26,10 @@ class Distance:
             return NotImplemented
         return self
 
-    def __mul__(self, num: int):
+    def __mul__(self, num: int) -> Any:
         return Distance(self.km * num)
 
-    def __truediv__(self, other: int):
+    def __truediv__(self, other: int) -> Any:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: int) -> bool:
