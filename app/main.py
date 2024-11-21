@@ -11,21 +11,31 @@ class Distance:
     def __add__(self, other: "Distance") -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
+        else:
+            raise TypeError("Unsupported type for addition")
 
     def __iadd__(self, other: "Distance") -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        else:
+        elif isinstance(other, (int, float)):
             self.km += other
+        else:
+            raise TypeError("Unsupported type for addition")
         return self
 
     def __mul__(self, other: int) -> "Distance":
-        return Distance(self.km * other)
+        if isinstance(other, (int, float)):
+            return Distance(self.km * other)
+        else:
+            raise TypeError("Unsupported type for multiplication")
 
     def __truediv__(self, other: int) -> "Distance":
-        return Distance(round(self.km / other, 2))
+        if isinstance(other, (int, float)):
+            return Distance(round(self.km / other, 2))
+        else:
+            raise TypeError("Unsupported type for division")
 
     def __lt__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
@@ -45,13 +55,13 @@ class Distance:
         else:
             return self.km == other
 
-    def __le__(self, other) -> bool:
+    def __le__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         else:
             return self.km <= other
 
-    def __ge__(self, other) -> bool:
+    def __ge__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         else:
