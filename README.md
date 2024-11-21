@@ -14,7 +14,7 @@ For `Distance` class you should implement such magic
 methods:
 ```python
 __init__
-distance = Distance(20)  # distance.km == 20
+distance = Distance(20)  # distance.km == 20pip -V
 
 __str__
 distance = Distance(20)
