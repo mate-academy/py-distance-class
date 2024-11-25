@@ -30,7 +30,7 @@ class Distance:
 
     def __mul__(self, other: [Distance, int]) -> Distance:
         if isinstance(other, Distance):
-            raise TypeError("Cannot divide one Distance instance by another")
+            raise TypeError("Cannot multiply one Distance instance by another")
 
         elif isinstance(other, (int, float)):
             return Distance(
@@ -38,7 +38,7 @@ class Distance:
             )
         else:
             raise TypeError(
-                f"Unsupported type for division: {type(other).__name__}"
+                f"Unsupported type for multiply: {type(other).__name__}"
             )
 
     def __truediv__(self, other: [Distance, int]) -> Distance:
