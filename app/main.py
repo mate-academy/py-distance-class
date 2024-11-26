@@ -30,6 +30,7 @@ class Distance:
             raise TypeError(
                 f"Unsuporteed type of other {type(other)}. "
                 f"Int or float expected")
+
     def __truediv__(self, other: int) -> object:
         if type(other) is int or type(other) is float:
             return Distance(round((self.km / other), 2))
