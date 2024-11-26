@@ -16,8 +16,7 @@ class Distance:
     def __add__(self, other: Union[Distance, int]) -> Union[Distance, int]:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        self.km = self.km + other
-        return self
+        return Distance(self.km + other)
 
     def __iadd__(self, other: Union[Distance, int]) -> Union[Distance, int]:
         if isinstance(other, Distance):
@@ -30,19 +29,31 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: int) -> Distance:
+        if other == 0:
+            return False
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
         return self.km < other
 
     def __gt__(self, other: Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km > other.km
         return self.km > other
 
     def __eq__(self, other: Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
         return self.km == other
 
     def __le__(self, other: Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
         return self.km <= other
 
     def __ge__(self, other: Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
         return self.km >= other
