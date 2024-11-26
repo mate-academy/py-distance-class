@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Any
 
 
 class Distance:
@@ -11,18 +12,18 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
+    @staticmethod
+    def is_distance(some_data: Distance | int | float) -> Any:
+        if isinstance(some_data, Distance):
+            return some_data.km
+        else:
+            return some_data
+
     def __add__(self, other: Distance | int | float) -> Distance:
-        # create new object with sum
-        if isinstance(other, Distance):
-            return Distance(self.km + other.km)
-        return Distance(self.km + other)
+        return Distance(self.km + self.is_distance(other))
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
-        # change and return initial object
-        if isinstance(other, Distance):
-            self.km += other.km
-            return self
-        self.km += other
+        self.km += self.is_distance(other)
         return self
 
     def __mul__(self, other: int | float) -> Distance:
@@ -41,26 +42,16 @@ class Distance:
         return Distance(result)
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km < other.km
-        return self.km < other
+        return self.km < self.is_distance(other)
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km > other.km
-        return self.km > other
+        return self.km > self.is_distance(other)
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km == other.km
-        return self.km == other
+        return self.km == self.is_distance(other)
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        return self.km <= other
+        return self.km <= self.is_distance(other)
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        return self.km >= other
+        return self.km >= self.is_distance(other)
