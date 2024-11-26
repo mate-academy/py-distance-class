@@ -34,7 +34,9 @@ class Distance:
         if type(other) is int or type(other) is float:
             return Distance(round((self.km / other), 2))
         else:
-            raise TypeError(f"Unsuporteed type of other {type(other)}. Int or float expected")
+            raise TypeError(
+                f"Unsuporteed type of other {type(other)}. "
+                f"Int or float expected")
 
     def __lt__(self, other: object) -> bool:
         if type(other) is int or type(other) is float:
