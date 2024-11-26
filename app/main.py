@@ -9,13 +9,13 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other) -> object:
+    def __add__(self, other: int) -> object:
         if type(other) is int or type(other) is float:
             return Distance(self.km + other)
         else:
             return Distance(self.km + other.km)
 
-    def __iadd__(self, other) -> object:
+    def __iadd__(self, other: int) -> object:
         if type(other) is int or type(other) is float:
             self.km = self.km + other
             return self
@@ -23,12 +23,14 @@ class Distance:
             self.km = self.km + other.km
             return self
 
-    def __mul__(self, other) -> object:
+    def __mul__(self, other: int) -> object:
         if type(other) is int or type(other) is float:
             return Distance(self.km * other)
         else:
-            raise TypeError(f"Unsuporteed type of other {type(other)}. Int or float expected")
-    def __truediv__(self, other) -> object:
+            raise TypeError(
+                f"Unsuporteed type of other {type(other)}. "
+                f"Int or float expected")
+    def __truediv__(self, other: int) -> object:
         if type(other) is int or type(other) is float:
             return Distance(round((self.km / other), 2))
         else:
@@ -58,7 +60,7 @@ class Distance:
         else:
             return (self.km < other.km) or (self.km == other.km)
 
-    def __ge__(self, other) -> bool:
+    def __ge__(self, other: object) -> bool:
         if type(other) is int or type(other) is float:
             return (self.km > other) or (self.km == other)
         else:
