@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
@@ -53,8 +52,8 @@ class Distance:
             return self.km >= other
         return NotImplemented
 
-    def __truediv__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
+    def __truediv__(self, other: int | float) -> Distance | NotImplemented:
+        if isinstance(other, (int, float)) and other != 0:
             return Distance(round(self.km / other, 2))
         return NotImplemented
 
