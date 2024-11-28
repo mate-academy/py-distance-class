@@ -1,7 +1,8 @@
 from __future__ import annotations
-from typing import Any
+from functools import total_ordering
 
 
+@total_ordering
 class Distance:
     def __init__(self, km: int | float) -> None:
         self.km = km
@@ -13,45 +14,37 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @staticmethod
-    def is_distance(some_data: Distance | int | float) -> Any:
+    def conversion_data(
+            some_data: Distance | int | float) -> Distance | int | float:
         if isinstance(some_data, Distance):
             return some_data.km
-        else:
-            return some_data
+        return some_data
 
     def __add__(self, other: Distance | int | float) -> Distance:
-        return Distance(self.km + self.is_distance(other))
+        return Distance(self.km + self.conversion_data(other))
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
-        self.km += self.is_distance(other)
+        self.km += self.conversion_data(other)
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if not isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
+            return Distance(self.km * other)
+        else:
             raise TypeError(
                 f"Unsupported operation class Distance * {type(other)}"
             )
-        return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        if not isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
+            return Distance(round(self.km / other, 2))
+        else:
             raise TypeError(
                 f"Unsupported operation class Distance / {type(other)}"
             )
-        result = round(self.km / other, 2)
-        return Distance(result)
-
-    def __lt__(self, other: Distance | int | float) -> bool:
-        return self.km < self.is_distance(other)
-
-    def __gt__(self, other: Distance | int | float) -> bool:
-        return self.km > self.is_distance(other)
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        return self.km == self.is_distance(other)
+        return self.km == self.conversion_data(other)
 
-    def __le__(self, other: Distance | int | float) -> bool:
-        return self.km <= self.is_distance(other)
-
-    def __ge__(self, other: Distance | int | float) -> bool:
-        return self.km >= self.is_distance(other)
+    def __lt__(self, other: Distance | int | float) -> bool:
+        return self.km < self.conversion_data(other)
