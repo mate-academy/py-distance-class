@@ -14,8 +14,7 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @staticmethod
-    def conversion_data(
-            some_data: Distance | int | float) -> Distance | int | float:
+    def conversion_data(some_data: Distance | int | float) -> int | float:
         if isinstance(some_data, Distance):
             return some_data.km
         return some_data
@@ -28,20 +27,18 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
-        else:
+        if not isinstance(other, (int, float)):
             raise TypeError(
                 f"Unsupported operation class Distance * {type(other)}"
             )
+        return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(round(self.km / other, 2))
-        else:
+        if not isinstance(other, (int, float)):
             raise TypeError(
                 f"Unsupported operation class Distance / {type(other)}"
             )
+        return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: Distance | int | float) -> bool:
         return self.km == self.conversion_data(other)
