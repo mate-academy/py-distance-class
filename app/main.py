@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import Any
 
 
+# solution
 class Distance:
 
     def __init__(self, km: Any) -> None:
