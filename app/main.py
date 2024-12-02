@@ -1,8 +1,9 @@
 from __future__ import annotations
+from typing import Union
 
 
 class Distance:
-    Variables = "Distance", int, float
+    Variables = Union["Distance", int, float]
 
     def __init__(self, km: float) -> None:
         self.km = km
@@ -27,7 +28,8 @@ class Distance:
         return self
 
     def __mul__(self, other: Variables) -> Distance:
-        return Distance(self.km * other)
+        if isinstance(other, float | int):
+            return Distance(self.km * other)
 
     def __truediv__(self, other: Variables) -> Distance:
         if isinstance(other, (float, int)):
