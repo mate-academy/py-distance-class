@@ -36,8 +36,8 @@ class Distance:
 
     def __truediv__(self, divisor: Any) -> "Distance":
         if isinstance(divisor, (int, float)) and divisor != 0:
-            return Distance(round(self.km // divisor, 2))
-        raise TypeError("Division only supported with non-zero numeric types.")
+            return Distance(round(self.km / divisor, 2))
+        raise TypeError("Division by zero is not allowed")
 
     def __lt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
