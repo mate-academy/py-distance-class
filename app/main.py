@@ -44,7 +44,7 @@ class Distance:
         else:
             raise TypeError("Unsupported operand type(s) for <: 'Distance' and '{}'".format(type(other)))
 
-    def __gt__(self, other):
+    def __gt__(self, other:int):
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
