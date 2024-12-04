@@ -1,67 +1,81 @@
-class Distance:
-    def __init__(self, km):
-        self.km = float(km)  # Ensure km is a float for calculations
+from typing import Union
 
-    def __str__(self):
+
+class Distance:
+    def __init__(self, km: float) -> None:
+        self.km: float = km
+
+    def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other):
+    def __add__(self, other: Union["Distance", float]) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
         else:
-            raise TypeError("Unsupported operand type(s) for +: 'Distance' and '{}'".format(type(other)))
+            return NotImplemented
 
-    def __iadd__(self, other):
+    def __iadd__(self, other: Union["Distance", float]) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
             self.km += other
         else:
-            raise TypeError("Unsupported operand type(s) for +=: 'Distance' and '{}'".format(type(other)))
+            return NotImplemented
+        return self
 
-    def __mul__(self, other):
+    def __mul__(self, other: float) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         else:
-            raise TypeError("Unsupported operand type(s) for *: 'Distance' and '{}'".format(type(other)))
+            return NotImplemented
 
-    def __truediv__(self, other):
+    def __truediv__(self, other: float) -> "Distance":
         if isinstance(other, (int, float)):
-            return Distance(self.km / other)
+            return Distance(round(self.km / other, 2))
         else:
-            raise TypeError("Unsupported operand type(s) for /: 'Distance' and '{}'".format(type(other)))
+            return NotImplemented
 
-    def __lt__(self, other):
+    def __lt__(self, other: Union["Distance", float]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
             return self.km < other
         else:
-            raise TypeError("Unsupported operand type(s) for <: 'Distance' and '{}'".format(type(other)))
+            return NotImplemented
 
-    def __gt__(self, other:int):
+    def __le__(self, other: Union["Distance", float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+        else:
+            return NotImplemented
+
+    def __gt__(self, other: Union["Distance", float]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
         else:
-            raise TypeError("Unsupported operand type(s) for >: 'Distance' and '{}'".format(type(other)))
+            return NotImplemented
 
-    def __eq__(self, other):
+    def __ge__(self, other: Union["Distance", float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
+            return self.km >= other
+        else:
+            return NotImplemented
+
+    def __eq__(self, other: Union["Distance", float]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
         else:
-            return False
-
-    def __le__(self, other):
-        return self.__lt__(other) or self.__eq__(other)
-
-    def __ge__(self, other):
-        return self.__gt__(other) or self.__eq__(other)
+            return NotImplemented
