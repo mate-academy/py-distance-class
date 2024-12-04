@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Union
 
 
 class Distance:
@@ -8,7 +9,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int) -> Distance:
+    def __add__(self, other: Union[Distance, int]) -> Distance:
         if isinstance(other, Distance):
             return Distance(
                 km=self.km + other.km
@@ -17,7 +18,7 @@ class Distance:
             km=self.km + other
         )
 
-    def __iadd__(self, other: Distance | int) -> Distance:
+    def __iadd__(self, other: Union[Distance, int]) -> Distance:
         if isinstance(other, Distance):
             self.km = self.km + other.km
         else:
@@ -34,22 +35,22 @@ class Distance:
             km=round(self.km / other, 2)
         )
 
-    def __lt__(self, other: Distance | int) -> bool:
+    def __lt__(self, other: Union[Distance, int]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         return self.km < other
 
-    def __gt__(self, other: Distance | int) -> bool:
+    def __gt__(self, other: Union[Distance, int]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         return self.km > other
 
-    def __eq__(self, other: Distance | int) -> bool:
+    def __eq__(self, other: Union[Distance, int]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         return self.km == other
 
-    def __le__(self, other: Distance | int) -> bool:
+    def __le__(self, other: Union[Distance, int]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         return self.km <= other
