@@ -29,7 +29,7 @@ class Distance:
             return Distance(self.km * other)
         elif isinstance(other, Distance):
             raise TypeError(
-                f'Cannot multiply a Distance with {type(other.km)}'
+                f"Cannot multiply a Distance with {type(other.km)}"
             )
 
     def __truediv__(self, other: Union[int, float]) -> "Distance":
@@ -37,7 +37,7 @@ class Distance:
             return Distance(round(self.km / other, 2))
         elif isinstance(other, Distance):
             raise TypeError(
-                f'Cannot divide a Distance with {type(other.km)}'
+                f"Cannot divide a Distance with {type(other.km)}"
             )
 
     def __lt__(self, other: Union[int, float, "Distance"]) -> "bool":
