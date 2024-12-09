@@ -16,12 +16,16 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
+        else:
+            raise ValueError("Cannot return Distance class")
 
     def __iadd__(self, other: object) -> object:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
             self.km += other
+        else:
+            raise ValueError("Cannot return Distance class")
 
         return self
 
@@ -30,8 +34,10 @@ class Distance:
             return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> object:
-        if other != 0:
+        if (isinstance(other, (int, float)) and other != 0):
             return Distance(round(self.km / other, 2))
+        elif other == 0:
+            raise ValueError("Cannot divide by zero")
 
     def __lt__(self, other: object) -> bool:
         if isinstance(other, Distance):
