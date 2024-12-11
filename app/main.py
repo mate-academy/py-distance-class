@@ -21,21 +21,20 @@ class Distance:
         return self
 
     def __mul__(self, other: float | int) -> Distance:
-        km = self.to_km(other)
-        return Distance(self.km * km)
+        Distance.check_is_float(other)
+        return Distance(self.km * other)
 
     @staticmethod
-    def to_km(dist: int | float) -> float | int:
+    def check_is_float(dist: float) -> None:
         if not (
                 isinstance(dist, int)
                 or isinstance(dist, float)
         ):
             raise TypeError
-        return dist
 
     def __truediv__(self, other: Distance | float | int) -> Distance:
-        km = Distance.to_km(other)
-        return Distance(round(self.km / km, 2))
+        Distance.check_is_float(other)
+        return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: Distance | float | int) -> bool:
         other = Distance.to_distance(other)
