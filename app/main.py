@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+from curses.ascii import isdigit
 from typing import Any
 
 
@@ -15,21 +17,30 @@ class Distance:
     def __add__(self, other: Any) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
+        elif isinstance(other, (int, float)):
+            return Distance(self.km + other)
         else:
-            return Distance(self.km + float(other))
+            return self
 
     def __iadd__(self, other: Any) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
+        elif isinstance(other, (int, float)):
+            self.km += other
+            return self
         else:
-            self.km += float(other)
             return self
 
     def __mul__(self, other: Any) -> Distance:
-        return Distance(self.km * float(other))
+        if isinstance(other, (int, float)):
+            return Distance(self.km * other)
+        else:
+            return self
 
     def __truediv__(self, other: Any) -> Distance:
+        if other == 0:
+            return self
         return Distance(round(self.km / float(other), 2))
 
     def __lt__(self, other: Any) -> bool:
