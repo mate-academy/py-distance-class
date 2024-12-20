@@ -44,39 +44,29 @@ class Distance:
     def __lt__(self, other):
         if isinstance(other, Distance):
             return self.km < other.km
-        elif isinstance(other, (int, float)):
-            return self.km < other
         else:
             raise TypeError("Can only compare Distance or numeric types.")
         
     def __gt__(self, other):
         if isinstance(other, Distance):
             return self.km > other.km
-        elif isinstance(other, (int, float)):
-            return self.km > other
         else:
             raise TypeError("Can only compare Distance or numeric types.")
     
     def __eq__(self, other):
         if isinstance(other, Distance):
             return self.km == other.km
-        elif isinstance(other, (int, float)):
-            return self.km == other
         else:
             raise TypeError("Can only compare Distance or numeric types.")
     
     def __le__(self, other):
         if isinstance(other, Distance):
             return self.km <= other.km
-        elif isinstance(other, (int, float)):
-            return self.km <= other
         else:
             raise TypeError("Can only compare Distance or numeric types.")
         
     def __ge__(self, other):
         if isinstance(other, Distance):
             return self.km >= other.km
-        elif isinstance(other, (int, float)):
-            return self.km >= other
         else:
             raise TypeError("Can only compare Distance or numeric types.")
