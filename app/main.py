@@ -11,7 +11,7 @@ class Distance:
     def __add__(self, other: "Distance") -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        elif isinstance(other, (int,float)):
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
         else:
             return NotImplemented
@@ -41,7 +41,7 @@ class Distance:
         return self.km < (other.km if isinstance(other, Distance) else other)
 
     def __le__(self, other: "Distance") -> bool:
-        return  self.km <= (other.km if isinstance(other, Distance) else other)
+        return self.km <= (other.km if isinstance(other, Distance) else other)
 
     def __eq__(self, other: "Distance") -> bool:
         return self.km == (other.km if isinstance(other, Distance) else other)
