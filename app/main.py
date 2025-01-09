@@ -25,12 +25,20 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
+        if not isinstance(other, (int, float)):
+            raise TypeError(f"Unsupported type for multiplication: "
+                            f"{type(other)}. Must be int or float.")
+        if other == 0:
+            raise TypeError("Multiplication by zero is not allowed.")
+        return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(round((self.km / other), 2))
+        if not isinstance(other, (int, float)):
+            raise TypeError(f"Unsupported type for division: "
+                            f"{type(other)}. Must be int or float.")
+        if other == 0:
+            raise TypeError("Division by zero is not allowed.")
+        return Distance(round((self.km / other), 2))
 
     def __lt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, (int, float)):
