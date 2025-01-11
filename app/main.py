@@ -1,3 +1,5 @@
+from typing import Union
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
@@ -26,11 +28,11 @@ class Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
 
-    def __truediv__(self, other: "Distance") -> "Distance":
-        if isinstance(other, (int, float)):
-            return Distance(round(self.km / other, 2))
-        elif other == 0:
+    def __truediv__(self, other: Union[int, float]) -> "Distance":
+        if other == 0:
             raise ZeroDivisionError("Cannot divide by zero.")
+        elif isinstance(other, (int, float)):
+            return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
