@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: bool) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -33,32 +33,32 @@ class Distance:
             result_km = round(self.km / other, 2)
             return Distance(result_km)
 
-    def __lt__(self, other: float) -> float:
+    def __lt__(self, other: bool) -> bool:
         if isinstance(other, (int, float)):
             return self.km < other
         if isinstance(other, Distance):
-            return self.km < other
+            return self.km < other.km
 
-    def __gt__(self, other: float) -> float:
+    def __gt__(self, other: bool) -> bool:
         if isinstance(other, (int, float)):
             return self.km > other
         if isinstance(other, Distance):
-            return self.km > other
+            return self.km > other.km
 
-    def __eq__(self, other: float) -> float:
+    def __eq__(self, other: bool) -> bool:
         if isinstance(other, (int, float)):
             return self.km == other
         if isinstance(other, Distance):
-            return self.km == other
+            return self.km == other.km
 
-    def __le__(self, other: float) -> float:
+    def __le__(self, other: bool) -> bool:
         if isinstance(other, (int, float)):
             return self.km <= other
         if isinstance(other, Distance):
-            return self.km <= other
+            return self.km <= other.km
 
-    def __ge__(self, other: float) -> float:
+    def __ge__(self, other: bool) -> bool:
         if isinstance(other, (int, float)):
             return self.km >= other
         if isinstance(other, Distance):
-            return self.km >= other
+            return self.km >= other.km
