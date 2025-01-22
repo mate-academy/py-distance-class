@@ -1,9 +1,10 @@
 from __future__ import annotations
+from typing import Union
 
 
 class Distance:
 
-    def __init__(self, km: (int, float)) -> None:
+    def __init__(self, km: Union[int, float]) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -17,6 +18,10 @@ class Distance:
             return Distance(self.km + other)
         if isinstance(other, Distance):  # Перевірка на Distance
             return Distance(self.km + other.km)
+        else:  # Обробка невідповідного типу
+            raise TypeError(f"Unsupported operand type(s) "
+                            f"for +: 'Distance' and '{type(other).__name__}'"
+                            )
 
     def __iadd__(self, other: (int, float, Distance)) -> Distance:
         if isinstance(other, (int, float)):
@@ -27,10 +32,20 @@ class Distance:
             return self
 
     def __mul__(self, other: int) -> Distance:
-        return Distance(self.km * other)
+        if isinstance(other, (int, float)):  # Перевірка на число
+            return Distance(self.km * other)
+        raise TypeError("Unsupported operand type(s) for *:"
+                        " 'Distance' and '{}'".format(type(other).__name__)
+                        )
 
     def __truediv__(self, other: int) -> Distance:
-        return Distance(round(self.km / other, 2))
+        if isinstance(other, (int, float)):  # Перевірка на число
+            if other == 0:  # Додано перевірку на ділення на нуль
+                raise ZeroDivisionError("Division by zero is not allowed.")
+            return Distance(round(self.km / other, 2))
+        raise TypeError("Unsupported operand type(s) for /: "
+                        "'Distance' and '{}'".format(type(other).__name__)
+                        )
 
     def __lt__(self, other: (int, float, Distance)) -> bool:
         if isinstance(other, (int, float)):
