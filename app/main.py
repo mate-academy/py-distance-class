@@ -15,8 +15,7 @@ class Distance:
         else:
             return Distance(self.km + other)
 
-    # need to implement this method to support += operator
-    def __iadd__(self, other: "Distance" or int) -> int:
+    def __iadd__(self, other: "Distance" or int) -> "Distance":
         if isinstance(other, Distance):
             self.km = self.km + other.km
         else:
@@ -26,7 +25,7 @@ class Distance:
     def __mul__(self, other: int) -> "Distance":
         return Distance(self.km * other)
 
-    def __truediv__(self, other: "Distance") -> "Distance":
+    def __truediv__(self, other: int) -> "Distance":
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: "Distance" or int) -> bool:
