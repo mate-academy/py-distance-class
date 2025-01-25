@@ -4,30 +4,30 @@ class Distance:
         self.km = km
 
     def __str__(self) -> str:
-        return f"Distance: {self.km} km"
+        return f"Distance: {self.km} km."
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other) -> str:
+    def __add__(self, other: int) -> "Distance":
         if isinstance(other, Distance):
          return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
          return Distance(self.km + other)
 
 
-    def __iadd__(self, other: int) -> str:
+    def __iadd__(self, other: int) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
             self.km += other
         return self
 
-    def __mul__(self, other: int) -> int:
-        return (Distance(round((self.km * other), 2)))
+    def __mul__(self, other: int) -> "Distance":
+        return Distance(round((self.km * other), 2))
 
-    def __truediv__(self, other: int) -> str:
-        return (Distance(round((self.km / other), 2)))
+    def __truediv__(self, other: int) -> "Distance":
+        return Distance(round((self.km / other), 2))
 
     def __lt__(self, other: int) -> bool:
         if isinstance(other, Distance):
