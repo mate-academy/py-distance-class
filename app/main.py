@@ -9,12 +9,12 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int) -> str:
+    def __add__(self, other) -> str:
         if isinstance(other, Distance):
-            Distance(self.km + other.km)
+         return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
-            self.km += other
-        return self
+         return Distance(self.km + other)
+
 
     def __iadd__(self, other: int) -> str:
         if isinstance(other, Distance):
