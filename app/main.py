@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: "int | float"):
+    def __init__(self, km: "int | float") -> None:
         if not isinstance(km, (int, float)):
             raise ValueError("km must be a number.")
         self.km = km
