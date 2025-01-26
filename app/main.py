@@ -1,31 +1,81 @@
 class Distance:
-    def __init__(self, meters: float) -> None:
-        self.meters = meters
+    def __init__(self, km):
+        if not isinstance(km, (int, float)):
+            raise ValueError("km must be a number.")
+        self.km = km
 
-    def to_kilometers(self) -> float:
-        return self.meters / 1000
+    def __str__(self):
+        return f"Distance: {self.km} kilometers."
 
-    def to_miles(self) -> float:
-        return self.meters / 1609.34
+    def __repr__(self):
+        return f"Distance(km={self.km})"
 
-    def to_yards(self) -> float:
-        return self.meters * 1.09361
+    def __add__(self, other):
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        elif isinstance(other, (int, float)):
+            return Distance(self.km + other)
+        else:
+            raise ValueError("Can only add Distance or numeric values.")
 
-    def to_feet(self) -> float:
-        return self.meters * 3.28084
+    def __iadd__(self, other):
+        if isinstance(other, Distance):
+            self.km += other.km
+        elif isinstance(other, (int, float)):
+            self.km += other
+        else:
+            raise ValueError("Can only add Distance or numeric values.")
+        return self
 
-    @staticmethod
-    def from_kilometers(kilometers: float) -> "Distance":
-        return Distance(kilometers * 1000)
+    def __mul__(self, factor):
+        if not isinstance(factor, (int, float)):
+            raise ValueError("Can only multiply by a numeric value.")
+        return Distance(self.km * factor)
 
-    @staticmethod
-    def from_miles(miles: float) -> "Distance":
-        return Distance(miles * 1609.34)
+    def __truediv__(self, divisor):
+        if not isinstance(divisor, (int, float)) or divisor == 0:
+            raise ValueError("Divisor must be a non-zero numeric value.")
+        return Distance(round(self.km / divisor, 2))
 
-    @staticmethod
-    def from_yards(yards: float) -> "Distance":
-        return Distance(yards / 1.09361)
+    def __lt__(self, other):
+        if isinstance(other, Distance):
+            return self.km < other.km
+        elif isinstance(other, (int, float)):
+            return self.km < other
+        else:
+            raise ValueError("Comparison is only supported with Distance or numeric values.")
 
-    @staticmethod
-    def from_feet(feet: float) -> "Distance":
-        return Distance(feet / 3.28084)
+    def __le__(self, other):
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+        else:
+            raise ValueError("Comparison is only supported with Distance or numeric values.")
+
+    def __eq__(self, other):
+        if isinstance(other, Distance):
+            return self.km == other.km
+        elif isinstance(other, (int, float)):
+            return self.km == other
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __gt__(self, other):
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
+            return self.km > other
+        else:
+            raise ValueError("Comparison is only supported with Distance or numeric values.")
+
+    def __ge__(self, other):
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
+            return self.km >= other
+        else:
+            raise ValueError("Comparison is only supported with Distance or numeric values.")
