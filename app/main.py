@@ -79,3 +79,4 @@ class Distance:
             return self.km >= other
         else:
             raise ValueError("Comparison is only supported with Distance or numeric values.")
+
