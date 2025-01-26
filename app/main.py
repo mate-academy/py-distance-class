@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: "float") -> None:
+    def __init__(self, km: "int | float"):
         if not isinstance(km, (int, float)):
             raise ValueError("km must be a number.")
         self.km = km
@@ -27,15 +27,25 @@ class Distance:
             raise ValueError("Can only add Distance or numeric values.")
         return self
 
-    def __mul__(self, factor: "int | float") -> "Distance":
-        if not isinstance(factor, (int, float)):
-            raise ValueError("Can only multiply by a numeric value.")
-        return Distance(self.km * factor)
+    def __mul__(self, factor: "int | float | Distance") -> "Distance":
+        if isinstance(factor, (int, float)):
+            return Distance(self.km * factor)
+        elif isinstance(factor, Distance):
+            return Distance(self.km * factor.km)
+        else:
+            raise ValueError("Can only multiply by a numeric value or another Distance.")
 
-    def __truediv__(self, divisor: "int | float") -> "Distance":
-        if not isinstance(divisor, (int, float)) or divisor == 0:
-            raise ValueError("Divisor must be a non-zero numeric value.")
-        return Distance(round(self.km / divisor, 2))
+    def __truediv__(self, divisor: "int | float | Distance") -> "Distance":
+        if isinstance(divisor, (int, float)):
+            if divisor == 0:
+                raise ValueError("Divisor must be a non-zero numeric value.")
+            return Distance(round(self.km / divisor, 2))
+        elif isinstance(divisor, Distance):
+            if divisor.km == 0:
+                raise ValueError("Divisor Distance cannot have zero km.")
+            return Distance(round(self.km / divisor.km, 2))
+        else:
+            raise ValueError("Divisor must be a non-zero numeric value or another Distance.")
 
     def __lt__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
@@ -43,9 +53,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km < other
         else:
-            raise ValueError(
-                "Comparison is only supported with Distance or numeric values."
-            )
+            raise ValueError("Comparison is only supported with Distance or numeric values.")
 
     def __le__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
@@ -53,9 +61,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km <= other
         else:
-            raise ValueError(
-                "Comparison is only supported with Distance or numeric values."
-            )
+            raise ValueError("Comparison is only supported with Distance or numeric values.")
 
     def __eq__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
@@ -74,9 +80,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km > other
         else:
-            raise ValueError(
-                "Comparison is only supported with Distance or numeric values."
-            )
+            raise ValueError("Comparison is only supported with Distance or numeric values.")
 
     def __ge__(self, other: "Distance | int | float") -> bool:
         if isinstance(other, Distance):
@@ -84,6 +88,4 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km >= other
         else:
-            raise ValueError(
-                "Comparison is only supported with Distance or numeric values."
-            )
+            raise ValueError("Comparison is only supported with Distance or numeric values.")
