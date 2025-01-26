@@ -43,7 +43,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km < other
         else:
-            raise ValueError("Comparison is only supported with Distance or numeric values.")
+            raise ValueError(
+                "Comparison is only supported with Distance or numeric values."
+            )
 
     def __le__(self, other: "Distance" | int | float) -> bool:
         if isinstance(other, Distance):
@@ -51,7 +53,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km <= other
         else:
-            raise ValueError("Comparison is only supported with Distance or numeric values.")
+            raise ValueError(
+                "Comparison is only supported with Distance or numeric values."
+            )
 
     def __eq__(self, other: "Distance" | int | float) -> bool:
         if isinstance(other, Distance):
@@ -70,7 +74,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km > other
         else:
-            raise ValueError("Comparison is only supported with Distance or numeric values.")
+            raise ValueError(
+                "Comparison is only supported with Distance or numeric values."
+            )
 
     def __ge__(self, other: "Distance" | int | float) -> bool:
         if isinstance(other, Distance):
@@ -78,4 +84,6 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km >= other
         else:
-            raise ValueError("Comparison is only supported with Distance or numeric values.")
+            raise ValueError(
+                "Comparison is only supported with Distance or numeric values."
+            )
