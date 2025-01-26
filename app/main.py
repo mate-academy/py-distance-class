@@ -15,17 +15,17 @@ class Distance:
         return self.meters * 3.28084
 
     @staticmethod
-    def from_kilometers(kilometers: float) -> 'Distance':
+    def from_kilometers(kilometers: float) -> "Distance":
         return Distance(kilometers * 1000)
 
     @staticmethod
-    def from_miles(miles: float) -> 'Distance':
+    def from_miles(miles: float) -> "Distance":
         return Distance(miles * 1609.34)
 
     @staticmethod
-    def from_yards(yards: float) -> 'Distance':
+    def from_yards(yards: float) -> "Distance":
         return Distance(yards / 1.09361)
 
     @staticmethod
-    def from_feet(feet: float) -> 'Distance':
+    def from_feet(feet: float) -> "Distance":
         return Distance(feet / 3.28084)
