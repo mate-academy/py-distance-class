@@ -1,5 +1,5 @@
 class Distance:
-    def __init__(self, km: float):
+    def __init__(self, km: float) -> None:
         if not isinstance(km, (int, float)):
             raise ValueError("km must be a number.")
         self.km = km
@@ -79,4 +79,3 @@ class Distance:
             return self.km >= other
         else:
             raise ValueError("Comparison is only supported with Distance or numeric values.")
-
