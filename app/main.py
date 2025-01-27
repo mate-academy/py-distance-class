@@ -30,6 +30,8 @@ class Distance:
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
+            if other == 0:
+                raise ZeroDivisionError("Division by zero is not allowed")
             return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: int | float | Distance) -> bool:
