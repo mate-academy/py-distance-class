@@ -27,24 +27,31 @@ class Distance:
         return self
 
     def __mul__(self, factor: float) -> float:
-        self.km *= factor
-        return self
+        return Distance(self.km * factor)
 
     def __truediv__(self, divisor: float) -> float:
-        self.km = round(self.km / divisor, 2)
-        return self
+        return Distance(round(self.km / divisor, 2))
 
-    def __lt__(self, distance: float) -> bool:
-        return self.km < distance
+    def __lt__(self, distance: any) -> bool:
+        if isinstance(distance, Distance):
+            return self.km < distance.km
+        elif isinstance(distance, (float, int)):
+            return self.km < distance
 
-    def __gt__(self, distance: float) -> bool:
-        return self.km > distance
+    def __gt__(self, distance: any) -> bool:
+        if isinstance(distance, Distance):
+            return self.km > distance.km
+        elif isinstance(distance, (float, int)):
+            return self.km > distance
+        
+    def __eq__(self, distance: any) -> bool:
+        if isinstance(distance, Distance):
+            return self.km == distance.km
+        elif isinstance(distance, (float, int)):
+            return self.km == distance
 
-    def __eq__(self, distance: float) -> bool:
-        return self.km == distance
-
-    def __le__(self, distance: float) -> bool:
+    def __le__(self, distance: any) -> bool:
         return self < distance or self == distance
 
-    def __ge__(self, distance: float) -> bool:
+    def __ge__(self, distance: any) -> bool:
         return self > distance or self == distance
