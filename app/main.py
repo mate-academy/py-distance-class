@@ -31,6 +31,7 @@ class Distance:
             if number == 0:
                 raise ValueError("Cannot divide by zero.")
             return Distance(km=round((self.km / number), 2))
+        raise TypeError
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, (int, float)):
@@ -38,9 +39,7 @@ class Distance:
         return self.km < other.km
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, (int, float)):
-            return self.km <= other
-        return self.km <= other.km
+        return self < other or self == other
 
     def __eq__(self, other: Distance | int | float) -> bool:
         if isinstance(other, (int, float)):
@@ -53,6 +52,4 @@ class Distance:
         return self.km > other.km
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if isinstance(other, (int, float)):
-            return self.km >= other
-        return self.km >= other.km
+        return self > other or self == other
