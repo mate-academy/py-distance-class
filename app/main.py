@@ -48,6 +48,3 @@ class Distance:
 
     def __ge__(self, distance: float) -> bool:
         return self > distance or self == distance
-
-
-print(Distance(15.5) + Distance(14.5))
