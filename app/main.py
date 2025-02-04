@@ -8,16 +8,19 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
+    # якщо вказувати Distance в анатації other
+    # зявляється помилка
+    # TypeError: unsupported
+    # operand type(s)
+    # for |: 'types.UnionType' and 'str'
+
     def __add__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
-        else:
-            raise (
-                TypeError(f"Unsupported operand type(s):"
-                          f" 'Distance' and {type(other)}")
-            )
+        raise (TypeError(f"Unsupported operand type(s): "
+                         f"'Distance' and {type(other)}"))
 
     def __iadd__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
@@ -32,62 +35,55 @@ class Distance:
     def __mul__(self, other: int | float) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        else:
-            raise TypeError(f"Unsupported operand type(s): "
-                            f"'Distance' and {type(other)}")
+        raise TypeError(f"Unsupported operand type(s): "
+                        f"'Distance' and {type(other)}")
 
     def __truediv__(self, other: int | float) -> "Distance":
         if isinstance(other, (int, float)):
             if other == 0:
                 raise ZeroDivisionError("Division by zero is not allowed")
             return Distance(round(self.km / other, 2))
-        else:
-            raise TypeError(f"Unsupported operand type(s): "
-                            f"'Distance' and {type(other)}")
+        raise TypeError(f"Unsupported operand type(s): "
+                        f"'Distance' and {type(other)}")
 
     def __lt__(self, other: int | float) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
             return self.km < other
-        else:
-            raise TypeError(f"Unsupported operand type(s): "
-                            f"'Distance' and {type(other)}")
+        raise TypeError(f"Unsupported operand type(s): "
+                        f"'Distance' and {type(other)}")
 
     def __gt__(self, other: int | float) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
-        else:
-            raise TypeError(f"Unsupported operand type(s): "
-                            f"'Distance' and {type(other)}")
+        raise TypeError(f"Unsupported operand type(s): "
+                        f"'Distance' and {type(other)}")
 
     def __eq__(self, other: int | float) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
-        else:
-            raise TypeError(f"Unsupported operand type(s): "
-                            f"'Distance' and {type(other)}")
+        raise TypeError(f"Unsupported operand type(s): "
+                        f"'Distance' and {type(other)}")
 
     def __le__(self, other: int | float) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
             return self.km <= other
-        else:
-            raise TypeError(f"Unsupported operand type(s): "
-                            f"'Distance' and {type(other)}")
+        raise TypeError(f"Unsupported operand type(s): "
+                        f"'Distance' and {type(other)}")
 
     def __ge__(self, other: int | float) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
             return self.km >= other
-        else:
-            raise (
+        raise (
                 TypeError(f"Unsupported operand type(s): "
                           f"'Distance' and {type(other)}")
             )
