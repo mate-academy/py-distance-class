@@ -83,7 +83,5 @@ class Distance:
             return self.km >= other.km
         elif isinstance(other, (int, float)):
             return self.km >= other
-        raise (
-                TypeError(f"Unsupported operand type(s): "
-                          f"'Distance' and {type(other)}")
-            )
+        raise (TypeError(f"Unsupported operand type(s): "
+                         f"'Distance' and {type(other)}"))
