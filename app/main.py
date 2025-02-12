@@ -3,7 +3,7 @@ from __future__ import annotations
 
 class Distance:
     def __init__(self, km: int | float) -> None:
-        self.km: float = km  # вказуємо тип атрибута
+        self.km: float = km
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
@@ -28,9 +28,7 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
-        return NotImplemented
+        return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)) and other != 0:
@@ -61,15 +59,7 @@ class Distance:
         return False
 
     def __le__(self, other: int | float | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km <= other.km
-        elif isinstance(other, (int, float)):
-            return self.km <= other
-        return False
+        return not self > other
 
     def __ge__(self, other: int | float | Distance) -> bool:
-        if isinstance(other, Distance):
-            return self.km >= other.km
-        elif isinstance(other, (int, float)):
-            return self.km >= other
-        return False
+        return not self < other
