@@ -36,48 +36,66 @@ class Distance:
 
     def __mul__(self, other: Any) -> Any:
         if isinstance(other, int | float):
-            self.km *= other
+            return Distance(self.km * other)
         else:
             raise (
                 TypeError("Unsupported")
             )
-        return self
 
     def __truediv__(self, other: Any) -> Any:
         if isinstance(other, int | float):
-            self.km = round(self.km / other, 2)
+            return Distance(round(self.km / other, 2))
         else:
             raise (
                 TypeError("Unsupported")
             )
-        return self
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, int | float):
             return self.km == other
+        else:
+            raise (
+                TypeError("Unsupported")
+            )
 
     def __gt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, int | float):
             return self.km > other
+        else:
+            raise (
+                TypeError("Unsupported")
+            )
 
     def __ge__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, int | float):
             return self.km >= other
+        else:
+            raise (
+                TypeError("Unsupported")
+            )
 
     def __lt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, int | float):
             return self.km < other
+        else:
+            raise (
+                TypeError("Unsupported")
+            )
 
     def __le__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, int | float):
             return self.km <= other
+        else:
+            raise (
+                TypeError("Unsupported")
+            )
