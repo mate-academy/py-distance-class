@@ -32,7 +32,7 @@ class Distance:
         )
 
     def __truediv__(self, other: int | float) -> "Distance":
-        result_div = round(self.km / other, 2)
+        result_truediv = round(self.km / other, 2)
         return Distance(
             km=result_div
         )
