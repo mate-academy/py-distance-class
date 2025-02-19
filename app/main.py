@@ -1,4 +1,4 @@
-from typing import Union
+from __future__ import annotations
 
 
 class Distance:
@@ -11,45 +11,43 @@ class Distance:
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __add__(self, other: Union[int, float, "Distance"]) -> "Distance":
+    def __add__(self, other: int | float | Distance) -> Distance:
         value_to_compare = other.km if isinstance(other, Distance) else other
         return Distance(self.km + value_to_compare)
 
-    def __iadd__(self, other: Union[int, float, "Distance"]) -> "Distance":
+    def __iadd__(self, other: int | float | Distance) -> Distance:
         value_to_compare = other.km if isinstance(other, Distance) else other
         self.km = self.km + value_to_compare
         return self
 
-    def __mul__(self, other: int) -> "Distance":
+    def __mul__(self, other: int | float) -> Distance:
         return Distance(
             self.km * other
         )
 
-    def __truediv__(self, other: int) -> "Distance":
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(
             round(self.km / other, 2)
         )
 
-    def __lt__(self, other: Union[int, float, "Distance"]) -> bool:
+    def __lt__(self, other: int | float | Distance) -> bool:
         value_to_compare = other.km if isinstance(other, Distance) else other
         return self.km < value_to_compare
 
-    def __le__(self, other: Union[int, float, "Distance"]) -> bool:
-        value_to_compare = other.km if isinstance(other, Distance) else other
-        return self.km <= value_to_compare
+    def __le__(self, other: int | float | Distance) -> bool:
+        return not self.__gt__(other)
 
-    def __gt__(self, other: Union[int, float, "Distance"]) -> bool:
+    def __gt__(self, other: int | float | Distance) -> bool:
         value_to_compare = other.km if isinstance(other, Distance) else other
         return self.km > value_to_compare
 
-    def __ge__(self, other: Union[int, float, "Distance"]) -> bool:
-        value_to_compare = other.km if isinstance(other, Distance) else other
-        return self.km >= value_to_compare
+    def __ge__(self, other: int | float | Distance) -> bool:
+        return not self.__lt__(other)
 
-    def __eq__(self, other: Union[int, float, "Distance"]) -> bool:
+    def __eq__(self, other: int | float | Distance) -> bool:
         value_to_compare = other.km if isinstance(other, Distance) else other
         return self.km == value_to_compare
 
-    def __ne__(self, other: Union[int, float, "Distance"]) -> bool:
+    def __ne__(self, other: int | float | Distance) -> bool:
         value_to_compare = other.km if isinstance(other, Distance) else other
         return self.km != value_to_compare
