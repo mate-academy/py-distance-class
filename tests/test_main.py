@@ -252,7 +252,7 @@ def test_distance_class_truediv_distance():
 def test_distance_class_eq_distance(kilometers, kilometers2, result):
     distance1 = Distance(kilometers)
     distance2 = Distance(kilometers2)
-    assert (distance1 == distance2) is result, (
+    assert (distance1 == distance2)  is result, (
         f"'Distance({kilometers}) == Distance({kilometers2})' should equal to {result}"
     )
 
