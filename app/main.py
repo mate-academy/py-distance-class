@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import Self
 
 
 class Distance:
@@ -19,7 +18,7 @@ class Distance:
             return Distance(self.km + other)
         raise TypeError
 
-    def __iadd__(self, other: Distance | int | float) -> Self:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -32,6 +31,8 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: int) -> Distance:
+        if other == 0:
+            raise ZeroDivisionError
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
