@@ -26,17 +26,17 @@ class Distance:
             return self
         return False
 
-    def __mul__(self, other: int | float) -> Distance | None:
+    def __mul__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        if isinstance(other, Distance):
-            return None
-        return None
+        return NotImplemented
 
     def __truediv__(self, other: int | float) -> Distance | bool:
-        if isinstance(other, (Distance, int, float)) and other != 0:
+        if isinstance(other, (int, float)):
+            if other == 0:
+                raise ZeroDivisionError
             return Distance(round(self.km / other, 2))
-        return False
+        return NotImplemented
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, (Distance, int, float)):
