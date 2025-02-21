@@ -18,7 +18,7 @@ class Distance:
     def __radd__(self, other: "Distance" | int | float) -> "Distance":
         return Distance(self.km + other)
 
-    def __iadd__(self, other: int | float) -> "Distance":
+    def __iadd__(self, other: "Distance" | int | float) -> "Distance":
         self.km += other
         return self
 
@@ -30,27 +30,27 @@ class Distance:
         self.km = round(self.km / other, 2)
         return self
 
-    def __lt__(self, other: int | float) -> bool:
+    def __lt__(self, other: "Distance" | int | float) -> bool:
         if self.km < other:
             return True
         return False
 
-    def __gt__(self, other: int | float) -> bool:
+    def __gt__(self, other: "Distance" | int | float) -> bool:
         if self.km > other:
             return True
         return False
 
-    def __eq__(self, other: int | float) -> bool:
+    def __eq__(self, other: "Distance" | int | float) -> bool:
         if self.km == other:
             return True
         return False
 
-    def __le__(self, other: int | float) -> bool:
+    def __le__(self, other: "Distance" | int | float) -> bool:
         if self.km <= other:
             return True
         return False
 
-    def __ge__(self, other: int | float) -> bool:
+    def __ge__(self, other: "Distance" | int | float) -> bool:
         if self.km >= other:
             return True
         return False
