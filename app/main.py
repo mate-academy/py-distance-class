@@ -1,12 +1,12 @@
 class Distance:
 
-    def __init__(self, km):
-        self.km = km
+    def __init__(self, km: int | float) -> None:
+        self.km: float = km
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
     def __add__(self, new_km: "Distance | int | float") -> "Distance":
@@ -16,7 +16,7 @@ class Distance:
             return Distance(self.km + new_km)
         raise TypeError("Can only add Distance or int")
 
-    def __eq__(self, new_km: "Distance | int | float") -> "Distance | bool":
+    def __eq__(self, new_km: "Distance | int | float") -> bool:
         if isinstance(new_km, Distance):
             return self.km == new_km.km
         elif isinstance(new_km, (int, float)):
@@ -35,7 +35,11 @@ class Distance:
             return Distance(self.km * other)
         return None
 
-    def __truediv__(self, other):
+    def __truediv__(self, other: "Distance | int | float") -> "Distance":
+        if not isinstance(other, (int, float)):
+            raise TypeError("Can only divide by an int or float")
+        if other == 0:
+            raise ZeroDivisionError("Division by zero is not allowed")
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: "Distance | int") -> bool | None:
