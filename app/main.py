@@ -14,7 +14,9 @@ class Distance:
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
         raise TypeError(
-            "Unsupported operand type for +: 'Distance' and '{}'".format(type(other).__name__)
+            "Unsupported operand type for +: 'Distance' and '{}'".format(
+                type(other).__name__
+            )
         )
 
     def __iadd__(self, other: "Distance | float | int") -> "Distance":
@@ -24,7 +26,9 @@ class Distance:
             self.km += other
         else:
             raise TypeError(
-                "Unsupported operand type for +=: 'Distance' and '{}'".format(type(other).__name__)
+                "Unsupported operand type for +: 'Distance' and '{}'".format(
+                    type(other).__name__
+                )
             )
         return self
 
@@ -32,13 +36,17 @@ class Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError(
-            "Unsupported operand type for *: 'Distance' and '{}'".format(type(other).__name__)
+            "Unsupported operand type for +: 'Distance' and '{}'".format(
+                type(other).__name__
+            )
         )
 
     def __truediv__(self, other: "float | int") -> "Distance":
         if not isinstance(other, (int, float)):
             raise TypeError(
-                "Unsupported operand type for /: 'Distance' and '{}'".format(type(other).__name__)
+                "Unsupported operand type for +: 'Distance' and '{}'".format(
+                    type(other).__name__
+                )
             )
         if other == 0:
             raise ZeroDivisionError("Division by zero is not allowed.")
