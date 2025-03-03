@@ -32,13 +32,13 @@ class Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         else:
-            raise TypeError("Multiplication is only supported with numbers (int or float)")
+            raise TypeError("Multiplication is only supported with numbers")
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         else:
-            raise TypeError("Division is only supported with numbers (int or float)")
+            raise TypeError("Division is only supported with numbers")
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
