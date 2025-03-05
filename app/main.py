@@ -11,7 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union["Distance", int, float]) -> "Distance":
+    def __add__(self, other: "Distance") -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
@@ -33,7 +33,9 @@ class Distance:
         return NotImplemented
 
     def __truediv__(self, divisor: Union[int, float]) -> "Distance":
-        if isinstance(divisor, (int, float)) and divisor != 0:
+        if divisor == 0:
+            raise ZeroDivisionError("Cannot divide by zero")
+        if isinstance(divisor, (int, float)):
             return Distance(round(self.km / divisor, 2))
         return NotImplemented
 
