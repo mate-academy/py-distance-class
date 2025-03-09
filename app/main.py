@@ -11,12 +11,10 @@ class Distance:
 
     def __add__(self, other: object) -> None:
         if isinstance(other, Distance):
-            self.km += other.km
+            return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
-            self.km += other
-        else:
-            return NotImplemented
-        return self
+            return Distance(self.km + other)
+        return NotImplemented
 
     def __iadd__(self, other: object) -> None:
         if isinstance(other, Distance):
@@ -28,39 +26,44 @@ class Distance:
         return self
 
     def __mul__(self, other: object) -> None:
-        self.km *= other
-        return self
+        if isinstance(other, (int, float)):
+            return Distance(self.km * other)
+        return NotImplemented
 
     def __truediv__(self, other: object) -> None:
-        if isinstance(other, (int, float)) and other != 0:
+        if isinstance(other, (int, float)):
+            if other == 0:
+                raise ZeroDivisionError("Cannot divide by zero!")
             return Distance(round(self.km / other, 2))
+        return NotImplemented
 
     def __lt__(self, other: object) -> None:
-        if self.km < other:
-            return True
-        else:
-            return False
+        if isinstance(other, Distance):
+            return self.km < other.km
+        if isinstance(other, (int, float)):
+            return self.km < other
+        return NotImplemented
 
     def __gt__(self, other: object) -> None:
-        if self.km > other:
-            return True
-        else:
-            return False
+        if isinstance(other, Distance):
+            return self.km > other.km
+        if isinstance(other, (int, float)):
+            return self.km > other
+        return NotImplemented
 
     def __eq__(self, other: object) -> None:
-        if self.km == other:
-            return True
-        else:
-            return False
+        if isinstance(other, Distance):
+            return self.km == other.km
+        if isinstance(other, (int, float)):
+            return self.km == other
+        return NotImplemented
 
     def __le__(self, other: object) -> None:
-        if self.km <= other:
-            return True
-        else:
-            return False
+        if isinstance(other, (float, int, Distance)):
+            return self.km <= other
+        return NotImplemented
 
     def __ge__(self, other: object) -> None:
-        if self.km >= other:
-            return True
-        else:
-            return False
+        if isinstance(other, (float, int, Distance)):
+            return self.km >= other
+        return NotImplemented
