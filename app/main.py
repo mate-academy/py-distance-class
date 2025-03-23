@@ -15,16 +15,18 @@ class Distance:
     def __add__(self, other: Any) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
+        return NotImplemented
 
-    def __iadd__(self, other: Any) -> object:
+    def __iadd__(self, other: Any) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
-        else:
+        elif isinstance(other, (int, float)):
             self.km += other
             return self
+        return NotImplemented
 
     def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
@@ -35,29 +37,34 @@ class Distance:
     def __lt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        else:
+        elif isinstance(other, (int, float)):
             return self.km < other
+        return NotImplemented
 
     def __gt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
-        else:
+        elif isinstance(other, (int, float)):
             return self.km > other
+        return NotImplemented
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        else:
+        elif isinstance(other, (int, float)):
             return self.km == other
+        return NotImplemented
 
     def __le__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
-        else:
+        elif isinstance(other, (int, float)):
             return self.km <= other
+        return NotImplemented
 
     def __ge__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
-        else:
+        elif isinstance(other, (int, float)):
             return self.km >= other
+        return NotImplemented
