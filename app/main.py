@@ -15,14 +15,14 @@ class Distance:
         return Distance(self.km + self.get_km(other_distance))
 
     def __iadd__(self, other_distance: Distance | int | float) -> Distance:
-        self.km += +self.get_km(other_distance)
+        self.km += self.get_km(other_distance)
         return self
 
-    def __mul__(self, other_distance: Distance | int | float) -> Distance:
+    def __mul__(self, other_distance: int | float) -> Distance:
         self.check_if_number(other_distance)
         return Distance(self.km * self.get_km(other_distance))
 
-    def __truediv__(self, other_distance: Distance | int) -> Distance:
+    def __truediv__(self, other_distance: int) -> Distance:
         self.check_if_number(other_distance)
         return Distance(round(self.km / self.get_km(other_distance), 2))
 
@@ -48,4 +48,4 @@ class Distance:
 
     @staticmethod
     def get_km(item: Distance | int | float) -> int | float:
-        return item if type(item) == int or type(item) == float else item.km
+        return item if isinstance(item, (int, float)) else item.km
