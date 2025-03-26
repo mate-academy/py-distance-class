@@ -11,14 +11,14 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int | float) -> Distance:
+    def __add__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         if isinstance(other, (int, float)):
             return Distance(self.km + other)
         return NotImplemented
 
-    def __iadd__(self, other: Distance | int | float) -> Distance:
+    def __iadd__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
