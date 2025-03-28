@@ -1,4 +1,4 @@
-from typing import Self, Union
+from typing import Union
 
 
 class Distance:
