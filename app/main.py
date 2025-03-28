@@ -1,19 +1,22 @@
+from typing import Optional
+
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
 
-    def __repr__(self):
+    def __repr__(self)-> str:
         return f"Distance(km={self.km})"
-    def __str__(self):
+    def __str__(self)-> str:
         return f"Distance: {self.km} kilometers"
-    def __add__(self, other):
+    def __add__(self, other) -> "Distance":
         if isinstance(other, Distance):
             return Distance(km=self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(km=self.km + other)
         else:
             raise TypeError(f"Unsupported operand type(s) for +: 'Distance' and '{type(other).__name__}')")
-    def __mul__(self, other):
+    def __mul__(self, other) -> "Distance":
         if isinstance(other, Distance):
             return Distance(km=self.km * other.km)
         elif isinstance(other, (int, float)):
@@ -21,7 +24,7 @@ class Distance:
         else:
             raise TypeError(f"Unsupported operand type(s) for *: 'Distance' and '{type(other).__name__}')")
 
-    def __truediv__(self, other):
+    def __truediv__(self, other) -> "Distance":
         if isinstance(other, Distance):
             return Distance(km=round(self.km / other.km, 2))
         elif isinstance(other, (int, float)):
@@ -30,42 +33,33 @@ class Distance:
             raise TypeError(f"Unsupported operand type(s) for /: 'Distance' and '{type(other).__name__}'")
 
     # __lt__, __gt__, __eq__, __le__, __ge__
-    def __lt__(self, other):
+    def __lt__(self, other) -> Optional[bool]:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
             return self.km < other
-        else:
-            raise TypeError(f"Unsupported operand type(s) for <: 'Distance' and '{type(other).__name__}'")
 
-    def __gt__(self, other):
+
+    def __gt__(self, other)-> Optional[bool]:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
-        else:
-            raise TypeError(f"Unsupported operand type(s) for >: 'Distance' and '{type(other).__name__}'")
-    def __le__(self, other):
+    def __le__(self, other)-> Optional[bool]:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
             return self.km <= other
-        else:
-            raise TypeError(f"Unsupported operand type(s) for <=: 'Distance' and '{type(other).__name__}'")
-    def __ge__(self, other):
+    def __ge__(self, other)-> Optional[bool]:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
             return self.km >= other
-        else:
-            raise TypeError(f"Unsupported operand type(s) for >=: 'Distance' and '{type(other).__name__}'")
-    def __eq__(self, other):
+    def __eq__(self, other)-> Optional[bool]:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
-        else:
-            raise TypeError(f"Unsupported operand type(s) for =: 'Distance' and '{type(other).__name__}'")
 
 #__init__
 distance = Distance(20)  # distance.km == 20
