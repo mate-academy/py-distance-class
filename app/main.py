@@ -23,12 +23,12 @@ class Distance:
     def __iadd__(self, other: Union[Distance, int, float]) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, (int, float)):
+            return self
+        if isinstance(other, (int, float)):
             self.km += other
-        else:
-            raise TypeError(f"Unsupported operand type(s) for +=: "
-                            f"'Distance' and '{type(other).__name__}'")
-        return self
+            return self
+        raise TypeError(f"Unsupported operand type(s) for +=: "
+                        f"'Distance' and '{type(other).__name__}'")
 
     def __mul__(self, other: Union[int, float]) -> Distance:
         if not isinstance(other, (int, float)):
