@@ -1,68 +1,56 @@
+from __future__ import annotations
+
+
 class Distance:
-    def __init__(self, km: float):
+    def __init__(self, km: float | int) -> None:
         self.km = km
 
     def __str__(self) -> str:
-        return f"Distance: {self.km} kilometers."
+        return "Distance: {0} kilometers.".format(self.km)
 
     def __repr__(self) -> str:
-        return f"Distance(km={self.km})"
+        return "Distance(km={0})".format(self.km)
 
-    def __add__(self, other):
+    def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
-            return Distance(self.km + other.km)
-        elif isinstance(other, (int, float)):
-            return Distance(self.km + other)
-        else:
-            raise TypeError("Unsupported type for addition with Distance")
+            return Distance(other.km + self.km)
+        return Distance(other + self.km)
 
-    def __iadd__(self, other):
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, (int, float)):
-            self.km += other
         else:
-            raise TypeError("Unsupported type for in-place addition with Distance")
+            self.km += other
         return self
 
-    def __mul__(self, other):
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
-            return Distance(self.km * other)
-        else:
-            raise TypeError("Distance can only be multiplied by int or float")
+            return Distance(other * self.km)
 
-    def __truediv__(self, other):
-        if isinstance(other, (int, float)):
-            return Distance(round(self.km / other, 2))
-        else:
-            raise TypeError("Distance can only be divided by int or float")
+    def __truediv__(self, other: int | float) -> Distance:
+        return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other):
+    def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        elif isinstance(other, (int, float)):
-            return self.km < other
-        else:
-            raise TypeError("Unsupported type for comparison with Distance")
+        return self.km < other
 
-    def __gt__(self, other):
+    def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
-        elif isinstance(other, (int, float)):
-            return self.km > other
-        else:
-            raise TypeError("Unsupported type for comparison with Distance")
+        return self.km > other
 
-    def __eq__(self, other):
+    def __eq__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        elif isinstance(other, (int, float)):
-            return self.km == other
-        else:
-            raise TypeError("Unsupported type for comparison with Distance")
+        return self.km == other
 
-    def __le__(self, other):
-        return self.__lt__(other) or self.__eq__(other)
+    def __le__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        return self.km <= other
 
-    def __ge__(self, other):
-        return self.__gt__(other) or self.__eq__(other)
+    def __ge__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        return self.km >= other
