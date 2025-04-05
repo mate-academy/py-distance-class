@@ -66,7 +66,7 @@ class Distance:
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
-        raise False
+        return False
 
     def __le__(self, other: Union[Tp, int, float]) -> bool:
         if isinstance(other, Distance):
