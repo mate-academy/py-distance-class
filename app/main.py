@@ -41,8 +41,8 @@ class Distance:
             return Distance(round(self.km / other, 2))
         elif isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
-        else:
-            return self.km
+
+        raise TypeError("__truediv__ method should accept only int or float")
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
@@ -50,11 +50,15 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km < other
 
+        raise TypeError("__lt__ method should accept only int or float")
+
     def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
+
+        raise TypeError("__gt__ method should accept only int or float")
 
     def __eq__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
@@ -62,13 +66,13 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km == other
 
-    def __le__(self, other: (Distance, int, float)) -> bool:
+    def __le__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
             return self.km <= other
 
-    def __ge__(self, other: (Distance, int, float)) -> bool:
+    def __ge__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
