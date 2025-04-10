@@ -1,8 +1,7 @@
-import math
-
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
+
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
@@ -40,20 +39,25 @@ class Distance:
 
     def __lt__(self, other):
         if isinstance(other, (Distance, int, float)):
-            return self.km < (other.km if isinstance(other, Distance) else other)
+            return self.km < (other.km if isinstance(other, Distance)
+                              else other)
 
     def __gt__(self, other):
         if isinstance(other, (Distance, int, float)):
-            return self.km > (other.km if isinstance(other, Distance) else other)
+            return self.km > (other.km if isinstance(other, Distance)
+                              else other)
 
     def __eq__(self, other):
         if isinstance(other, (Distance, int, float)):
-            return self.km == (other.km if isinstance(other, Distance) else other)
+            return self.km == (other.km if isinstance(other, Distance)
+                               else other)
 
     def __le__(self, other):
         if isinstance(other, (Distance, int, float)):
-            return self.km <= (other.km if isinstance(other, Distance) else other)
+            return self.km <= (other.km if isinstance(other, Distance)
+                               else other)
 
     def __ge__(self, other):
         if isinstance(other, (Distance, int, float)):
-            return self.km >= (other.km if isinstance(other, Distance) else other)
+            return self.km >= (other.km if isinstance(other, Distance)
+                               else other)
