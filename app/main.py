@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
@@ -5,7 +8,12 @@ class Distance:
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
 
-    def __add__(self, km_of_the_day: callable) -> callable:
+    def __add__(
+            self, km_of_the_day: Union[
+                "Distance",
+                int ,
+                float]) -> "Distance":
+
         if isinstance(km_of_the_day, Distance):
             value = km_of_the_day.km
         else:
@@ -18,7 +26,12 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __iadd__(self, km_of_the_day: callable) -> callable:
+    def __iadd__(
+            self, km_of_the_day: Union[
+                "Distance",
+                int,
+                float]) -> "Distance":
+
         if isinstance(km_of_the_day, Distance):
             self.km = self.km + km_of_the_day.km
         else:
@@ -26,37 +39,62 @@ class Distance:
 
         return self
 
-    def __mul__(self, num: float) -> callable:
+    def __mul__(self, num: Union[int, float]) -> "Distance":
         return Distance(
             self.km * num
         )
 
-    def __truediv__(self, num: float) -> callable:
+    def __truediv__(self, num: Union[int, float]) -> "Distance":
         return Distance(
             round(self.km / num, 2)
         )
 
-    def __lt__(self, km_compara: callable) -> bool:
+    def __lt__(
+        self, km_compara: Union[
+            "Distance",
+            int,
+            float]) -> bool:
+
         if isinstance(km_compara, Distance):
             return self.km < km_compara.km
         return self.km < km_compara
 
-    def __gt__(self, km_compara: callable) -> bool:
+    def __gt__(
+        self, km_compara: Union[
+            "Distance",
+            int,
+            float]) -> bool:
+
         if isinstance(km_compara, Distance):
             return self.km > km_compara.km
         return self.km > km_compara
 
-    def __eq__(self, km_compara: callable) -> bool:
+    def __eq__(
+        self, km_compara: Union[
+            "Distance",
+            int,
+            float]) -> bool:
+
         if isinstance(km_compara, Distance):
             return self.km == km_compara.km
         return self.km == km_compara
 
-    def __le__(self, km_compara: callable) -> bool:
+    def __le__(
+        self, km_compara: Union[
+            "Distance",
+            int,
+            float]) -> bool:
+
         if isinstance(km_compara, Distance):
             return self.km <= km_compara.km
         return self.km <= km_compara
 
-    def __ge__(self, km_compara: callable) -> bool:
+    def __ge__(
+        self, km_compara: Union[
+            "Distance",
+            int,
+            float]) -> bool:
+
         if isinstance(km_compara, Distance):
             return self.km >= km_compara.km
         return self.km >= km_compara
