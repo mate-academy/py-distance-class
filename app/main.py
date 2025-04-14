@@ -6,17 +6,25 @@ class Distance:
         return f"Distance: {self.km} kilometers."
 
     def __add__(self, km_of_the_day: callable) -> callable:
+        if isinstance(km_of_the_day, Distance):
+            value = km_of_the_day.km
+        else:
+            value = km_of_the_day
+
         return Distance(
-            self.km + km_of_the_day.km
+            self.km + value
         )
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
     def __iadd__(self, km_of_the_day: callable) -> callable:
-        return Distance(
-            self.km + km_of_the_day.km
-        )
+        if isinstance(km_of_the_day, Distance):
+            self.km = self.km + km_of_the_day.km
+        else:
+            self.km = self.km + km_of_the_day
+
+        return self
 
     def __mul__(self, num: float) -> callable:
         return Distance(
