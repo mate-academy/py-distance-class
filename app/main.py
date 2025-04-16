@@ -20,15 +20,12 @@ class Distance:
             return Distance(self.km + other.km)
         if isinstance(other, (int, float)):
             return Distance(self.km + other)
-        raise TypeError("Unsupported type for addition")
 
     def __iadd__(self, other: Union["Distance", float, int]) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             self.km += other
-        else:
-            raise TypeError("Unsupported type for in-place addition")
         return self
 
     def __mul__(self, other: Union[float, int]) -> "Distance":
