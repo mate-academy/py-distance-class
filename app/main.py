@@ -9,23 +9,23 @@ class Distance:
     def __repr__(self) -> None:
         return f"Distance:(km={self.km})"
 
-    def __add__(self, other: int) -> Distance:
+    def __add__(self, other: int) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
 
-    def __iadd__(self, other: int) -> Distance:
+    def __iadd__(self, other: int) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
             self.km += other
 
-    def __mul__(self, other: int) -> Distance:
+    def __mul__(self, other: int) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
 
-    def __truediv__(self, other: int) -> Distance:
+    def __truediv__(self, other: int) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
 
