@@ -1,4 +1,4 @@
-from __future__ import annotations, division
+from __future__ import annotations
 
 
 class Distance:
@@ -29,10 +29,12 @@ class Distance:
             return Distance(self.km * other)
         raise TypeError(f"Cannot multiply Distance by {type(other).__name__}")
 
-    def __truediv__(self, other: Distance | int) -> Distance:
+    def __truediv__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
-        raise TypeError(f"Cannot true division Distance by {type(other).__name__}")
+        elif isinstance(other, Distance):
+            return Distance(round(self.km / other.km, 2))
+        raise TypeError(f"Cannot division Distance by {type(other).__name__}")
 
     def __lt__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
