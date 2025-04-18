@@ -26,14 +26,14 @@ class Distance:
 
     def __eq__(self, other: int) -> bool:
         if isinstance(other, Distance):
-            if self.km == outro.km:
+            if self.km == self.other:
                 return True
         return False
 
     def __gt__(self, other: int) -> bool:
         return self.km > self.other
 
-    def __le__(self, outro_k: int) -> bool:
+    def __le__(self, other: int) -> bool:
         return self.km <= self.other
 
     def __ge__(self, other: int) -> bool:
