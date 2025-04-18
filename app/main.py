@@ -12,29 +12,29 @@ class Distance:
         return self.km + self.other
 
     def __iadd__(self, other: int) -> int:
-        self.km += self.other
+        self.km += other
         return self.km
 
     def __mul__(self, other: int) -> int:
-        return self.km * self.other
+        return self.km * other
 
     def __truediv__(self, other: int) -> int:
-        return self.km / self.other
+        return self.km / other
 
     def __lt__(self, other: int) -> bool:
-        return self.km < self.other
+        return self.km < other
 
     def __eq__(self, other: int) -> bool:
         if isinstance(other, Distance):
-            if self.km == self.other:
+            if self.km == other:
                 return True
         return False
 
     def __gt__(self, other: int) -> bool:
-        return self.km > self.other
+        return self.km > other
 
-    def __le__(self, other: int) -> bool:
-        return self.km <= self.other
+    def __le__(self, outro_k: int) -> bool:
+        return self.km <= other
 
     def __ge__(self, other: int) -> bool:
-        return self.km >= self.other
+        return self.km >= other
