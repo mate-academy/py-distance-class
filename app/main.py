@@ -18,23 +18,23 @@ class Distance:
     def __mul__(self, outro_km: int) -> int:
         return self.km * self.outro_km
 
-    def __truediv__(self, outro_km: int) -> int
+    def __truediv__(self, outro_km: int) -> int:
         return self.km / self.outro_km
 
-    def __lt__(self, outro_km: int) -> bool
+    def __lt__(self, outro_km: int) -> bool:
         return self.km < self.outro_km
 
-    def __eq__(self, outro_km: int) -> bool
+    def __eq__(self, outro_km: int) -> bool:
         if isinstance(outro_km, Distance):
             if self.km == outro.km:
                 return True
         return False
 
-    def __gt__(self, outro_km: int) -> bool
+    def __gt__(self, outro_km: int) -> bool:
         return self.km > self.outro_km
 
-    def __le__(self, outro_k: int) -> bool
+    def __le__(self, outro_k: int) -> bool:
         return self.km <= self.outro_km
 
-    def __ge__(self, outro_km: int) -> bool
+    def __ge__(self, outro_km: int) -> bool:
         return self.km >= self.outro_km
