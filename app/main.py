@@ -36,9 +36,11 @@ class Distance:
                 f"Unsupported type for multiplication: {type(other)}"
             )
 
-    def __truediv__(self, other: Union[int, float]) -> "Distance":
-        if isinstance(other, (int, float)):
-            return Distance(round(self.km / other, 2))
+    def __truediv__(self, other):
+        if isinstance(other, Distance):
+            raise TypeError(f"Division between two Distance instances is not supported.")
+        elif isinstance(other, (int, float)):
+            return Distance(round(self.km / other, 2))  # Round the result to 2 decimal places
         else:
             raise TypeError(f"Unsupported type for division: {type(other)}")
 
