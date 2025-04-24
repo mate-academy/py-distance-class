@@ -24,6 +24,18 @@ class Distance:
             self.km += other
         return self
 
+    def __sub__(self, other: Union["Distance", float]) -> "Distance":
+        if isinstance(other, Distance):
+            return Distance(self.km - other.km)
+        return Distance(self.km - other)
+
+    def __isub__(self, other: Union["Distance", float]) -> "Distance":
+        if isinstance(other, Distance):
+            self.km -= other.km
+        else:
+            self.km -= other
+        return self
+
     def __mul__(self, other: int) -> "Distance":
         return Distance(self.km * other)
 
