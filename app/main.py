@@ -24,7 +24,7 @@ class Distance:
             return NotImplemented
         return self
 
-    def __mul__(self, other: "Distance") -> "Distance":
+    def __mul__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             raise TypeError(
                 "'__mul__' method should not accept Distance instance"
@@ -34,7 +34,7 @@ class Distance:
         else:
             return NotImplemented
 
-    def __truediv__(self, other: "Distance") -> "Distance":
+    def __truediv__(self, other: int | float) -> "Distance":
         if isinstance(other, Distance):
             raise TypeError(
                 "'__truediv__' method should not accept Distance instance"
