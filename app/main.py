@@ -38,14 +38,14 @@ class Distance:
             )
 
     def __truediv__(self, other: float) -> "Distance":
-    if isinstance(other, (int, float)):
-        if other == 0:
-            raise ZeroDivisionError("Cannot divide by zero")
-        return Distance(self.km / other)
-    else:
-        raise TypeError(
-            f"Unsupported operand type for /: 'Distance' and '{type(other).__name__}'"
-        )
+        if isinstance(other, (int, float)):
+            if other == 0:
+                raise ZeroDivisionError("Cannot divide by zero")
+            return Distance(self.km / other)
+        else:
+            raise TypeError(
+                f"Unsupported operand type for /: 'Distance' and '{type(other).__name__}'"
+            )
 
     def __lt__(self, other: object) -> bool:
         if isinstance(other, Distance):
@@ -82,3 +82,4 @@ class Distance:
 
     def __ge__(self, other: object) -> bool:
         return self > other or self == other
+    
