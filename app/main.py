@@ -49,11 +49,6 @@ class Distance:
     if other == 0:
         raise ZeroDivisionError("Cannot divide by zero")
     return Distance(self.km / other)
-    else:
-        raise TypeError(
-            f"Unsupported operand type for /: "
-            f"'Distance' and '{type(other).__name__}'"
-        )
 
     def __lt__(self: "Distance", other: object) -> bool:
         if isinstance(other, Distance):
