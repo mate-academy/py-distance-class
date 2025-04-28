@@ -12,8 +12,8 @@ class Distance:
         return Distance(self.km + other.km)
 
     def __iadd__(self, other: Distance) -> None:
-        return self.km += other.km
-
+        self.km += other.km
+        return self
 
     def __mul__(self, other: Distance) -> float:
         return Distance(self.km * other.km)
