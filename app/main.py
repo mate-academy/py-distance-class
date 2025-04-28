@@ -3,7 +3,7 @@ class Distance:
         self.km = km
 
     def __str__(self) -> None:
-        print(f"Distance: {self.km} kilometers.")
+        return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
@@ -13,6 +13,7 @@ class Distance:
 
     def __iadd__(self, other: Distance) -> None:
         self.km += other.km
+        return self.km
 
     def __mul__(self, other: Distance) -> float:
         return Distance(self.km * other.km)
