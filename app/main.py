@@ -48,7 +48,7 @@ class Distance:
         )
     if other == 0:
         raise ZeroDivisionError("Cannot divide by zero")
-    return Distance(round(self.km / other, 2))
+    return Distance(self.km / other)
     else:
         raise TypeError(
             f"Unsupported operand type for /: "
