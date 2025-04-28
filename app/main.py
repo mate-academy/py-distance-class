@@ -4,7 +4,7 @@ import operator
 
 
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: Union[int, float]) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -24,11 +24,10 @@ class Distance:
         else:
             return NotImplemented
 
-    def _operation_arithmetic_locked(self,
-                                     other: Union[int, float],
-                                     oper: Callable[[float, float], float]
-                                     ) -> (
-            Union)["Distance", NotImplementedType]:
+    def _operation_ari_locked(self,
+                              other: Union[int, float],
+                              oper: Callable[[float, float], float]
+                              ) -> Union["Distance", NotImplementedType]:
         if oper is operator.mul:
             if isinstance(other, (int, float)):
                 return Distance(oper(self.km, other))
@@ -72,12 +71,12 @@ class Distance:
     def __mul__(self,
                 other: Union[int, float]
                 ) -> Union["Distance", NotImplementedType]:
-        return self._operation_arithmetic_locked(other, operator.mul)
+        return self._operation_ari_locked(other, operator.mul)
 
     def __truediv__(self,
                     other: Union[int, float]
                     ) -> Union["Distance", NotImplementedType]:
-        return self._operation_arithmetic_locked(other, operator.truediv)
+        return self._operation_ari_locked(other, operator.truediv)
 
     def __lt__(self,
                other: Union[int, float, "Distance"]
