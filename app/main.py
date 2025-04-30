@@ -23,22 +23,27 @@ class Distance:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
-            self.km += float(other)
+
+            if isinstance(self.km, int):
+                self.km += int(other)
+            else:
+                self.km += float(other)
         else:
-            return NotImplemented
-        self.km = round(self.km, 2)
+            raise TypeError(f"Unsupported type for addition: {type(other)}")
         return self
 
     def __mul__(self, other: object) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * float(other))
-        return NotImplemented
+        raise TypeError(f"Unsupported type for multiplication: {type(other)}")
 
     def __truediv__(self, other: object) -> "Distance":
         if isinstance(other, (int, float)):
+
             if other == 0:
                 raise ZeroDivisionError("Cannot divide by zero.")
             return Distance(round(self.km / float(other), 2))
+
         return NotImplemented
 
     def __lt__(self, other: object) -> bool:
