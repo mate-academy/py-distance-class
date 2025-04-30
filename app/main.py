@@ -38,7 +38,7 @@ class Distance:
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             if other == 0:
-                raise TypeError("Другий операнд не повинен дорівнювати 0")
+                raise ValueError("Другий операнд не повинен дорівнювати 0")
             else:
                 return Distance(round(self.km / other, 2))
         else:
