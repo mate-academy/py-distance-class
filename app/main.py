@@ -39,17 +39,42 @@ class Distance:
         new_km = round(self.km / other, 2)
         return Distance(new_km)
 
-    def __lt__(self, other: int) -> bool:
-        return self.km < other
+    def __lt__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
+        elif isinstance(other, (int, float)):
+            return self.km < other
+        else:
+            raise TypeError("Can only compare Distance or numeric values")
 
-    def __gt__(self, other: int) -> bool:
-        return self.km > other
+    def __gt__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
+            return self.km > other
+        else:
+            raise TypeError("Can only compare Distance or numeric values")
 
-    def __eq__(self, other: int) -> bool:
-        return self.km == other
+    def __eq__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
+        elif isinstance(other, (int, float)):
+            return self.km == other
+        else:
+            raise TypeError("Can only compare Distance or numeric values")
 
-    def __le__(self, other: int) -> bool:
-        return self.km <= other
+    def __le__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+        else:
+            raise TypeError("Can only compare Distance or numeric values")
 
-    def __ge__(self, other: int) -> bool:
-        return self.km >= other
+    def __ge__(self, other: Union["Distance", int, float]) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
+            return self.km >= other
+        else:
+            raise TypeError("Can only compare Distance or numeric values")
