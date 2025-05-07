@@ -1,5 +1,6 @@
 from typing import Union
 
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
@@ -76,10 +77,3 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km >= other
         return NotImplemented
-
-
-
-
-
-
-
