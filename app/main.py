@@ -12,7 +12,7 @@ class Distance:
             self.km = km
 
     @staticmethod
-    def check_other(other: Union["Distance", int, float]) -> int:
+    def check_other(other: Union["Distance", int, float]) -> Union[int, float]:
         if not isinstance(other, (Distance, int, float)):
             raise TypeError(
                 f"Expected Distance, int or float, got {type(other).__name__}"
