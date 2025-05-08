@@ -25,10 +25,19 @@ class Distance:
         return self
 
     def __mul__(self, other: object) -> Distance:
-        return Distance(self.km * other)
+        if isinstance(other, (int, float)):
+            return Distance(self.km * other)
+        else:
+            raise ValueError("Другий операнд повинен бути числом")
 
     def __truediv__(self, other: object) -> Distance:
-        return Distance(round(self.km / other, 2))
+        if isinstance(other, (int, float)):
+            if other == 0:
+                raise ValueError("Другий операнд не повинен дорівнювати 0")
+            else:
+                return Distance(round(self.km / other, 2))
+        else:
+            raise ValueError("Другий операнд повинен бути числом")
 
     def __lt__(self, other: object) -> bool:
         if isinstance(other, Distance):
