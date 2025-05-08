@@ -14,51 +14,43 @@ class Distance:
 
     def __add__(self, other: object) -> Distance:
         if isinstance(other, Distance):
-            return Distance(
-                self.km + other.km
-            )
-        else:
-            return Distance(
-                self.km + float(other)
-            )
+            return Distance(self.km + other.km)
+        return Distance(self.km + other)
 
     def __iadd__(self, other: object) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         else:
-            self.km += float(other)
+            self.km += other
         return self
 
     def __mul__(self, other: object) -> Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: object) -> Distance:
-        if isinstance(other, Distance):
-            return Distance(round(self.km / other, 2))
-        else:
-            return Distance(round(self.km / float(other), 2))
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: object) -> bool:
         if isinstance(other, Distance):
-            return self.km < other
-        return self.km < float(other)
+            return self.km < other.km
+        return self.km < other
 
     def __gt__(self, other: object) -> bool:
         if isinstance(other, Distance):
-            return self.km > other
-        return self.km > float(other)
+            return self.km > other.km
+        return self.km > other
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Distance):
-            return self.km == other
-        return self.km == float(other)
+            return self.km == other.km
+        return self.km == other
 
     def __le__(self, other: object) -> bool:
         if isinstance(other, Distance):
-            return self.km <= other
-        return self.km <= float(other)
+            return self.km <= other.km
+        return self.km <= other
 
     def __ge__(self, other: object) -> bool:
         if isinstance(other, Distance):
-            return self.km >= other
-        return self.km >= float(other)
+            return self.km >= other.km
+        return self.km >= other
