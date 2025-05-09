@@ -31,10 +31,10 @@ class Distance:
             distance3 = round(self.km / other, 2)
             return Distance(distance3)
 
-    def __lt__(self, other: int) -> int:
+    def __lt__(self, other: object) -> object:
         return self.km < other
 
-    def __gt__(self, other: int) -> int:
+    def __gt__(self, other: object) -> object:
         return self.km > other
 
     def __eq__(self, other: object) -> object:
@@ -43,8 +43,8 @@ class Distance:
         else:
             return self.km == other
 
-    def __le__(self, other: int) -> int:
+    def __le__(self, other: object) -> object:
         return self.km <= other
 
-    def __ge__(self, other: int) -> int:
+    def __ge__(self, other: object) -> object:
         return self.km >= other
