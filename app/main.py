@@ -2,7 +2,9 @@ from typing import Union
 
 
 class Distance:
-    def __init__(self, km: Union[int, float]) -> None:
+    def __init__(self, km: int) -> None:
+        if not isinstance(km, int):
+            raise TypeError("km must be integer")
         self.km = km
 
     def __str__(self) -> str:
@@ -41,7 +43,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         elif isinstance(other, Distance):
-            raise TypeError("Multiplication by Distance not supported")
+            raise TypeError("Divide by Distance not supported")
         else:
             raise TypeError("Unsupported type")
 
