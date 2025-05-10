@@ -28,9 +28,15 @@ class Distance:
         return self
 
     def __mul__(self, count: int) -> "Distance":
+        if not isinstance(count, (int, float)):
+            raise TypeError(f"Unsupported operand type(s) for *: "
+                            f"'Distance' and '{type(count).__name__}'")
         return Distance(self.km * count)
 
     def __truediv__(self, count: int) -> "Distance":
+        if not isinstance(count, (int, float)):
+            raise TypeError(f"Unsupported operand type(s) for /: "
+                            f"'Distance' and '{type(count).__name__}'")
         return Distance(round(self.km / count, 2))
 
     def __lt__(self, other: "Distance") -> bool:
