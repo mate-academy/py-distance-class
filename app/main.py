@@ -31,7 +31,7 @@ class Distance:
         return NotImplemented
 
     def __truediv__(self, other: int | float) -> Distance | NotImplemented:
-        if isinstance(other, (int, float)):
+        if isinstance(other, (int, float)) and other != 0:
             return Distance(round(self.km / other, 2))
         return NotImplemented
 
