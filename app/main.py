@@ -37,8 +37,6 @@ class Distance:
         raise TypeError("error message")
 
     def __truediv__(self, other: int | float | Distance) -> Distance | None:
-        if isinstance(other, Distance):
-            return Distance(round(self.km / other.km, 2))
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         raise TypeError("error message")
