@@ -15,12 +15,11 @@ class Distance:
     def __add__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
             distance3 = (self.km + other.km)
-            return Distance(distance3)
         elif isinstance(other, (int, float)):
             distance3 = (self.km + other)
-            return Distance(distance3)
         else:
             raise TypeError("error message")
+        return Distance(distance3)
 
     def __iadd__(self, other: int | float | Distance) -> Distance | None:
         if isinstance(other, Distance):
