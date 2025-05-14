@@ -18,7 +18,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             distance3 = (self.km + other)
         else:
-            raise TypeError("error message")
+            raise TypeError("some informative message")
         return Distance(distance3)
 
     def __iadd__(self, other: int | float | Distance) -> Distance | None:
@@ -27,50 +27,50 @@ class Distance:
         elif isinstance(other, (int, float)):
             self.km += other
         else:
-            raise TypeError("error message")
+            raise TypeError("some informative message")
         return self
 
     def __mul__(self, other: int | float | Distance) -> Distance | None:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        raise TypeError("error message")
+        raise TypeError("some informative message")
 
     def __truediv__(self, other: int | float | Distance) -> Distance | None:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
-        raise TypeError("error message")
+        raise TypeError("some informative message")
 
     def __lt__(self, other: int | float | Distance) -> bool | None:
         if isinstance(other, Distance):
             return self.km < other.km
         if isinstance(other, (int, float)):
             return self.km < other
-        raise TypeError("error message")
+        raise TypeError("some informative message")
 
     def __gt__(self, other: int | float | Distance) -> bool | None:
         if isinstance(other, Distance):
             return self.km > other.km
         if isinstance(other, (int, float)):
             return self.km > other
-        raise TypeError("error message")
+        raise TypeError("some informative message")
 
     def __eq__(self, other: int | float | Distance) -> bool | None:
         if isinstance(other, Distance):
             return self.km == other.km
         if isinstance(other, (int, float)):
             return self.km == other
-        raise TypeError("error message")
+        raise TypeError("some informative message")
 
     def __le__(self, other: int | float | Distance) -> bool | None:
         if isinstance(other, Distance):
             return self.km <= other.km
         if isinstance(other, (int, float)):
             return self.km <= other
-        raise TypeError("error message")
+        raise TypeError("some informative message")
 
     def __ge__(self, other: int | float | Distance) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         if isinstance(other, (int, float)):
             return self.km >= other
-        raise TypeError("error message")
+        raise TypeError("some informative message")
