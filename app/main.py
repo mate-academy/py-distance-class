@@ -3,7 +3,7 @@ from __future__ import annotations
 
 class Distance:
 
-    def __init__(self, km: (int, float)) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -16,11 +16,11 @@ class Distance:
         if isinstance(other, Distance):
             distance3 = (self.km + other.km)
             return Distance(distance3)
-        else:
-            isinstance(other, (int, float))
+        elif isinstance(other, (int, float)):
             distance3 = (self.km + other)
             return Distance(distance3)
-        raise TypeError("error message")
+        else:
+            raise TypeError("error message")
 
     def __iadd__(self, other: int | float | Distance) -> Distance | None:
         if isinstance(other, Distance):
@@ -38,7 +38,7 @@ class Distance:
 
     def __truediv__(self, other: int | float | Distance) -> Distance | None:
         if isinstance(other, Distance):
-            return Distance(round(self.km / other, 2))
+            return Distance(round(self.km / other.km, 2))
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         raise TypeError("error message")
@@ -55,7 +55,7 @@ class Distance:
             return self.km > other.km
         if isinstance(other, (int, float)):
             return self.km > other
-        TypeError("error message")
+        raise TypeError("error message")
 
     def __eq__(self, other: int | float | Distance) -> bool | None:
         if isinstance(other, Distance):
