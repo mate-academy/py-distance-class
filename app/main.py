@@ -11,7 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union[int, float, "Distance"]) -> "Distance":
+    def __add__(self, other: Union[int, "Distance"]) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         else:
@@ -24,7 +24,7 @@ class Distance:
             self.km += other.km
         return self
 
-    def __mul__(self, other: Union[int, float, "Distance"]) -> "Distance":
+    def __mul__(self, other: int) -> "Distance":
         return Distance(self.km * other)
 
     def __truediv__(self, other: int) -> "Distance":
