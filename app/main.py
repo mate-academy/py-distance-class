@@ -2,7 +2,7 @@ from typing import Union
 
 
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -11,20 +11,26 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union[int, "Distance"]) -> "Distance":
+    def __add__(self, other: Union[int, float, "Distance"]) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
+        else:
+            raise TypeError(f"Unsupported type {type(other)} for addition")
 
-    def __iadd__(self, other: Union[int, "Distance"]) -> "Distance":
-        if not isinstance(other, Distance):
+    def __iadd__(self, other: Union[int, float, "Distance"]) -> "Distance":
+        if isinstance(other, Distance):
+            self.km += other.km
+        elif isinstance(other, (int, float)):
             self.km += other
         else:
-            self.km += other.km
+            raise TypeError(f"Unsupported type {type(other)} for addition")
         return self
 
-    def __mul__(self, other: int) -> "Distance":
+    def __mul__(self, other: int | float) -> "Distance":
+        if not isinstance(other, (int, float)):
+            raise TypeError(f"Unsupported type {type(other)} for addition")
         return Distance(self.km * other)
 
     def __truediv__(self, other: int) -> "Distance":
