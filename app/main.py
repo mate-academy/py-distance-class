@@ -1,4 +1,4 @@
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 
 
 class Distance:
@@ -27,8 +27,10 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: int or "Distance" or float) -> "Distance" or float:
-        num = round(Decimal(str(self.km / other)))
-        return Distance(float(num))
+        if isinstance(other, (int, float, Decimal)):
+            num = (Decimal(str(self.km)) / Decimal(str(other))).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+            return Distance(float(num))
+        return None
 
     def __lt__(self, other: "Distance") -> bool:
         if isinstance(other, Distance):
