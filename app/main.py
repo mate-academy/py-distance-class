@@ -17,7 +17,7 @@ class Distance:
             raise TypeError(f"{other} is not an instance of {Distance}")
 
     def __mul__(self, other):
-        if isinstance(other, Distance):S
+        if isinstance(other, Distance):
             return self.km * other.km
         else:
             raise TypeError(f"{other} is not an instance of {Distance}")
