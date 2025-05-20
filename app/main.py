@@ -5,58 +5,58 @@ class Distance:
 
     def __add__(self, other):
         if isinstance(other, Distance):
-            return  self.km + other.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            return Distance(self.km + other)
 
     def __iadd__(self, other):
         if isinstance(other, Distance):
-            self.km = self.km + other.km
-            return self.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            self.km = self.km + other
+            return Distance(self.km)
 
     def __mul__(self, other):
         if isinstance(other, Distance):
-            return self.km * other.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            return Distance(self.km * other)
 
     def __truediv__(self, other):
         if isinstance(other, Distance):
-            return self.km / other.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            return Distance(self.km / other)
 
     def __lt__(self, other):
         if isinstance(other, Distance):
-            return self.km < other.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            return self.km < other
 
     def __gt__(self, other):
         if isinstance(other, Distance):
-            return self.km > other.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            return self.km > other
 
     def __eq__(self, other):
         if isinstance(other, Distance):
-            return self.km == other.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            return self.km == other
 
     def __le__(self, other):
         if isinstance(other, Distance):
-            return self.km <= other.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            return self.km <= other
 
     def __ge__(self, other):
         if isinstance(other, Distance):
-            return self.km >= other.km
+            raise TypeError(f"{other} should not be an instance of {Distance}")
         else:
-            raise TypeError(f"{other} is not an instance of {Distance}")
+            return self.km >= other
 
     def __str__(self):
         return f"Distance: {self.km} kilometers."
