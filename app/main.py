@@ -14,13 +14,13 @@ class Distance:
     def __add__(self, other: Distance | int | float) -> Distance:
         if type(other) is Distance:
             return Distance(km=self.km + other.km)
-        elif type(other) is int or float:
+        elif isinstance(other, (int, float)):
             return Distance(km=self.km + other)
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if type(other) is Distance:
             self.km += other.km
-        elif type(other) is int or float:
+        elif isinstance(other, (int, float)):
             self.km += other
         return self
 
@@ -34,29 +34,29 @@ class Distance:
     def __lt__(self, other: Distance | int | float) -> bool:
         if type(other) is Distance:
             return self.km < other.km
-        elif type(other) is int or float:
+        elif isinstance(other, (int, float)):
             return self.km < other
 
     def __gt__(self, other: Distance | int | float) -> bool:
         if type(other) is Distance:
             return self.km > other.km
-        elif type(other) is int or float:
+        elif isinstance(other, (int, float)):
             return self.km > other
 
     def __eq__(self, other: Distance | int | float) -> bool:
         if type(other) is Distance:
             return self.km == other.km
-        elif type(other) is int or float:
+        elif isinstance(other, (int, float)):
             return self.km == other
 
     def __le__(self, other: Distance | int | float) -> bool:
         if type(other) is Distance:
             return self.km <= other.km
-        elif type(other) is int or float:
+        elif isinstance(other, (int, float)):
             return self.km <= other
 
     def __ge__(self, other: Distance | int | float) -> bool:
         if type(other) is Distance:
             return self.km >= other.km
-        elif type(other) is int or float:
+        elif isinstance(other, (int, float)):
             return self.km >= other
