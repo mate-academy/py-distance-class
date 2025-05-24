@@ -32,13 +32,10 @@ class Distance:
     def __rmul__(self, other: int | float | Distance) -> Distance:
         return self.__mul__(other)
 
-    def __truediv__(
-            self,
-            other: int | float | Distance
-    ) -> int | float | Distance:
-        if isinstance(other, (int, float,)):
-            return Distance(self.km / other)
-        return None
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Distance(round(self.km / other, 2))  # round to 2 decimal places
+        raise TypeError("Division only supported by a number")
 
     def __lt__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
