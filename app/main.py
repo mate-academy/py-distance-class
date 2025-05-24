@@ -24,12 +24,10 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, other: int | float | Distance) -> Distance:
-        if isinstance(other, Distance):
-            return Distance(self.km * other.km)
-        elif isinstance(other, (int, float)):
+    def __mul__(self, other: int | float) -> Distance | None:
+        if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        return NotImplemented
+        return None
 
     def __rmul__(self, other: int | float | Distance) -> Distance:
         return self.__mul__(other)
@@ -38,11 +36,9 @@ class Distance:
             self,
             other: int | float | Distance
     ) -> int | float | Distance:
-        if isinstance(other, Distance):
-            return self.km / other.km
-        elif isinstance(other, (int, float)):
-            return self.km / other
-        return NotImplemented
+        if isinstance(other, (int, float,)):
+            return Distance(self.km / other)
+        return None
 
     def __lt__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
