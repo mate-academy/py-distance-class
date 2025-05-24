@@ -1,8 +1,9 @@
 from __future__ import annotations
+from typing import Union
 
 
 class Distance:
-    def __init__(self, km: int | float) -> None:
+    def __init__(self, km: Union[int | float]) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -32,9 +33,9 @@ class Distance:
     def __rmul__(self, other: int | float | Distance) -> Distance:
         return self.__mul__(other)
 
-    def __truediv__(self, other):
+    def __truediv__(self, other: Union[int, float]) -> Distance:
         if isinstance(other, (int, float)):
-            return Distance(round(self.km / other, 2))  # round to 2 decimal places
+            return Distance(round(self.km / other, 2))
         raise TypeError("Division only supported by a number")
 
     def __lt__(self, other: Distance) -> bool:
