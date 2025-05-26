@@ -10,17 +10,17 @@ class Distance:
         return f"Distance(km={self.km})"
 
     def __add__(self, another: int | float) -> float:
-        if isinstance(another, (int, float)):
-            return Distance(self.km + another)
-        elif isinstance(another, Distance):
+        if isinstance(another, Distance):
             return Distance(self.km + another.km)
+        elif isinstance(another, (int, float)):
+            return Distance(self.km + another)
 
     def __iadd__(self, another: int | float) -> float:
-        if isinstance(another, (int, float)):
-            self.km += another
-            return self
-        elif isinstance(another, Distance):
+        if isinstance(another, Distance):
             self.km += another.km
+            return self
+        elif isinstance(another, (int, float)):
+            self.km += another
             return self
 
     def __mul__(self, another: int | float) -> float:
