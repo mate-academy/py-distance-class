@@ -9,7 +9,7 @@ class Distance:
     # jeden argument km (liczba kilometrów)
     # Powinna zapisywać tę wartość w atrybucie
     # instancyjnym self.km
-    def __init__(self, km: (int, float)) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     # 2. Metody do zaimplementowania:
@@ -30,7 +30,7 @@ class Distance:
     # Obsługuje zarówno dodawanie dwóch obiektów Distance
     # Jak i dodawanie liczby (int/float) do Distance
     # Zawsze zwraca nowy obiekt Distance
-    def __add__(self, other: (int, float, "Distance")) -> "Distance":
+    def __add__(self, other: int | float | "Distance") -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         else:
@@ -38,7 +38,7 @@ class Distance:
 
     # __iadd__ - dodawanie z przypisaniem (+=):
     # Analogiczne do add, ale modyfikuje istniejący obiekt
-    def __iadd__(self, other: (int, float, "Distance")) -> "Distance":
+    def __iadd__(self, other: int | float | "Distance") -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
             return self
@@ -49,14 +49,14 @@ class Distance:
 # __mul__ - mnożenie:
 # Obsługuje mnożenie Distance przez liczbę (nie przez inny Distance)
 # Zwraca nowy obiekt Distance
-    def __mul__(self, other: (int, float)) -> "Distance":
+    def __mul__(self, other: int | float) -> "Distance":
         return Distance(self.km * other)
 
     # __truediv__ - dzielenie:
     # Obsługuje dzielenie Distance przez liczbę
     # Wynik zaokrąglony do 2 miejsc po przecinku
     # Zwraca nowy obiekt Distance
-    def __truediv__(self, other: (int, float)) -> "Distance":
+    def __truediv__(self, other: int | float) -> "Distance":
         return Distance(round(self.km / other, 2))
 
     # c) Operacje porównawcze:
@@ -64,31 +64,31 @@ class Distance:
     # __lt__, __gt__, __eq__, __le__, __ge__:
     # Obsługują porównania zarówno z innym obiektem Distance jak i z liczbą
     # Zwracają True/False w zależności od wyniku porównania wartości km
-    def __lt__(self, other: (int, float, "Distance")) -> bool:
+    def __lt__(self, other: int | float | "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         else:
             return self.km < other
 
-    def __gt__(self, other: (int, float, "Distance")) -> bool:
+    def __gt__(self, other: int | float | "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         else:
             return self.km > other
 
-    def __eq__(self, other: (int, float, "Distance")) -> bool:
+    def __eq__(self, other: int | float | "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         else:
             return self.km == other
 
-    def __le__(self, other: (int, float, "Distance")) -> bool:
+    def __le__(self, other: int | float | "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         else:
             return self.km <= other
 
-    def __ge__(self, other: (int, float, "Distance")) -> bool:
+    def __ge__(self, other: int | float | "Distance") -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         else:
