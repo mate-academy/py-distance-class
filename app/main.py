@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
@@ -28,31 +31,31 @@ class Distance:
     def __truediv__(self, number: float) -> "Distance":
         return Distance(round(self.km / number, 2))
 
-    def __eq__(self, other: ("Distance", float)) -> bool:
+    def __eq__(self, other: Union["Distance", float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (float, int)):
             return self.km == other
 
-    def __lt__(self, other: ("Distance", float)) -> bool:
+    def __lt__(self, other: Union["Distance", float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (float, int)):
             return self.km < other
 
-    def __gt__(self, other: ("Distance", float)) -> bool:
+    def __gt__(self, other: Union["Distance", float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (float, int)):
             return self.km > other
 
-    def __le__(self, other: ("Distance", float)) -> bool:
+    def __le__(self, other: Union["Distance", float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (float, int)):
             return self.km <= other
 
-    def __ge__(self, other: ("Distance", float)) -> bool:
+    def __ge__(self, other: Union["Distance", float, int]) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (float, int)):
