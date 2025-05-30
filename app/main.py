@@ -3,18 +3,18 @@ class Distance:
         self.km = km
 
     def __str__(self) -> str:
-        return  f"Distance: {self.km} kilometers"
+        return f"Distance: {self.km} kilometers"
 
     def __repr__(self) -> str:
-        return  f"Distance(km={self.km})"
+        return f"Distance(km={self.km})"
 
     def __add__(self, other):
-        if isinstance(self, other):
+        if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + float(other))
 
     def __iadd__(self, other):
-        if isinstance(self, other):
+        if isinstance(other, Distance):
             self.km += other.km
         else:
             self.km += float(other)
