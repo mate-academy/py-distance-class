@@ -17,8 +17,7 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, NumericType):
             return Distance(self.km + other)
-        else:
-            raise Distance.err(other)
+        raise Distance.err(other)
 
     def __iadd__(self, other: DistanceType) -> Distance:
         if isinstance(other, Distance):
@@ -29,57 +28,46 @@ class Distance:
             raise Distance.err(other)
         return self
 
-    def __mul__(self, other: NumericType) -> Distance:
-        if isinstance(other, NumericType):
-            return Distance(self.km * other)
-        else:
-            raise Distance.err(other)
+    def __mul__(self, number: NumericType) -> Distance:
+        return Distance(self.km * number)
 
-    def __truediv__(self, other: NumericType) -> Distance:
-        if isinstance(other, NumericType):
-            return Distance(round(self.km / other, 2))
-        else:
-            raise Distance.err(other)
+    def __truediv__(self, number: NumericType) -> Distance:
+        return Distance(round(self.km / number, 2))
 
     def __lt__(self, other: DistanceType) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, NumericType):
             return self.km < other
-        else:
-            raise Distance.err(other)
+        raise Distance.err(other)
 
     def __gt__(self, other: DistanceType) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, NumericType):
             return self.km > other
-        else:
-            raise Distance.err(other)
+        raise Distance.err(other)
 
     def __eq__(self, other: DistanceType) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, NumericType):
             return self.km == other
-        else:
-            raise Distance.err(other)
+        raise Distance.err(other)
 
     def __le__(self, other: DistanceType) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, NumericType):
             return self.km <= other
-        else:
-            raise Distance.err(other)
+        raise Distance.err(other)
 
     def __ge__(self, other: DistanceType) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, NumericType):
             return self.km >= other
-        else:
-            raise Distance.err(other)
+        raise Distance.err(other)
 
     @staticmethod
     def err(other: Any) -> TypeError:
