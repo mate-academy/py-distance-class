@@ -65,4 +65,4 @@ class Distance:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
-            return self.km >= othe
+            return self.km >= other
