@@ -1,5 +1,6 @@
 from __future__ import division
 from __future__ import annotations
+from typing import Union
 
 
 class Distance:
@@ -28,35 +29,35 @@ class Distance:
             self.km += other
             return self
 
-    def __mul__(self, other: [int, float] | Distance) -> "Distance":
+    def __mul__(self, other: Union[int, float, Distance]) -> "Distance":
         if isinstance(other, (int, float)):
             new_value = self.km * other
             return Distance(new_value)
 
-    def __truediv__(self, other: [int, float] | Distance) -> "Distance":
+    def __truediv__(self, other: Union[int, float, Distance]) -> "Distance":
         if isinstance(other, (int, float)):
             new_value = self.km / other
             return Distance(round(new_value, 2))
 
-    def __lt__(self, other: [int, float] | Distance) -> bool:
+    def __lt__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         else:
             return self.km < other
 
-    def __gt__(self, other: [int, float] | Distance) -> bool:
+    def __gt__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         else:
             return self.km > other
 
-    def __eq__(self, other: [int, float] | Distance) -> bool:
+    def __eq__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         else:
             return self.km == other
 
-    def __le__(self, other: [int, float] | Distance) -> bool:
+    def __le__(self, other: Union[int, float, Distance]) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         else:
