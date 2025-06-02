@@ -22,6 +22,7 @@ class Distance:
             return Distance(
                 km=self.km + other
             )
+        return NotImplemented
 
     def __iadd__(self, other: typing.Any) -> "Distance":
         if isinstance(other, Distance):
