@@ -14,7 +14,7 @@ class Distance:
 
     def __iadd__(self, other):
         self.distance = self.distance + other.distance
-        return self.distance
+        return self
     
     def __mul__(self, other):
         if isinstance(other, Distance):
