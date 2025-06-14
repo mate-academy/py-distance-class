@@ -44,5 +44,6 @@ class Distance:
             return other.km
         elif isinstance(other, (int, float)):
             return other
-
-        return 0
+        else:
+            raise TypeError(f"Falscher Typ: '{type(other).__name__}'. "
+                            f"Erwartet 'Distance', 'int' oder 'float'.")
