@@ -17,7 +17,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return Distance(km=self.km + other)
         else:
-            return f"the {other} is not a Distance and it doesn't a number!"
+            raise TypeError(f"Unsupported operand type for + : {type(other)}!")
 
     def __iadd__(self, other: Any) -> Any:
         if isinstance(other, Distance):
@@ -27,13 +27,21 @@ class Distance:
             self.km += other
             return self
         else:
-            return f"the {other} is not a Distance and it doesn't a number!"
+            raise TypeError(f"Unsupported operand type for + : {type(other)}!")
 
     def __mul__(self, other: Any) -> Any:
-        return Distance(km=self.km * other)
+        if isinstance(other, (int, float)):
+            return Distance(km=self.km * other)
+        else:
+            raise TypeError(f"Unsupported operand type for * : {type(other)}!")
 
     def __truediv__(self, other: Any) -> Any:
-        return Distance(km=round((self.km / other), 2))
+        if isinstance(other, (int, float)) and other != 0:
+            return Distance(km=round((self.km / other), 2))
+        elif other == 0:
+            return print("Can't division by 0!")
+        else:
+            raise TypeError(f"Unsupported operand type for / : {type(other)}!")
 
     def __lt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
