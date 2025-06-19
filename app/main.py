@@ -39,7 +39,7 @@ class Distance:
         if isinstance(other, (int, float)) and other != 0:
             return Distance(km=round((self.km / other), 2))
         elif other == 0:
-            return print("Can't division by 0!")
+            raise ZeroDivisionError
         else:
             raise TypeError(f"Unsupported operand type for / : {type(other)}!")
 
@@ -49,8 +49,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km < other
         else:
-            print(f"the {other} is not a Distance and it doesn't a number!")
-            return False
+            raise TypeError(f"Unsupported operand type for < : {type(other)}!")
 
     def __gt__(self, other: Any) -> bool:
         if isinstance(other, Distance):
@@ -58,8 +57,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km > other
         else:
-            print(f"the {other} is not a Distance and it doesn't a number!")
-            return False
+            raise TypeError(f"Unsupported operand type for > : {type(other)}!")
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, Distance):
@@ -67,8 +65,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km == other
         else:
-            print(f"the {other} is not a Distance and it doesn't a number!")
-            return False
+            raise TypeError(f"Unsupported operand type for == : {type(other)}")
 
     def __le__(self, other: Any) -> bool:
         if isinstance(other, Distance):
@@ -76,8 +73,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return self.km <= other
         else:
-            print(f"the {other} is not a Distance and it doesn't a number!")
-            return False
+            raise TypeError(f"Unsupported operand type for <= : {type(other)}")
 
     def __ge__(self, other: Any) -> bool:
         if isinstance(other, Distance):
@@ -85,5 +81,4 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km >= other
         else:
-            print(f"the {other} is not a Distance and it doesn't a number!")
-            return False
+            raise TypeError(f"Unsupported operand type for >= : {type(other)}")
