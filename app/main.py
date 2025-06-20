@@ -3,9 +3,7 @@ from typing import Union
 
 
 class Distance:
-
     def __init__(self, km: Union[int, float]) -> None:
-
         self.km = km
 
     def __str__(self) -> str:
@@ -14,7 +12,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union[Distance, int, float]) -> Distance:
+    def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             return Distance(
                 km=self.km + other.km
@@ -40,7 +38,7 @@ class Distance:
             km=round(self.km / other, 2)
         )
 
-    def __eq__(self, other: Union[Distance, int, float]) -> bool:
+    def __eq__(self, other: Union[int, float]) -> bool:
         return self.km == other
 
     def __lt__(self, other: Union[Distance, int, float]) -> bool:
