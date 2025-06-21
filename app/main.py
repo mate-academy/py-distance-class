@@ -37,6 +37,8 @@ class Distance:
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
+            if not other:
+                raise ZeroDivisionError("Division by zero")
             return Distance(km=round(self.km / other, 2))
         raise TypeError(
             f"unsupported operand type(s) for /: "
