@@ -14,24 +14,28 @@ class Distance:
     def __add__(self, other: Any) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        return Distance(self.km + other)
+        elif isinstance(other, (int, float)):
+            return Distance(self.km + other)
+        raise TypeError("Error adding to Distance class")
 
     def __iadd__(self, other: Any) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        else:
+            return self
+        elif isinstance(other, (int, float)):
             self.km += other
-        return self
+            return self
+        raise TypeError("Error adding to Distance class")
 
     def __mul__(self, other: float) -> "Distance":
-        if not isinstance(other, Distance):
+        if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        raise TypeError("method should not accept Distance instance")
+        raise TypeError("method should accept only ints and floats")
 
     def __truediv__(self, other: float) -> "Distance":
-        if not isinstance(other, Distance):
+        if isinstance(other, (int, float)):
             return Distance(round((self.km / other), 2))
-        raise TypeError("method should not accept Distance instance")
+        raise TypeError("method should accept only ints and floats")
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, Distance):
