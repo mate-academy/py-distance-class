@@ -28,7 +28,7 @@ class Distance:
             return NotImplemented
         return self
 
-    def __mul__(self, number: int | Distance) -> Distance:
+    def __mul__(self, number: int | float) -> Distance:
         return Distance(self.km * number)
 
     def __truediv__(self, number: int) -> Distance:
