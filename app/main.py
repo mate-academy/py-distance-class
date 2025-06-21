@@ -26,7 +26,7 @@ class Distance:
         self.km += self._get_km(other)
         return self
 
-    def __mul__(self, other: Union[int, float]) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("Can only multiply Distance by int or float.")
