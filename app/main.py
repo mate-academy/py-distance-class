@@ -73,6 +73,7 @@ class Distance:
         return self.__mul__(other)
 
     def __truediv__(self, other: float) -> "Distance":
-        if isinstance(other, (int, float)):
-            return Distance(round(self.km / other, 2))
-        return NotImplemented
+        if other == 0:
+            raise ZeroDivisionError("Cannot divide by zero.")
+        result = round(self.km / other, 2)
+        return Distance(result)
