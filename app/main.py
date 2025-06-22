@@ -4,7 +4,7 @@ from typing import Union
 
 
 class Distance:
-    def __init__(self, km: float):
+    def __init__(self, km: float)-> None:
         self.km = km
 
     def __str__(self) -> str:
