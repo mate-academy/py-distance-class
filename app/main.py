@@ -28,7 +28,7 @@ class Distance:
     def __mul__(self, other: int) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: Any) -> Distance:
+    def __truediv__(self, other: Any) -> Distance: #123
         if isinstance(other, (int, float)):
             if not other:
                 raise ZeroDivisionError("Division by zero")
