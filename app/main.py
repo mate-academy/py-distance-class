@@ -29,7 +29,14 @@ class Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: Any) -> Distance:
-        return Distance(round(self.km / other, 2))
+        if isinstance(other, (int, float)):
+            if not other:
+                raise ZeroDivisionError("Division by zero")
+            return Distance(km=round(self.km / other, 2))
+        raise TypeError(
+            f"unsupported operand type(s) for /: "
+            f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
+        )
 
     def __eq__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
