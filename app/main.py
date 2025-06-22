@@ -23,7 +23,7 @@ class Distance:
             self.km += other
             return self
         raise TypeError(
-            f"unsupported operand type(s) for +: "
+            f"unsupported operand type(s) for +=: "
             f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
         )
 
@@ -51,7 +51,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km < other
         raise TypeError(
-            f"unsupported operand type(s) for: "
+            f"unsupported operand type(s) for comparing: "
             f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
         )
 
@@ -61,7 +61,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km > other
         raise TypeError(
-            f"unsupported operand type(s) for: "
+            f"unsupported operand type(s) for comparing: "
             f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
         )
 
@@ -71,7 +71,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km == other
         raise TypeError(
-            f"unsupported operand type(s) for ==: "
+            f"unsupported operand type(s) for comparing: "
             f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
         )
 
