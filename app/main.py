@@ -1,5 +1,4 @@
 class Distance:
-
     def __init__(self, km: float) -> None:
         self.km: float = km
 
@@ -12,33 +11,87 @@ class Distance:
     def __add__(self, other: object) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        return Distance(self.km + other)
+        if isinstance(other, (int, float)):
+            return Distance(self.km + other)
+        raise TypeError(
+            "Unsupported operand type(s) for +: 'Distance' and "
+            f"'{type(other).__name__}'"
+        )
 
     def __iadd__(self, other: object) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        else:
+        elif isinstance(other, (int, float)):
             self.km += other
+        else:
+            raise TypeError(
+                "Unsupported operand type(s) for +=: 'Distance' and "
+                f"'{type(other).__name__}'"
+            )
         return self
 
     def __mul__(self, other: object) -> "Distance":
-        return Distance(self.km * other)
+        if isinstance(other, (int, float)):
+            return Distance(self.km * other)
+        raise TypeError(
+            "Unsupported operand type(s) for *: 'Distance' and "
+            f"'{type(other).__name__}'"
+        )
 
     def __truediv__(self, other: object) -> "Distance":
-        result = self.km / other
-        return Distance(round(result, 2))
+        if isinstance(other, (int, float)):
+            if other == 0:
+                raise ZeroDivisionError("division by zero")
+            result = self.km / other
+            return Distance(round(result, 2))
+        raise TypeError(
+            "Unsupported operand type(s) for /: 'Distance' and "
+            f"'{type(other).__name__}'"
+        )
 
     def __lt__(self, other: object) -> bool:
-        return self.km < other
+        if isinstance(other, Distance):
+            return self.km < other.km
+        if isinstance(other, (int, float)):
+            return self.km < other
+        raise TypeError(
+            "'<' not supported between instances of 'Distance' and "
+            f"'{type(other).__name__}'"
+        )
 
     def __gt__(self, other: object) -> bool:
-        return self.km > other
+        if isinstance(other, Distance):
+            return self.km > other.km
+        if isinstance(other, (int, float)):
+            return self.km > other
+        raise TypeError(
+            "'>' not supported between instances of 'Distance' and "
+            f"'{type(other).__name__}'"
+        )
 
     def __eq__(self, other: object) -> bool:
-        return self.km == other
+        if isinstance(other, Distance):
+            return self.km == other.km
+        if isinstance(other, (int, float)):
+            return self.km == other
+        return False
 
     def __le__(self, other: object) -> bool:
-        return self.km <= other
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        if isinstance(other, (int, float)):
+            return self.km <= other
+        raise TypeError(
+            "'<=' not supported between instances of 'Distance' and "
+            f"'{type(other).__name__}'"
+        )
 
     def __ge__(self, other: object) -> bool:
-        return self.km >= other
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        if isinstance(other, (int, float)):
+            return self.km >= other
+        raise TypeError(
+            "'>=' not supported between instances of 'Distance' and "
+            f"'{type(other).__name__}'"
+        )
