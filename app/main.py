@@ -51,7 +51,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km < other
         raise TypeError(
-            f"unsupported operand type(s) for comparing: "
+            f"unsupported operand type(s) for <: "
             f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
         )
 
@@ -61,7 +61,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km > other
         raise TypeError(
-            f"unsupported operand type(s) for comparing: "
+            f"unsupported operand type(s) for >: "
             f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
         )
 
@@ -71,15 +71,29 @@ class Distance:
         if isinstance(other, (int, float)):
             return self.km == other
         raise TypeError(
-            f"unsupported operand type(s) for comparing: "
+            f"unsupported operand type(s) for ==: "
             f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
         )
 
     def __le__(self, other: Distance | int | float) -> bool:
-        return not self.__gt__(other)
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        if isinstance(other, (int, float)):
+            return self.km <= other
+        raise TypeError(
+            f"unsupported operand type(s) for <=: "
+            f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
+        )
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        return not self.__lt__(other)
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        if isinstance(other, (int, float)):
+            return self.km >= other
+        raise TypeError(
+            f"unsupported operand type(s) for >=: "
+            f"'{self.__class__.__name__}' and '{other.__class__.__name__}'"
+        )
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
