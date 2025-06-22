@@ -46,7 +46,7 @@ class Distance:
     def __eq__(self, other: Distance | int | float) -> bool:
         return self.km == self._get_km(other)
 
-    def __neq__(self, other: Distance | int | float) -> bool:
+    def __ne__(self, other: Distance | int | float) -> bool:
         return self.km != self._get_km(other)
 
     def __le__(self, other: Distance | int | float) -> bool:
