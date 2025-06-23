@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from functools import wraps
 from typing import Union, Any, Callable
 
@@ -6,7 +8,7 @@ def validate_type(supported_types: tuple = (int, float),
                   allow_same_type: bool = True) -> Callable:
     def decorator(func: Callable) -> Callable:
         @wraps(func)
-        def wrapper(self: "Distance", other: Any, *args, **kwargs) -> Callable:
+        def wrapper(self: Distance, other: Any, *args, **kwargs) -> Callable:
             all_types = (supported_types
                          + ((type(self),) if allow_same_type else ()))
 
@@ -33,38 +35,38 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @validate_type()
-    def __add__(self, other: Union[float, int, "Distance"]) -> "Distance":
+    def __add__(self, other: Union[float, int, Distance]) -> Distance:
         return Distance(self.km + other)
 
     @validate_type()
-    def __iadd__(self, other: Union[float, int, "Distance"]) -> "Distance":
+    def __iadd__(self, other: Union[float, int, Distance]) -> Distance:
         self.km += other
         return self
 
     @validate_type(allow_same_type=False)
-    def __mul__(self, other: Union[float, int]) -> "Distance":
+    def __mul__(self, other: Union[float, int]) -> Distance:
         return Distance(self.km * other)
 
     @validate_type(allow_same_type=False)
-    def __truediv__(self, other: Union[float, int]) -> "Distance":
+    def __truediv__(self, other: Union[float, int]) -> Distance:
         return Distance(round(self.km / other, 2))
 
     @validate_type()
-    def __lt__(self, other: Union[float, int, "Distance"]) -> bool:
+    def __lt__(self, other: Union[float, int, Distance]) -> bool:
         return self.km < other
 
     @validate_type()
-    def __gt__(self, other: Union[float, int, "Distance"]) -> bool:
+    def __gt__(self, other: Union[float, int, Distance]) -> bool:
         return self.km > other
 
     @validate_type()
-    def __eq__(self, other: Union[float, int, "Distance"]) -> bool:
+    def __eq__(self, other: Union[float, int, Distance]) -> bool:
         return self.km == other
 
     @validate_type()
-    def __le__(self, other: Union[float, int, "Distance"]) -> bool:
+    def __le__(self, other: Union[float, int, Distance]) -> bool:
         return self.km <= other
 
     @validate_type()
-    def __ge__(self, other: Union[float, int, "Distance"]) -> bool:
+    def __ge__(self, other: Union[float, int, Distance]) -> bool:
         return self.km >= other
