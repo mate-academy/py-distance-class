@@ -28,12 +28,12 @@ class Distance:
             self.km = self.km + other
         return self
 
-    def __mul__(self, other: "Distance") -> "Distance":
+    def __mul__(self, other: Union["Distance", int, float]) -> "Distance":
         return Distance(
             km=self.km * other
         )
 
-    def __truediv__(self, other: "Distance") -> "Distance":
+    def __truediv__(self, other: Union["Distance", int, float]) -> "Distance":
         return Distance(
             km=round(self.km / other, 2)
         )
