@@ -25,7 +25,11 @@ def validate_type(supported_types: tuple = (int, float),
 
 
 class Distance:
-    def __init__(self, km: float) -> None:
+    def __init__(self, km: Union[int, float]) -> None:
+        if not isinstance(km, (int, float)):
+            raise TypeError("Distance must be a number")
+        if km < 0:
+            raise ValueError("Distance cannot be negative")
         self.km = km
 
     def __str__(self) -> str:
