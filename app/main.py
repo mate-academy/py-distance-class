@@ -8,55 +8,55 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: type) -> None:
+    def __add__(self, other: type) -> type:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
         return None
 
-    def __iadd__(self, other: type) -> None:
+    def __iadd__(self, other: type) -> type:
         if isinstance(other, Distance):
             self.km = self.km + other.km
         elif isinstance(other, (int, float)):
             self.km = self.km + other
         return self
 
-    def __mul__(self, other: type) -> None:
+    def __mul__(self, other: type) -> type:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: type) -> None:
+    def __truediv__(self, other: type) -> type:
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: type) -> None:
+    def __lt__(self, other: type) -> type:
         if isinstance(other, Distance):
             return self.km < other.km
         elif isinstance(other, (int, float)):
             return self.km < other
         return None
 
-    def __gt__(self, other: type) -> None:
+    def __gt__(self, other: type) -> type:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
         return None
 
-    def __eq__(self, other: type) -> None:
+    def __eq__(self, other: type) -> type:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
         return None
 
-    def __le__(self, other: type) -> None:
+    def __le__(self, other: type) -> type:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
             return self.km <= other
         return None
 
-    def __ge__(self, other: type) -> None:
+    def __ge__(self, other: type) -> type:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
