@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Distance:
     def __init__(self, km: (int, float)) -> None:
         self.km = km
@@ -20,14 +23,10 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, other: float | int | "Distance") -> "Distance":
-        if isinstance(other, Distance):
-            return Distance(self.km * other.km)
+    def __mul__(self, other: Union[int, float]) -> "Distance":
         return Distance(self.km * other)
 
-    def __truediv__(self, other: float | int | "Distance") -> "Distance":
-        if isinstance(other, Distance):
-            return Distance(round(self.km / other.km, 2))
+    def __truediv__(self, other: Union[int, float]) -> "Distance":
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: "Distance") -> bool:
