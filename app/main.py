@@ -83,8 +83,6 @@ class Distance:
         self.km /= other
         return self
 
-    # Порівняння: дозволяємо Distance або числа
-
     @validate_type()
     def __eq__(self, other: Union[int, float]) -> bool:
         return self.km == other
@@ -105,13 +103,10 @@ class Distance:
     def __ge__(self, other: Union[int, float]) -> bool:
         return self.km >= other
 
-    # Реалізація рефлекторних методів для підтримки int + Distance і т.п.
-
     def __radd__(self, other: Union[int, float]) -> Distance:
         return self + other
 
     def __rsub__(self, other: Union[int, float]) -> Distance:
-        # other - self.km
         result = other - self.km
         if result < 0:
             raise ValueError("Resulting distance cannot be negative")
@@ -121,5 +116,4 @@ class Distance:
         return self * other
 
     def __rtruediv__(self, other: Union[int, float]) -> Distance:
-        # Ділення числа на Distance - не підтримуємо (бо що таке km/Distance?)
         raise TypeError("Division of number by Distance is not supported")
