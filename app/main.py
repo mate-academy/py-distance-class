@@ -1,3 +1,5 @@
+from typing import Union
+
 class Distance:
     def __init__(self, km: float) -> None:
         self.km: float = km
@@ -8,14 +10,14 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: float | "Distance") -> "Distance":
+    def __add__(self, other: Union[float, "Distance"]) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         if isinstance(other, (int, float)):
             return Distance(self.km + other)
         return NotImplemented
 
-    def __iadd__(self, other: float | "Distance") -> "Distance":
+    def __iadd__(self, other: Union[float, "Distance"]) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -34,10 +36,10 @@ class Distance:
             return Distance(round(self.km / divisor, 2))
         return NotImplemented
 
-    def __lt__(self, other: float | "Distance") -> bool:
+    def __lt__(self, other: Union[float, "Distance"]) -> bool:
         return self.km < (other.km if isinstance(other, Distance) else other)
 
-    def __gt__(self, other: float | "Distance") -> bool:
+    def __gt__(self, other: Union[float, "Distance"]) -> bool:
         return self.km > (other.km if isinstance(other, Distance) else other)
 
     def __eq__(self, other: object) -> bool:
@@ -47,8 +49,8 @@ class Distance:
             return self.km == other
         return False
 
-    def __le__(self, other: float | "Distance") -> bool:
+    def __le__(self, other: Union[float, "Distance"]) -> bool:
         return self.km <= (other.km if isinstance(other, Distance) else other)
 
-    def __ge__(self, other: float | "Distance") -> bool:
+    def __ge__(self, other: Union[float, "Distance"]) -> bool:
         return self.km >= (other.km if isinstance(other, Distance) else other)
