@@ -3,8 +3,10 @@ from functools import wraps
 from typing import Union, Any, Callable
 
 
-def validate_type(supported_types: tuple[type, ...] = (int, float),
-                  allow_same_type: bool = True) -> Callable:
+def validate_type(
+    supported_types: tuple[type, ...] = (int, float),
+    allow_same_type: bool = True
+) -> Callable:
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(self: Distance, other: Any, *args, **kwargs) -> Any:
@@ -36,42 +38,88 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @validate_type()
-    def __add__(self, other: Union[float, int]) -> Distance:
+    def __add__(self, other: Union[int, float]) -> Distance:
         return Distance(self.km + other)
 
     @validate_type()
-    def __sub__(self, other: Union[float, int]) -> Distance:
+    def __iadd__(self, other: Union[int, float]) -> Distance:
+        self.km += other
+        return self
+
+    @validate_type()
+    def __sub__(self, other: Union[int, float]) -> Distance:
         result = self.km - other
         if result < 0:
             raise ValueError("Resulting distance cannot be negative")
         return Distance(result)
 
     @validate_type()
-    def __mul__(self, other: Union[float, int]) -> Distance:
+    def __isub__(self, other: Union[int, float]) -> Distance:
+        result = self.km - other
+        if result < 0:
+            raise ValueError("Resulting distance cannot be negative")
+        self.km = result
+        return self
+
+    @validate_type()
+    def __mul__(self, other: Union[int, float]) -> Distance:
         return Distance(self.km * other)
 
     @validate_type()
-    def __truediv__(self, other: Union[float, int]) -> Distance:
+    def __imul__(self, other: Union[int, float]) -> Distance:
+        self.km *= other
+        return self
+
+    @validate_type(allow_same_type=False)
+    def __truediv__(self, other: Union[int, float]) -> Distance:
         if other == 0:
             raise ZeroDivisionError("Cannot divide by zero")
         return Distance(self.km / other)
 
+    @validate_type(allow_same_type=False)
+    def __itruediv__(self, other: Union[int, float]) -> Distance:
+        if other == 0:
+            raise ZeroDivisionError("Cannot divide by zero")
+        self.km /= other
+        return self
+
+    # Порівняння: дозволяємо Distance або числа
+
     @validate_type()
-    def __eq__(self, other: Union[float, int]) -> bool:
+    def __eq__(self, other: Union[int, float]) -> bool:
         return self.km == other
 
     @validate_type()
-    def __lt__(self, other: Union[float, int]) -> bool:
+    def __lt__(self, other: Union[int, float]) -> bool:
         return self.km < other
 
     @validate_type()
-    def __le__(self, other: Union[float, int]) -> bool:
+    def __le__(self, other: Union[int, float]) -> bool:
         return self.km <= other
 
     @validate_type()
-    def __gt__(self, other: Union[float, int]) -> bool:
+    def __gt__(self, other: Union[int, float]) -> bool:
         return self.km > other
 
     @validate_type()
-    def __ge__(self, other: Union[float, int]) -> bool:
+    def __ge__(self, other: Union[int, float]) -> bool:
         return self.km >= other
+
+    # Реалізація рефлекторних методів для підтримки int + Distance і т.п.
+
+    def __radd__(self, other: Union[int, float]) -> Distance:
+        return self + other
+
+    def __rsub__(self, other: Union[int, float]) -> Distance:
+        # other - self.km
+        result = other - self.km
+        if result < 0:
+            raise ValueError("Resulting distance cannot be negative")
+        return Distance(result)
+
+    def __rmul__(self, other: Union[int, float]) -> Distance:
+        return self * other
+
+    def __rtruediv__(self, other: Union[int, float]) -> Distance:
+        # Ділення числа на Distance - не підтримуємо (бо що таке km/Distance?)
+        raise TypeError("Division of number by Distance is not supported")
