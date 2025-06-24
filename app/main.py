@@ -61,11 +61,11 @@ class Distance:
         self.km = result
         return self
 
-    @validate_type()
+    @validate_type(allow_same_type=False)
     def __mul__(self, other: Union[int, float]) -> Distance:
         return Distance(self.km * other)
 
-    @validate_type()
+    @validate_type(allow_same_type=False)
     def __imul__(self, other: Union[int, float]) -> Distance:
         self.km *= other
         return self
@@ -74,13 +74,13 @@ class Distance:
     def __truediv__(self, other: Union[int, float]) -> Distance:
         if other == 0:
             raise ZeroDivisionError("Cannot divide by zero")
-        return Distance(self.km / other)
+        return Distance(round(self.km / other, 2))
 
     @validate_type(allow_same_type=False)
     def __itruediv__(self, other: Union[int, float]) -> Distance:
         if other == 0:
             raise ZeroDivisionError("Cannot divide by zero")
-        self.km /= other
+        self.km = round(self.km / other, 2)
         return self
 
     @validate_type()
