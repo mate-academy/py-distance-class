@@ -13,7 +13,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance) -> int:
+    def __add__(self, other: Distance) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
@@ -26,12 +26,18 @@ class Distance:
         return self
 
     def __mul__(self, other: int | Distance) -> Distance:
+        if isinstance(other, Distance):
+            raise TypeError("Cannot mulitipy Distance by another Distance")
         return Distance(self.km * other)
 
     def __truediv__(self,
                     other: Union[Distance, int, float]
                     ) -> Distance:
-        return Distance(round(self.km / other, 2))
+        if isinstance(other, Distance):
+            raise TypeError("Cannot divide Distance by another Distance")
+        elif other == 0:
+            raise TypeError("Cannot divide Distance by 0")
+        return Distance(round((self.km / other), 2))
 
     def __lt__(self,
                other: Union[Distance, int, float]
