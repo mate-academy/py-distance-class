@@ -28,16 +28,26 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
         return self.km == other
 
     def __lt__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
         return self.km < other
 
     def __gt__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km > other.km
         return self.km > other
 
     def __le__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
         return self.km <= other
 
     def __ge__(self, other: int | float | Distance) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
         return self.km >= other
