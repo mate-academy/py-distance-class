@@ -55,7 +55,7 @@ class Distance:
             return self.km == other
         return NotImplemented
 
-    def __le__(self, other: float) -> "Distance":
+    def __le__(self, other: float) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
