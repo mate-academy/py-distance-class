@@ -22,7 +22,9 @@ def validate_type(
         return wrapper
     return decorator
 
+
 class Distance:
+
     def __init__(self, km: Union[int, float]) -> None:
         if not isinstance(km, (int, float)):
             raise TypeError("Distance must be a number")
