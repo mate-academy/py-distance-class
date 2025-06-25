@@ -31,7 +31,7 @@ class Distance:
 
     def __mul__(self, other: Union[int, float]) -> "Distance":
         if isinstance(other, (int, float)):
-            return Distance(round(self.km * other, 3))
+            return Distance(self.km * other)
         return NotImplemented
 
     def __truediv__(self, other: Union[int, float]) -> "Distance":
