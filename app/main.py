@@ -35,7 +35,7 @@ class Distance:
             num = other.km
         else:
             num = other
-        if num > self.km:
+        if self.km < num:
             return True
         return False
 
@@ -44,7 +44,7 @@ class Distance:
             num = other.km
         else:
             num = other
-        if num < self.km:
+        if self.km > num:
             return True
         return False
 
@@ -53,7 +53,7 @@ class Distance:
             num = other.km
         else:
             num = other
-        if num == self.km:
+        if self.km == num:
             return True
         return False
 
@@ -62,7 +62,7 @@ class Distance:
             num = other.km
         else:
             num = other
-        if num >= self.km:
+        if self.km >= num:
             return True
         return False
 
@@ -71,6 +71,6 @@ class Distance:
             num = other.km
         else:
             num = other
-        if num <= self.km:
+        if self.km >= num:
             return True
         return False
