@@ -7,3 +7,6 @@ class Distance:
 
     def __repr__(self):
         return f"Distance(km={self.km})"
+
+    def __add__(self, other):
+        return Distance(self.km + other.km)
