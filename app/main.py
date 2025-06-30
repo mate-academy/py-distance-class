@@ -24,3 +24,10 @@ class Distance:
         else:
             self.km *= other
         return self
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            self.km = round(self.km / other, 2)
+        else:
+            self.km = round(self.km / other, 2)
+        return self
