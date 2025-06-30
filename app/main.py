@@ -1,3 +1,3 @@
 class Distance:
-    # Write your code here
-    pass
+    def __init__(self, km: int) -> None:
+        self.km = km
