@@ -10,3 +10,7 @@ class Distance:
 
     def __add__(self, other):
         return Distance(self.km + other.km)
+
+    def __iadd__(self, other):
+        self.km += other.km
+        return self
