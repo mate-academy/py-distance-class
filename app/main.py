@@ -58,7 +58,7 @@ class Distance:
     def __isub__(self, other: Union[int, float]) -> Distance:
         result = self.km - other
         if result < 0:
-            raise ValueError("Resulting distance cannot be negative")
+            raise ValueError("Resulting distance cannot be negative ")
         self.km = result
         return self
 
