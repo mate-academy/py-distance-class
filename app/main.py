@@ -62,6 +62,7 @@ class Distance:
             return self.km <= other
         return NotImplemented
 
+
     def __ge__(self, other):
         if isinstance(other, Distance):
             return self.km >= other.km
