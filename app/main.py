@@ -31,3 +31,6 @@ class Distance:
         else:
             self.km = round(self.km / other, 2)
         return self
+
+    def __eq__(self, other):
+        return self.km == other
