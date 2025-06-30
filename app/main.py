@@ -40,3 +40,9 @@ class Distance:
             return bool(self.km > other)
         else:
             return bool(self.km > other.km)
+
+    def __ge__(self, other):
+        if isinstance(other, (int, float)):
+            return bool(self.km >= other)
+        else:
+            return bool(self.km >= other.km)
