@@ -17,3 +17,10 @@ class Distance:
         elif isinstance(other, (int, float)):
             self.km += other
         return self
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            self.km *= other
+        else:
+            self.km *= other
+        return self
