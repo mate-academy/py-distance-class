@@ -17,40 +17,52 @@ class Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
-        self.km += other
-        return self
+        elif isinstance(other, (int, float)):
+            self.km += other
+            return self
+        raise TypeError
 
     def __mul__(self, mult: int) -> object:
-        if isinstance(mult, int):
+        if isinstance(mult, (int, float)):
             return Distance(self.km * mult)
-        raise TypeError
+        raise TypeError("Distance can only be divided by int or float")
 
     def __truediv__(self, divide: int) -> object:
         if isinstance(divide, (int, float)):
             return Distance(round(self.km / divide, 2))
-        raise TypeError
+        raise TypeError("Distance can only be divided by int or float")
 
     def __lt__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        return self.km < other
+        elif isinstance(other, (int, float)):
+            return self.km < other
+        raise TypeError
 
     def __gt__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
-        return self.km > other
+        elif isinstance(other, (int, float)):
+            return self.km > other
+        raise TypeError
 
     def __eq__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        return self.km == other
+        elif isinstance(other, (int, float)):
+            return self.km == other
+        raise TypeError
 
     def __le__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
-        return self.km <= other
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+        raise TypeError
 
     def __ge__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
-        return self.km >= other
+        elif isinstance(other, (int, float)):
+            return self.km >= other
+        raise TypeError
