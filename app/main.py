@@ -21,12 +21,14 @@ class Distance:
         return self
 
     def __mul__(self, mult: int) -> object:
-
-        return Distance(self.km * mult)
+        if isinstance(mult, int):
+            return Distance(self.km * mult)
+        raise TypeError
 
     def __truediv__(self, divide: int) -> object:
-
-        return Distance(round(self.km / divide, 2))
+        if isinstance(divide, (int, float)):
+            return Distance(round(self.km / divide, 2))
+        raise TypeError
 
     def __lt__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
