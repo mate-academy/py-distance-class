@@ -1,4 +1,4 @@
-from typing import Any, Callable
+from typing import Any
 
 
 class Distance:
@@ -11,30 +11,30 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Any) -> Callable:
+    def __add__(self, other: Any) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
 
-    def __radd__(self, other: Any) -> Callable:
+    def __radd__(self, other: Any) -> "Distance":
         return self.__add__(other)
 
-    def __iadd__(self, other: Any) -> Callable:
+    def __iadd__(self, other: Any) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
             self.km += other
         return self
 
-    def __mul__(self, factor: Any) -> Callable:
+    def __mul__(self, factor: Any) -> "Distance":
         if isinstance(factor, (int, float)):
             return Distance(self.km * factor)
 
-    def __rmul__(self, factor: Any) -> Callable:
+    def __rmul__(self, factor: Any) -> "Distance":
         return self.__mul__(factor)
 
-    def __truediv__(self, divisor: Any) -> Callable:
+    def __truediv__(self, divisor: Any) -> "Distance":
         if isinstance(divisor, (int, float)) and divisor != 0:
             return Distance(round(self.km / divisor, 2))
 
