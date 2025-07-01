@@ -11,7 +11,10 @@ class Distance:
     def __add__(self, second: object | int) -> object:
         if isinstance(second, Distance):
             return Distance(self.km + second.km)
-        return Distance(self.km + second)
+        elif isinstance(second, (int, float)):
+            return Distance(self.km + second)
+        raise TypeError("Distance can only be compared to "
+                        "Distance, int, or float")
 
     def __iadd__(self, other: object) -> object:
         if isinstance(other, Distance):
@@ -20,7 +23,8 @@ class Distance:
         elif isinstance(other, (int, float)):
             self.km += other
             return self
-        raise TypeError
+        raise TypeError("Distance can only be compared to "
+                        "Distance, int, or float")
 
     def __mul__(self, mult: int) -> object:
         if isinstance(mult, (int, float)):
@@ -37,32 +41,37 @@ class Distance:
             return self.km < other.km
         elif isinstance(other, (int, float)):
             return self.km < other
-        raise TypeError
+        raise TypeError("Distance can only be compared to "
+                        "Distance, int, or float")
 
     def __gt__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         elif isinstance(other, (int, float)):
             return self.km > other
-        raise TypeError
+        raise TypeError("Distance can only be compared to "
+                        "Distance, int, or float")
 
     def __eq__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
-        raise TypeError
+        raise TypeError("Distance can only be compared to "
+                        "Distance, int, or float")
 
     def __le__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         elif isinstance(other, (int, float)):
             return self.km <= other
-        raise TypeError
+        raise TypeError("Distance can only be compared to "
+                        "Distance, int, or float")
 
     def __ge__(self, other: object | int) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         elif isinstance(other, (int, float)):
             return self.km >= other
-        raise TypeError
+        raise TypeError("Distance can only be compared to "
+                        "Distance, int, or float")
