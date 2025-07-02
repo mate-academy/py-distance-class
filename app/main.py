@@ -4,7 +4,7 @@ from functools import total_ordering
 
 @total_ordering
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -27,12 +27,10 @@ class Distance:
         return self
 
     def __mul__(self, other: int) -> Distance:
-        self.km = self.km * other
-        return self
+        return Distance(self.km * other)
 
     def __truediv__(self, other: int) -> Distance:
-        self.km = round(self.km / other, 2)
-        return self
+        return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
