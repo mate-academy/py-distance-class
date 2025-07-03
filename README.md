@@ -77,4 +77,4 @@ distance <= 49  # False
 distance >= 50  # True
 ```
 ___
-### Note: Check your code using this [checklist](checklist.md) before pushing your solution.
+### Note: Check your code using this [checklist](checklist.md) before pushing your solution
