@@ -29,6 +29,8 @@ class Distance:
         return Distance(self.km * number)
 
     def __truediv__(self, number: int) -> Distance:
+        if number == 0:
+            raise ZeroDivisionError
         return Distance(round(self.km / number, 2))
 
     def __lt__(self, other: Distance | int) -> bool:
