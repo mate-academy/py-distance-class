@@ -33,10 +33,13 @@ class Distance:
         return NotImplemented
 
     def __truediv__(self, other: Union[int, float]) -> "Distance":
-        if isinstance(other, (int, float)):
-            result = round(self.km / other, 2)
-            return Distance(result)
-        return NotImplemented
+    if isinstance(other, (int, float)):
+        if other == 0:
+            raise ValueError("Cannot divide by zero.")
+        result = round(self.km / other, 2)
+        return Distance(result)
+    return NotImplemented
+
 
     def __eq__(self, other: Union["Distance", int, float]) -> bool:
         if isinstance(other, Distance):
