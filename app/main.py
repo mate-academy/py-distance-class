@@ -41,6 +41,7 @@ class Distance:
     return NotImplemented
 
 
+
     def __eq__(self, other: Union["Distance", int, float]) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
