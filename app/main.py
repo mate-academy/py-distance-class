@@ -1,8 +1,9 @@
+from __future__ import annotations
 from typing import Union
 
 
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
