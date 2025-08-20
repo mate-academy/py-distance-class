@@ -18,13 +18,13 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
+    # --- arithmetic ---
     def __add__(self, other: Union["Distance", Number]) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + float(other))
 
     def __radd__(self, other: Number) -> "Distance":
-        # supports: 10 + Distance(5)
         return Distance(float(other) + self.km)
 
     def __iadd__(self, other: Union["Distance", Number]) -> "Distance":
@@ -35,15 +35,24 @@ class Distance:
         return self
 
     def __mul__(self, other: Number) -> "Distance":
+        if isinstance(other, Distance):
+            raise TypeError(
+                "__mul__ expects int or float, not Distance"
+            )
         return Distance(self.km * float(other))
 
     def __rmul__(self, other: Number) -> "Distance":
         return Distance(float(other) * self.km)
 
     def __truediv__(self, other: Number) -> "Distance":
+        if isinstance(other, Distance):
+            raise TypeError(
+                "__truediv__ expects int or float, not Distance"
+            )
         result = self.km / float(other)
         return Distance(round(result, 2))
 
+    # --- comparisons ---
     def _other_km(self, other: Union["Distance", Number]) -> float:
         return other.km if isinstance(other, Distance) else float(other)
 
