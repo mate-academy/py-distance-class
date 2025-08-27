@@ -28,44 +28,29 @@ class Distance:
         self.km += self.get_km_from_type(other)
         return self
 
-    def __mul__(self, other: Distance | int | float) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         else:
             raise TypeError
 
-    def __truediv__(self, other: Distance | int | float) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         else:
             raise TypeError
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        if self.km < self.get_km_from_type(other):
-            return True
-        else:
-            return False
+        return self.km < self.get_km_from_type(other)
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        if self.km > self.get_km_from_type(other):
-            return True
-        else:
-            return False
+        return self.km > self.get_km_from_type(other)
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        if self.km == self.get_km_from_type(other):
-            return True
-        else:
-            return False
+        return self.km == self.get_km_from_type(other)
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if self.km <= self.get_km_from_type(other):
-            return True
-        else:
-            return False
+        return self.km <= self.get_km_from_type(other)
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if self.km >= self.get_km_from_type(other):
-            return True
-        else:
-            return False
+        return self.km >= self.get_km_from_type(other)
