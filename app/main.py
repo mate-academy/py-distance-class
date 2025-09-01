@@ -38,26 +38,16 @@ class Distance:
         )
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        if self.km < Distance.other_validation(other):
-            return True
-        return False
+        return self.km < Distance.other_validation(other)
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        if self.km > Distance.other_validation(other):
-            return True
-        return False
+        return self.km > Distance.other_validation(other)
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        if self.km == Distance.other_validation(other):
-            return True
-        return False
+        return self.km == Distance.other_validation(other)
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if self.km <= Distance.other_validation(other):
-            return True
-        return False
+        return self.km <= Distance.other_validation(other)
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if self.km >= Distance.other_validation(other):
-            return True
-        return False
+        return self.km >= Distance.other_validation(other)
