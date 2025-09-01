@@ -31,3 +31,8 @@ class Distance:
         return Distance(
             km=self.km * other
         )
+
+    def __truediv__(self, other):
+        return Distance(
+            km=round(self.km / other, 2)
+        )
