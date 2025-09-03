@@ -16,8 +16,6 @@ class Distance:
         elif isinstance(other, float):
             return Distance(self.km + other)
 
-        return NotImplemented
-
     def __iadd__(self, other: "int | float | Distance") -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
@@ -28,8 +26,6 @@ class Distance:
         elif isinstance(other, float):
             self.km += other
             return self
-
-        return NotImplemented
 
     def __mul__(self, other: "int | float | Distance") -> "Distance":
         return Distance(self.km * other)
@@ -45,8 +41,6 @@ class Distance:
         elif isinstance(other, float):
             return True if self.km < other else False
 
-        return NotImplemented
-
     def __gt__(self, other: "int | float | Distance") -> bool:
         if isinstance(other, Distance):
             return True if self.km > other.km else False
@@ -54,8 +48,6 @@ class Distance:
             return True if self.km > other else False
         elif isinstance(other, float):
             return True if self.km > other else False
-
-        return NotImplemented
 
     def __eq__(self, other: "int | float | Distance") -> bool:
         if isinstance(other, Distance):
@@ -65,8 +57,6 @@ class Distance:
         elif isinstance(other, float):
             return True if self.km == other else False
 
-        return NotImplemented
-
     def __le__(self, other: "int | float | Distance") -> bool:
         if isinstance(other, Distance):
             return True if self.km <= other.km else False
@@ -75,8 +65,6 @@ class Distance:
         elif isinstance(other, float):
             return True if self.km <= other else False
 
-        return NotImplemented
-
     def __ge__(self, other: "int | float | Distance") -> bool:
         if isinstance(other, Distance):
             return True if self.km >= other.km else False
@@ -84,5 +72,3 @@ class Distance:
             return True if self.km >= other else False
         elif isinstance(other, float):
             return True if self.km >= other else False
-
-        return NotImplemented
