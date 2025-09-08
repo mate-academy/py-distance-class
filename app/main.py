@@ -18,8 +18,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             return Distance(
                 km=self.km + other)
-        raise TypeError(
-            "Arithmetic methods that create new objects must return a Distance instance.")
+        raise TypeError("Argument error.")
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
@@ -32,16 +31,14 @@ class Distance:
         if isinstance(other, (int, float)):
             return Distance(
                 km=self.km * other)
-        raise TypeError(
-            "Arithmetic methods that create new objects must return a Distance instance.")
+        raise TypeError("Argument error.")
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)) and other != 0:
             return Distance(
                 km=round(self.km / other, 2)
             )
-        raise TypeError(
-            "Arithmetic methods that create new objects must return a Distance instance.")
+        raise TypeError("Argument error.")
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
