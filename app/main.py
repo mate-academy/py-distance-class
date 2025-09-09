@@ -11,11 +11,11 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance | int) -> Distance:
+    def __add__(self, other: Distance | int | float) -> Distance:
         km = getattr(other, "km", other)
         return Distance(self.km + km)
 
-    def __iadd__(self, other: Distance | int) -> Distance:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         self.km += getattr(other, "km", other)
         return self
 
