@@ -27,4 +27,3 @@ class Distance:
 
     def __truediv__(self, other: Number) -> "Distance":
         return Distance(round(self.km / other, 2))
-
