@@ -6,53 +6,49 @@ class Distance:
         return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
-        return f"Distance(km={self.km})"  # "Distance(km=20)"
+        return f"Distance(km={self.km})"
 
     def __add__(self, other) -> "Distance":
-        if not isinstance(other, Distance):
-            raise TypeError("both variants ^ are possible")
-        return Distance(self.km + other.km)
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        elif isinstance(other, (int, float)):
+            return Distance(self.km + other)
+        return NotImplemented
 
     def __iadd__(self, other) -> "Distance":
-        if not isinstance(other, Distance):
-            raise TypeError("both variants ^ are possible")
-        self.km += other.km
-        return self
-    
+        if isinstance(other, Distance):
+            self.km += other.km
+            return self
+        elif isinstance(other, (int, float)):
+            self.km += other
+            return self
+        return NotImplemented
+        
     def __mul__(self, factor: float) -> "Distance":
-        if not isinstance(factor, (int, float)):
-            raise TypeError("can only multiply by a number")
-        return Distance(self.km * factor)
+        if isinstance(factor, (int, float)):
+            return Distance(self.km * factor)
+        return NotImplemented
     
     def __truediv__(self, divisor: float) -> "Distance":
-        if not isinstance(divisor, (int, float)):
-            raise TypeError("can only divide by a number or float")
         if divisor == 0:
-            raise ValueError("cannot divide bt zero")
-        return Distance(round(self.km / divisor), 2)
+            return NotImplemented
+        if isinstance(divisor, Distance):
+            return Distance(round((self.km / divisor.km), 2))
+        elif isinstance(divisor, (int, float)):
+            return Distance(round((self.km / divisor), 2))
+        return NotImplemented
         
     def __lt__(self, other) -> bool:
-        if not isinstance(other, Distance):
-            raise TypeError("can only compare with another Distance")
         return self.km < other.km
 
     def __gt__(self, other) -> bool:
-        if not isinstance(other, Distance):
-            raise TypeError("can only compare with another Distance")
         return self.km > other.km
 
     def __eq__(self, other) -> bool:
-        if not isinstance(other, Distance):
-            raise TypeError("can only compare with another Distance")
         return self.km == other.km
 
     def __le__(self, other) -> bool:
-        if not isinstance(other, Distance):
-            raise TypeError("can only compare with another Distance")
         return self.km <= other.km
 
     def __ge__(self, other) -> bool:
-        if not isinstance(other, Distance):
-            raise TypeError("can only compare with another Distance")
         return self.km >= other.km
-        
