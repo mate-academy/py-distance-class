@@ -24,44 +24,38 @@ class Distance:
             self.km += other.km
         return self
 
-    def __mul__(self, other: Distance | int | float) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: Distance | int | float) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance) and isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km < other
-        else:
-            return self.km < other.km
+        return self.km < other.km
 
     def __le__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance) and isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km <= other
-        else:
-            return self.km <= other.km
+        return self.km <= other.km
 
     def __eq__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance) and isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km == other
-        else:
-            return self.km == other.km
+        return self.km == other.km
 
     def __ne__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance) and isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km != other
-        else:
-            return self.km != other.km
+        return self.km != other.km
 
     def __gt__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance) and isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km > other
-        else:
-            return self.km > other.km
+        return self.km > other.km
 
     def __ge__(self, other: Distance | int | float) -> bool:
-        if not isinstance(other, Distance) and isinstance(other, (int, float)):
+        if isinstance(other, (int, float)):
             return self.km >= other
-        else:
-            return self.km >= other.km
+        return self.km >= other.km
