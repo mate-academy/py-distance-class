@@ -25,9 +25,13 @@ class Distance:
         return self
 
     def __mul__(self, number: int | float) -> Distance:
+        if isinstance(number, Distance):
+            raise TypeError("Multiplication only supported with numeric types (int or float).")
         return Distance(self.km * number)
 
     def __truediv__(self, number: int | float) -> Distance:
+        if isinstance(number, Distance):
+            raise TypeError("Multiplication only supported with numeric types (int or float).")
         return Distance(round(self.km / number, 2))
 
     def __lt__(self, other: int | float | Distance) -> bool:
