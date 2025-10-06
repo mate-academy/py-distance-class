@@ -24,14 +24,19 @@ class Distance:
             self.km += other.km
         return self
 
-    def __mul__(self, number: int | float) -> Distance:
+    def __mul__(self, number: int | float) -> "Distance":
         if isinstance(number, Distance):
-            raise TypeError
+            raise TypeError(
+                "Multiplication only supported with int or float, "
+                "not Distance."
+            )
         return Distance(self.km * number)
 
-    def __truediv__(self, number: int | float) -> Distance:
+    def __truediv__(self, number: int | float) -> "Distance":
         if isinstance(number, Distance):
-            raise TypeError
+            raise TypeError(
+                "Division only supported with int or float, not Distance."
+            )
         return Distance(round(self.km / number, 2))
 
     def __lt__(self, other: int | float | Distance) -> bool:
