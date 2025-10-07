@@ -17,23 +17,19 @@ class Distance:
         return Distance(km=self.km + other.km)
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
-        if isinstance(other, (int, float)):
-            self.km += other
-        elif isinstance(other, Distance):
+        if isinstance(other, Distance):
             self.km += other.km
         else:
-            raise TypeError(f"Unsupported operand type for +=: {type(other)}")
+            self.km += other
         return self
 
     def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(km=self.km * other)
-        raise TypeError(f"Unsupported operand type for *: {type(other)}")
 
     def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(km=round(self.km / other, 2))
-        raise TypeError(f"Unsupported operand type for /: {type(other)}")
 
     def __lt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, (int, float)):
