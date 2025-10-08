@@ -90,8 +90,3 @@ class Distance:
         """Handles the greater than or equal to operator (>=)."""
         other_km = self._get_other_km(other)
         return self.km >= other_km
-
-    def __ge__(self, other: Union[Distance, int, float]) -> bool:
-        """Handles the greater than or equal to operator (>=)."""
-        other_km = self._get_other_km(other)
-        return self.km >= other_km
