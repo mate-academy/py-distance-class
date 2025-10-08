@@ -51,7 +51,9 @@ class Distance:
             return Distance(result)
         return NotImplemented
 
-    def _get_other_km(self, other: Union[Distance, int, float]) -> Union[int, float]:
+    def _get_other_km(
+        self, other: Union[Distance, int, float]
+    ) -> Union[int, float]:
         """Helper method to extract km value for comparisons."""
         if isinstance(other, Distance):
             return other.km
@@ -83,6 +85,11 @@ class Distance:
         """Handles the less than or equal to operator (<=)."""
         other_km = self._get_other_km(other)
         return self.km <= other_km
+
+    def __ge__(self, other: Union[Distance, int, float]) -> bool:
+        """Handles the greater than or equal to operator (>=)."""
+        other_km = self._get_other_km(other)
+        return self.km >= other_km
 
     def __ge__(self, other: Union[Distance, int, float]) -> bool:
         """Handles the greater than or equal to operator (>=)."""
