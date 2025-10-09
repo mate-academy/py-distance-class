@@ -27,18 +27,18 @@ class Distance:
             return NotImplemented
         return self
 
-    def __mul__(self, factor: Distance | int | float) -> "Distance":
+    def __mul__(self, factor: int | float) -> "Distance":
         if isinstance(factor, (int, float)):
             return Distance(self.km * factor)
         return NotImplemented
 
-    def __truediv__(self, divisor: Distance | int | float) -> "Distance":
+    def __truediv__(self, divisor: int | float) -> "Distance":
         if isinstance(divisor, (int, float)):
             result = self.km / divisor
             return Distance(round(result, 2))
         return NotImplemented
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
