@@ -16,6 +16,9 @@ class Distance:
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
+    def __radd__(self, other: float | int) -> Distance:
+        return Distance(self.km + other)
+
     def __iadd__(self, other: Distance | float | int) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
@@ -24,9 +27,16 @@ class Distance:
         return self
 
     def __mul__(self, other: float | int) -> Distance:
+        if isinstance(other, Distance):
+            raise TypeError("Cannot multiply Distance by Distance")
+        return Distance(self.km * other)
+
+    def __rmul__(self, other: float | int) -> Distance:
         return Distance(self.km * other)
 
     def __truediv__(self, other: float | int) -> Distance:
+        if isinstance(other, Distance):
+            raise TypeError("Cannot divide Distance by Distance")
         return Distance(round(self.km / other, 2))
 
     def __eq__(self, other: Distance | float | int) -> bool:
