@@ -28,10 +28,10 @@ class Distance:
             return Distance(self.km * multiplier)
 
     def __truediv__(self, divider: int | float) -> Distance:
+        if divider == 0:
+            raise ZeroDivisionError("You can't divide by zero")
         if isinstance(divider, (int, float)) and divider != 0:
             return Distance(round(self.km / divider, 2))
-        elif divider == 0:
-            raise ZeroDivisionError("You can't divide by zero")
 
 ### __lt__ <, __gt__ >, __eq__ =, __le__ <=, __ge__ >=
 
