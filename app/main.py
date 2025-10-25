@@ -25,7 +25,8 @@ class Distance:
         return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
-        """Returns a string representation of the Distance object for developers.
+        """Returns a string representation of
+        the Distance object for developers.
 
         :return: A string representation of the Distance object.
         :rtype: str
@@ -34,7 +35,8 @@ class Distance:
 
     @staticmethod
     def get_other_km(other: DistanceOrRealNum) -> RealNum:
-        """A static method to get the kilometers from another Distance object or a real number.
+        """A static method to get the kilometers from
+        another Distance object or a real number.
 
         :param other: The other object to get the kilometers from.
         :type other: DistanceOrRealNum
@@ -110,7 +112,8 @@ class Distance:
 
         :param other: The other Distance object or real number to compare.
         :type other: DistanceOrRealNum
-        :return: True if the distance is greater than the other, False otherwise.
+        :return: True if the distance is greater than the other,
+            False otherwise.
         :rtype: bool
         """
         return self.km > Distance.get_other_km(other)
@@ -120,7 +123,8 @@ class Distance:
 
         :param other: The other Distance object or real number to compare.
         :type other: DistanceOrRealNum
-        :return: True if the distance is less than or equal to the other, False otherwise.
+        :return: True if the distance is less than or equal to the other,
+            False otherwise.
         :rtype: bool
         """
         return self.km <= Distance.get_other_km(other)
@@ -130,7 +134,8 @@ class Distance:
 
         :param other: The other Distance object or real number to compare.
         :type other: DistanceOrRealNum
-        :return: True if the distance is greater than or equal to the other, False otherwise.
+        :return: True if the distance is greater than or equal to the other,
+            False otherwise.
         :rtype: bool
         """
         return self.km >= Distance.get_other_km(other)
