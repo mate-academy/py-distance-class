@@ -85,7 +85,7 @@ class Distance:
         :return: A new Distance object representing the division.
         :rtype: Distance
         """
-        return Distance(round(self.km / divider if divider else 1, 2))
+        return Distance(round(self.km / divider, 2))
 
     def __eq__(self, other: DistanceOrRealNum) -> bool:
         """Checks if two Distance objects are equal.
