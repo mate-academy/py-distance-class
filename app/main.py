@@ -33,13 +33,13 @@ class Distance:
         self.km += value
         return self
 
-    def __mul__(self, number: int) -> Distance:
+    def __mul__(self, number: int | float) -> Distance:
         if not isinstance(number, (int, float)):
             return NotImplemented
         mul_distance = self.km * number
         return Distance(mul_distance)
 
-    def __truediv__(self, number: int) -> Distance:
+    def __truediv__(self, number: int | float) -> Distance:
         if not isinstance(number, (int, float)):
             return NotImplemented
         if number == 0:
@@ -76,7 +76,7 @@ class Distance:
             return NotImplemented
         return self.km >= helper
 
-    def _to_km(self, other: Distance) -> float | NotImplemented:
+    def _to_km(self, other: Distance | int | float) -> float | NotImplemented:
         if isinstance(other, Distance):
             rhs = other.km
         elif isinstance(other, (float, int)):
