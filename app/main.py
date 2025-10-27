@@ -12,7 +12,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance) -> Distance:
+    def __add__(self, other: Distance | int | float) -> Distance:
         value = None
         if isinstance(other, Distance):
             value = other.km
@@ -22,7 +22,7 @@ class Distance:
             return NotImplemented
         return Distance(self.km + value)
 
-    def __iadd__(self, other: Distance) -> Distance:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         value = None
         if isinstance(other, Distance):
             value = other.km
@@ -46,31 +46,31 @@ class Distance:
             raise ZeroDivisionError
         return Distance(round(self.km / number, 2))
 
-    def __lt__(self, other: Distance) -> bool:
+    def __lt__(self, other: Distance | int | float) -> bool:
         helper = self._to_km(other)
         if helper is NotImplemented:
             return NotImplemented
         return self.km < helper
 
-    def __gt__(self, other: Distance) -> bool:
+    def __gt__(self, other: Distance | int | float) -> bool:
         helper = self._to_km(other)
         if helper is NotImplemented:
             return NotImplemented
         return self.km > helper
 
-    def __eq__(self, other: Distance) -> bool:
+    def __eq__(self, other: Distance | int | float) -> bool:
         helper = self._to_km(other)
         if helper is NotImplemented:
             return NotImplemented
         return self.km == helper
 
-    def __le__(self, other: Distance) -> bool:
+    def __le__(self, other: Distance | int | float) -> bool:
         helper = self._to_km(other)
         if helper is NotImplemented:
             return NotImplemented
         return self.km <= helper
 
-    def __ge__(self, other: Distance) -> bool:
+    def __ge__(self, other: Distance | int | float) -> bool:
         helper = self._to_km(other)
         if helper is NotImplemented:
             return NotImplemented
