@@ -25,13 +25,11 @@ class Distance:
         return self
 
     def __mul__(self, other: object) -> "Distance":
-        # Tests require multiplication ONLY by a number, not another Distance
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         return NotImplemented
 
     def __truediv__(self, other: object) -> "Distance":
-        # Tests require division ONLY by a number, not another Distance
         if isinstance(other, (int, float)):
             if other == 0:
                 raise ZeroDivisionError("Cannot divide by zero")
