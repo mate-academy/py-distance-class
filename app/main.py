@@ -17,7 +17,7 @@ class Distance:
 
         return Distance(self.km + other)
 
-    def __iadd__(self, other: Distance | int | float) -> None:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -32,7 +32,7 @@ class Distance:
             return Distance(self.km * other)
         return NotImplemented
 
-    def __truediv__(self, other: int | float) -> Distance | None:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, int | float):
             if other == 0:
                 raise ZeroDivisionError("Cannot divide by zero")
