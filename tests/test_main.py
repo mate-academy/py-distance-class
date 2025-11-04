@@ -429,3 +429,5 @@ def test_distance_class_le_number(kilometers, kilometers2, result):
     assert (distance <= kilometers2) is result, (
         f"'Distance({kilometers}) <= {kilometers2}' should equal to {result}"
     )
+
+pytest.raises(TypeError)
