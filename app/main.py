@@ -13,7 +13,7 @@ class Distance:
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
-        raise TypeError("addition by zero")
+        return NotImplemented
 
     def __iadd__(self, other: object) -> "Distance":
         if isinstance(other, Distance):
@@ -21,7 +21,7 @@ class Distance:
         elif isinstance(other, (int, float)):
             self.km += other
         else:
-            return TypeError
+            raise TypeError("unsupported operand type")
         return self
 
     def __mul__(self, other: object) -> "Distance":
@@ -34,7 +34,7 @@ class Distance:
             if other == 0:
                 raise ZeroDivisionError("division by zero")
             return Distance(round(self.km / other, 2))
-        raise TypeError("division by zero")
+        return NotImplemented
 
     def __lt__(self, other: object) -> bool:
         other_km = other.km if isinstance(other, Distance) else other
