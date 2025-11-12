@@ -6,7 +6,16 @@ from contextlib import redirect_stdout
 from app.main import Distance
 
 
-@pytest.mark.parametrize("kilometers", [50, 100, 300, 12.5, 0.6])
+@pytest.mark.parametrize(
+    'kilometers',
+    [
+        50,
+        100,
+        300,
+        12.5,
+        0.6
+    ]
+)
 def test_distance_class_init(kilometers):
     distance = Distance(kilometers)
     assert distance.km == kilometers, (
