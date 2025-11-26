@@ -11,22 +11,22 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int) -> Distance:
+    def __add__(self, other: int | Distance) -> int | Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
 
-    def __iadd__(self, other: int) -> Distance:
+    def __iadd__(self, other: int | Distance) -> int | Distance:
         if isinstance(other, Distance):
             self.km += other.km
         else:
             self.km += other
         return self
 
-    def __mul__(self, other: int) -> Distance:
+    def __mul__(self, other: int | Distance) -> int | Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: int) -> Distance:
+    def __truediv__(self, other: int | Distance) -> int | Distance:
         result = round(self.km / other, 2)
         return Distance(result)
 
@@ -36,17 +36,17 @@ class Distance:
             return other.km
         return other
 
-    def __lt__(self, other: int) -> Distance:
+    def __lt__(self, other: int | Distance) -> bool:
         return self.km < self.get_value(other)
 
-    def __gt__(self, other: int) -> Distance:
+    def __gt__(self, other: int | Distance) -> bool:
         return self.km > self.get_value(other)
 
-    def __eq__(self, other: int) -> bool:
+    def __eq__(self, other: int | Distance) -> bool:
         return self.km == self.get_value(other)
 
-    def __le__(self, other: int) -> Distance:
+    def __le__(self, other: int | Distance) -> bool:
         return self.km <= self.get_value(other)
 
-    def __ge__(self, other: int) -> Distance:
+    def __ge__(self, other: int | Distance) -> bool:
         return self.km >= self.get_value(other)
