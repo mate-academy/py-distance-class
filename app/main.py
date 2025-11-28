@@ -25,13 +25,13 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, Distance):
-            raise TypeError("Cannot multiply Distance by Distance")
+        if not isinstance(other, (int, float)):
+            return NotImplemented
         return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        if isinstance(other, Distance):
-            raise TypeError("Cannot divide Distance by Distance")
+        if not isinstance(other, (int, float)):
+            return NotImplemented
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
