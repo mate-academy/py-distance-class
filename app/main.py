@@ -9,7 +9,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: int) -> "Distance":
+    def __add__(self, "Distance" | int) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         return Distance(self.km + other)
@@ -28,10 +28,16 @@ class Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: int) -> bool:
-        if self.km < other:
-            return True
+        if isinstance(other, Distance):
+            if self.km < other.km:
+                return True
+            else:
+                return False
         else:
-            return False
+            if self.km < other:
+                return True
+            else:
+                return False
 
     def __gt__(self, other: int) -> bool:
         if isinstance(other, Distance):
