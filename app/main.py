@@ -1,3 +1,49 @@
+from typing import Any
+
+
 class Distance:
-    # Write your code here
-    pass
+    def __init__(self, km: int) -> None:
+        self.km = km
+
+    def __str__(self) -> str:
+        return f"Distance: {self.km} kilometers."
+
+    def __repr__(self) -> str:
+        return f"Distance(km={self.km})"
+
+    def __add__(self, other: Any) -> Any:
+        num = self.get_number_value(other)
+        return Distance(km=self.km + num)
+
+    def __iadd__(self, other: Any) -> Any:
+        num = self.get_number_value(other)
+        self.km = self.km + num
+        return self
+
+    def __mul__(self, other: Any) -> Any:
+        return Distance(km=self.km * other)
+
+    def __truediv__(self, other: Any) -> Any:
+        return Distance(km=round(self.km / other, 2))
+
+    def __lt__(self, other: Any) -> Any:
+        return self.km < other
+
+    def __gt__(self, other: Any) -> Any:
+        return self.km > other
+
+    def __eq__(self, other: Any) -> Any:
+        return self.km == other
+
+    def __le__(self, other: Any) -> Any:
+        return self.km <= other
+
+    def __ge__(self, other: Any) -> Any:
+        return self.km >= other
+
+    @staticmethod
+    def get_number_value(value: Any) -> float | int:
+        if hasattr(value, "km"):
+            return value.km
+        else:
+            return value
