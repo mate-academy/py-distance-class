@@ -42,5 +42,5 @@ class Distance:
     def __le__(self, other: Union[Distance, Number]) -> bool:
         return self.km <= self._value(other)
 
-    def __ge__(self, other: Union[Distance, Number]):
+    def __ge__(self, other: Union[Distance, Number]) -> bool:
         return self.km >= self._value(other)
