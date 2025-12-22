@@ -29,3 +29,18 @@ class Distance:
     def __truediv__(self: Distance, divisor: int | float) -> Distance:
         rounded_division = round(self.km / divisor, 2)
         return Distance(rounded_division)
+    
+    def __lt__(self: Distance, other: Distance) -> bool:
+        return self.km < other.km
+    
+    def __gt__(self: Distance, other: Distance) -> bool:
+        return self.km > other.km
+    
+    def __eq__(self: Distance, other: Distance) -> bool:
+        return self.km == other.km
+    
+    def __le__(self: Distance, other: Distance) -> bool:
+        return self.km <= other.km
+    
+    def __ge__(self: Distance, other: Distance) -> bool:
+        return self.km >= other.km
