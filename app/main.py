@@ -22,3 +22,6 @@ class Distance:
         elif isinstance(other, (int, float)):
             self.km += other
         return self
+    
+    def __mul__(self: Distance, factor: int | float) -> Distance:
+        return Distance(self.km * factor)
