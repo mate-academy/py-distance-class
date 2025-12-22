@@ -25,3 +25,7 @@ class Distance:
     
     def __mul__(self: Distance, factor: int | float) -> Distance:
         return Distance(self.km * factor)
+
+    def __truediv__(self: Distance, divisor: int | float) -> Distance:
+        rounded_division = round(self.km / divisor, 2)
+        return Distance(rounded_division)
