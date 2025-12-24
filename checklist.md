@@ -54,7 +54,7 @@ def add_distance(
     return dist1 + dist2
 ```
 
-2. **Fix `NameError: name 'Distance' is not defined` due to annotations:**
+2. **Fix `NameError: name "Distance" is not defined` due to annotations:**
 
 If you encounter a `NameError` due to annotations, you can add the following import at the top of your file:
 ```python
@@ -79,4 +79,4 @@ def __truediv__(self, other: int | float | Distance) -> Distance:
 
 2. Adding explicit type checking if annotations are correct is not required.
 
-If you use correct type annotations like `other: int | float | Distance`, you don't need to check types explicitly and raise `TypeError`.
+If you use correct type annotations like `other: int | float | Distance`, you don"t need to check types explicitly and raise `TypeError`.
