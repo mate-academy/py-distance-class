@@ -1,6 +1,4 @@
-from typing import Union
-
-AliasOtherType = Union["Distance", int, float]
+from __future__ import annotations
 
 
 class Distance:
@@ -13,7 +11,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: AliasOtherType) -> "Distance":
+    def __add__(self, other: Distance | int | float) -> Distance:
         if self.is_number(other):
             return Distance(km=self.km + other)
 
@@ -21,13 +19,13 @@ class Distance:
             km=self.km + other.km
         )
 
-    def __eq__(self, other: AliasOtherType) -> bool:
+    def __eq__(self, other: Distance | int | float) -> bool:
         if self.is_number(other):
             return self.km == other
 
         return self.km == other.km
 
-    def __iadd__(self, other: AliasOtherType) -> "Distance":
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if self.is_number(other):
             self.km += other
         else:
@@ -35,28 +33,31 @@ class Distance:
 
         return self
 
-    def __mul__(self, other: int | float) -> "Distance":
+    def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: int | float) -> "Distance":
+    def __truediv__(self, other: int | float) -> Distance:
+        if other == 0:
+            raise ValueError("Division by zero")
+
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: int | float) -> bool:
         return self.km < other
 
-    def __gt__(self, other: AliasOtherType) -> bool:
+    def __gt__(self, other: Distance | int | float) -> bool:
         if self.is_number(other):
             return self.km > other
 
         return self.km > other.km
 
-    def __le__(self, other: AliasOtherType) -> bool:
+    def __le__(self, other: Distance | int | float) -> bool:
         if self.is_number(other):
             return self.km <= other
 
         return self.km <= other.km
 
-    def __ge__(self, other: AliasOtherType) -> bool:
+    def __ge__(self, other: Distance | int | float) -> bool:
         if self.is_number(other):
             return self.km >= other
 
