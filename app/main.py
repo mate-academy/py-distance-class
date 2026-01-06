@@ -1,6 +1,3 @@
-import math
-
-
 class Distance:
     def __init__(self, km: int | float) -> None:
         self.km = km
@@ -19,9 +16,11 @@ class Distance:
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
-            return Distance(self.km + other.km)
+            self.km += other.km
+            return self
 
-        return Distance(self.km + other)
+        self.km += other
+        return self
 
     def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
@@ -30,7 +29,7 @@ class Distance:
         if other == 0:
             raise ZeroDivisionError("Cannot divide by zero")
 
-        return Distance(math.floor((self.km / other) * 100) / 100)
+        return Distance(round((self.km / other), 2))
 
     def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
