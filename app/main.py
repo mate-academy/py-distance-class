@@ -1,13 +1,4 @@
-from typing import Any, Union
-
-
-def get_km(other: Any) -> float:
-    """Help method to extract kilometers from Distance
-    or return the number itself."""
-    if isinstance(other, Distance):
-        return other.km
-    return other
-
+from typing import Union
 
 class Distance:
     def __init__(self, km: float) -> None:
@@ -19,43 +10,56 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Union["Distance", float, int]) -> "Distance":
+    # --- Addition ---
+    def __add__(self, other: Union["Distance", int, float]) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
+        elif isinstance(other, (int, float)):
             return Distance(self.km + other)
+        return NotImplemented
 
-    def __iadd__(self, other: Union["Distance", float, int]) -> "Distance":
+    def __iadd__(self, other: Union["Distance", int, float]) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        else:
+        elif isinstance(other, (int, float)):
             self.km += other
+        else:
+            return NotImplemented
         return self
 
-    def __mul__(self, other: Any) -> "Distance":
+    # --- Multiplication ---
+    def __mul__(self, other: int | float) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        return None
+        return NotImplemented
 
-    def __truediv__(self, other: Any) -> "Distance":
+    # --- True division ---
+    def __truediv__(self, other: int | float) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
-        return None
+        return NotImplemented
 
-    def __lt__(self, other: Any) -> bool:
-        return self.km < get_km(other)
+    # --- Helper for comparisons ---
+    def _get_km(self, other: Union["Distance", int, float]) -> float:
+        if isinstance(other, Distance):
+            return other.km
+        return other
 
-    def __le__(self, other: Any) -> bool:
-        return self.km <= get_km(other)
+    # --- Comparison operators ---
+    def __lt__(self, other: Union["Distance", int, float]) -> bool:
+        return self.km < self._get_km(other)
 
-    def __eq__(self, other: Any) -> bool:
-        return self.km == get_km(other)
+    def __le__(self, other: Union["Distance", int, float]) -> bool:
+        return self.km <= self._get_km(other)
 
-    def __ne__(self, other: Any) -> bool:
-        return self.km != get_km(other)
+    def __eq__(self, other: Union["Distance", int, float]) -> bool:
+        return self.km == self._get_km(other)
 
-    def __gt__(self, other: Any) -> bool:
-        return self.km > get_km(other)
+    def __ne__(self, other: Union["Distance", int, float]) -> bool:
+        return self.km != self._get_km(other)
 
-    def __ge__(self, other: Any) -> bool:
-        return self.km >= get_km(other)
+    def __gt__(self, other: Union["Distance", int, float]) -> bool:
+        return self.km > self._get_km(other)
+
+    def __ge__(self, other: Union["Distance", int, float]) -> bool:
+        return self.km >= self._get_km(other)
