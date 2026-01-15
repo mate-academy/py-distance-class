@@ -48,9 +48,9 @@ def add_distance(
 **Bad examples:**
 ```python
 def add_distance(
-    dist1: "Distance", 
-    dist2: (int, float, "Distance")
-) -> "Distance":
+    dist1: Distance, 
+    dist2: (int, float, Distance)
+) -> Distance:
     return dist1 + dist2
 ```
 
