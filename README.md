@@ -60,7 +60,7 @@ distance2 = distance1 / 7
 
 # isinstance(distance2, Distance) is True
 # distance2.km == 2.85
-# Note: rounded to 2 decimals
+# Note: rounded to 2 decimals   
 
 __lt__, __gt__, __eq__, __le__, __ge__
 distance = Distance(50)
