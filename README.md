@@ -1,4 +1,4 @@
-# Distance class
+ # Distance class
 
 - Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before start
 - Follow [Python magic methods](https://rszalski.github.io/magicmethods/) if you stuck
