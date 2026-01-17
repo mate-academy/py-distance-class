@@ -11,14 +11,18 @@ class Distance:
         return f"Distance(km={km_display})"
 
     # Addition
-    def __add__(self, other: "Distance | int | float") -> "Distance":
+    def __add__(
+        self, other: "Distance | int | float"
+    ) -> "Distance":
         value: float = other.km if isinstance(other, Distance) else float(other)
         return Distance(self.km + value)
 
     def __radd__(self, other: "int | float") -> "Distance":
         return Distance(self.km + float(other))
 
-    def __iadd__(self, other: "Distance | int | float") -> "Distance":
+    def __iadd__(
+        self, other: "Distance | int | float"
+    ) -> "Distance":
         value: float = other.km if isinstance(other, Distance) else float(other)
         self.km += value
         return self
