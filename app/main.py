@@ -14,7 +14,10 @@ class Distance:
     def __add__(
         self, other: "Distance | int | float"
     ) -> "Distance":
-        value: float = other.km if isinstance(other, Distance) else float(other)
+        if isinstance(other, Distance):
+            value = other.km
+        else:
+            value = float(other)
         return Distance(self.km + value)
 
     def __radd__(self, other: "int | float") -> "Distance":
@@ -23,7 +26,10 @@ class Distance:
     def __iadd__(
         self, other: "Distance | int | float"
     ) -> "Distance":
-        value: float = other.km if isinstance(other, Distance) else float(other)
+        if isinstance(other, Distance):
+            value = other.km
+        else:
+            value = float(other)
         self.km += value
         return self
 
@@ -42,19 +48,19 @@ class Distance:
     def __lt__(
         self, other: "Distance | int | float"
     ) -> bool:
-        value: float = other.km if isinstance(other, Distance) else float(other)
+        value = other.km if isinstance(other, Distance) else float(other)
         return self.km < value
 
     def __le__(
         self, other: "Distance | int | float"
     ) -> bool:
-        value: float = other.km if isinstance(other, Distance) else float(other)
+        value = other.km if isinstance(other, Distance) else float(other)
         return self.km <= value
 
     def __eq__(
         self, other: "Distance | int | float"
     ) -> bool:
-        value: float = other.km if isinstance(other, Distance) else float(other)
+        value = other.km if isinstance(other, Distance) else float(other)
         return self.km == value
 
     def __ne__(
@@ -65,11 +71,11 @@ class Distance:
     def __gt__(
         self, other: "Distance | int | float"
     ) -> bool:
-        value: float = other.km if isinstance(other, Distance) else float(other)
+        value = other.km if isinstance(other, Distance) else float(other)
         return self.km > value
 
     def __ge__(
         self, other: "Distance | int | float"
     ) -> bool:
-        value: float = other.km if isinstance(other, Distance) else float(other)
+        value = other.km if isinstance(other, Distance) else float(other)
         return self.km >= value
