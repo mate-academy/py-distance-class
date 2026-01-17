@@ -8,6 +8,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
+    # Додавання
     def __add__(self, other: "Distance | int | float") -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
@@ -20,9 +21,11 @@ class Distance:
             self.km += other
         return self
 
+    # Множення
     def __mul__(self, other: int | float) -> "Distance":
         return Distance(self.km * other)
 
+    # Ділення
     def __truediv__(self, other: int | float) -> "Distance":
         return Distance(round(self.km / other, 2))
 
