@@ -7,7 +7,7 @@ class Distance:
         self.km = km
 
     def __str__(self) -> str:
-        return f"Distance: {self.km} kilometers\n"
+        return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
@@ -24,10 +24,12 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, other: Distance) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
+        if isinstance(other, (int, float)):
+            return Distance(self.km * other)
         if isinstance(other, Distance):
-            return Distance(self.km * other.km)
-        return Distance(self.km * other)
+            raise TypeError("Cannot multiply Distance by Distance")
+        raise TypeError("'__mul__' only accepts int or float")
 
     def __truediv__(self, other: Distance) -> Distance:
         if isinstance(other, Distance):
