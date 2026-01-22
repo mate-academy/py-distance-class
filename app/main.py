@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+
 class Distance:
     # Write your code here
     def __init__(self, km: int) -> None:
@@ -10,7 +12,8 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: "Distance" | int | float) -> "Distance" | int | float:
+    def __add__(self, other: "Distance" | int | float
+                ) -> "Distance" | int | float:
         other_km = other.km if isinstance(other, Distance) else other
         return Distance(self.km + other_km)
 
