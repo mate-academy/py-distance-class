@@ -76,4 +76,3 @@ class Distance:
         if value is NotImplemented:
             return NotImplemented
         return self.km >= value
-    
