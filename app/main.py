@@ -1,3 +1,70 @@
 class Distance:
-    # Write your code here
-    pass
+    def __init__(self, km: float) -> None:
+        self.km = km
+
+    def __str__(self) -> str:
+        return f"Distance: {self.km} kilometers."
+
+    def __repr__(self) -> str:
+        return f"Distance(km={self.km})"
+
+    @staticmethod
+    def _to_km(other: object) -> float | None:
+        if isinstance(other, Distance):
+            return other.km
+        if isinstance(other, (int, float)):
+            return float(other)
+        return None
+
+    def __add__(self, other: object) -> "Distance":
+        other_km = self._to_km(other)
+        if other_km is None:
+            return NotImplemented
+        return Distance(self.km + other_km)
+
+    def __iadd__(self, other: object) -> "Distance":
+        other_km = self._to_km(other)
+        if other_km is None:
+            return NotImplemented
+        self.km += other_km
+        return self
+
+    def __mul__(self, other: object) -> "Distance":
+        if not isinstance(other, (int, float)):
+            return NotImplemented
+        return Distance(self.km * other)
+
+    def __truediv__(self, other: object) -> "Distance":
+        if not isinstance(other, (int, float)):
+            return NotImplemented
+        return Distance(round(self.km / other, 2))
+
+    def __lt__(self, other: object) -> bool:
+        other_km = self._to_km(other)
+        if other_km is None:
+            return NotImplemented
+        return self.km < other_km
+
+    def __gt__(self, other: object) -> bool:
+        other_km = self._to_km(other)
+        if other_km is None:
+            return NotImplemented
+        return self.km > other_km
+
+    def __eq__(self, other: object) -> bool:
+        other_km = self._to_km(other)
+        if other_km is None:
+            return NotImplemented
+        return self.km == other_km
+
+    def __le__(self, other: object) -> bool:
+        other_km = self._to_km(other)
+        if other_km is None:
+            return NotImplemented
+        return self.km <= other_km
+
+    def __ge__(self, other: object) -> bool:
+        other_km = self._to_km(other)
+        if other_km is None:
+            return NotImplemented
+        return self.km >= other_km
