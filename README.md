@@ -16,7 +16,7 @@ methods:
 __init__
 distance = Distance(20)  # distance.km == 20
 
-__str__
+__str__ 
 distance = Distance(20)
 print(distance)  # "Distance: 20 kilometers."
 
