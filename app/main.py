@@ -24,3 +24,9 @@ class Distance:
         elif isinstance(km2, (int, float)):
             self.km += km2
         return self
+
+    def __mul__(self, factor2: Any) -> Any:
+        return Distance(self.km * factor2)
+
+    def __truediv__(self, other: Any) -> Any:
+        return Distance(round(self.km / other, 2))
