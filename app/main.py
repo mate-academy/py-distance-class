@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
-    
+
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
@@ -25,16 +26,16 @@ class Distance:
 
     def __lt__(self, distance: Distance | int | float) -> bool:
         return self.km < self.format_distance(distance)
-    
+
     def __gt__(self, distance: Distance | int | float) -> bool:
         return self.km > self.format_distance(distance)
-    
+
     def __eq__(self, distance: Distance | int | float) -> bool:
         return self.km == self.format_distance(distance)
-    
+
     def __le__(self, distance: Distance | int | float) -> bool:
         return self.km <= self.format_distance(distance)
-    
+
     def __ge__(self, distance: Distance | int | float) -> bool:
         return self.km >= self.format_distance(distance)
 
