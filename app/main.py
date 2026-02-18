@@ -17,10 +17,10 @@ class Distance:
         self.km += self.format_distance(distance)
         return self
 
-    def __mul__(self, distance: Distance | int | float) -> Distance:
+    def __mul__(self, distance: int | float) -> Distance:
         return Distance(self.km * distance)
 
-    def __truediv__(self, distance: float) -> Distance:
+    def __truediv__(self, distance: int | float) -> Distance:
         return Distance(round(self.km / distance, 2))
 
     def __lt__(self, distance: Distance | int | float) -> bool:
