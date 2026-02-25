@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
@@ -18,10 +21,7 @@ class Distance:
         )
 
     def __iadd__(self, other: Distance | float | int) -> Distance:
-        if isinstance(other, (float, int)):
-            self.km += other
-        else:
-            self.km += other.km
+        self.km += other if isinstance(other, (float, int)) else other.km
         return self
 
     def __mul__(self, other: int | float) -> Distance:
