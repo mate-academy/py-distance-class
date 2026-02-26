@@ -20,23 +20,33 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, number : int) -> Distance:
-        return Distance((round(self.km * number, 3)))
+    def __mul__(self, number : int | float) -> Distance:
+        return Distance(self.km * number)
 
-    def __truediv__(self, number : int) -> Distance:
+    def __truediv__(self, number : int | float) -> Distance:
         return Distance(round(self.km / number, 2))
 
     def __lt__(self, number : Distance | int | float) -> bool:
+        if isinstance(number, Distance):
+            return self.km < number.km
         return self.km < number
 
     def __gt__(self, number : Distance | int | float) -> bool:
+        if isinstance(number, Distance):
+            return self.km > number.km
         return self.km > number
 
     def __eq__(self, number : Distance | int | float) -> bool:
+        if isinstance(number, Distance):
+            return self.km == number.km
         return self.km == number
 
     def __le__(self, number : Distance | int | float) -> bool:
+        if isinstance(number, Distance):
+            return self.km <= number.km
         return self.km <= number
 
     def __ge__(self, number : Distance | int | float) -> bool:
+        if isinstance(number, Distance):
+            return self.km >= number.km
         return self.km >= number
