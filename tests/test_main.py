@@ -7,7 +7,7 @@ from app.main import Distance
 
 
 @pytest.mark.parametrize(
-    'kilometers',
+    "kilometers",
     [
         50,
         100,
@@ -25,7 +25,7 @@ def test_distance_class_init(kilometers):
 
 
 @pytest.mark.parametrize(
-    'kilometers,output',
+    "kilometers,output",
     [
         (50, "Distance: 50 kilometers.\n"),
         (100, "Distance: 100 kilometers.\n"),
@@ -50,7 +50,7 @@ def test_distance_class_str(kilometers, output):
 
 
 @pytest.mark.parametrize(
-    'kilometers,output',
+    "kilometers,output",
     [
         (50, "Distance(km=50)"),
         (100, "Distance(km=100)"),
@@ -69,7 +69,7 @@ def test_distance_class_repr(kilometers, output):
 
 
 @pytest.mark.parametrize(
-    'kilometers1,kilometers2,kilometers3',
+    "kilometers1,kilometers2,kilometers3",
     [
         (50, 15, 65),
         (100, 30, 130),
@@ -93,7 +93,7 @@ def test_distance_class_add_distance_and_distance(kilometers1, kilometers2, kilo
 
 
 @pytest.mark.parametrize(
-    'kilometers1,kilometers2,result',
+    "kilometers1,kilometers2,result",
     [
         (50, 15, 65),
         (100, 30, 130),
@@ -116,7 +116,7 @@ def test_distance_class_add_distance_and_number(kilometers1, kilometers2, result
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 15, 65),
         (100, 30, 130),
@@ -142,7 +142,7 @@ def test_distance_class_iadd_distance(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 15, 65),
         (100, 30, 130),
@@ -167,7 +167,7 @@ def test_distance_class_iadd_number(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,number,result',
+    "kilometers,number,result",
     [
         (50, 3, 150),
         (30, 7, 210),
@@ -203,7 +203,7 @@ def test_distance_class_mul_distance():
 
 
 @pytest.mark.parametrize(
-    'kilometers,number,result',
+    "kilometers,number,result",
     [
         (50, 3, 16.67),
         (30, 7, 4.29),
@@ -239,7 +239,7 @@ def test_distance_class_truediv_distance():
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, True),
         (100, 30, False),
@@ -258,7 +258,7 @@ def test_distance_class_eq_distance(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, True),
         (100, 30, False),
@@ -276,7 +276,7 @@ def test_distance_class_eq_number(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, False),
         (100, 30, True),
@@ -296,7 +296,7 @@ def test_distance_class_gt_distance(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, False),
         (100, 30, True),
@@ -315,7 +315,7 @@ def test_distance_class_gt_number(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, True),
         (100, 30, True),
@@ -335,7 +335,7 @@ def test_distance_class_ge_distance(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, True),
         (100, 30, True),
@@ -354,7 +354,7 @@ def test_distance_class_ge_number(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, False),
         (100, 30, False),
@@ -374,7 +374,7 @@ def test_distance_class_lt_distance(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, False),
         (100, 30, False),
@@ -393,7 +393,7 @@ def test_distance_class_lt_number(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, True),
         (100, 30, False),
@@ -413,7 +413,7 @@ def test_distance_class_le_distance(kilometers, kilometers2, result):
 
 
 @pytest.mark.parametrize(
-    'kilometers,kilometers2,result',
+    "kilometers,kilometers2,result",
     [
         (50, 50, True),
         (100, 30, False),
