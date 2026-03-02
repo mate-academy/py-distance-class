@@ -1,8 +1,5 @@
-from symtable import Class
-
-
 class Distance:
-    def __init__(self, km: int) -> Class:
+    def __init__(self, km: int) -> "Distance":
         self.km = km
 
     def __str__(self) -> str:
