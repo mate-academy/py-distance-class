@@ -1,6 +1,6 @@
 class Distance:
     # Write your code here
-    def __init__(self, km: int):
+    def __init__(self, km: int) -> int:
         self.km = km
 
     def __str__(self):
