@@ -11,7 +11,8 @@ class Distance:
         return f"Distance: {self.km} kilometers."
 
     def __repr__(self) -> str:
-        return f"Distance(km={self.km})"
+        km = int(self.km) if self.km.is_integer() else self.km
+        return f"Distance(km={km})"
 
     def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
