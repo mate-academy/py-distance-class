@@ -9,19 +9,16 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: "Distance | float") -> float:
+    def __add__(self, other: "Distance | float") -> "Distance":
         if isinstance(other, Distance):
-            new_km = self.km + other.km
-        else:
-            new_km = self.km + other
+            return Distance(self.km + other.km)
+        return Distance(self.km + other)
 
-        return Distance(new_km)
-
-    def __iadd__(self, other: "Distance | float") -> float:
+    def __iadd__(self, other: "Distance | float") -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        else:
-            self.km += other
+            return self
+        self.km += other
         return self
 
     def __mul__(self, other: float) -> "Distance":
@@ -43,7 +40,9 @@ class Distance:
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        return self.km == other
+        if isinstance(other, (int, float)):
+            return self.km == other
+        return False
 
     def __le__(self, other: "Distance | float") -> bool:
         if isinstance(other, Distance):
