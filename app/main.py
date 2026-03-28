@@ -19,9 +19,11 @@ class Distance:
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, int | float):
+            return self
+        if isinstance(other, int | float):
             self.km += other
-        return self
+            return self
+        return NotImplemented
 
     def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
@@ -34,7 +36,7 @@ class Distance:
             return self.km < other.km
         if isinstance(other, int | float):
             return self.km < other
-        return TypeError
+        return NotImplemented
 
     def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
@@ -69,4 +71,4 @@ class Distance:
             return self.km != other.km
         if isinstance(other, int | float):
             return self.km != other
-        return NotImplemented
+        return not (self == other)
