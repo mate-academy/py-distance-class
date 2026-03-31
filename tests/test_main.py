@@ -1,9 +1,7 @@
 import io
 import pytest
-
-from contextlib import redirect_stdout
-
 from app.main import Distance
+from contextlib import redirect_stdout
 
 
 @pytest.mark.parametrize(
