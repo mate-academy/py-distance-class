@@ -14,15 +14,14 @@ class Distance:
         return f"Distance(km={self.km})"
 
     @staticmethod
-    def _get_value(other: Union["Distance", Number]) \
-            -> Union["Distance", Number]:
+    def _get_value(other: Union["Distance", Number]) -> Number:
         if isinstance(other, Distance):
             return other.km
         if isinstance(other, (int, float)):
             return other
         return NotImplemented
 
-    def __add__(self, other: "Distance") -> "Distance":
+    def __add__(self, other: Union["Distance", Number]) -> "Distance":
         value = self._get_value(other)
         if value is NotImplemented:
             return NotImplemented
