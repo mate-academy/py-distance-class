@@ -56,42 +56,37 @@ class Distance:
             return self.km < other
         elif isinstance(other, Distance):
             return self.km < other.km
-        else:
-            raise TypeError(f"unsupported type(s) "
-                            f"for comparison: {type(other)}")
+        raise TypeError(f"unsupported type(s) "
+                        f"for comparison: {type(other)}")
 
     def __gt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, (int, float)):
             return self.km > other
         elif isinstance(other, Distance):
             return self.km > other.km
-        else:
-            raise TypeError(f"unsupported type(s) "
-                            f"for comparison: {type(other)}")
+        raise TypeError(f"unsupported type(s) "
+                        f"for comparison: {type(other)}")
 
     def __eq__(self, other: int | float | Distance) -> bool:
         if isinstance(other, (int, float)):
             return self.km == other
         elif isinstance(other, Distance):
             return self.km == other.km
-        else:
-            raise TypeError(f"unsupported type(s) "
-                            f"for comparison: {type(other)}")
+        raise TypeError(f"unsupported type(s) "
+                        f"for comparison: {type(other)}")
 
     def __le__(self, other: int | float | Distance) -> bool:
         if isinstance(other, (int, float)):
             return self.km <= other
         elif isinstance(other, Distance):
             return self.km <= other.km
-        else:
-            raise TypeError(f"unsupported type(s) "
-                            f"for comparison: {type(other)}")
+        raise TypeError(f"unsupported type(s) "
+                        f"for comparison: {type(other)}")
 
     def __ge__(self, other: int | float | Distance) -> bool:
         if isinstance(other, (int, float)):
             return self.km >= other
         elif isinstance(other, Distance):
             return self.km >= other.km
-        else:
-            raise TypeError(f"unsupported type(s) "
-                            f"for comparison: {type(other)}")
+        raise TypeError(f"unsupported type(s) "
+                        f"for comparison: {type(other)}")
