@@ -20,9 +20,8 @@ class Distance:
             return Distance(
                 km=self.km + other
             )
-        else:
-            raise TypeError(f"unsupported operand type(s) for "
-                            f"+: 'Distance' and {type(other)}")
+        raise TypeError(f"unsupported operand type(s) for "
+                        f"+: 'Distance' and {type(other)}")
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if isinstance(other, Distance):
@@ -34,16 +33,15 @@ class Distance:
                             f"+: 'Distance' and {type(other)}")
         return self
 
-    def __mul__(self, other: int | float | Distance) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(
                 km=self.km * other
             )
-        elif not isinstance(other, Distance):
-            raise TypeError(f"unsupported operand type(s) "
-                            f"for multiplication:  {type(other)}")
+        raise TypeError(f"unsupported operand type(s) "
+                        f"for multiplication:  {type(other)}")
 
-    def __truediv__(self, other: int | float | Distance) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             if other != 0:
                 return Distance(
@@ -51,8 +49,7 @@ class Distance:
                 )
             else:
                 raise ZeroDivisionError("Cannot divide by zero")
-        else:
-            raise TypeError("You can only divide numbers of (int or float)")
+        raise TypeError("You can only divide numbers of (int or float)")
 
     def __lt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, (int, float)):
