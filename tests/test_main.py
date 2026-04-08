@@ -3,7 +3,7 @@ import pytest
 
 from contextlib import redirect_stdout
 
-from app.main import Distance
+from app.main import Distans
 
 
 @pytest.mark.parametrize(
@@ -17,7 +17,7 @@ from app.main import Distance
     ]
 )
 def test_distance_class_init(kilometers):
-    distance = Distance(kilometers)
+    distance = Distans(kilometers)
     assert distance.km == kilometers, (
         f"Instance attribute 'km' should equal to {kilometers} "
         f"when you create instance with 'Distance({kilometers})'"
@@ -35,7 +35,7 @@ def test_distance_class_init(kilometers):
     ]
 )
 def test_distance_class_str(kilometers, output):
-    distance = Distance(kilometers)
+    distance = Distans(kilometers)
     f = io.StringIO()
 
     with redirect_stdout(f):
@@ -60,7 +60,7 @@ def test_distance_class_str(kilometers, output):
     ]
 )
 def test_distance_class_repr(kilometers, output):
-    distance = Distance(kilometers)
+    distance = Distans(kilometers)
 
     assert repr(distance) == output, (
         f"'repr(distance)' should equal to {output} "
@@ -79,10 +79,10 @@ def test_distance_class_repr(kilometers, output):
     ]
 )
 def test_distance_class_add_distance_and_distance(kilometers1, kilometers2, kilometers3):
-    distance1 = Distance(kilometers1)
-    distance2 = Distance(kilometers2)
+    distance1 = Distans(kilometers1)
+    distance2 = Distans(kilometers2)
     distance3 = distance1 + distance2
-    assert isinstance(distance3, Distance), (
+    assert isinstance(distance3, Distans), (
         "Result of sum of Distance instances should be "
         "Distance instance"
     )
@@ -103,9 +103,9 @@ def test_distance_class_add_distance_and_distance(kilometers1, kilometers2, kilo
     ]
 )
 def test_distance_class_add_distance_and_number(kilometers1, kilometers2, result):
-    distance1 = Distance(kilometers1)
+    distance1 = Distans(kilometers1)
     distance2 = distance1 + kilometers2
-    assert isinstance(distance2, Distance), (
+    assert isinstance(distance2, Distans), (
         "Result of sum of Distance instance and number should be "
         "Distance instance"
     )
@@ -126,9 +126,9 @@ def test_distance_class_add_distance_and_number(kilometers1, kilometers2, result
     ]
 )
 def test_distance_class_iadd_distance(kilometers, kilometers2, result):
-    distance1 = Distance(kilometers)
+    distance1 = Distans(kilometers)
     instance_1 = distance1
-    distance2 = Distance(kilometers2)
+    distance2 = Distans(kilometers2)
     distance1 += distance2
     instance_2 = distance1
     assert instance_1 is instance_2, (
@@ -152,7 +152,7 @@ def test_distance_class_iadd_distance(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_iadd_number(kilometers, kilometers2, result):
-    distance1 = Distance(kilometers)
+    distance1 = Distans(kilometers)
     instance_1 = distance1
     distance1 += kilometers2
     instance_2 = distance1
@@ -177,9 +177,9 @@ def test_distance_class_iadd_number(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_mul_number(kilometers, number, result):
-    distance1 = Distance(kilometers)
+    distance1 = Distans(kilometers)
     distance2 = distance1 * number
-    assert isinstance(distance2, Distance), (
+    assert isinstance(distance2, Distans), (
         "Result of Distance instance multiplied by number should be "
         "Distance instance"
     )
@@ -190,8 +190,8 @@ def test_distance_class_mul_number(kilometers, number, result):
 
 
 def test_distance_class_mul_distance():
-    distance1 = Distance(5)
-    distance2 = Distance(3)
+    distance1 = Distans(5)
+    distance2 = Distans(3)
     try:
         result = distance1 * distance2
     except TypeError:
@@ -213,9 +213,9 @@ def test_distance_class_mul_distance():
     ]
 )
 def test_distance_class_truediv_number(kilometers, number, result):
-    distance1 = Distance(kilometers)
+    distance1 = Distans(kilometers)
     distance2 = distance1 / number
-    assert isinstance(distance2, Distance), (
+    assert isinstance(distance2, Distans), (
         "Result of Distance instance divided by number should be "
         "Distance instance"
     )
@@ -226,8 +226,8 @@ def test_distance_class_truediv_number(kilometers, number, result):
 
 
 def test_distance_class_truediv_distance():
-    distance1 = Distance(30)
-    distance2 = Distance(3)
+    distance1 = Distans(30)
+    distance2 = Distans(3)
     try:
         result = distance1 / distance2
     except TypeError:
@@ -250,8 +250,8 @@ def test_distance_class_truediv_distance():
     ]
 )
 def test_distance_class_eq_distance(kilometers, kilometers2, result):
-    distance1 = Distance(kilometers)
-    distance2 = Distance(kilometers2)
+    distance1 = Distans(kilometers)
+    distance2 = Distans(kilometers2)
     assert (distance1 == distance2) is result, (
         f"'Distance({kilometers}) == Distance({kilometers2})' should equal to {result}"
     )
@@ -269,7 +269,7 @@ def test_distance_class_eq_distance(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_eq_number(kilometers, kilometers2, result):
-    distance = Distance(kilometers)
+    distance = Distans(kilometers)
     assert (distance == kilometers2) is result, (
         f"'Distance({kilometers}) == {kilometers2}' should equal to {result}"
     )
@@ -288,8 +288,8 @@ def test_distance_class_eq_number(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_gt_distance(kilometers, kilometers2, result):
-    distance1 = Distance(kilometers)
-    distance2 = Distance(kilometers2)
+    distance1 = Distans(kilometers)
+    distance2 = Distans(kilometers2)
     assert (distance1 > distance2) is result, (
         f"'Distance({kilometers}) > Distance{kilometers2}' should equal to {result}"
     )
@@ -308,7 +308,7 @@ def test_distance_class_gt_distance(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_gt_number(kilometers, kilometers2, result):
-    distance = Distance(kilometers)
+    distance = Distans(kilometers)
     assert (distance > kilometers2) is result, (
         f"'Distance({kilometers}) > {kilometers2}' should equal to {result}"
     )
@@ -327,8 +327,8 @@ def test_distance_class_gt_number(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_ge_distance(kilometers, kilometers2, result):
-    distance1 = Distance(kilometers)
-    distance2 = Distance(kilometers2)
+    distance1 = Distans(kilometers)
+    distance2 = Distans(kilometers2)
     assert (distance1 >= distance2) is result, (
         f"'Distance({kilometers}) >= Distance({kilometers2})' should equal to {result}"
     )
@@ -347,7 +347,7 @@ def test_distance_class_ge_distance(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_ge_number(kilometers, kilometers2, result):
-    distance = Distance(kilometers)
+    distance = Distans(kilometers)
     assert (distance >= kilometers2) is result, (
         f"'Distance({kilometers}) >= {kilometers2}' should equal to {result}"
     )
@@ -366,8 +366,8 @@ def test_distance_class_ge_number(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_lt_distance(kilometers, kilometers2, result):
-    distance1 = Distance(kilometers)
-    distance2 = Distance(kilometers2)
+    distance1 = Distans(kilometers)
+    distance2 = Distans(kilometers2)
     assert (distance1 < distance2) is result, (
         f"'Distance({kilometers}) < Distance({kilometers2})' should equal to {result}"
     )
@@ -386,7 +386,7 @@ def test_distance_class_lt_distance(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_lt_number(kilometers, kilometers2, result):
-    distance = Distance(kilometers)
+    distance = Distans(kilometers)
     assert (distance < kilometers2) is result, (
         f"'Distance({kilometers}) < {kilometers2}' should equal to {result}"
     )
@@ -405,8 +405,8 @@ def test_distance_class_lt_number(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_le_distance(kilometers, kilometers2, result):
-    distance1 = Distance(kilometers)
-    distance2 = Distance(kilometers2)
+    distance1 = Distans(kilometers)
+    distance2 = Distans(kilometers2)
     assert (distance1 <= distance2) is result, (
         f"'Distance({kilometers}) <= Distance({kilometers2})' should equal to {result}"
     )
@@ -425,7 +425,7 @@ def test_distance_class_le_distance(kilometers, kilometers2, result):
     ]
 )
 def test_distance_class_le_number(kilometers, kilometers2, result):
-    distance = Distance(kilometers)
+    distance = Distans(kilometers)
     assert (distance <= kilometers2) is result, (
         f"'Distance({kilometers}) <= {kilometers2}' should equal to {result}"
     )
