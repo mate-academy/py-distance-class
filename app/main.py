@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import Any
 
 
 class Distance:
@@ -12,79 +11,63 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Any) -> Distance:
+    def __add__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
-            value = other.km
+            return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
-            value = other
-        else:
-            return NotImplemented
-        return Distance(self.km + value)
+            return Distance(self.km + other)
+        return NotImplemented
 
-    def __iadd__(self, other: Any) -> Distance:
+    def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
+            return self
         elif isinstance(other, (int, float)):
             self.km += other
-        else:
-            return NotImplemented
-        return self
+            return self
+        return NotImplemented
 
-    def __mul__(self, other: Any) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
-            result = self.km * other
-        else:
-            return NotImplemented
-        return Distance(result)
+            return Distance(self.km * other)
+        return NotImplemented
 
-    def __truediv__(self, other: Any) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
-            result = round(self.km / other, 2)
-        else:
-            return NotImplemented
-        return Distance(result)
+            return Distance(round(self.km / other, 2))
+        return NotImplemented
 
-    def __lt__(self, other: Any) -> bool:
+    def __lt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            other_value = other.km
+            return self.km < other.km
         elif isinstance(other, (int, float)):
-            other_value = other
-        else:
-            return NotImplemented
-        return self.km < other_value
+            return self.km < other
+        return NotImplemented
 
-    def __gt__(self, other: Any) -> bool:
+    def __gt__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            other_value = other.km
+            return self.km > other.km
         elif isinstance(other, (int, float)):
-            other_value = other
-        else:
-            return NotImplemented
-        return self.km > other_value
+            return self.km > other
+        return NotImplemented
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            other_value = other.km
+            return self.km == other.km
         elif isinstance(other, (int, float)):
-            other_value = other
-        else:
-            return NotImplemented
-        return self.km == other_value
+            return self.km == other
+        return NotImplemented
 
-    def __le__(self, other: Any) -> bool:
+    def __le__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            other_value = other.km
+            return self.km <= other.km
         elif isinstance(other, (int, float)):
-            other_value = other
-        else:
-            return NotImplemented
-        return self.km <= other_value
+            return self.km <= other
+        return NotImplemented
 
-    def __ge__(self, other: Any) -> bool:
+    def __ge__(self, other: Distance | int | float) -> bool:
         if isinstance(other, Distance):
-            other_value = other.km
+            return self.km >= other.km
         elif isinstance(other, (int, float)):
-            other_value = other
-        else:
-            return NotImplemented
-        return self.km >= other_value
+            return self.km >= other
+        return NotImplemented
