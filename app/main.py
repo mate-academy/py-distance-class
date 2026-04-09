@@ -40,8 +40,7 @@ class Distance:
                 raise ZeroDivisionError("Cannot divide distance by zero")
             new_distance = round(self.km / other, 2)
             return Distance(new_distance)
-        else:
-            return NotImplemented
+        return NotImplemented
 
     def __lt__(self, other: Any) -> Union[bool, NotImplemented]:
         if isinstance(other, Distance):
