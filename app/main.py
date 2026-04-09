@@ -73,7 +73,7 @@ class Distance:
             return self.km >= other
         return NotImplemented
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: Any) -> Union[bool, NotImplemented]:
         if isinstance(other, Distance):
             return self.km == other.km
         elif isinstance(other, (int, float)):
