@@ -78,7 +78,4 @@ class Distance:
             return self.km == other.km
         elif isinstance(other, (int, float)):
             return self.km == other
-        return False
-
-    def __ne__(self, other: Any) -> bool:
-        return not self.__eq__(other)
+        return NotImplemented
