@@ -27,3 +27,9 @@ class Distance:
         self.km += other_distance
         return self
 
+    def __mul__(self, other: Any) -> Any:
+        return Distance(km=self.km * other)
+
+    def __truediv__(self, other: Any) -> Distance:
+        return Distance(km=round(self.km / other,2))
+
