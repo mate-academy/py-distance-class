@@ -2,7 +2,7 @@ from typing import Any
 
 
 class Distance:
-    def __init__(self,km: float) -> None:
+    def __init__(self, km: float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -21,9 +21,9 @@ class Distance:
     def __iadd__(self, other: Any) -> Distance:
 
         if isinstance(other, Distance):
-            other_distance  = other.km
+            other_distance = other.km
         else:
-            other_distance  = other
+            other_distance = other
         self.km += other_distance
         return self
 
@@ -31,5 +31,40 @@ class Distance:
         return Distance(km=self.km * other)
 
     def __truediv__(self, other: Any) -> Distance:
-        return Distance(km=round(self.km / other,2))
+        return Distance(km=round(self.km / other, 2))
 
+    def __lt__(self, other: Any) -> bool:
+
+        if isinstance(other, Distance):
+            other_distance = other.km
+        else:
+            other_distance = other
+        return self.km < other_distance
+
+    def __gt__(self, other: Any) -> bool:
+        if isinstance(other, Distance):
+            other_distance = other.km
+        else:
+            other_distance = other
+        return self.km > other_distance
+
+    def __le__(self, other: Any) -> bool:
+        if isinstance(other, Distance):
+            other_distance = other.km
+        else:
+            other_distance = other
+        return self.km <= other_distance
+
+    def __ge__(self, other: Any) -> bool:
+        if isinstance(other, Distance):
+            other_distance = other.km
+        else:
+            other_distance = other
+        return self.km >= other_distance
+
+    def __eq__(self, other: Any) -> bool:
+        if isinstance(other, Distance):
+            other_distance = other.km
+        else:
+            other_distance = other
+        return self.km == other_distance
