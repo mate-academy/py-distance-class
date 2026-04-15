@@ -61,4 +61,3 @@ class Distance:
         if isinstance(other, Distance):
             other_value = other.km
         return self.km >= other_value
-
