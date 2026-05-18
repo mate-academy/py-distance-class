@@ -2,7 +2,6 @@ from typing import Union, Any
 
 
 class Distance:
-    people = {}
 
     def __init__(self, km: Union[int, float]) -> None:
         self.km = km
