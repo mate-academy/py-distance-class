@@ -52,3 +52,4 @@ class Distance:
 
     def __ge__(self, other: int | float | "Distance") -> bool:
         return self.km >= self._get_km(other)
+    
