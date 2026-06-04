@@ -33,10 +33,10 @@ class Distance:
 
     def __truediv__(self, other: int | "Distance") -> "Distance":
         if isinstance(other, Distance):
-            val = self.km / other.km
+            division_result = self.km / other.km
         else:
-            val = self.km / other
-        return Distance(round(val, 2))
+            division_result = self.km / other
+        return Distance(round(division_result, 2))
 
     def _get_km(self, other: int | "Distance") -> int:
         if isinstance(other, Distance):
