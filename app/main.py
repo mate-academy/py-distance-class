@@ -1,5 +1,5 @@
 class Distance:
-    def __check(self, other) -> int | float:
+    def __check(self, other: int | float | Distance) -> int | float:
         if isinstance(other, Distance):
             return other.km
         return other
