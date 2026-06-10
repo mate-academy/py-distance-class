@@ -22,12 +22,12 @@ class Distance:
             self.km += other
         return self
 
-    def __mul__(self, other) -> float:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, Distance) is True:
-            return self.km * other.km
-        return self.km * other
+            return Distance(self.km * other.km)
+        return Distance(self.km * other)
 
-    def __truediv__(self, other) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, Distance) is True:
             return Distance(round(self.km / other.km, 2))
         return Distance(round(self.km / other, 2))
