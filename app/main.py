@@ -53,7 +53,7 @@ class Distance:
             return self.km > other.km
         return self.km > other
 
-    ddef __ge__(self, other: Any) -> bool:
+    def __ge__(self, other: Any) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         return self.km >= other
