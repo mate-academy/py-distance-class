@@ -8,10 +8,10 @@ class Distance:
 
     @staticmethod
     def normalize_other(func: Callable) -> Callable:
-        def conwer_in_int(self: Distance, other: Distance | int) -> Callable:
+        def wrapped_func(self: Distance, other: Distance | int) -> Callable:
             other_km = other.km if isinstance(other, Distance) else other
             return func(self, other_km)
-        return conwer_in_int
+        return wrapped_func
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
