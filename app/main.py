@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Distance:
     """Represent a daily running distance in kilometers."""
 
@@ -21,28 +24,28 @@ class Distance:
             return other
         return None
 
-    def __add__(self, other: object) -> "Distance":
+    def __add__(self, other: object) -> Distance:
         """Add another Distance or number to this distance."""
-        val = self._extract_km(other)
-        if val is None:
+        other_km = self._extract_km(other)
+        if other_km is None:
             return NotImplemented
-        return Distance(self.km + val)
+        return Distance(self.km + other_km)
 
-    def __iadd__(self, other: object) -> "Distance":
+    def __iadd__(self, other: object) -> Distance:
         """Add another Distance or number in-place."""
-        val = self._extract_km(other)
-        if val is None:
+        other_km = self._extract_km(other)
+        if other_km is None:
             return NotImplemented
-        self.km += val
+        self.km += other_km
         return self
 
-    def __mul__(self, other: int | float) -> "Distance":
+    def __mul__(self, other: int | float) -> Distance:
         """Multiply distance by a numeric scalar."""
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         return NotImplemented
 
-    def __truediv__(self, other: int | float) -> "Distance":
+    def __truediv__(self, other: int | float) -> Distance:
         """Divide distance by a scalar, rounded to 2 decimals."""
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
@@ -50,35 +53,35 @@ class Distance:
 
     def __eq__(self, other: object) -> bool:
         """Check equality against a Distance or number."""
-        val = self._extract_km(other)
-        if val is None:
+        other_km = self._extract_km(other)
+        if other_km is None:
             return NotImplemented
-        return self.km == val
+        return self.km == other_km
 
     def __lt__(self, other: object) -> bool:
         """Check strictly less than against a Distance or number."""
-        val = self._extract_km(other)
-        if val is None:
+        other_km = self._extract_km(other)
+        if other_km is None:
             return NotImplemented
-        return self.km < val
+        return self.km < other_km
 
     def __gt__(self, other: object) -> bool:
         """Check strictly greater than against a Distance or number."""
-        val = self._extract_km(other)
-        if val is None:
+        other_km = self._extract_km(other)
+        if other_km is None:
             return NotImplemented
-        return self.km > val
+        return self.km > other_km
 
     def __le__(self, other: object) -> bool:
         """Check less than or equal against a Distance or number."""
-        val = self._extract_km(other)
-        if val is None:
+        other_km = self._extract_km(other)
+        if other_km is None:
             return NotImplemented
-        return self.km <= val
+        return self.km <= other_km
 
     def __ge__(self, other: object) -> bool:
         """Check greater than or equal against a Distance or number."""
-        val = self._extract_km(other)
-        if val is None:
+        other_km = self._extract_km(other)
+        if other_km is None:
             return NotImplemented
-        return self.km >= val
+        return self.km >= other_km
