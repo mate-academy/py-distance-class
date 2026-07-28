@@ -1,6 +1,6 @@
 class Distance:
 
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __add__(self, other: Distance | int) -> Distance:
