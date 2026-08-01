@@ -18,47 +18,31 @@ class Distance:
         return other
 
     def __add__(self, other: Union["Distance", int, float]) -> "Distance":
-        if not isinstance(other, Distance):
-            return None
-        return Distance(self.km + other.km)
+        return Distance(self.km + self._get_km(other))
 
     def __iadd__(self, other: Union["Distance", int, float]) -> "Distance":
-        if not isinstance(other, Distance):
-            return None
         self.km += self._get_km(other)
         return self
 
     def __mul__(self, other: Union[int, float]) -> "Distance":
-        if not isinstance(other, (int, float)):
-            return None
-        return Distance(self.km * other)
+        return Distance(self.km * self._get_km(other))
 
     def __truediv__(self, other: Union[int, float]) -> "Distance":
-        if not isinstance(other, (int, float)):
-            return None
-        return Distance(round((self.km / other), 2))
+        return Distance(round((self.km / self._get_km(other)), 2))
 
     def __lt__(self, other: Union["Distance", int, float]) -> bool:
-        if not isinstance(other, Distance):
-            return None
         return self.km < self._get_km(other)
 
     def __gt__(self, other: Union["Distance", int, float]) -> bool:
-        if not isinstance(other, Distance):
-            return None
         return self.km > self._get_km(other)
 
     def __eq__(self, other: Any) -> bool:
-        if not isinstance(other, Distance):
-            return None
-        return self.km == self._get_km(other)
+        if isinstance(other, (Distance, int, float)):
+            return self.km == self._get_km(other)
+        return False
 
     def __le__(self, other: Union["Distance", int, float]) -> bool:
-        if not isinstance(other, Distance):
-            return None
         return self.km <= self._get_km(other)
 
     def __ge__(self, other: Union["Distance", int, float]) -> bool:
-        if not isinstance(other, Distance):
-            return None
         return self.km >= self._get_km(other)
