@@ -15,13 +15,13 @@ class Distance:
 
     def __str__(self) -> str:
         return self.__repr__()
-    
+
     def _get_km(self, other: Union["Distance", int, float])\
             -> Union[int, float]:
         if isinstance(other, Distance):
             return other.km
         return other
-    
+
     def __iadd__(self, other: Union["Distance", int, float]) -> "Distance":
         if not isinstance(other, Distance):
             return None
