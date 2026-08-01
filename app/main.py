@@ -25,10 +25,10 @@ class Distance:
         return self
 
     def __mul__(self, other: Union[int, float]) -> "Distance":
-        return Distance(self.km * self._get_km(other))
+        return Distance(self.km * other)
 
     def __truediv__(self, other: Union[int, float]) -> "Distance":
-        return Distance(round((self.km / self._get_km(other)), 2))
+        return Distance(round((self.km / other), 2))
 
     def __lt__(self, other: Union["Distance", int, float]) -> bool:
         return self.km < self._get_km(other)
