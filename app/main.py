@@ -15,11 +15,15 @@ class Distance:
 
     def __str__(self) -> str:
         return self.__repr__()
-
+    def _get_km(self, other: Union["Distance", int, float])\
+            -> Union[int, float]:
+        if isinstance(other, Distance):
+            return other.km
+        return other
     def __iadd__(self, other: Union["Distance", int, float]) -> "Distance":
         if not isinstance(other, Distance):
             return None
-        self.km += other.km
+        self.km += self._get_km(other)
         return self
 
     def __mul__(self, other: Union[int, float]) -> "Distance":
@@ -35,24 +39,24 @@ class Distance:
     def __lt__(self, other: Union["Distance", int, float]) -> bool:
         if not isinstance(other, Distance):
             return None
-        return self.km < other.km
+        return self.km < self._get_km(other)
 
     def __gt__(self, other: Union["Distance", int, float]) -> bool:
         if not isinstance(other, Distance):
             return None
-        return self.km > other.km
+        return self.km > self._get_km(other)
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, Distance):
             return None
-        return self.km == other.km
+        return self.km == self._get_km(other)
 
     def __le__(self, other: Union["Distance", int, float]) -> bool:
         if not isinstance(other, Distance):
             return None
-        return self.km <= other.km
+        return self.km <= self._get_km(other)
 
     def __ge__(self, other: Union["Distance", int, float]) -> bool:
         if not isinstance(other, Distance):
             return None
-        return self.km >= other.km
+        return self.km >= self._get_km(other)
