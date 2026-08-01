@@ -9,6 +9,7 @@ class Distance:
         if not isinstance(other, Distance):
             return None
         return Distance(self.km + other.km)
+    
     def __iadd__(self, other: Union["Distance", int, float]) -> "Distance":
         if not isinstance(other, Distance):
             return None
@@ -52,6 +53,6 @@ class Distance:
 
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
-    
+
     def __str__(self) -> str:
         return self.__repr__()
