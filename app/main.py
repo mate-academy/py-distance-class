@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Any
 
 
 class Distance:
@@ -42,7 +42,7 @@ class Distance:
             return None
         return self.km > other.km
 
-    def __eq__(self, other: Union["Distance", int, float]) -> bool:
+    def __eq__(self, other: Any) -> bool:
         if not isinstance(other, Distance):
             return None
         return self.km == other.km
