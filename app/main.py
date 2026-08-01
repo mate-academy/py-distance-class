@@ -1,5 +1,4 @@
-from typing import Union, Any
-import math
+from typing import Union
 
 
 class Distance:
@@ -16,7 +15,7 @@ class Distance:
 
     def __str__(self) -> str:
         return self.__repr__()
-    
+
     def __iadd__(self, other: Union["Distance", int, float]) -> "Distance":
         if not isinstance(other, Distance):
             return None
