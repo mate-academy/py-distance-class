@@ -14,34 +14,32 @@ class Distance:
     def __add__(self, outro: Distance | int | float) -> Distance:
         if isinstance(outro, (int, float)):
             return Distance(self.km + outro)
-        else:
-            return Distance(self.km + outro.km)
+        return Distance(self.km + outro.km)
 
     def __iadd__(self, outro: Distance | int | float) -> Distance:
         if isinstance(outro, (int, float)):
             self.km += outro
             return self
-        else:
-            self.km += outro.km
-            return self
+        self.km += outro.km
+        return self
 
-    def __mul__(self, outro: Distance | int | float) -> Distance:
+    def __mul__(self, outro: int | float) -> Distance:
         return Distance(self.km * outro)
 
-    def __truediv__(self, outro: int) -> Distance:
+    def __truediv__(self, outro: Distance | int | float) -> Distance:
         return Distance(round((self.km / outro), 2))
 
-    def __lt__(self, outro: int) -> bool:
+    def __lt__(self, outro: Distance | int | float) -> bool:
         return self.km < outro
 
-    def __gt__(self, outro: int) -> bool:
+    def __gt__(self, outro: Distance | int | float) -> bool:
         return self.km > outro
 
-    def __eq__(self, outro: int) -> bool:
+    def __eq__(self, outro: Distance | int | float) -> bool:
         return self.km == outro
 
-    def __le__(self, outro: int) -> bool:
+    def __le__(self, outro: Distance | int | float) -> bool:
         return self.km <= outro
 
-    def __ge__(self, outro: int) -> bool:
+    def __ge__(self, outro: Distance | int | float) -> bool:
         return self.km >= outro
