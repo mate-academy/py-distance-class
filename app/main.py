@@ -1,5 +1,4 @@
 class Distance:
-
     def __init__(self, km: int | float) -> None:
         self.km = km
 
@@ -12,8 +11,8 @@ class Distance:
     def __add__(self, other: Distance | int) -> Distance:
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        else:
-            return Distance(self.km + other)
+
+        return Distance(self.km + other)
 
     def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
@@ -21,32 +20,32 @@ class Distance:
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
-        else:
-            return self.km == other
+
+        return self.km == other
 
     def __gt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
-        else:
-            return self.km > other
 
-    def __ge__(self, other: int | Distance) -> bool:
+        return self.km > other
+
+    def __ge__(self, other: int | float | Distance) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
-        else:
-            return self.km >= other
 
-    def __lt__(self, other: Distance) -> bool:
+        return self.km >= other
+
+    def __lt__(self, other: int | float | Distance) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
-        else:
-            return self.km < other
 
-    def __le__(self, other: Distance | int) -> bool:
+        return self.km < other
+
+    def __le__(self, other: int | float | Distance) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
-        else:
-            return self.km <= other
+
+        return self.km <= other
 
     def __iadd__(self, other: Distance | int | float) -> Distance:
         if isinstance(other, Distance):
@@ -57,7 +56,4 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, Distance):
-            raise TypeError
-        else:
-            return Distance(self.km * other)
+        return Distance(self.km * other)
