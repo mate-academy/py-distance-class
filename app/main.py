@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 class Distance:
     def __init__(self, km: float) -> None:
         self.km = km
@@ -22,12 +24,12 @@ class Distance:
             self.km = round(self.km + other.km, 2)
         return self
 
-    def __mul__(self, other: Distance | int | float) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
-            return Distance(round(self.km * other, 3))
+            return Distance(round(self.km * other, 2))
         return NotImplemented
 
-    def __truediv__(self, other: Distance | int | float) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
         return NotImplemented
