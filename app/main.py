@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Self
 
 
@@ -11,7 +12,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Distance) -> Self:
+    def __add__(self, other: Distance | int | float) -> Self:
         value = 0
         if isinstance(other, Distance):
             value = other.km
@@ -19,7 +20,7 @@ class Distance:
             value = other
         return Distance(self.km + value)
 
-    def __iadd__(self, other: Distance) -> Self:
+    def __iadd__(self, other: Distance | int | float) -> Self:
         value = 0
         if isinstance(other, Distance):
             value = other.km
@@ -29,13 +30,10 @@ class Distance:
         return self
 
     def __mul__(self, other: float) -> Self:
-        value = 1
         if isinstance(other, (int, float)):
-            value = other
-            self.km *= value
-            return self
+            return Distance(self.km * other)
 
-    def __lt__(self, other: Distance) -> Self:
+    def __lt__(self, other: Distance) -> bool:
         value = 0
         if isinstance(other, Distance):
             value = other.km
