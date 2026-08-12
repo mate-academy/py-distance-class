@@ -8,19 +8,19 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: "Distance | int | float") -> "Distance":
+    def __add__(self, other: "Distance | int | float") -> Distance:
         other_km = other.km if isinstance(other, Distance) else other
         return Distance(self.km + other_km)
 
-    def __iadd__(self, other: "Distance | int | float") -> "Distance":
+    def __iadd__(self, other: "Distance | int | float") -> Distance:
         other_km = other.km if isinstance(other, Distance) else other
         self.km += other_km
         return self
 
-    def __mul__(self, other: int | float) -> "Distance":
+    def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: int | float) -> "Distance":
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: "Distance | int | float") -> bool:
