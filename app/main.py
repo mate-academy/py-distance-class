@@ -1,5 +1,4 @@
 from __future__ import annotations
-from __future__ import division
 
 
 class Distance:
@@ -26,15 +25,17 @@ class Distance:
 
     def __mul__(self, other: int) -> Distance:
         if isinstance(other, Distance):
-            return None
-        self.km *= other
-        return Distance(km=self.km)
+            return NotImplemented
+
+        result = self.km * other
+        return Distance(km=result)
 
     def __truediv__(self, other: int) -> Distance:
         if isinstance(other, Distance):
-            return None
-        self.km = round((self.km / other), 2)
-        return Distance(km=self.km)
+            return NotImplemented
+
+        result = round(self.km / other, 2)
+        return Distance(km=result)
 
     def __lt__(self, other: int | Distance) -> bool:
         # Defines behavior for the less-than operator, <
