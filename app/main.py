@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import Any
 
 
 class Distance:
@@ -24,33 +23,33 @@ class Distance:
         self.km += other
         return self
 
-    def __mul__(self, other: Distance) -> Distance:
+    def __mul__(self, other: int | float) -> Distance:
         return Distance(self.km * other)
 
-    def __truediv__(self, other: Distance) -> Distance:
+    def __truediv__(self, other: int | float) -> Distance:
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: Distance | int) -> Any:
+    def __lt__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return self.km < other.km
         return self.km < other
 
-    def __gt__(self, other: Distance | int) -> Any:
+    def __gt__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return self.km > other.km
         return self.km > other
 
-    def __eq__(self, other: Distance | int) -> Any:
+    def __eq__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return self.km == other.km
         return self.km == other
 
-    def __le__(self, other: Distance | int) -> Any:
+    def __le__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return self.km <= other.km
         return self.km <= other
 
-    def __ge__(self, other: Distance | int) -> Any:
+    def __ge__(self, other: Distance | int) -> bool:
         if isinstance(other, Distance):
             return self.km >= other.km
         return self.km >= other
