@@ -23,10 +23,10 @@ class Distance:
         self.km = self.km + other
         return self
 
-    def __mul__(self, num: int) -> Distance:
+    def __mul__(self, num: int | float) -> Distance:
         return Distance(self.km * num)
 
-    def __truediv__(self, num: int) -> Distance:
+    def __truediv__(self, num: int | float) -> Distance:
         return Distance(round(self.km / num, 2))
 
     def __lt__(self, other: Distance | int) -> bool:
