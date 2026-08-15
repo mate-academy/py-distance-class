@@ -23,19 +23,9 @@ class Distance:
         return self
 
     def __mul__(self, other: int | float) -> Distance:
-        if isinstance(other, Distance):
-            raise (
-                TypeError(
-                    "'__mul__' method should not accept Distance instance"
-                )
-            )
-
         return Distance(self.km * other)
 
     def __truediv__(self, other: int | float) -> Distance:
-        if isinstance(other, Distance):
-            return Distance(round(self.km / other, 2))
-
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: Distance | int) -> bool:
