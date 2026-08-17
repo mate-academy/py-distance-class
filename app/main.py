@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class Distance:
     def __init__(self, km: int | float) -> None:
         self.km = km
@@ -14,7 +15,7 @@ class Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km + other)
         elif isinstance(other, Distance):
-             return Distance(self.km + other.km)
+            return Distance(self.km + other.km)
         return NotImplemented
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
@@ -28,7 +29,7 @@ class Distance:
 
     def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
-             return Distance(self.km * other)
+            return Distance(self.km * other)
         return NotImplemented
 
     def __truediv__(self, other: int | float) -> Distance:
