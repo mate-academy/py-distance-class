@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 
 class Distance:
-    km = 0
 
     def __init__(self, km: float | int) -> None:
-        self.km += km
+        self.km = km
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
@@ -21,9 +22,9 @@ class Distance:
         if isinstance(other, Distance):
             self.km += other.km
             return self
-        else:
-            self.km += other
-            return self
+
+        self.km += other
+        return self
 
     def __mul__(self, multiplier: float | int) -> Distance:
         return Distance(self.km * multiplier)
