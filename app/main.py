@@ -21,3 +21,10 @@ class Distance:
         else:
             self.km += other
         return self
+
+    def __mul__(self, other: int) -> "Distance":
+        if isinstance(other, Distance):
+            distance2 = self.km * other.km
+        else:
+            distance2 = self.km * other
+        return self.__class__(distance2)
