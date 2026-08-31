@@ -28,3 +28,10 @@ class Distance:
         else:
             distance2 = self.km * other
         return self.__class__(distance2)
+
+    def __truediv__(self, other: int) -> "Distance":
+        if isinstance(other, Distance):
+            distance2 = self.km / other.km
+        else:
+            distance2 = self.km / other
+        return self.__class__(round(distance2, 2))
