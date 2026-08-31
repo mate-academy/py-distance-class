@@ -14,3 +14,10 @@ class Distance:
         else:
             distance3 = self.km + other
         return self.__class__(distance3)
+
+    def __iadd__(self, other: "Distance") -> "Distance":
+        if isinstance(other, Distance):
+            self.km += other.km
+        else:
+            self.km += other
+        return self
