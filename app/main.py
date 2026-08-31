@@ -35,3 +35,18 @@ class Distance:
         else:
             distance2 = self.km / other
         return self.__class__(round(distance2, 2))
+
+    def __lt__(self, other: "Distance") -> bool:
+        return self.km < other.km
+
+    def __gt__(self, other: "Distance") -> bool:
+        return self.km > other.km
+
+    def __eq__(self, other: "Distance") -> bool:
+        return self.km == other.km
+
+    def __le__(self, other: "Distance") -> bool:
+        return self.km <= other.km
+
+    def __ge__(self, other: "Distance") -> bool:
+        return self.km >= other.km
