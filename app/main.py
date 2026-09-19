@@ -21,14 +21,14 @@ class Distance:
         return self
 
     def __mul__(self, other: Distance | int) -> Distance:
-        self.km *= other
-        return self
+        new = self.km * other
+        return Distance(new)
 
     def __truediv__(self, other: Distance | int) -> Distance:
         if isinstance(other, Distance):
-            self.km = round((self.km / other.km), 2)
-        self.km = round((self.km / other), 2)
-        return self
+            new = round((self.km / other.km), 2)
+        new = round((self.km / other), 2)
+        return Distance(new)
 
     def __eq__(self, other: Distance) -> bool:
         if isinstance(other, Distance):
