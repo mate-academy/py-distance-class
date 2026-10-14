@@ -8,7 +8,7 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other) -> Distance:
+    def __add__(self, other: object) -> Distance:
         if isinstance(other, Distance):
             total = self.km + other.km
         else:
@@ -16,7 +16,7 @@ class Distance:
 
         return Distance(total)
 
-    def __iadd__(self, other) -> Distance:
+    def __iadd__(self, other: object) -> Distance:
         if isinstance(other, Distance):
             self.km += other.km
         else:
@@ -24,15 +24,15 @@ class Distance:
 
         return self
 
-    def __mul__(self, other) -> Distance:
+    def __mul__(self, other: object) -> Distance:
         total = self.km * other
         return Distance(total)
 
-    def __truediv__(self, other) -> Distance:
+    def __truediv__(self, other: object) -> Distance:
         total = round(self.km / other, 2)
         return Distance(total)
 
-    def __lt__(self, other) -> bool:
+    def __lt__(self, other: object) -> bool:
         if isinstance(other, Distance):
             total = self.km < other.km
         else:
@@ -40,7 +40,7 @@ class Distance:
 
         return total
 
-    def __gt__(self, other) -> bool:
+    def __gt__(self, other: object) -> bool:
         if isinstance(other, Distance):
             total = self.km > other.km
         else:
@@ -48,7 +48,7 @@ class Distance:
 
         return total
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, Distance):
             total = self.km == other.km
         else:
@@ -56,7 +56,7 @@ class Distance:
 
         return total
 
-    def __le__(self, other) -> bool:
+    def __le__(self, other: object) -> bool:
         if isinstance(other, Distance):
             total = self.km <= other.km
         else:
@@ -64,7 +64,7 @@ class Distance:
 
         return total
 
-    def __ge__(self, other) -> bool:
+    def __ge__(self, other: object) -> bool:
         if isinstance(other, Distance):
             total = self.km >= other.km
         else:
