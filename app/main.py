@@ -25,6 +25,7 @@ class Distance:
             return self
         elif isinstance(other, (int, float)):
             self.km += other
+            return self
 
         return NotImplemented
 
