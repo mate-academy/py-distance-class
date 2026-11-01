@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
@@ -36,5 +39,5 @@ class Distance:
     def __ge__(self, other: int | float) -> bool:
         return self.km >= other
 
-    def to_km(self, value: Distance | int | float) -> int:
+    def to_km(self, value: Distance | int | float) -> int | float:
         return value.km if isinstance(value, Distance) else value
