@@ -18,12 +18,11 @@ class Distance:
             self.km += other.km
         else:
             self.km += other
-
         return self
 
     def __mul__(self, other):
         return Distance(self.km * other)
-    
+
     def __truediv__(self, other):
         return Distance(round(self.km / other, 2))
 
