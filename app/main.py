@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Union
 
 
@@ -23,39 +24,33 @@ class Distance:
         self.km += new_km
         return self
 
-    def __mul__(self, new_km: Union[int | float] | "Distance") -> "Distance":
+    def __mul__(self, new_km: Union[int | float]) -> "Distance":
         return Distance(self.km * new_km)
 
-    def __truediv__(self, new_km: Union[int | float]
-                    | "Distance") -> "Distance":
+    def __truediv__(self, new_km: Union[int | float]) -> "Distance":
         return Distance(round(self.km / new_km, 2))
 
     def __lt__(self, new_km: Union[int | float] | "Distance") -> bool:
         if isinstance(new_km, Distance):
             return self.km < new_km.km
-        else:
-            return self.km < new_km
+        return self.km < new_km
 
     def __gt__(self, new_km: Union[int | float] | "Distance") -> bool:
         if isinstance(new_km, Distance):
             return self.km > new_km.km
-        else:
-            return self.km > new_km
+        return self.km > new_km
 
     def __eq__(self, new_km: Union[int | float] | "Distance") -> bool:
         if isinstance(new_km, Distance):
             return self.km == new_km.km
-        else:
-            return self.km == new_km
+        return self.km == new_km
 
     def __le__(self, new_km: Union[int | float] | "Distance") -> bool:
         if isinstance(new_km, Distance):
             return self.km <= new_km.km
-        else:
-            return self.km <= new_km
+        return self.km <= new_km
 
     def __ge__(self, new_km: Union[int | float] | "Distance") -> bool:
         if isinstance(new_km, Distance):
             return self.km >= new_km.km
-        else:
-            return self.km >= new_km
+        return self.km >= new_km
