@@ -79,3 +79,11 @@ class Distance:
             return self.km >= other
         else:
             return NotImplemented
+
+    def __ne__(self, other: object) -> bool | NotImplementedType:
+        if isinstance(other, Distance):
+            return self.km != other.km
+        elif isinstance(other, (int, float)):
+            return self.km != other
+        else:
+            return NotImplemented
