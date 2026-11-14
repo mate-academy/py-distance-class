@@ -1,16 +1,59 @@
-# This is a sample Python script.
+class Distance:
+    def __init__(self, km: int | float) -> None:
+        self.km = km
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    def __str__(self) -> str:
+        return f"Distance: {self.km} kilometers."
 
+    def __repr__(self) -> str:
+        return f"Distance(km={self.km!r})"
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    def __add__(self, other: Distance | int | float) -> Distance:
+        if isinstance(other, Distance):
+            return Distance(self.km + other.km)
+        elif isinstance(other, (int, float)):
+            return Distance(self.km + other)
 
+    def __iadd__(self, other: Distance | int | float) -> Distance:
+        if isinstance(other, Distance):
+            self.km += other.km
+            return self
+        elif isinstance(other, (int, float)):
+            self.km += other
+            return self
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    def __mul__(self, other: int | float) -> Distance:
+        return Distance(self.km * other)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    def __truediv__(self, other: int | float) -> Distance:
+        return Distance(round(self.km / other, 2))
+
+    def __lt__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km < other.km
+        elif isinstance(other, (int, float)):
+            return self.km < other
+
+    def __gt__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km > other.km
+        elif isinstance(other, (int, float)):
+            return self.km > other
+
+    def __eq__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km == other.km
+        elif isinstance(other, (int, float)):
+            return self.km == other
+
+    def __le__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km <= other.km
+        elif isinstance(other, (int, float)):
+            return self.km <= other
+
+    def __ge__(self, other: Distance | int | float) -> bool:
+        if isinstance(other, Distance):
+            return self.km >= other.km
+        elif isinstance(other, (int, float)):
+            return self.km >= other
