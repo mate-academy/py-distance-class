@@ -25,21 +25,23 @@ class Distance:
     ) -> "Distance":
         if isinstance(other, Distance):
             self.km += other.km
-        elif isinstance(other, (int, float)):
+            return self
+
+        if isinstance(other, (int, float)):
             self.km += other
-        else:
-            raise TypeError("Unsupported operand type for +=")
-        return self
+            return self
+
+        raise TypeError("Unsupported operand type for +=")
 
     def __mul__(
-        self, other: Union["Distance", int, float]
+        self, other: Union[int, float]
     ) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("Unsupported operand type for *")
 
     def __truediv__(
-        self, other: Union["Distance", int, float]
+        self, other: Union[int, float]
     ) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(round(self.km / other, 2))
