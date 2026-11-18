@@ -29,7 +29,9 @@ class Distance:
     def __truediv__(self, other: int | float) -> Distance:
         return Distance(round((self.km / other), 2))
 
-    def __lt__(self, other: int | float) -> bool:
+    def __lt__(self, other: int | float | Distance) -> bool:
+        if type(other) is Distance:
+            return self.km < other.km
         return self.km < other
 
     def __gt__(self, other: int | float) -> bool:
