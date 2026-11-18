@@ -16,7 +16,8 @@ class Distance:
     ) -> "Distance":
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
-        elif isinstance(other, (int, float)):
+
+        if isinstance(other, (int, float)):
             return Distance(self.km + other)
         raise TypeError("Unsupported operand type for +")
 
