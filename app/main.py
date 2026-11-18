@@ -18,9 +18,9 @@ class Distance:
 
     def __iadd__(self, other: int | float | Distance) -> Distance:
         if type(other) is Distance:
-            self.km = round((self.km + other.km), 2)
+            self.km = self.km + other.km
         else:
-            self.km = round((self.km + other), 2)
+            self.km = self.km + other
         return self
 
     def __mul__(self, other: int | float) -> Distance:
