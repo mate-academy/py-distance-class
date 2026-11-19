@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Distance:
     def __init__(self, km: int) -> None:
         self.km = km
@@ -37,8 +40,8 @@ class Distance:
     def __eq__(self, other: "int | float | Distance") -> bool:
         return self.km == self._get_km(other)
 
-    def __le__(self, other: int | float | "Distance") -> bool:
+    def __le__(self, other: "int | float | Distance") -> bool:
         return self.km <= self._get_km(other)
 
-    def __ge__(self, other: int | float | "Distance") -> bool:
+    def __ge__(self, other: "int | float | Distance") -> bool:
         return self.km >= self._get_km(other)
